@@ -1,0 +1,106 @@
+/* 闪马田园 SUMFARM · 后台独立样式 v1.5.0
+   纯素、严谨、独立登录与管理；不加载前台田园/可爱装饰，类名 adm- 与 sf- 完全隔离 */
+:root{--adm-bg:#F4F5F6;--adm-paper:#FFFFFF;--adm-ink:#1F2429;--adm-mute:#6C757D;
+  --adm-line:#DDE1E5;--adm-accent:#334A5E;--adm-ok:#2F6B4F;--adm-warn:#9A6B18;--adm-err:#A33B32}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body.adm-body{font-family:"WenQuanYi Micro Hei","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  color:var(--adm-ink);background:var(--adm-bg);background-image:url("../img/admin_bg.png");
+  background-size:520px auto;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+.adm-login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.adm-login{width:100%;max-width:400px;background:var(--adm-paper);border:1px solid var(--adm-line);
+  border-radius:6px;padding:28px}
+.adm-login h1{font-size:19px;margin:0 0 4px;letter-spacing:.02em}
+.adm-login .adm-sub{font-size:12px;color:var(--adm-mute);margin:0 0 22px}
+.adm-label{display:block;font-size:12px;font-weight:600;margin:0 0 6px}
+.adm-input{width:100%;border:1px solid var(--adm-line);border-radius:4px;padding:9px 11px;
+  font-size:13px;background:#fff;margin-bottom:14px}
+.adm-btn{border:1px solid var(--adm-accent);background:var(--adm-accent);color:#fff;
+  border-radius:4px;padding:9px 16px;font-size:13px;font-weight:600}
+.adm-btn:hover{background:#26394A}
+.adm-btn.is-plain{background:#fff;color:var(--adm-accent)}
+.adm-btn[disabled]{opacity:.45;cursor:not-allowed}
+.adm-note{font-size:11px;color:var(--adm-mute);line-height:1.7;margin-top:16px}
+.adm-shell{display:flex;flex-direction:row;flex-wrap:nowrap;min-height:100vh}
+.adm-side{width:216px;flex:none;background:#fff;border-right:1px solid var(--adm-line);padding:16px 10px}
+.adm-side h2{font-size:14px;margin:0 0 16px;padding:0 8px}
+.adm-side a{display:block;padding:9px 10px;border-radius:4px;font-size:13px;margin-bottom:2px}
+.adm-side a:hover{background:var(--adm-bg)}
+.adm-side a.is-on{background:#EAEFF3;color:var(--adm-accent);font-weight:700}
+.adm-content{flex:1 1 auto;min-width:0;padding:20px 24px 48px}
+.adm-top{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px;
+  border-bottom:1px solid var(--adm-line);padding-bottom:14px;margin-bottom:18px}
+.adm-top h1{font-size:18px;margin:0}
+.adm-top .adm-spacer{flex:1 1 auto}
+.adm-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+@media (max-width:1100px){.adm-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767px){.adm-kpis{grid-template-columns:minmax(0,1fr)}.adm-side{display:none}}
+.adm-kpi{background:#fff;border:1px solid var(--adm-line);border-radius:5px;padding:14px}
+.adm-kpi b{display:block;font-size:22px;color:var(--adm-accent);line-height:1.2}
+.adm-kpi span{font-size:12px;color:var(--adm-mute)}
+.adm-panel{background:#fff;border:1px solid var(--adm-line);border-radius:5px;padding:16px;margin-bottom:16px}
+.adm-panel h3{font-size:14px;margin:0 0 12px}
+.adm-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.adm-table{width:100%;border-collapse:collapse;min-width:760px;font-size:12px}
+.adm-table th,.adm-table td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--adm-line);white-space:nowrap}
+.adm-table th{background:#F0F2F4;font-weight:700}
+.adm-tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:3px;background:#EDF1F4;color:var(--adm-accent)}
+.adm-tag.is-ok{background:#E7F1EB;color:var(--adm-ok)}
+.adm-tag.is-warn{background:#F6EEDC;color:var(--adm-warn)}
+.adm-tag.is-err{background:#F7E9E7;color:var(--adm-err)}
+.adm-actions{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.adm-actions .adm-btn{padding:6px 11px;font-size:12px}
+.adm-flow{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;margin:14px 0}
+.adm-step{flex:1 1 180px;border:1px solid var(--adm-line);border-radius:5px;padding:12px;background:#FAFBFC}
+.adm-step b{display:block;font-size:13px;margin-bottom:6px}
+.adm-step p{font-size:12px;color:var(--adm-mute);line-height:1.7;margin:0}
+.adm-log{border-left:2px solid var(--adm-line);padding-left:16px;display:flex;flex-direction:column;gap:10px}
+.adm-log li{list-style:none;font-size:12px;line-height:1.7}
+.adm-foot{font-size:11px;color:var(--adm-mute);border-top:1px solid var(--adm-line);
+  padding:14px 24px;line-height:1.8;background:#fff}
+
+/* 后台隔离：复用前台组件类名，但统一收敛为纯素严谨表现，不带田园/可爱装饰 */
+.adm-body{background:#F4F5F6 url("../img/admin_bg.png") repeat}
+.adm-body .sf-main{max-width:none;margin:0;padding:0;background:transparent}
+.adm-body .sf-section{margin-top:0}
+.adm-body .sf-hero,.adm-body .sf-badge-cute,.adm-body .sf-tag.is-cute{display:none}
+.adm-body .sf-panel,.adm-body .sf-card,.adm-body .sf-stat,.adm-body .sf-count{border-radius:4px;box-shadow:none;border:1px solid var(--adm-line)}
+.adm-body .sf-panel{background:#fff}
+.adm-body .sf-btn{border-radius:4px;border-color:var(--adm-line);background:#fff;color:var(--adm-accent)}
+.adm-body .sf-btn.is-primary{background:var(--adm-accent);border-color:var(--adm-accent);color:#fff}
+.adm-body .sf-btn:hover{background:#EAEFF3}
+.adm-body .sf-btn.is-primary:hover{background:#26394A}
+.adm-body .sf-input,.adm-body .sf-select,.adm-body .sf-textarea{border-radius:4px;border-color:var(--adm-line)}
+.adm-body .sf-table-wrap,.adm-body .sf-table{border-radius:4px}
+.adm-body .sf-table th{background:#F0F2F4;color:var(--adm-ink)}
+.adm-body .sf-pager,.adm-body .sf-filters{display:none}
+.adm-body .sf-empty img{filter:grayscale(1);opacity:.6}
+.adm-body .sf-toast{background:var(--adm-accent);border-radius:4px}
+.adm-body .sf-modal-box{border-radius:5px;border:1px solid var(--adm-line)}
+.adm-body .sf-eyebrow{color:var(--adm-mute)}
+.adm-body .sf-field label{font-size:12px;color:var(--adm-ink)}
+.adm-body .sf-icon-svg{fill:var(--adm-accent)}
+.adm-body .sf-stats{background-image:none;background:#F4F5F6}
+.adm-body .sf-stat b{color:var(--adm-accent)}
+.adm-body .sf-flow{gap:8px}
+.adm-body .sf-step{background:#FAFBFC;border-radius:4px;border-color:var(--adm-line)}
+.adm-body .sf-step b{color:var(--adm-accent)}
+.adm-body .sf-hero-actions{justify-content:flex-start}
+.adm-body .sf-gallery img{border-radius:4px}
+.adm-body .sf-empty img{display:none}
+.adm-body .sf-badge-cute{background:#EDF1F4;color:var(--adm-accent)}
+.adm-body .sf-btn.is-quiet{color:var(--adm-accent)}
+.adm-body .sf-btn.is-danger{background:var(--adm-err);border-color:var(--adm-err);color:#fff}
+.adm-body .sf-btn.is-danger:hover{background:#8A322A}
+.adm-body .sf-mini-stat,.adm-body .sf-boost-notes,.adm-body .sf-boost-art{background:#FAFBFC;border-radius:4px}
+.adm-body .sf-mini-stat b{color:var(--adm-accent)}
+.adm-body .sf-boost-grid{gap:10px}
+.adm-body .sf-boost-art img{display:none}
+.adm-body .sf-role-opt,.adm-body .sf-sheet-item{border-radius:4px;background:#FAFBFC}
+.adm-body .sf-role-opt.is-on{background:#EAEFF3;border-color:var(--adm-accent)}
+.adm-body .sf-welcome{background:#EAEFF3;border-radius:4px}
+.adm-body .sf-confirm-box h3{color:var(--adm-ink)}

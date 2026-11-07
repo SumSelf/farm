@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /verify.py
+Disallow: /runtime_check.py
+Disallow: /RUNTIME_batch
+Disallow: /CHECK.md
+
+Sitemap: https://sumfarm.sumstc.com/sitemap.html

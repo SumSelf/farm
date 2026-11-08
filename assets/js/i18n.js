@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 双语真文案 v1.6.0
+/* 闪马田园 SUMFARM · 双语真文案 v1.7.0
    zh / en 两套均为另行撰写的真内容；?lang= 显式参数优先 */
 (function (global) {
   'use strict';

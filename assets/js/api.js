@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 真实接口层 v1.6.0
+/* 闪马田园 SUMFARM · 真实接口层 v1.7.0
    ------------------------------------------------------------------
    前后端彻底分离：页面只调用 API.xxx()，不直接读 SF_MOCK。
    USE_MOCK=true 时由本层回落到模拟数据；置 false 即走 fetch 真实后端。
@@ -12,7 +12,7 @@
    ------------------------------------------------------------------ */
 (function (global) {
   'use strict';
-  var BASE = 'https://sumfarm.sumstc.com/api/v1';
+  var BASE = 'https://iarm.fun/api/v1';
   var ENDPOINTS = {
     farms: '/farms', farmDetail: '/farms/{id}', farmSave: '/farms',
     activities: '/activities', activityDetail: '/activities/{id}',

@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 模拟数据 v1.6.0
+/* 闪马田园 SUMFARM · 模拟数据 v1.7.0
    前后端彻底分离：本文件是唯一模拟数据源；真实接入见 api.js。
    图片：13 张成品主视觉 + 10 题材 × 5 规格 = 50 张切图，全部为真实田园成图；
         按 pagename_id 由 art() 统一解析，映射关系只写这一份，见 ART_MATRIX.md。
@@ -7,19 +7,19 @@
 (function (global) {
   'use strict';
   var IMG = {
-    hero: 'assets/img/home_hero.png',
-    heroM: 'assets/img/home_hero_m.png',
-    field: 'assets/img/bg_field.png',
-    tech: 'assets/img/bg_tech.png',
-    cute: 'assets/img/bg_cute.png',
-    empty: 'assets/img/empty_state.png',
-    farm: 'assets/img/farm_card.png',
-    venue: 'assets/img/activity_venue.png',
-    produce: 'assets/img/produce_basket.png',
-    admin: 'assets/img/admin_bg.png',
-    auth: 'assets/img/auth_side.png',
-    member: 'assets/img/member_card.png',
-    process: 'assets/img/process_steps.png'
+    hero: 'assets/img/home_hero.webp',
+    heroM: 'assets/img/home_hero_m.webp',
+    field: 'assets/img/bg_field.webp',
+    tech: 'assets/img/bg_tech.webp',
+    cute: 'assets/img/bg_cute.webp',
+    empty: 'assets/img/empty_state.webp',
+    farm: 'assets/img/farm_card.webp',
+    venue: 'assets/img/activity_venue.webp',
+    produce: 'assets/img/produce_basket.webp',
+    admin: 'assets/img/admin_bg.webp',
+    auth: 'assets/img/auth_side.webp',
+    member: 'assets/img/member_card.webp',
+    process: 'assets/img/process_steps.webp'
   };
   /* ---------- 题材 × 规格映射（公共关系只写这一份） ----------
      CAT_TOPIC：内容子类 → 可用题材池；ART_TOPICS：数据集 → 可用题材池（供页面级取图）。
@@ -61,7 +61,7 @@
     if (ART_TOPIC_ALL.indexOf(topic) < 0) topic = 'plain';
     var s = slot || ART_SLOTS[(h >>> 5) % ART_SLOTS.length];
     if (ART_SLOTS.indexOf(s) < 0) s = 'card';
-    return 'assets/img/art/sub_' + topic + '_' + s + '.png';
+    return 'assets/img/art/sub_' + topic + '_' + s + '.webp';
   }
   /* 历史调用名保留作兼容层，实现已升级为真实成图；不再产出矢量色卡 */
   function svgThumb(cat, seed) { return art(cat, cat, seed, 'card'); }

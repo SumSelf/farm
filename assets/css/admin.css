@@ -1,11 +1,11 @@
-/* 闪马田园 SUMFARM · 后台独立样式 v1.6.0
+/* 闪马田园 SUMFARM · 后台独立样式 v1.7.0
    纯素、严谨、独立登录与管理；不加载前台田园/可爱装饰，类名 adm- 与 sf- 完全隔离 */
 :root{--adm-bg:#F4F5F6;--adm-paper:#FFFFFF;--adm-ink:#1F2429;--adm-mute:#6C757D;
   --adm-line:#DDE1E5;--adm-accent:#334A5E;--adm-ok:#2F6B4F;--adm-warn:#9A6B18;--adm-err:#A33B32}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body.adm-body{font-family:"WenQuanYi Micro Hei","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
-  color:var(--adm-ink);background:var(--adm-bg);background-image:url("../img/admin_bg.png");
+  color:var(--adm-ink);background:var(--adm-bg);background-image:url("../img/admin_bg.webp");
   background-size:520px auto;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -64,7 +64,7 @@ img{display:block;max-width:100%}
   padding:14px 24px;line-height:1.8;background:#fff}
 
 /* 后台隔离：复用前台组件类名，但统一收敛为纯素严谨表现，不带田园/可爱装饰 */
-.adm-body{background:#F4F5F6 url("../img/admin_bg.png") repeat}
+.adm-body{background:#F4F5F6 url("../img/admin_bg.webp") repeat}
 .adm-body .sf-main{max-width:none;margin:0;padding:0;background:transparent}
 .adm-body .sf-section{margin-top:0}
 .adm-body .sf-hero,.adm-body .sf-badge-cute,.adm-body .sf-tag.is-cute{display:none}

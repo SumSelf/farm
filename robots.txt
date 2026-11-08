@@ -7,4 +7,4 @@ Disallow: /RUNTIME_batch
 Disallow: /CHECK.md
 Disallow: /slice_assets.py
 
-Sitemap: https://sumfarm.sumstc.com/sitemap.html
+Sitemap: https://iarm.fun/sitemap.html

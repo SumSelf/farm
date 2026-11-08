@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-"""闪马田园 SUMFARM · 素材切图脚本 v1.6.0
+"""闪马田园 SUMFARM · 素材切图脚本 v1.7.0
 ------------------------------------------------------------------
 执行顺序（基线约定）：先 build_pages.py 搭主页面 → 再 build_subpages.py 铺子页
 → 再运行本脚本生成切片与 manifest → 最后 verify.py / runtime_check.py 验收。
 素材生成（文生图）排在页面构建之后，不提前。
 
-输入：assets/img/src/src_<topic>.png（10 张题材主视觉，1280×720 或同比例）
-输出：assets/img/art/sub_<topic>_<slot>.png（10 题材 × 5 规格 = 50 张）
+输入：assets/img/src/src_<topic>.webp（10 张题材主视觉，WebP，800×450 收敛后落盘）
+输出：assets/img/art/sub_<topic>_<slot>.webp（10 题材 × 5 规格 = 50 张 WebP）
       assets/img/art/manifest.json（供 verify.py 做资源存在性校验）
 
-命名规则：sub_<topic>_<slot>.png，全 ASCII、无空格。
+命名规则：sub_<topic>_<slot>.webp，全 ASCII、无空格。格式统一为 WebP（网站专用格式），不保留 PNG。
 页面嵌入按 pagename_id 作为映射键，由 assets/js/mock-data.js 的 art() 统一解析，
 映射表只写一份，见 ART_MATRIX.md。
 
@@ -20,7 +20,7 @@
   tall   9:16 360×640   移动主视觉 / 侧栏（模糊延展背景，主体完整不裁切）
   mini  16:9  320×180   时间线 / 表格 / 聊天回执小图
 
-复跑：cd /data/workspace/sumfarm-v1.6.0 && python3 slice_assets.py
+复跑：cd /data/workspace/sumfarm-v1.7.0 && python3 slice_assets.py
 依赖：Pillow（沙盒已预装）；纯格式转换不涉及内容编辑，不改变图片语义。
 """
 import os, json, sys
@@ -66,7 +66,18 @@ def fit_contain_blur(im, w, h):
 
 
 def save(im, path):
-    im.convert("RGB").save(path, "PNG", optimize=True, compress_level=9)
+    """按用途分档输出 WebP：源图保细节，大图重压，小图保边缘，背景最省。"""
+    longest = max(im.size)
+    name = os.path.basename(path).lower()
+    if name.startswith("src_"):
+        q, method = 82, 4
+    elif longest >= 1000:
+        q, method = 72, 6
+    elif longest >= 500:
+        q, method = 76, 4
+    else:
+        q, method = 80, 4
+    im.convert("RGB").save(path, "WEBP", quality=q, method=method)
 
 
 def main():
@@ -76,25 +87,25 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     made, missing = [], []
     for topic in TOPICS:
-        p = os.path.join(SRC, "src_%s.png" % topic)
+        p = os.path.join(SRC, "src_%s.webp" % topic)
         if not os.path.exists(p):
             missing.append(p); continue
         im = Image.open(p).convert("RGB")
         # 收敛源图到统一尺寸，保证复跑结果稳定
         src_small = im.resize((800, 450), Image.LANCZOS)
-        save(src_small, os.path.join(SRC, "src_%s.png" % topic))
+        save(src_small, os.path.join(SRC, "src_%s.webp" % topic))
         for slot, (w, h, ratio) in SLOTS.items():
             if slot == "tall":
                 out = fit_contain_blur(im, w, h)
             else:
                 out = fit_crop(im, w, h)
-            name = "sub_%s_%s.png" % (topic, slot)
+            name = "sub_%s_%s.webp" % (topic, slot)
             save(out, os.path.join(OUT, name))
             made.append({"file": "assets/img/art/" + name, "topic": topic,
                          "slot": slot, "ratio": ratio, "w": w, "h": h})
     if missing:
         print("缺源图：%s" % ", ".join(missing)); return 2
-    manifest = {"version": "1.6.0", "topics": TOPICS,
+    manifest = {"version": "1.7.0", "topics": TOPICS,
                 "slots": {k: {"w": v[0], "h": v[1], "ratio": v[2]} for k, v in SLOTS.items()},
                 "files": made}
     with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:

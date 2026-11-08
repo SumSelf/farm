@@ -1,5 +1,5 @@
 {
- "version": "1.6.0",
+ "version": "1.7.0",
  "topics": [
   "plain",
   "terrace",
@@ -41,7 +41,7 @@
  },
  "files": [
   {
-   "file": "assets/img/art/sub_plain_wide.png",
+   "file": "assets/img/art/sub_plain_wide.webp",
    "topic": "plain",
    "slot": "wide",
    "ratio": "16:9",
@@ -49,7 +49,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_plain_card.png",
+   "file": "assets/img/art/sub_plain_card.webp",
    "topic": "plain",
    "slot": "card",
    "ratio": "4:3",
@@ -57,7 +57,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_plain_sq.png",
+   "file": "assets/img/art/sub_plain_sq.webp",
    "topic": "plain",
    "slot": "sq",
    "ratio": "1:1",
@@ -65,7 +65,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_plain_tall.png",
+   "file": "assets/img/art/sub_plain_tall.webp",
    "topic": "plain",
    "slot": "tall",
    "ratio": "9:16",
@@ -73,7 +73,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_plain_mini.png",
+   "file": "assets/img/art/sub_plain_mini.webp",
    "topic": "plain",
    "slot": "mini",
    "ratio": "16:9",
@@ -81,7 +81,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_terrace_wide.png",
+   "file": "assets/img/art/sub_terrace_wide.webp",
    "topic": "terrace",
    "slot": "wide",
    "ratio": "16:9",
@@ -89,7 +89,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_terrace_card.png",
+   "file": "assets/img/art/sub_terrace_card.webp",
    "topic": "terrace",
    "slot": "card",
    "ratio": "4:3",
@@ -97,7 +97,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_terrace_sq.png",
+   "file": "assets/img/art/sub_terrace_sq.webp",
    "topic": "terrace",
    "slot": "sq",
    "ratio": "1:1",
@@ -105,7 +105,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_terrace_tall.png",
+   "file": "assets/img/art/sub_terrace_tall.webp",
    "topic": "terrace",
    "slot": "tall",
    "ratio": "9:16",
@@ -113,7 +113,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_terrace_mini.png",
+   "file": "assets/img/art/sub_terrace_mini.webp",
    "topic": "terrace",
    "slot": "mini",
    "ratio": "16:9",
@@ -121,7 +121,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_greenhouse_wide.png",
+   "file": "assets/img/art/sub_greenhouse_wide.webp",
    "topic": "greenhouse",
    "slot": "wide",
    "ratio": "16:9",
@@ -129,7 +129,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_greenhouse_card.png",
+   "file": "assets/img/art/sub_greenhouse_card.webp",
    "topic": "greenhouse",
    "slot": "card",
    "ratio": "4:3",
@@ -137,7 +137,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_greenhouse_sq.png",
+   "file": "assets/img/art/sub_greenhouse_sq.webp",
    "topic": "greenhouse",
    "slot": "sq",
    "ratio": "1:1",
@@ -145,7 +145,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_greenhouse_tall.png",
+   "file": "assets/img/art/sub_greenhouse_tall.webp",
    "topic": "greenhouse",
    "slot": "tall",
    "ratio": "9:16",
@@ -153,7 +153,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_greenhouse_mini.png",
+   "file": "assets/img/art/sub_greenhouse_mini.webp",
    "topic": "greenhouse",
    "slot": "mini",
    "ratio": "16:9",
@@ -161,7 +161,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_lawn_wide.png",
+   "file": "assets/img/art/sub_lawn_wide.webp",
    "topic": "lawn",
    "slot": "wide",
    "ratio": "16:9",
@@ -169,7 +169,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_lawn_card.png",
+   "file": "assets/img/art/sub_lawn_card.webp",
    "topic": "lawn",
    "slot": "card",
    "ratio": "4:3",
@@ -177,7 +177,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_lawn_sq.png",
+   "file": "assets/img/art/sub_lawn_sq.webp",
    "topic": "lawn",
    "slot": "sq",
    "ratio": "1:1",
@@ -185,7 +185,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_lawn_tall.png",
+   "file": "assets/img/art/sub_lawn_tall.webp",
    "topic": "lawn",
    "slot": "tall",
    "ratio": "9:16",
@@ -193,7 +193,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_lawn_mini.png",
+   "file": "assets/img/art/sub_lawn_mini.webp",
    "topic": "lawn",
    "slot": "mini",
    "ratio": "16:9",
@@ -201,7 +201,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_wedding_wide.png",
+   "file": "assets/img/art/sub_wedding_wide.webp",
    "topic": "wedding",
    "slot": "wide",
    "ratio": "16:9",
@@ -209,7 +209,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_wedding_card.png",
+   "file": "assets/img/art/sub_wedding_card.webp",
    "topic": "wedding",
    "slot": "card",
    "ratio": "4:3",
@@ -217,7 +217,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_wedding_sq.png",
+   "file": "assets/img/art/sub_wedding_sq.webp",
    "topic": "wedding",
    "slot": "sq",
    "ratio": "1:1",
@@ -225,7 +225,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_wedding_tall.png",
+   "file": "assets/img/art/sub_wedding_tall.webp",
    "topic": "wedding",
    "slot": "tall",
    "ratio": "9:16",
@@ -233,7 +233,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_wedding_mini.png",
+   "file": "assets/img/art/sub_wedding_mini.webp",
    "topic": "wedding",
    "slot": "mini",
    "ratio": "16:9",
@@ -241,7 +241,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_camp_wide.png",
+   "file": "assets/img/art/sub_camp_wide.webp",
    "topic": "camp",
    "slot": "wide",
    "ratio": "16:9",
@@ -249,7 +249,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_camp_card.png",
+   "file": "assets/img/art/sub_camp_card.webp",
    "topic": "camp",
    "slot": "card",
    "ratio": "4:3",
@@ -257,7 +257,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_camp_sq.png",
+   "file": "assets/img/art/sub_camp_sq.webp",
    "topic": "camp",
    "slot": "sq",
    "ratio": "1:1",
@@ -265,7 +265,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_camp_tall.png",
+   "file": "assets/img/art/sub_camp_tall.webp",
    "topic": "camp",
    "slot": "tall",
    "ratio": "9:16",
@@ -273,7 +273,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_camp_mini.png",
+   "file": "assets/img/art/sub_camp_mini.webp",
    "topic": "camp",
    "slot": "mini",
    "ratio": "16:9",
@@ -281,7 +281,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_harvest_wide.png",
+   "file": "assets/img/art/sub_harvest_wide.webp",
    "topic": "harvest",
    "slot": "wide",
    "ratio": "16:9",
@@ -289,7 +289,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_harvest_card.png",
+   "file": "assets/img/art/sub_harvest_card.webp",
    "topic": "harvest",
    "slot": "card",
    "ratio": "4:3",
@@ -297,7 +297,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_harvest_sq.png",
+   "file": "assets/img/art/sub_harvest_sq.webp",
    "topic": "harvest",
    "slot": "sq",
    "ratio": "1:1",
@@ -305,7 +305,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_harvest_tall.png",
+   "file": "assets/img/art/sub_harvest_tall.webp",
    "topic": "harvest",
    "slot": "tall",
    "ratio": "9:16",
@@ -313,7 +313,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_harvest_mini.png",
+   "file": "assets/img/art/sub_harvest_mini.webp",
    "topic": "harvest",
    "slot": "mini",
    "ratio": "16:9",
@@ -321,7 +321,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_fieldjob_wide.png",
+   "file": "assets/img/art/sub_fieldjob_wide.webp",
    "topic": "fieldjob",
    "slot": "wide",
    "ratio": "16:9",
@@ -329,7 +329,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_fieldjob_card.png",
+   "file": "assets/img/art/sub_fieldjob_card.webp",
    "topic": "fieldjob",
    "slot": "card",
    "ratio": "4:3",
@@ -337,7 +337,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_fieldjob_sq.png",
+   "file": "assets/img/art/sub_fieldjob_sq.webp",
    "topic": "fieldjob",
    "slot": "sq",
    "ratio": "1:1",
@@ -345,7 +345,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_fieldjob_tall.png",
+   "file": "assets/img/art/sub_fieldjob_tall.webp",
    "topic": "fieldjob",
    "slot": "tall",
    "ratio": "9:16",
@@ -353,7 +353,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_fieldjob_mini.png",
+   "file": "assets/img/art/sub_fieldjob_mini.webp",
    "topic": "fieldjob",
    "slot": "mini",
    "ratio": "16:9",
@@ -361,7 +361,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_expert_wide.png",
+   "file": "assets/img/art/sub_expert_wide.webp",
    "topic": "expert",
    "slot": "wide",
    "ratio": "16:9",
@@ -369,7 +369,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_expert_card.png",
+   "file": "assets/img/art/sub_expert_card.webp",
    "topic": "expert",
    "slot": "card",
    "ratio": "4:3",
@@ -377,7 +377,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_expert_sq.png",
+   "file": "assets/img/art/sub_expert_sq.webp",
    "topic": "expert",
    "slot": "sq",
    "ratio": "1:1",
@@ -385,7 +385,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_expert_tall.png",
+   "file": "assets/img/art/sub_expert_tall.webp",
    "topic": "expert",
    "slot": "tall",
    "ratio": "9:16",
@@ -393,7 +393,7 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_expert_mini.png",
+   "file": "assets/img/art/sub_expert_mini.webp",
    "topic": "expert",
    "slot": "mini",
    "ratio": "16:9",
@@ -401,7 +401,7 @@
    "h": 180
   },
   {
-   "file": "assets/img/art/sub_forum_wide.png",
+   "file": "assets/img/art/sub_forum_wide.webp",
    "topic": "forum",
    "slot": "wide",
    "ratio": "16:9",
@@ -409,7 +409,7 @@
    "h": 450
   },
   {
-   "file": "assets/img/art/sub_forum_card.png",
+   "file": "assets/img/art/sub_forum_card.webp",
    "topic": "forum",
    "slot": "card",
    "ratio": "4:3",
@@ -417,7 +417,7 @@
    "h": 420
   },
   {
-   "file": "assets/img/art/sub_forum_sq.png",
+   "file": "assets/img/art/sub_forum_sq.webp",
    "topic": "forum",
    "slot": "sq",
    "ratio": "1:1",
@@ -425,7 +425,7 @@
    "h": 400
   },
   {
-   "file": "assets/img/art/sub_forum_tall.png",
+   "file": "assets/img/art/sub_forum_tall.webp",
    "topic": "forum",
    "slot": "tall",
    "ratio": "9:16",
@@ -433,12 +433,13 @@
    "h": 640
   },
   {
-   "file": "assets/img/art/sub_forum_mini.png",
+   "file": "assets/img/art/sub_forum_mini.webp",
    "topic": "forum",
    "slot": "mini",
    "ratio": "16:9",
    "w": 320,
    "h": 180
   }
- ]
+ ],
+ "format": "webp"
 }

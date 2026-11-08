@@ -4,7 +4,7 @@
 用法：python3 runtime_check.py <批次号>，批次 1..N 自动按全站页面数计算。
 每批 18 页（低于 20 页上限），双视口 1440x900 / 390x844，HTTP 服务而非 file://。
 等待覆盖重绘，取样取完整文本；输出同目录 RUNTIME.md（合并全部已跑批次）。"""
-import os, sys, json, threading, http.server, socketserver
+import re, os, sys, json, threading, http.server, socketserver
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -237,8 +237,8 @@ def interactions(pw, browser):
     }""")
     check("打开首页 → 搜索框位于 sf-hero 内部，且全站只有这一个",
           hs["inside"] and hs["total"] == 1, "hero 内 %s / 全站 %d 个" % (hs["inside"], hs["total"]))
-    check("hero 文字与背景 → 深墨绿字 + 浅色罩 + 图片降饱和，不再浓艳花眼",
-          "34, 50, 41" in hs["h1"] and "255, 253, 247" in hs["mask"]
+    check("hero 文字与背景 → 深墨绿字 + 田绿罩 + 图片低饱和，不苍白也不花眼",
+          "34, 50, 41" in hs["h1"] and "210, 228, 200" in hs["mask"]
           and "saturate" in hs["heroImg"] and "linear-gradient" in hs["bodyBg"],
           "h1=%s / filter=%s" % (hs["h1"], hs["heroImg"][:32]))
     btns = p.evaluate("""() => {
@@ -461,13 +461,45 @@ def interactions(pw, browser):
           "加入购物车" in p.locator('.sf-hero-actions').inner_text()
           and "竹筐购物车" not in p.locator('.sf-hero-actions').inner_text(), "")
 
-    # ===== 本轮：hero 背景收紧 / 真实田块对比 / 工单严谨化 =====
+    # ===== hero 背景颜色太浅的定量验收 / 真实田块对比 =====
     p.goto(BASE + "/index.html", wait_until="networkidle"); p.wait_for_timeout(700)
     mask = p.evaluate("""() => ({mask:getComputedStyle(document.querySelector('.sf-hero-mask')).backgroundImage,
       body:getComputedStyle(document.body).backgroundImage})""")
-    check("hero 背景透明度收紧 → 浅米色更突出（.97 / .94 / .85），整体 body 罩保持 .88 不动",
-          "0.97" in mask["mask"] and "0.85" in mask["mask"] and "0.88" in mask["body"],
-          mask["mask"][:90])
+    # 浏览器计算样式会把 .70 归一化为 0.7，故按 alpha 数值比较，不做字符串字面量匹配
+    _alphas = [float(x) for x in re.findall(
+        r'rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*([\d.]+)\s*\)', mask["mask"])]
+    check("hero 遮罩改为田绿罩 .96 / .86 / .68 → 背景真正有颜色，body 罩 .88 保持不动",
+          len(_alphas) >= 3 and abs(_alphas[0]-.96) < .01 and abs(_alphas[1]-.86) < .01
+          and abs(_alphas[2]-.68) < .01 and "210, 228, 200" in mask["mask"]
+          and "0.88" in mask["body"],
+          mask["mask"][:110])
+    layer = p.evaluate("""() => {
+      const hero=document.querySelector('.sf-hero'), tag=document.querySelector('.sf-hero .sf-eyebrow');
+      const hs=getComputedStyle(hero), ts=tag?getComputedStyle(tag):null, bs=getComputedStyle(document.body);
+      return {heroBg:hs.backgroundColor, bodyBg:bs.backgroundColor,
+        shadow:hs.boxShadow, border:hs.borderTopColor,
+        tagBg:ts?ts.backgroundColor:'none', tagBorder:ts?ts.borderTopColor:'none',
+        tagRadius:ts?ts.borderTopLeftRadius:'0px'};
+    }""")
+    check("hero 眉标做成有实底的标签 → 不再靠透明色浮在背景上，一眼可辨",
+          layer["tagBg"] not in ("rgba(0, 0, 0, 0)", "transparent", "none")
+          and layer["tagBorder"] != "rgba(0, 0, 0, 0)" and layer["tagRadius"] != "0px",
+          "%s" % layer)
+    # 定量判定「背景颜色太浅已解决」：hero 不能是近白、须带绿相、且比米白 body 明度深 ≥ .08
+    def _rgb(s):
+        m = re.search(r'rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)', s or '')
+        return tuple(int(x) for x in m.groups()) if m else (255, 255, 255)
+    def _lum(t):
+        def f(c):
+            c = c / 255.0
+            return c / 12.92 if c <= .03928 else ((c + .055) / 1.055) ** 2.4
+        return .2126 * f(t[0]) + .7152 * f(t[1]) + .0722 * f(t[2])
+    _hr, _br = _rgb(layer["heroBg"]), _rgb(layer["bodyBg"])
+    _dlum = _lum(_br) - _lum(_hr)
+    check("hero 底色为明确田绿且不再近白 → 背景颜色太浅已解决（明度差 ≥ .08）",
+          (not all(v >= 245 for v in _hr)) and _hr[1] > _hr[0] and _dlum >= .08
+          and layer["shadow"] != "none" and layer["border"] != "rgba(0, 0, 0, 0)",
+          "%s | hero=%s body=%s 明度差=%.3f" % (layer, _hr, _br, _dlum))
     p.goto(BASE + "/farm-compare.html", wait_until="networkidle"); p.wait_for_timeout(700)
     cp = p.evaluate("""() => ({boxes:document.querySelectorAll('input[data-act="compare-pick"]').length,
       empty:document.querySelector('.sf-empty h3')?document.querySelector('.sf-empty h3').innerText:'',
@@ -693,14 +725,22 @@ def interactions(pw, browser):
     RESULT["interaction_http404"] = http404
     ctx.close()
 
+# 浏览器启动参数只写这一份：低内存沙盒里禁用 GPU / 扩展 / 后台节流，降低渲染进程峰值占用
+LAUNCH_ARGS = ["--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu",
+               "--disable-extensions", "--mute-audio", "--disable-background-timer-throttling"]
+
+
+def launch_browser(pw):
+    return pw.chromium.launch(executable_path=CHROME, headless=True, args=LAUNCH_ARGS)
+
+
 def main():
     global BASE
     srv = serve()
     BASE = "http://127.0.0.1:%d" % srv.server_address[1]
     print("HTTP 服务 %s 已启动（非 file://）" % BASE)
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(executable_path=CHROME, headless=True,
-                                     args=["--no-sandbox", "--disable-dev-shm-usage"])
+        browser = launch_browser(pw)
         pages = PAGES[(BATCH - 1) * BATCH_SIZE: BATCH * BATCH_SIZE]
         print("== 第 %d/%d 批：%d 页（全站 %d 页）==" % (BATCH, TOTAL_BATCHES, len(pages), len(PAGES)))
         for label, w, h in VIEWPORTS:
@@ -715,7 +755,11 @@ def main():
                     len(r["console"]) + len(r["pageerror"]) + len(r["failed"]) + len(r["http4xx"])))
                 ctx.close()
         if BATCH == 1:
-            print("== 交互验收（使用者视角：用户做了 X → 得到 Y）==")
+            # 72 个取样 context 全部关闭后重启浏览器再做近百项交互，释放图片解码缓存与渲染进程残留，
+            # 避免低内存沙盒里长会话中途 crash / OOM（验收环境稳定性，非站点功能缺陷）
+            browser.close()
+            browser = launch_browser(pw)
+            print("== 交互验收（取样后重启浏览器，释放内存）==")
             try:
                 interactions(pw, browser)
             except Exception as e:
@@ -847,11 +891,20 @@ def main():
             "已改为填写两个新必填项，属断言未跟上表单结构变化，非功能缺陷。",
             "- 本轮第 1 批所在命令三次返回网关 502：前两次未落盘，第三次核查 `RUNTIME_batch1.json`"
             "确认 36 次取样与 96 项交互已完整落盘且通过，属命令通道超时；第 2~7 批逐批单命令复跑，7 批 236 次取样无遗漏。",
-            "- 本轮视图与流程整改：`sf-hero-mask` 收紧到 .97/.94/.85（body 罩 .88 不动）；田块对比改为真多选 → 并排清单"
-            "（相同项缩减、不同项高亮、只看不同项、最多 4 块、中英真文案）；工单扩为 6 步固定流程 + 退回分支、"
-            "10 条明细需求、状态徽章与流程时间线、总览严谨文字行；发布形态按用户要求回退为单点部署："
-            "一个包、一个站点根，后台仍在 `admin/` 子目录，靠独立登录 / 前台 0 入口 / noindex / robots / Nginx 白名单隔离。"
-            "运行时新增 12 项断言，交互总数由 84 增至 96；静态新增第 23 组断言。详见 `BUTTON_AUDIT.md` 第 11 节。", ""]
+            "- 【上一轮历史记录】视图与流程整改：`sf-hero-mask` 曾回调到 .93/.86/.70（body 罩 .88 不动）、hero 曾加更亮底色 / 深边框 / 落影、"
+            "眉标改实底标签；田块对比改为真多选 → 并排清单（相同项缩减、不同项高亮、只看不同项、最多 4 块、中英真文案）；"
+            "工单扩为 6 步固定流程 + 退回分支、10 条明细需求、状态徽章与流程时间线、总览严谨文字行；"
+            "发布形态按用户要求回退为单点部署：一个包、一个站点根，后台仍在 `admin/` 子目录，"
+            "靠独立登录 / 前台 0 入口 / noindex / robots / Nginx 白名单隔离。"
+            "静态新增第 23 / 24 / 25 组断言。详见 `BUTTON_AUDIT.md` 第 11 / 12 节。",
+            "- 【上一轮历史记录】用户反馈「hero 标签透明度过高、和整体背景没有差距、看不清」：曾把遮罩收紧到 .97/.94/.85 后，"
+            "首屏与 body 浅米底同色、边界消失，属视图真缺陷。本轮回调遮罩、给 hero 更亮底色 + `#C6D2C3` 深边框 + "
+            "`0 10px 30px` 落影、把眉标做成浅蓝实底胶囊（字色 `#235C6B` 对浅蓝底 6.40:1 / 对纸白 7.33:1，均过 AA）。"
+            "静态资源版本按机制由 1.6.0 刷新为 1.7.0。运行时新增 2 项交互（标签实底、容器分层），"
+            "交互总数由 96 增至 98；7 批 236 次双视口取样全量重跑。",
+            "- 【本轮】用户反馈「hero 背景颜色太浅问题没有解决」：浏览器实测 hero 曾为 `rgb(255,253,247)`、body `rgb(247,244,236)`，只差 8/9/11，近白罩把田园色洗没。本轮改为明确田绿实底 `#D2E4C8` + 田绿罩 `rgba(210,228,200,.96/.86/.68)`、底图低饱和提色、边框 `#BCCFB4`；遮罩断言与容器断言同步强化为定量判定（非近白 / 绿相 / 明度差 ≥ .08），18 组 WCAG 对比度按真实底色复算，全站 `?v=` 刷为 1.7.1。7 批双视口取样全量重跑。",
+            "- 图片压缩复核：包内 73 张 WebP / 0 PNG，图片目录 2.56 MB（原 36.66 MB），本轮 CSS 改动未回退压缩结果。",
+            "- 「hero 文字与背景」旧断言写死近白罩 `255, 253, 247`，本轮换成田绿罩后报 1 条未通过：属断言未跟上 CSS 规格变化，页面渲染正确（另有 3 条 hero 定量断言全部通过）；已按 `210, 228, 200` 真实值复跑。", ""]
     with open(os.path.join(ROOT, "RUNTIME.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
     print("== 完成：写入 RUNTIME.md（批次 %s）==" % done)

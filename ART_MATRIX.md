@@ -42,8 +42,8 @@
 | `tall` | 9:16 | 360×640 | 移动主视觉、侧栏、hero 竖版 | **主体完整居中，上下用同图模糊延展填充，不做上下裁切** |
 | `mini` | 16:9 | 320×180 | 时间线、表格、聊天回执小图 | 等比缩放 |
 
-10 题材 × 5 规格 = **50 张切图**，命名 `sub_<topic>_<slot>.png`，全 ASCII、无空格、无中文。
-清单 `assets/img/art/manifest.json` 由 `slice_assets.py` 生成，`verify.py` 逐条校验存在性、PNG 有效性与声明尺寸。
+10 题材 × 5 规格 = **50 张切图**，命名 `sub_<topic>_<slot>.webp`，全 ASCII、无空格、无中文。
+清单 `assets/img/art/manifest.json` 由 `slice_assets.py` 生成，`verify.py` 逐条校验存在性、WebP 有效性与声明尺寸。
 
 ## 4. pagename_id 映射规则
 
@@ -55,7 +55,7 @@
 hash(pageId|cat|seed) → 题材池下标 → topic
 slot 显式指定（列表 card / 头像 sq / 竖版 tall / 小图 mini）
     或按 hash 高位在 5 种规格中稳定散列
-→ assets/img/art/sub_<topic>_<slot>.png
+→ assets/img/art/sub_<topic>_<slot>.webp
 ```
 
 约束：
@@ -68,7 +68,7 @@ slot 显式指定（列表 card / 头像 sq / 竖版 tall / 小图 mini）
 
 ## 5. 页面 hero 题材归属
 
-- 子页（89 页）：`build_subpages.py` 按 `pagename` 稳定散列到题材池，hero 宽版取 `sub_<topic>_wide.png`，竖版取 `sub_<topic>_tall.png`。
+- 子页（89 页）：`build_subpages.py` 按 `pagename` 稳定散列到题材池，hero 宽版取 `sub_<topic>_wide.webp`，竖版取 `sub_<topic>_tall.webp`。
 - 主页面（28 页）：hero 宽版沿用各频道成品主视觉，竖版按题材取 9:16 切图；`index.html` 保留专门生成的 9:16 首页主视觉。
 - 题材池带权重：农产品组偏 `harvest`、论坛组偏 `forum`、专家组偏 `expert`，允许同类相邻题材出现，避免同组所有页面共用一张图。
 - 后台 16 页保持纯素，**不注入任何田园题材装饰图**，按基线豁免图片位但文字内容不豁免。
@@ -84,7 +84,7 @@ runtime_check.py 1..7 → 真实 HTTP + Chromium 双视口逐页验收
 ```
 
 素材生成排在页面构建之后，不提前；脚本接在构建之后，可幂等复跑。
-源图放在 `assets/img/src/src_<topic>.png`（收敛为 800×450），复跑 `python3 slice_assets.py` 即可重出全部切片。
+源图放在 `assets/img/src/src_<topic>.webp`（收敛为 800×450），复跑 `python3 slice_assets.py` 即可重出全部切片。
 
 ## 7. 与上一版的差异
 
@@ -93,7 +93,12 @@ runtime_check.py 1..7 → 真实 HTTP + Chromium 双视口逐页验收
 | 内容图 | 13 张成品 + 程序化 SVG 色卡充当多数卡片图 | 13 张成品 + 50 张题材切图，全站内容图均为真实成图 |
 | 移动端主视觉 | 子页统一套用首页 9:16 图 | 按页面题材取专属 9:16 切图 |
 | 记录级配图 | 每 3 条用一次成品，其余色卡 | 每条按 id 稳定取图，题材与规格都不同 |
-| 图片路径 | 部分为 `data:image/svg+xml` 字符串 | 全部为 `assets/img/art/*.png`，无占位 |
-| 规格校验 | 无 | manifest 逐条校验尺寸与 PNG 有效性 |
+| 图片路径 | 部分为 `data:image/svg+xml` 字符串 | 全部为 `assets/img/art/*.webp`，无占位 |
+| 规格校验 | 无 | manifest 逐条校验尺寸与 WebP 有效性 |
 
 `BUTTON_AUDIT.md` 第 6 节的「每页 ≥3 张正文图片位」口径不变，本轮只是把图片来源从色卡换成成图。
+
+
+## 图片格式与体积（本轮压缩）
+
+全站素材统一为 **WebP**（网站专用格式），不保留 PNG。`slice_assets.py` 直接输出 WebP：源图 q=82、≥1000px q=72、500–999px q=76、<500px q=80，method=4（大图 6）。73 张图共 **2.56 MB**，较压缩前的 36.66 MB 省 **93.0%**；尺寸与规格矩阵不变，manifest 增加 `format: "webp"` 字段。部署侧 MIME 与缓存口径见 `DEPLOY.md` 第 7 节。

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""闪马田园 SUMFARM · 全量静态回归 v1.6.0
-用法：cd /data/workspace/sumfarm-v1.6.0 && python3 verify.py
+"""闪马田园 SUMFARM · 全量静态回归 v1.7.1
+用法：cd /data/workspace/sumfarm-v1.7.0 && python3 verify.py
 先跑 5 个已知正确样本校准脚本自身，再跑全量；输出 CHECK.md。
 运行时浏览器验收（真实服务环境 + 逐页点击）不在本脚本范围，见 DEPLOY.md。"""
 import os, re, sys, json, subprocess
 from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-EXPECTED_V = '1.6.0'   # 内容整改后刷新的静态资源版本号
+EXPECTED_V = '1.7.1'   # 内容整改后刷新的静态资源版本号
 VOID = {'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
 errors, warns, stats = [], [], {}
 
@@ -36,11 +36,11 @@ CONTRAST_PAIRS = [
  ('科技蓝/白', '#2E6E7E', '#FFFFFF', 4.5),
  ('后台按钮 素蓝灰/白', '#334A5E', '#FFFFFF', 4.5),
  ('提示条 墨绿/白', '#26332B', '#FFFFFF', 4.5),
- # 视图走查整改后新增：hero 改浅色罩 + 深墨绿字，按钮层级重新分开
- ('hero 标题 深墨绿/浅罩', '#223229', '#FFFDF7', 4.5),
- ('hero 说明 灰绿/浅罩', '#4C5C51', '#FFFDF7', 4.5),
+ # hero 配色：底色改为明确浅田绿，文字仍是深墨绿；眉标是浅蓝实底胶囊
+ ('hero 标题 深墨绿/田绿底', '#223229', '#D2E4C8', 4.5),
+ ('hero 说明 灰绿/田绿底', '#4C5C51', '#D2E4C8', 4.5),
  ('hero 次按钮 墨绿/白底', '#223229', '#FFFFFF', 4.5),
- ('眉标 科技蓝/纸白', '#2E6E7E', '#FFFDF7', 4.5),
+ ('眉标 科技蓝/浅蓝实底', '#235C6B', '#E3F0F1', 4.5),
  ('分区标题 墨绿/浅绿底', '#223229', '#F2F5EE', 4.5),
  ('文字行标题 墨绿/纸白', '#26332B', '#FFFDF7', 4.5),
  ('辅助文字 灰绿/浅绿底', '#5C6B61', '#F2F5EE', 4.5),
@@ -152,10 +152,10 @@ def balanced_js(s):
 def self_test():
     ok = True
     samples = [
-        ('HTML 平衡', lambda: (lambda b: (b.feed('<div><a href="index.html"><img src="assets/img/bg_field.png"></a><p>内容</p></div>'), b.bad, b.nest_a)[1] == [] and b.nest_a == 0)(Balance())),
+        ('HTML 平衡', lambda: (lambda b: (b.feed('<div><a href="index.html"><img src="assets/img/bg_field.webp"></a><p>内容</p></div>'), b.bad, b.nest_a)[1] == [] and b.nest_a == 0)(Balance())),
         ('CSS 平衡', lambda: balanced_css('/* c */ .a{color:red} @media(max-width:1px){.b{display:block}}')),
         ('JS 平衡', lambda: balanced_js('var a={x:[1,2],f:function(){return (1+2);}};')),
-        ('资源命中', lambda: target_exists('assets/img/bg_field.png')),
+        ('资源命中', lambda: target_exists('assets/img/bg_field.webp')),
         ('链接命中', lambda: target_exists('index.html') and target_exists('admin/login.html'))
     ]
     print('== 校验脚本自校准（5 个已知正确样本）==')
@@ -174,9 +174,9 @@ def run():
     htmls = [p for p in allf if p.endswith('.html')]
     csss  = [p for p in allf if p.endswith('.css')]
     jss   = [p for p in allf if p.endswith('.js')]
-    imgs  = [p for p in allf if p.endswith('.png')]
+    imgs  = [p for p in allf if p.endswith('.webp')]
     mds   = [p for p in allf if p.endswith('.md')]
-    stats.update({'html': len(htmls), 'css': len(csss), 'js': len(jss), 'png': len(imgs),
+    stats.update({'html': len(htmls), 'css': len(csss), 'js': len(jss), 'webp': len(imgs),
                   'md': len(mds), 'files': len(allf)})
 
     # 1 文件名 / 控制字符
@@ -185,7 +185,7 @@ def run():
         if not re.fullmatch(r'[A-Za-z0-9._\-]+', base) or ' ' in base:
             err('文件名', rel(p) + ' 非 ASCII 或含空格')
         b = open(p, 'rb').read()
-        if p.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif', '.zip', '.pyc')):
+        if p.lower().endswith(('.webp', '.jpg', '.jpeg', '.gif', '.svg', '.zip', '.pyc')):
             # 二进制图片按字节本就含控制码，不参与文本控制字符扫描；误报当场更正并登记
             continue
         ctrl = [(i, x) for i, x in enumerate(b) if x < 32 and x not in (9, 10, 13)]
@@ -246,14 +246,23 @@ def run():
             err('脚本语法', rel(p) + ' 括号不平衡（无 node 时的兜底检查）')
         for m in re.finditer(r'["\']([A-Za-z0-9_\-/]+\.html)["\']', scan):
             if not target_exists(m.group(1)): err('死链', '%s → %s' % (rel(p), m.group(1)))
-        for m in re.finditer(r'["\'](assets/img/[A-Za-z0-9_\-]+\.png)["\']', scan):
+        for m in re.finditer(r'["\'](assets/img/[A-Za-z0-9_\-]+\.webp)["\']', scan):
             if not os.path.exists(os.path.join(ROOT, m.group(1))): err('资源缺失', '%s → %s' % (rel(p), m.group(1)))
     if not node: warn('脚本语法', '环境无 node，未执行 node --check，仅做括号平衡')
 
-    # 5 图片完整性
+    # 5 图片完整性：WebP（RIFF....WEBP），并回读确认可解码、尺寸非零
+    from PIL import Image as _PILImage
     for p in imgs:
-        with open(p, 'rb') as f: head = f.read(8)
-        if head != b'\x89PNG\r\n\x1a\n': err('破图', rel(p) + ' 不是有效 PNG')
+        with open(p, 'rb') as f: head = f.read(12)
+        if head[:4] != b'RIFF' or head[8:12] != b'WEBP':
+            err('破图', rel(p) + ' 不是有效 WebP'); continue
+        try:
+            with _PILImage.open(p) as _im:
+                _im.load()
+                if _im.size[0] < 1 or _im.size[1] < 1:
+                    err('破图', rel(p) + ' WebP 尺寸异常')
+        except Exception as _e:
+            err('破图', rel(p) + ' WebP 无法解码：' + str(_e)[:60])
 
     # 6 全站 html 字面量（含文档）死链
     for p in mds:
@@ -362,7 +371,7 @@ def run():
         elif m.group(1) not in allowed: err('栏目归属', rel(p) + ' 归属非法 ' + m.group(1))
         if 'data-sub=' not in s: err('栏目归属', rel(p) + ' 缺 data-sub 定义')
 
-    # 16 素材切图：manifest 逐条校验文件存在、PNG 有效、尺寸与规格矩阵一致
+    # 16 素材切图：manifest 逐条校验文件存在、WebP 有效、尺寸与规格矩阵一致
     mp = os.path.join(ROOT, 'assets/img/art/manifest.json')
     if not os.path.exists(mp):
         err('切图清单', '缺 assets/img/art/manifest.json（请先运行 slice_assets.py）')
@@ -374,10 +383,14 @@ def run():
             fp = os.path.join(ROOT, e['file'])
             if not os.path.exists(fp):
                 err('切图清单', '缺切片 ' + e['file']); continue
-            with open(fp, 'rb') as f: head = f.read(24)
-            if head[:8] != b'\x89PNG\r\n\x1a\n':
-                err('切图清单', e['file'] + ' 不是有效 PNG'); continue
-            w = int.from_bytes(head[16:20], 'big'); h = int.from_bytes(head[20:24], 'big')
+            with open(fp, 'rb') as f: head = f.read(12)
+            if head[:4] != b'RIFF' or head[8:12] != b'WEBP':
+                err('切图清单', e['file'] + ' 不是有效 WebP'); continue
+            from PIL import Image as _PILImage
+            try:
+                with _PILImage.open(fp) as _im: w, h = _im.size
+            except Exception as _e:
+                err('切图清单', e['file'] + ' WebP 无法解码：' + str(_e)[:60]); continue
             if (w, h) != (e['w'], e['h']):
                 err('切图清单', '%s 尺寸 %d×%d ≠ 声明 %d×%d' % (e['file'], w, h, e['w'], e['h']))
         if len(files) != len(man.get('topics', [])) * len(man.get('slots', {})):
@@ -396,7 +409,7 @@ def run():
         s = read(p)
         if 'assets/img/art/sub_' in s:
             art_pages += 1
-            if not re.search(r'assets/img/art/sub_[a-z]+_(wide|tall)\.png', s):
+            if not re.search(r'assets/img/art/sub_[a-z]+_(wide|tall)\.webp', s):
                 err('页面题材', rel(p) + ' 题材切图路径不合法')
     stats['art_pages'] = art_pages
     if art_pages < len(htmls) - 20:
@@ -538,12 +551,12 @@ def run():
         for k in ('普通用户逐按钮问答', '五类用户画像', '商家 / 村集体', '接单农户', '产学研团队', '平台管理员'):
             if k not in w: err('交付文档', '走查报告缺章节/画像：' + k)
 
-    # 23 本轮：hero 背景收紧、真实田块对比、工单固定流程与明细需求
+    # 23 本轮：hero 背景（数值随视图回调刷新）、真实田块对比、工单固定流程与明细需求
     css_src = read(os.path.join(ROOT, 'assets/css/site.css'))
     hm = re.search(r'\.sf-hero-mask\{([\s\S]*?)\}', css_src)
-    if not hm or 'rgba(255,253,247,.97' not in hm.group(1) \
-       or 'rgba(255,253,247,.94' not in hm.group(1) or 'rgba(255,253,247,.85' not in hm.group(1):
-        err('hero 背景', 'sf-hero-mask 未收紧到 .97 / .94 / .85')
+    if not hm or 'rgba(210,228,200,.96' not in hm.group(1) \
+       or 'rgba(210,228,200,.86' not in hm.group(1) or 'rgba(210,228,200,.68' not in hm.group(1):
+        err('hero 背景', 'sf-hero-mask 未换成田绿罩 .96 / .86 / .68（背景颜色太浅未解决）')
     if '--sf-veil:rgba(250,248,242,.88)' not in css_src:
         err('hero 背景', '整体 body 背景透明度被误改，应保持不变')
     if 'function pageFarmCompare' not in app_src or "'farm-compare': pageFarmCompare" not in app_src:
@@ -591,14 +604,34 @@ def run():
         if os.path.exists(os.path.join(ROOT, f)):
             err('单点部署', '仍残留双包 / 合并分发包产物：' + f)
     dep = read(os.path.join(ROOT, 'DEPLOY.md'))
-    if '## 6. 双包发布' in dep or '合并分发包' in dep:
+    # 只认「真正的章节标题 / 仍在描述双包形态的肯定句」；定稿文档里
+    # 「无前台包、后台包、合并分发包之分」是否定声明，不算残留章节
+    if '## 6. 双包发布' in dep or re.search(r'^##\s*.*合并分发包', dep, re.M) \
+       or '解压后得到两个' in dep:
         err('单点部署', 'DEPLOY.md 仍残留双包 / 合并包章节')
     for k in ('## 6. 单点部署', 'allow 10.0.0.0/8', 'auth_basic', '逻辑隔离', '物理分离'):
         if k not in dep:
             err('单点部署', 'DEPLOY.md 单点说明缺：' + k)
+    # 25 hero 与整体背景的可见差距（用户反馈：标签与背景同色看不清 / 背景颜色太浅）
+    hero_rule = re.search(r'\.sf-hero\{([\s\S]*?)\}', css_src)
+    if not hero_rule or 'box-shadow' not in hero_rule.group(1) or '#BCCFB4' not in hero_rule.group(1) \
+       or 'var(--sf-hero-base)' not in hero_rule.group(1):
+        err('hero 分层', '.sf-hero 缺明确田绿实底 / 加深边框 / 落影，仍会与整体背景糊在一起')
+    eyebrow_rule = re.search(r'\.sf-hero \.sf-eyebrow\{([\s\S]*?)\}', css_src)
+    if not eyebrow_rule or 'background:var(--sf-tech-l)' not in eyebrow_rule.group(1) \
+       or '#B7D2D8' not in eyebrow_rule.group(1) or 'inline-block' not in eyebrow_rule.group(1):
+        err('hero 标签', '眉标未做成有实底的标签胶囊，仍靠透明色浮在背景上')
+    if contrast('#235C6B', '#E3F0F1') < 4.5 or contrast('#235C6B', '#D2E4C8') < 4.5:
+        err('hero 标签', '眉标标签文字对比度未过 AA')
+    # 只校验规则块本身；CSS 注释里记录历史数值（.97/.85）不算残留样式，属扫描范围而非缺陷
+    if not hm or 'rgba(255,253,247' in hm.group(1):
+        err('hero 背景', '仍残留近白罩，会把首屏洗成苍白、田园色透不出来')
+    stats['hero_label_contrast'] = round(contrast('#235C6B', '#E3F0F1'), 2)
+
     # 单点闭环：后台链接保持同目录相对写法，不写死独立后台域名
     for f in ('app.js', 'auth.js', 'api.js'):
-        if 'admin.sumfarm.sumstc.com' in read(os.path.join(ROOT, 'assets', 'js', f)):
+        # 单点部署下禁止任何独立后台绝对域名（含旧域名 / 新域名前缀）
+        if re.search(r'https://admin\.[a-z0-9.-]+', read(os.path.join(ROOT, 'assets', 'js', f))):
             err('单点部署', f + ' 仍写死独立后台域名，单点下应走相对 admin/ 链接')
     if not re.search(r"link\('admin/", app_src):
         err('单点部署', '后台内部链接未保持相对 admin/ 写法，目录归一化会失效')
@@ -606,13 +639,121 @@ def run():
     if any('admin/login.html' in read(p) for p in front_html):
         err('单点部署', '前台 HTML 出现后台登录入口')
 
+    # 26 图片压缩为 WebP（网站专用格式）：0 个 PNG、0 个旧引用、体积达标、部署 MIME 齐备
+    allf26 = walk(None)
+    png_files = [p for p in allf26 if p.lower().endswith('.png')]
+    webp_files = [p for p in allf26 if p.lower().endswith('.webp')]
+    if png_files:
+        err('图片压缩', '仍残留 %d 个 PNG 文件：%s' % (len(png_files), [rel(x) for x in png_files[:3]]))
+    if len(webp_files) != 73:
+        err('图片压缩', 'WebP 文件应为 73 张，实际 %d' % len(webp_files))
+    # 只扫运行资源与脚本，校验脚本自身与 .md 历史描述不算功能引用
+    text26 = [p for p in allf26 if p.lower().endswith(('.html', '.css', '.js', '.json', '.py'))
+              and os.path.basename(p) != 'verify.py']
+    bad_refs = []
+    for p in text26:
+        if re.search(r'(?<!\\)\.png\b', read(p)):
+            bad_refs.append(rel(p))
+    if bad_refs:
+        err('图片压缩', '仍有 PNG 后缀路径引用：' + ', '.join(bad_refs[:4]))
+    img_root = os.path.join(ROOT, 'assets', 'img')
+    total_bytes = sum(os.path.getsize(os.path.join(dp, f))
+                      for dp, dns, fns in os.walk(img_root) for f in fns)
+    stats['webp_bytes'] = total_bytes
+    stats['webp_mb'] = round(total_bytes / 1048576, 2)
+    if total_bytes > 6 * 1048576:
+        err('图片压缩', '图片目录 %.2f MB 超过 6 MB 上限，压缩未达标' % (total_bytes / 1048576))
+    man26 = json.loads(read(os.path.join(ROOT, 'assets/img/art/manifest.json')))
+    if man26.get('format') != 'webp' or len(man26.get('files', [])) != 50:
+        err('图片压缩', 'manifest 未标记 format=webp 或切图数不是 50')
+    if '"WEBP"' not in read(os.path.join(ROOT, 'slice_assets.py')):
+        err('图片压缩', 'slice_assets.py 复跑仍会产出 PNG')
+    dep26 = read(os.path.join(ROOT, 'DEPLOY.md'))
+    for k in ('image/webp', 'webp;', '## 7. 图片压缩为 WebP'):
+        if k not in dep26:
+            err('图片压缩', 'DEPLOY.md 缺 WebP 部署口径：' + k)
+    # CSS 内容已改但 URL 未刷版本会被缓存命中旧 CSS，旧 CSS 仍指向 PNG → 破图
+    if not all(('?v=' + EXPECTED_V) in read(p) for p in htmls):
+        err('图片压缩', '资源版本号未全站刷新，缓存可能命中旧 CSS 里的 PNG 路径')
+    if re.search(r'1\.6\.1', read(os.path.join(ROOT, 'index.html'))):
+        err('图片压缩', '仍残留旧版本号 1.6.1')
+
+    # 27 域名更新：全站 0 个旧域名残留，新域名在配置 / 接口 / 文档中真实生效
+    text_exts = ('.html', '.css', '.js', '.md', '.txt', '.py', '.json')
+    stale = []
+    for p in walk(text_exts):
+        # 校验脚本自身持有匹配模式，不算站点残留
+        if os.path.basename(p) == 'verify.py': continue
+        if 'sumfarm' + '.sumstc.com' in read(p) or 'admin.sumfarm' + '.sumstc.com' in read(p):
+            stale.append(rel(p))
+    if stale:
+        err('域名', '仍残留旧域名：' + ', '.join(sorted(stale)[:6]))
+    rb2 = read(os.path.join(ROOT, 'robots.txt'))
+    if 'Sitemap: https://iarm.fun/sitemap.html' not in rb2:
+        err('域名', 'robots.txt 的 Sitemap 未指向 iarm.fun')
+    dep2 = read(os.path.join(ROOT, 'DEPLOY.md'))
+    if 'server_name iarm.fun' not in dep2:
+        err('域名', 'DEPLOY.md 的 Nginx server_name 未与定死域名一致')
+    if "var BASE = 'https://iarm.fun/api/v1'" not in read(os.path.join(ROOT, 'assets', 'js', 'api.js')):
+        err('域名', 'api.js 的 API base 未与定死域名一致')
+    base2 = read(os.path.join(ROOT, 'SUMFARM_BASELINE.md'))
+    if '域名：`iarm.fun`' not in base2:
+        err('域名', '基线文档的域名未与定死项一致')
+    # 品牌与备案是开工前定死项，域名口径不得顺带改掉
+    for k in ('闪马田园', 'SUMFARM', '蜀ICP备18013136号'):
+        if k not in base2:
+            err('域名', '域名口径整理误改了定死项：' + k)
+    # 同工作区另一套生成线（若存在）也必须同步，避免源码与上线站域名分叉
+    ws = os.path.dirname(ROOT)
+    spec = os.path.join(ws, 'build', 'spec.py')
+    if os.path.exists(spec) and '"domain": "iarm.fun"' not in read(spec):
+        err('域名', '生成器 build/spec.py 的 domain 未同步')
+    site2 = os.path.join(ws, 'sumfarm-site')
+    if os.path.isdir(site2):
+        leaks = []
+        for dp, dns, fns in os.walk(site2):
+            dns[:] = [d for d in dns if d != '__pycache__']
+            for fn in fns:
+                if fn.endswith(('.jpg', '.webp', '.png', '.svg', '.pyc')): continue
+                fp = os.path.join(dp, fn)
+                try: t = read(fp)
+                except: continue
+                if 'sumfarm' + '.sumstc.com' in t: leaks.append(os.path.relpath(fp, site2))
+        if leaks:
+            err('域名', 'sumfarm-site 生成线仍残留旧域名：' + ', '.join(leaks[:4]))
+    stats['domain'] = 'iarm.fun'
+
+    # 28 hero 背景颜色太浅（本轮用户反馈）：底色必须明确有颜色、比米白 body 深，
+    # 深墨绿文字与灰绿说明在新底上仍过 AA；近白罩必须清零
+    hb_m = re.search(r'--sf-hero-base:\s*(#[0-9A-Fa-f]{6})', css_src)
+    if not hb_m:
+        err('hero 背景色', '缺明确的 hero 专用底色变量 --sf-hero-base')
+    else:
+        hb = hb_m.group(1)
+        d_lum = luminance('#F7F4EC') - luminance(hb)
+        if d_lum < .08:
+            err('hero 背景色', 'hero 底色 %s 仍太浅，与 body 米白明度差仅 %.3f' % (hb, d_lum))
+        if contrast('#223229', hb) < 7:
+            err('hero 背景色', 'hero 标题在 %s 上对比度未过 7:1' % hb)
+        if contrast('#4C5C51', hb) < 4.5:
+            err('hero 背景色', 'hero 说明文字在 %s 上对比度未过 AA' % hb)
+        stats['hero_base'] = hb
+        stats['hero_vs_body_lum'] = round(d_lum, 3)
+        stats['hero_title_contrast'] = round(contrast('#223229', hb), 2)
+        stats['hero_sub_contrast'] = round(contrast('#4C5C51', hb), 2)
+    if 'rgba(255,253,247' in (hm.group(1) if hm else ''):
+        err('hero 背景色', 'hero 仍在用近白罩，背景颜色会被洗掉')
+    if 'var(--sf-hero-base)' not in css_src or '--sf-hero-base:#D2E4C8' not in css_src:
+        err('hero 背景色', 'hero 容器未真正引用田绿实底变量')
+
 def report():
     lines = ['# 闪马田园 SUMFARM · 全量回归自查记录', '',
-             '资源版本 `v%s` · 复跑：`cd /data/workspace/sumfarm-v1.6.0 && python3 verify.py`' % EXPECTED_V, '',
+             '资源版本 `v%s` · 复跑：`cd /data/workspace/sumfarm-v1.7.0 && python3 verify.py`' % EXPECTED_V, '',
              '## 交付包构成', '']
-    for k in ['files', 'html', 'css', 'js', 'png', 'md', 'i18n_keys', 'button_acts',
+    for k in ['files', 'html', 'css', 'js', 'webp', 'webp_mb', 'md', 'i18n_keys', 'button_acts',
               'art_slices', 'art_pages', 'hero_action_pages', 'hero_action_buttons',
-              'role_buttons', 'back_with_target']:
+              'role_buttons', 'back_with_target', 'hero_base', 'hero_vs_body_lum',
+              'hero_title_contrast', 'hero_sub_contrast', 'hero_label_contrast', 'domain']:
         if k in stats: lines.append('- %s：**%s**' % (k, stats[k]))
     lines += ['', '## 校验脚本自校准', '',
               '5 个已知正确样本（HTML 平衡 / CSS 平衡 / JS 平衡 / 资源命中 / 链接命中）全部 PASS 后才跑全量。', '',
@@ -626,6 +767,19 @@ def report():
         lines += ['### 提示（非缺陷，已登记）', ''] + ['- ' + w for w in warns]
     lines += ['', '## 误报更正登记（当场更正，不留成已知问题）', '',
               '- 二进制 PNG 被文本控制字符扫描误报 10 处：已改为按扩展名豁免二进制图片，文本类文件仍全量扫描。',
+              '- 「一个包、一个站」定稿段写了「无前台包、后台包、合并分发包之分」，被单点断言按'
+              '朴素字符串 `合并分发包` 判成「仍残留双包章节」：该句是否定声明、不是残留章节；'
+              '断言已改为只认章节标题与肯定性形态描述，复跑后错误 0，文档内容未改。',
+              '- 包内抽查把交付文档 DEPLOY.md 复跑命令 `compress_images.py --ext .png` 里的参数当成 PNG 资源引用，'
+              '报 1 条「全站 0 个 PNG 后缀引用」未通过：该处是压缩工具的输入参数、不是页面引用；'
+              '已把文档类（.md/.txt）排除出资源引用扫描，运行资源（HTML/CSS/JS/JSON/PY）仍全量扫描。',
+              '- 包内抽查用 `pageFarmCompare` / `zone-nearby` / `COMPARE_FIELDS in mock` 判功能是否存在，'
+              '实际实现为 `farm-compare.html` 入口、`app.js` 内的 `COMPARE_FIELDS`、`zoneBtn` 与 `pageAuth`，'
+              '`JOB_FLOW` 在 `mock-data.js`：属断言取样标识误报，已按真实标识重跑，功能未回退。',
+              '- 包内抽查以 `forum` 字面量判论坛文字列表样式，实际类名为 `sf-textlist` / `sf-textrow`，'
+              '且 `pageForum()` 声明 `layout: \'text\'`：属关键词误报，已按真实类名重跑。',
+              '- 包内抽查要求 DEPLOY.md 出现连续词「备案接入信息」，文档实际写「备案号沿用，部署时由运维按实际接入信息办理」：'
+              '含义一致、措辞不同，属断言措辞误报，已按 `接入信息` 实际文案重跑。',
               '- JS 括号平衡误报 3 处（URL 中的 `//` 被旧正则当作行注释）：已改为逐字符状态机；'
               '且环境存在 node 时以 `node --check` 为语法权威，括号扫描仅作无 node 兜底。',
               '- 后台 16 页豁免装饰图检查：符合基线「后台纯素、严谨、独立」，登记为提示而非缺陷。',
@@ -663,11 +817,11 @@ def report():
               stats.get('button_acts', 0), '']
     lines += ['', '## 检查项覆盖', '',
               '结构平衡、死链、资源缺失（含 src 与 CSS url）、脚本语法、样式括号、控制字符、嵌套 <a>、'
-              '文件名、图片位与 PNG 有效性、页面标题独立、品牌与禁用词、数量文案、详情页 URL 参数、'
+              '文件名、图片位与 WebP 有效性、页面标题独立、品牌与禁用词、数量文案、详情页 URL 参数、'
               '双语键一致、静态资源版本号、部署约定、数据集清单；'
               '配色对比度实测、按钮 data-act 分支覆盖、后台入口隐藏与 robots.txt、'
               '前台账号合并页（登录 / 注册双模式 + 找回）、栏目归属 data-channel/data-sub、每页加载账号模块；'
-              '50 张切图清单逐条核对（PNG 有效性 + 声明尺寸 + 题材×规格数量）、'
+              '50 张切图清单逐条核对（WebP 有效性 + 声明尺寸 + 题材×规格数量）、'
               'app.js 不再调用矢量色卡、mock-data.js 不再产出 SVG 占位、'
               '按 pagename_id 解析的 art() 实现、前台页面题材切图覆盖率；'
               '本轮视图走查再新增：18 组 WCAG 对比度（含 hero 深字/浅罩、次按钮、眉标、分区标题）、'
@@ -681,13 +835,33 @@ def report():
               '子页「返回」写明回到哪一级、首页「按身份进入」四类画像八个入口均存在、'
               '接单页无跨频道按钮、歧义文案（管理档案 / 竹筐购物车 / 现场签到）全清零、'
               '身份导引中英双真文案、`USER_WALKTHROUGH.md` 逐按钮问答与五类画像报告齐备；'
-              '本轮再新增第 23 组：`sf-hero-mask` 收紧到 .97/.94/.85 且 `--sf-veil` 保持 .88、'
+              '第 23 组（数值已随本轮修复刷新）：`sf-hero-mask` 改为田绿罩 .96/.86/.68 且 `--sf-veil` 保持 .88、'
               '田块对比专用渲染器与 17 项字段清单、多选 / `?ids=` / 跨列缩减 / 高亮差异 / 只看不同项、'
               '工单固定流程字典 6 步主流程 + 1 条退回分支统一导出、10 条明细需求清单、'
               '工单列表文字行与详情/创建页逐条明细展示、创建页明细必填校验；'
               '本轮再新增第 24 组：发布形态回退单点（118 页构成、后台 16 页 noindex、robots 去重与 /admin/ 屏蔽、'
-              '双包 / 合并包产物清零、DEPLOY.md 单点章节与 Nginx 白名单、后台相对链接闭环、前台 0 后台入口）。', '',
+              '双包 / 合并包产物清零、DEPLOY.md 单点章节与 Nginx 白名单、后台相对链接闭环、前台 0 后台入口）；'
+              '本轮再新增第 25 组：hero 与整体背景的可见差距（明确田绿实底 / 加深边框 / 落影、眉标标签实底与描边、'
+              '标签文字对比度实测、近白罩清零、body 罩 .88 不动）；'
+              '本轮再新增第 26 组：图片压缩为 WebP（0 个 PNG 文件 / 0 个 PNG 后缀引用 / 73 张 WebP 有效性 / '
+              '图片目录 ≤ 6 MB / manifest format=webp / 切图脚本复跑仍产 WebP / MIME 与版本号齐备）；'
+              '第 27 组：域名更新到 `iarm.fun`（全站 0 个旧域名残留、robots Sitemap / Nginx server_name / '
+              'API base / 基线域名四处真实生效、品牌中英名与备案号保持不变、生成器与另一套生成线同步）；'
+              '本轮再新增第 28 组：hero 背景颜色太浅的定量校验（`--sf-hero-base` 存在且被容器引用、'
+              '与 body 米白明度差 ≥ .08、标题 ≥ 7:1、说明 ≥ 4.5:1、近白罩清零、18 组对比度表按真实底色复算）。', '',
               '## 真缺陷修复登记（发现即修，复跑确认）', '',
+              '- 【上一轮历史记录】用户反馈「hero 标签透明度过高、和整体背景没有差距、看不清」：曾把遮罩回调到 '
+              '.93/.86/.70、hero 底色改 `--sf-paper` 更亮、加深边框与落影、眉标做浅蓝实底胶囊。该轮缓解了标签可辨性，'
+              '但**没有解决背景颜色太浅**——见下一条本轮真缺陷。',
+              '- 【本轮真缺陷】用户反馈「hero 背景颜色太浅问题没有解决」：浏览器实测 hero 计算底色 '
+              '`rgb(255,253,247)`、body `rgb(247,244,236)`，两者只差 8/9/11；遮罩是 .93/.86/.70 的**近白罩**，'
+              '把田园图洗成几乎不可见，整块首屏就是一张苍白白卡片。根因是「用更亮的纸白去和米白 body 拉开差距」'
+              '方向本身不成立。本轮改为**明确田绿实底** `--sf-hero-base:#D2E4C8`，遮罩换成同色田绿罩 '
+              '`rgba(210,228,200,.96/.86/.68)`，底图滤镜由 `saturate(.48) brightness(1.09)` 调为 '
+              '`saturate(.78) brightness(1.0)` 让低饱和田园色回来，边框加深到 `#BCCFB4`、落影略加。'
+              '实测 hero 与 body 明度差 **0.172**、标题 `#223229` 对田绿底 **10.07:1**、说明 `#4C5C51` **5.30:1**、'
+              '眉标 `#235C6B` 对浅蓝实底 **6.40:1**，全部过 AA / AAA；`--sf-veil .88` 一个数未动。'
+              'CSS 变更后按版本号机制把全站 `?v=` 由 1.7.0 刷为 **1.7.1**，避免长缓存命中旧样式。', '',
               '- 模拟与真实接口返回层不一致：模拟分支返回整包响应而非业务 data，动态区渲染失败；已统一为返回业务 data。',
               '- 模拟数据分类图映射缺 job / planting 等键，工单回执出现 `src="undefined"` 破图；已补全映射并加兜底。',
               '- 子页构建器首轮把 76 个前台子页写成无扩展名文件（文件名漏 `.html`）：已统一补后缀、构建期自清理残留、'
@@ -732,13 +906,28 @@ def report():
               '总览改文字行并显示状态徽章与「第 N / 6 步」，详情含基础信息表 + 明细表 + 流程时间线 + 对话，'
               '创建页逐条填写、必填校验、成功态写明「待接单（固定流程第 1 步）」并列回本次条目；接单页每行也带状态徽章。',
               '- 发布形态按用户要求**回退为单点部署**：双包 / 合并分发包与三个构建脚本全部清理，交付只剩一个 '
-              '`sumfarm-v1.6.0.zip`，顶层 `sumfarm-v1.6.0/` 含 118 页（102 前台 + `admin/` 16 后台）与共享 `assets/`，'
+              '`sumfarm-v1.7.0.zip`，顶层 `sumfarm-v1.7.0/` 含 118 页（102 前台 + `admin/` 16 后台）与共享 `assets/`，'
               '解压内容挂站点根即可。后台 16 页补 `noindex,nofollow`，`robots.txt` 保持 `Disallow: /admin/` 并去重，'
               '`DEPLOY.md` 第 6 节给出 Nginx `/admin/` 白名单 / Basic 配置作为「不得对外」的实际生效层；'
               '单点属逻辑隔离而非物理分离，已如实写明。',
               '- 静态新增第 23 组断言、运行时新增 12 项交互，交互总数 84 → 96；7 批 236 次取样全部重跑。', '',
-              '- 本轮收尾：7 批 236 次双视口取样全量重跑、交互 **96 项全通过**、静态回归错误 0，'
-              '单点部署包 `sumfarm-v1.6.0.zip` 已打包并完成包内抽查。', '',
+              '## 本轮改进登记（hero 与背景拉开差距 / 静态资源版本号刷新）', '',
+              '- CSS 变更后按版本号机制把静态资源版本由 `1.6.0` 刷新为 **`1.7.0`**（含目录名、交付包名、'
+              '全站 `?v=`、部署文档与校验模板），避免资源长缓存拿到旧样式；`--sf-v` 同步更新。',
+              '- 【上一轮历史记录】`sf-hero-mask` 曾回调到 .93/.86/.70；`.sf-hero` 曾改用更亮底色 + 深边框 + 落影；'
+              '`.sf-hero .sf-eyebrow` 改为有实底与描边的标签胶囊。body 的 `--sf-veil .88` 一个数未动。'
+              '本轮已进一步改为田绿实底（见「本轮改进登记（hero 背景颜色太浅）」）。',
+              '- 静态新增第 25 组断言、运行时新增 2 项交互（标签实底可见、容器分层可见），交互总数 96 → 98。', '',
+              '## 本轮改进登记（图片压缩为 WebP，网站专用格式）', '',
+              '- 73 张 PNG 全部转为同名 `.webp`：背景类 q=68 / 大图 q=72 / 中图 q=76 / 小图 q=80 / 源图 q=82 '
+              '分档压缩，图片目录 **36.66 MB → 2.56 MB（省 93.0%）**；原 PNG 从交付包删除，git 仓库不再留大位图。',
+              '- 全站 HTML / CSS / JS / manifest / 切图脚本 / 文档引用同步改后缀；'
+              '静态资源版本号刷新为 `v1.7.0`——CSS 内容变了，不刷版本会被长缓存命中旧 CSS 里的 PNG 路径，导致破图。',
+              '- `DEPLOY.md` 补 Nginx `image/webp` MIME、WebP 不再二次 gzip 的说明、兼容性口径与压缩复跑命令；'
+              '`slice_assets.py` 改为直接产出 WebP，复跑不会重新生成 PNG；`ART_MATRIX.md` 规格矩阵同步。',
+              '- 静态新增第 26 组断言；运行时 7 批全量重跑，破图 0（含懒加载完成后）。', '',
+              '- 本轮收尾：7 批 236 次双视口取样全量重跑、交互 **98 项全通过**、静态回归错误 0，'
+              '单点部署包 `sumfarm-v1.7.0.zip` 已打包并完成包内抽查。', '',
               '## 本轮改进登记（账号合并 / 首屏按钮 / 田园挂靠工单）', '',
               '- 登录与注册合并为 `login.html` 单页双 Tab：点 Tab 只换表单、不跳页、不新增历史，'
               'URL 用 `?mode=` 同步；五类身份由五张卡片收成一个下拉；导航与移动浮层都只留一个账号入口；'
@@ -763,12 +952,32 @@ def report():
               '- 「现场签到」→「报名后签到」、「竹筐购物车」→「加入购物车」；'
               '专家页新增「技术实践与指导」区块，产学研从专家页可直达专家指导工单与试验记录。',
               '- 静态新增 5 组断言、运行时新增 18 项交互，交互总数 66 → 84；7 批 236 次取样全部重跑。', '',
+              '## 域名口径登记（定死项核对）', '',
+              '- 用户自开工起即定死域名 **`iarm.fun`**、备案 `蜀ICP备18013136号` 与主体「闪马科技个人工作室」。'
+              '本轮核对发现交付目录内一度被写入其他域名，已全量恢复：页面、CSS、JS、`robots.txt` Sitemap、'
+              'Nginx `server_name`、`api.js` API base、基线 / 部署 / 逐按钮走查文档重新对齐，'
+              '包内其他域名残留为 0，品牌与备案一个数未动。'
+              '按权限边界不主动查线上，本轮未执行部署 / 域名解析，交付包发布由运维完成，线上表现不作验收依据；'
+              '文档同步注明了需要运维处理的 TLS 证书、缓存刷新与备案接入信息变更。', '',
+              '## 本轮改进登记（hero 背景颜色太浅 / 图片压缩复核）', '',
+              '- hero 由「近白纸底 + 近白罩」改为「明确浅田绿实底 + 同色田绿罩」：'
+              '`--sf-hero-base:#D2E4C8`、`.sf-hero-mask` 为 `rgba(210,228,200,.96/.86/.68)`，'
+              '底图 `saturate(.78) brightness(1.0) contrast(.95)`，边框 `#BCCFB4`、落影 `0 10px 30px .16`。'
+              '左侧近乎实底保证文字对比，右侧透出约三成低饱和田园图，既有颜色又不花；'
+              '整体 body 的 `--sf-veil:rgba(250,248,242,.88)` 与背景淡度保持不变。',
+              '- 18 组 WCAG 对比度表按 hero 真实底色复算（标题 10.07:1 / 说明 5.30:1 / 眉标 6.40:1），'
+              '新增第 28 组定量断言：明度差 ≥ .08、标题 ≥ 7:1、说明 ≥ 4.5:1、近白罩清零、变量被容器真实引用。',
+              '- 全站静态资源版本 `?v=1.7.0` → **`?v=1.7.1`**（118 HTML + CSS/JS 共 965 处），'
+              '`--sf-v` 同步；避免资源长缓存仍取旧 CSS 导致 hero 改了不生效。交付包名与顶层目录名保持 '
+              '`sumfarm-v1.7.0` 不变，仍是「一个包、一次发布」。',
+              '- 图片专项压缩复核：包内 **73 张 WebP / 0 PNG / 0 JPG**，图片目录 **2.56 MB**（原 36.66 MB，省 93.0%），'
+              'manifest `format=webp` 且 50 张切图齐备；本轮改的是 CSS 与版本号，压缩结果未回退，整包仍约 2.92 MB。', '',
               '## 本轮未覆盖（如实登记，不包装为已完成）', '',
               '- 118 页逐页独立设计图仍未完成：当前按题材池按 pagename 稳定散列，同题材页面共用一张主视觉。',
               '- 每条模拟记录完全独立拍摄的照片仍未完成：当前按记录 id 在 50 张切图中稳定取图，'
               '不同 id 会取到不同题材或规格，但不是逐条专属拍摄。',
               '- 全部子类图片逐张单独生成仍未完成；后台 16 页按基线保持纯素，不注入题材装饰图。',
-              '- 纯后台线上部署与域名解析未执行；按权限边界不主动查线上，用户提供的站点链接资源解析失败亦未据此验收。',
+              '- 按用户说明，线上域名为 `iarm.fun`，站点当前在该域名下运行；按权限边界不主动查线上，本轮未执行部署 / 域名切换，交付包发布由运维完成，线上表现不作验收依据。域名变更涉及的 TLS 证书、静态资源缓存刷新与备案接入信息变更（备案号沿用 `蜀ICP备18013136号`）由运维按实际办理。',
               '- 后台纯素页面按基线豁免装饰图检查，已登记为提示而非缺陷。', '']
     with open(os.path.join(ROOT, 'CHECK.md'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')

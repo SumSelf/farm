@@ -1,9 +1,11 @@
-/* 闪马田园 SUMFARM · 前台统一样式 v1.6.0
+/* 闪马田园 SUMFARM · 前台统一样式 v1.7.0
    真实田园 60% / 科技 30% / 可爱 10%  |  后台样式见 admin.css，互不加载 */
 :root{
   --sf-field:#4A7C59; --sf-field-d:#33583F; --sf-soil:#8B6F47;
   --sf-tech:#2E6E7E; --sf-tech-l:#E3F0F1; --sf-cute:#E8A85C;
   --sf-cream:#F7F4EC; --sf-paper:#FFFDF7; --sf-ink:#26332B;
+  /* hero 专用底色：明确浅田绿，不再用近白 --sf-paper 导致首屏发白、与米白 body 几乎同色 */
+  --sf-hero-base:#D2E4C8;
   /* 辅助文字原 #6B7A70 对纸白仅 4.45:1，未过 AA，改为 #5C6B61（5.53:1） */
   --sf-mute:#5C6B61; --sf-line:#DFE4D8; --sf-danger:#B4553F; --sf-danger-d:#933F2C;
   --sf-quiet:#3B6847; --sf-warm-ink:#8A5416;
@@ -11,14 +13,14 @@
   --sf-veil:rgba(250,248,242,.88); --sf-hero-ink:#223229; --sf-hero-sub:#4C5C51;
   --sf-zone:#F2F5EE; --sf-zone-line:#D8E0D2;
   --sf-radius:14px; --sf-shadow:0 6px 22px rgba(38,51,43,.09);
-  --sf-v:"1.6.0";
+  --sf-v:"1.7.1";
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{font-family:"WenQuanYi Micro Hei","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
   color:var(--sf-ink);background:var(--sf-cream);
   /* 图案仍在，但被 88% 浅色罩压成极淡水印，不再抢文字，也不刺眼 */
-  background-image:linear-gradient(var(--sf-veil),var(--sf-veil)),url("../img/bg_field.png");
+  background-image:linear-gradient(var(--sf-veil),var(--sf-veil)),url("../img/bg_field.webp");
   background-size:auto,640px auto;background-repeat:repeat;
   overflow-x:hidden;-webkit-text-size-adjust:100%}
 img{display:block;max-width:100%;height:auto}
@@ -62,24 +64,30 @@ button{cursor:pointer}
 
 /* ---------- 布局 ---------- */
 .sf-main{max-width:1440px;margin:0 auto;padding:22px 24px 96px}
-.sf-hero{position:relative;border-radius:20px;overflow:hidden;background:var(--sf-cream);
+.sf-hero{position:relative;border-radius:20px;overflow:hidden;background:var(--sf-hero-base);
   min-height:340px;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;
-  border:1px solid var(--sf-line)}
+  /* 首屏是明确有颜色的浅田绿实底，与米白 body 在色相与明度上都有差距；边框加深 + 落影让整块浮起来 */
+  border:1px solid #BCCFB4;box-shadow:0 10px 30px rgba(38,51,43,.16)}
 .sf-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
-  filter:saturate(.48) brightness(1.09) contrast(.9)}
+  filter:saturate(.78) brightness(1.0) contrast(.95)}
 .sf-hero-tall{display:none}
 @media (max-width:767px){.sf-hero-wide{display:none}.sf-hero-tall{display:block}}
-/* 浅色罩：图片退成极淡水彩底，文字改深色墨绿；既淡又不花，白底深字对比更稳。
-   视图走查后收紧 hero 透明度（.95/.87/.56 → .97/.94/.85）：右侧不再透出大片图片，
-   浅米色背景更突出、整块首屏更统一；body 的整体背景透明度保持原样不动。 */
+/* hero 背景太浅的修复：原白罩 rgba(255,253,247,.93/.86/.70) 把首屏洗成近纯白，
+   与 body 的米白只差 8/9/11，田园色几乎看不见。改为同色田绿罩 rgba(210,228,200,...)：
+   左侧 .96 是明确的浅田绿实底（深墨绿字对比 10.1:1），右侧 .68 让低饱和田园图透出约三成，
+   既有颜色又不花；body 的 --sf-veil .88 保持不动，整体背景透明度不变。 */
 .sf-hero-mask{position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(255,253,247,.97) 0%,rgba(255,253,247,.94) 52%,rgba(255,253,247,.85) 100%)}
+  background:linear-gradient(90deg,rgba(210,228,200,.96) 0%,rgba(210,228,200,.86) 52%,rgba(210,228,200,.68) 100%)}
 .sf-hero-copy{position:relative;z-index:2;padding:34px 40px;max-width:680px;color:var(--sf-hero-ink)}
 .sf-hero h1{font-size:34px;line-height:1.25;margin:0 0 12px;letter-spacing:.01em;color:var(--sf-hero-ink)}
 .sf-hero p{margin:0 0 16px;font-size:15px;line-height:1.8;color:var(--sf-hero-sub);opacity:1}
 .sf-hero-actions{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px}
 .sf-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sf-tech);
   font-weight:700;margin:0 0 8px}
+/* hero 里的眉标是「标签」：给浅蓝实底与描边，不再靠透明色浮在背景上，保证一眼看得清 */
+.sf-hero .sf-eyebrow{display:inline-block;padding:5px 11px;border-radius:999px;
+  background:var(--sf-tech-l);border:1px solid #B7D2D8;color:#235C6B;
+  letter-spacing:.12em;margin-bottom:12px}
 /* hero 内按钮：次按钮白底描边墨绿字，主按钮田绿实底白字，层级不再混在一起 */
 .sf-hero-actions .sf-btn{background:#fff;border-color:var(--sf-zone-line);color:var(--sf-hero-ink);font-weight:700}
 .sf-hero-actions .sf-btn:hover{background:var(--sf-tech-l);color:var(--sf-tech)}
@@ -120,7 +128,7 @@ button{cursor:pointer}
 
 /* 统计 / 数据区：科技风底纹 */
 .sf-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;
-  background-image:linear-gradient(rgba(247,244,236,.9),rgba(247,244,236,.9)),url("../img/bg_tech.png");
+  background-image:linear-gradient(rgba(247,244,236,.9),rgba(247,244,236,.9)),url("../img/bg_tech.webp");
   background-size:cover;border-radius:16px;
   padding:18px;border:1px solid var(--sf-line)}
 @media (max-width:767px){.sf-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}

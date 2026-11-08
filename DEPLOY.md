@@ -2,7 +2,7 @@
 
 ## 1. 交付结构
 ```
-sumfarm-v1.5.0/
+sumfarm-v1.6.0/
 ├── 117 个 .html                101 个前台页（根目录）+ 16 个后台页（admin/）
 │   ├── 主频道 25 页           首页、田园、活动、农产品、视频、宣发、论坛、
 │   │                         专家、接单、个人、订单、工单、搜索、404 及其详情/编辑页
@@ -39,7 +39,7 @@ sumfarm-v1.5.0/
 ├── verify.py                            全量静态回归脚本
 └── runtime_check.py                     运行时验收脚本（自带 HTTP 服务，自动发现全站页面并分批）
 ```
-顶层目录名 `sumfarm-v1.5.0`，静态资源版本号 `1.5.0` 已刷新到所有资源引用 `?v=1.5.0`。
+顶层目录名 `sumfarm-v1.6.0`，静态资源版本号 `1.6.0` 已刷新到所有资源引用 `?v=1.6.0`。
 全站内容图均为真实田园成图：按 `pagename_id` 由 `mock-data.js` 的 `art()` 解析题材与规格，
 不再有矢量色卡占位；后台 16 页保持纯素，不注入田园题材装饰图。
 构建顺序：`build_pages.py` → `build_subpages.py` → `slice_assets.py` → `verify.py` → `runtime_check.py 1..7`。
@@ -59,7 +59,7 @@ sumfarm-v1.5.0/
 server {
     listen 80;
     server_name sumfarm.sumstc.com;
-    root /var/www/sumfarm-v1.5.0;
+    root /var/www/sumfarm-v1.6.0;
     index index.html;
 
     # HTML 不缓存
@@ -69,7 +69,7 @@ server {
         try_files $uri =404;
     }
 
-    # 静态资源长缓存（版本号 ?v=1.5.0 变更即刷新）
+    # 静态资源长缓存（版本号 ?v=1.6.0 变更即刷新）
     location ^~ /assets/ {
         add_header Cache-Control "public, max-age=31536000, immutable";
         try_files $uri =404;
@@ -95,26 +95,26 @@ server {
 }
 ```
 - 纯静态多页，不做 SPA history fallback；`404.html` 提供回首页与搜索入口。
-- 版本号刷新方式：全量替换 `?v=1.5.0` 为新版本号后重新上传 `assets/`，HTML 因 no-cache 立即生效。
+- 版本号刷新方式：全量替换 `?v=1.6.0` 为新版本号后重新上传 `assets/`，HTML 因 no-cache 立即生效。
 
 ## 4. 复跑命令（分批，不串联重命令）
 ```bash
-cd /data/workspace/sumfarm-v1.5.0
+cd /data/workspace/sumfarm-v1.6.0
 python3 verify.py                 # 全量静态回归
 python3 -m py_compile verify.py  # 校验脚本自身语法
 ```
 打包单独一条，完整性校验单独一条：
 ```bash
-cd /data/workspace && zip -rq sumfarm-v1.5.0.zip sumfarm-v1.5.0
-unzip -t sumfarm-v1.5.0.zip && unzip -l sumfarm-v1.5.0.zip | tail -n 3
+cd /data/workspace && zip -rq sumfarm-v1.6.0.zip sumfarm-v1.6.0
+unzip -t sumfarm-v1.6.0.zip && unzip -l sumfarm-v1.6.0.zip | tail -n 3
 ```
 
 ## 5. 真实服务环境验收（本轮已执行，结果与明细见 `RUNTIME.md`）
 - 环境：本地 HTTP 服务 + Chromium 无头浏览器，**不使用 `file://`**；双视口 1440×900 / 390×844。
 - 分批执行：自动发现全站 **118 页**，每批 18 页（低于 20 页上限），共 **7 批**；双视口合计 **236 次页面取样**。
 - 等待策略：`networkidle` + 700ms 重绘 + 滚动到底 600ms + 强制 eager 900ms，懒加载全部完成后才取样；取样取完整 `body.innerText`。
-- 从首页出发逐频道点击导航，再逐页加载；交互按「用户做了 X → 得到 Y」验收 **84 项**，含前台登录 / 注册合并双 Tab 与找回校验、后台隐藏与独立入口、后台侧栏—审核—返回—退出闭环、删除二次确认、ESC 关闭、全选可逆、收藏、主按钮配色、移动浮层、英文子页、子页 `?id=` 差异化、分页换页、表单反馈、素材三项、视图走查 12 项、上一轮首屏按钮与田园挂靠工单 11 项，以及本轮逐按钮问答与五类画像新增的 18 项：首页唯一主按钮、四类画像八入口逐条点击、未登录 / 商家 / 租赁用户三态显隐、中英返回目标、接单双身份说明、个人查看档案、专家页产学研闭环、两处自解释文案。
-- 本轮结果：**运行时错误 0 / 请求失败 0 / 破图 0 / 横向溢出 0 页 / 内容充盈未达标 0 页 / 交互 84 项全通过**。
+- 从首页出发逐频道点击导航，再逐页加载；交互按「用户做了 X → 得到 Y」验收 **96 项**，含前台登录 / 注册合并双 Tab 与找回校验、后台隐藏与独立入口、后台侧栏—审核—返回—退出闭环、删除二次确认、ESC 关闭、全选可逆、收藏、主按钮配色、移动浮层、英文子页、子页 `?id=` 差异化、分页换页、表单反馈、素材三项、视图走查 12 项、上一轮首屏按钮与田园挂靠工单 11 项，以及逐按钮问答与五类画像的 18 项：首页唯一主按钮、四类画像八入口逐条点击、未登录 / 商家 / 租赁用户三态显隐、中英返回目标、接单双身份说明、个人查看档案、专家页产学研闭环、两处自解释文案，以及本轮新增的 12 项：`sf-hero` 遮罩收紧而 body 罩不变、对比页多选候选与空态、勾 2 块生成清单且相同项缩减 / 不同项高亮、只看不同项切换、5 个 ids 收敛 4 列、英文对比页、清空重选、工单总览文字行与状态徽章、工单详情六步流程与十条明细、退回分支、创建页明细必填与固定流程说明、接单页状态徽章。
+- 本轮结果：**运行时错误 0 / 请求失败 0 / 破图 0 / 横向溢出 0 页 / 内容充盈未达标 0 页 / 交互 96 项全通过**。
 - 逐页内容充盈口径：前台动态区文字 ≥300 字符且 ≥3 张正文图片；后台纯素豁免图片、文字 ≥200 字符，见 `BUTTON_AUDIT.md` 第 6 节。
 - 素材校验：`slice_assets.py` 产出 50 张切图与清单，`verify.py` 逐条核对 PNG 有效性、声明尺寸与「题材数 × 规格数」；运行时确认内容图全部为真实成图。
 - 视图走查口径：第 8 节覆盖背景淡化、按钮/文字配色、搜索框归属、下拉防抖、论坛文字列表、接单与个人功能分区；第 9 节覆盖账号合并、首屏按钮去重、农事挂靠田园与专家指导工单；第 10 节与 `USER_WALKTHROUGH.md` 覆盖普通用户逐按钮问答与五类用户画像任务链，均按使用者视角逐项点过。
@@ -124,7 +124,7 @@ unzip -t sumfarm-v1.5.0.zip && unzip -l sumfarm-v1.5.0.zip | tail -n 3
 ```bash
 python3 slice_assets.py                 # 可选：重出 50 张题材切图与 manifest（源图已在包内）
 python3 verify.py                       # 全量静态回归（118 HTML + 7 JS + 2 CSS + 73 PNG）
-python3 runtime_check.py 1              # 第 1 批：18 页 × 双视口 + 84 项交互验收
+python3 runtime_check.py 1              # 第 1 批：18 页 × 双视口 + 96 项交互验收
 python3 runtime_check.py 2              # 第 2 批，依次到 7；末批合并生成 RUNTIME.md
 # 或按批次逐条执行：for b in $(seq 1 7); do python3 runtime_check.py $b; done
 ```
@@ -133,3 +133,70 @@ python3 runtime_check.py 2              # 第 2 批，依次到 7；末批合并
 
 ## 6. 权限边界
 只写 `/data/workspace`；不初始化、不提交、不推送版本库；不主动查线上；上传延迟导致的线上表现不作验收依据。
+
+
+## 6. 单点部署（发布形态回退，后台不得对外）
+
+交付物**只有一个包**：`sumfarm-v1.6.0.zip`，顶层目录 `sumfarm-v1.6.0/`。解压后把该目录的**全部内容**挂到站点根目录 `/` 即可，前台与后台在同一台站点、同一棵目录树里，共享一份 `assets/`。
+
+```
+sumfarm-v1.6.0/
+├─ index.html ... 102 个前台 HTML      # 首页四子栏目、田园档案与对比、论坛、专家、接单、个人、账号、帮助与公共页
+├─ admin/                              # 16 个后台 HTML：独立登录 + 总览 + 九类管控 + 三级审核工作台
+│   ├─ login.html                      # 后台独立入口
+│   └─ index.html / audit*.html / workorders.html / users.html / ...
+├─ assets/                             # 2 CSS + 7 JS + 73 PNG（前后台共用一份，后台页面用 ../assets/ 引用）
+├─ robots.txt                          # Disallow: /admin/；同时屏蔽验收脚本与报告
+├─ sitemap.html                        # 公开站点地图，0 个后台链接
+├─ DEPLOY.md / CHECK.md / RUNTIME.md   # 部署、静态回归、7 批运行时验收
+└─ USER_WALKTHROUGH.md / BUTTON_AUDIT.md / SUMFARM_BASELINE.md / ART_MATRIX.md
+```
+
+### 后台隔离口径（单点下靠访问控制，不是物理分离）
+
+单点部署后，后台 HTML 物理上与前台在同一台站点上，**能凭 URL 直接请求到**。因此「后台不得对外」由下面五层共同保证，缺一层都不算达标：
+
+1. **独立登录**：`admin/login.html`，与前台合并账号页不共用账号体系；后台总览—审核—返回—退出闭环在同一目录树内自洽，链接由 `auth.js` 的 `decorate` 按当前目录归一化，不会叠出 `/admin/admin/`。
+2. **前台 0 入口**：顶部导航、折叠浮窗、页脚、手机底部栏、移动「更多」浮层、站点地图、所有前台 HTML 均不出现后台链接；`sitemap.html` 只列公开页面。
+3. **不进索引**：站点根 `robots.txt` 为 `Disallow: /admin/`；后台 16 页 `<head>` 全部带 `<meta name="robots" content="noindex,nofollow">`，双保险。
+4. **运维侧访问控制（强烈建议，实际生效层）**：前台静态资源无服务端鉴权，仅靠「不放链接」不能阻止直接输网址。部署时请在 Nginx 对 `/admin/` 加 IP 白名单或 HTTP Basic，示例：
+
+```nginx
+location ^~ /admin/ {
+    # 方案 A：仅内网 / 运维出口可访问
+    allow 10.0.0.0/8;
+    allow 127.0.0.1;
+    deny  all;
+    # 方案 B：改为 HTTP Basic（二选一）
+    # auth_basic "SUMFARM Ops";
+    # auth_basic_user_file /etc/nginx/conf.d/sumfarm.htpasswd;
+    try_files $uri $uri/ =404;
+}
+```
+
+5. **地址单独分发**：后台地址只由运维告知平台管理员，不写进任何前台可见文案、不出现在公开导航与帮助文档里。
+
+> 明确的限定：这是**逻辑隔离**，不是物理隔离。若将来要求后台与前台彻底分机部署，需要重新拆包与独立域名，当前单包不提供该形态。
+
+### 部署步骤
+
+```bash
+unzip -t sumfarm-v1.6.0.zip                 # 完整性校验
+unzip sumfarm-v1.6.0.zip -d /var/www/
+# 把 sumfarm-v1.6.0/ 的内容作为站点根（或将其内容拷到站点根），配置 Nginx：
+#   HTML 不缓存 / 资源长缓存（?v=1.6.0）/ 404 指向 404.html / 正确 MIME / /admin/ 按上文加白名单
+```
+
+`verify.py`、`runtime_check.py`、`slice_assets.py` 是验收与素材工具，不参与页面渲染；正式部署时可从站点根剔除，不影响运行（robots.txt 已屏蔽）。
+
+### 复跑命令（在解压后的目录执行）
+
+```bash
+python3 verify.py                 # 全量静态回归 → CHECK.md
+for b in 1 2 3 4 5 6 7; do python3 runtime_check.py $b; done   # 双视口逐页 → RUNTIME.md
+unzip -t ../sumfarm-v1.6.0.zip   # 交付包完整性
+```
+
+验收口径仍为使用者视角：开发态 = 交付态，118 页（102 前台 + 16 后台），静态回归 0 错误，7 批真实 HTTP + Chromium 双视口 **236 次取样 / 96 项交互**，运行时错误 0 / 破图 0 / 横向溢出 0 页。
+
+**如实说明**：线上部署与 `sumfarm.sumstc.com` 解析**未执行**；按权限边界不主动查线上，线上表现不作验收依据。每页独立设计图、每条模拟记录单独拍摄的照片仍是遗留项，见 `SUMFARM_BASELINE.md`。

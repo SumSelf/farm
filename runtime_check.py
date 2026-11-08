@@ -365,7 +365,8 @@ def interactions(pw, browser):
     check("创建工单页 → 显示所选田园档案、类型含专家指导、隐藏 farmId 已回填",
           len(wj["farm"]) > 4 and "专家指导" in wj["types"] and len(wj["hidden"]) >= 3,
           "%s / %d 类 / %s" % (wj["farm"][:28], len(wj["types"]), wj["hidden"]))
-    p.fill('form[data-form="newjob-farm"] textarea[name="note"]', 'B-07 请做土壤取样并给一份施肥建议')
+    p.fill('form[data-form="newjob-farm"] textarea[name="scope"]', 'B-07 全畦及对照区，取样点按试验方案布设')
+    p.fill('form[data-form="newjob-farm"] textarea[name="acceptance"]', '提交现场记录、检测读数与技术结论，逐条对应试验目标')
     p.select_option('form[data-form="newjob-farm"] select[name="type"]', '专家指导')
     p.click('form[data-form="newjob-farm"] button[type="submit"]'); p.wait_for_timeout(500)
     check("提交专家指导工单 → 出现挂到这块田的成功态与返回入口",
@@ -459,6 +460,96 @@ def interactions(pw, browser):
     check("农产品详情 → 按钮写明「加入购物车」，功能词不被可爱词盖住",
           "加入购物车" in p.locator('.sf-hero-actions').inner_text()
           and "竹筐购物车" not in p.locator('.sf-hero-actions').inner_text(), "")
+
+    # ===== 本轮：hero 背景收紧 / 真实田块对比 / 工单严谨化 =====
+    p.goto(BASE + "/index.html", wait_until="networkidle"); p.wait_for_timeout(700)
+    mask = p.evaluate("""() => ({mask:getComputedStyle(document.querySelector('.sf-hero-mask')).backgroundImage,
+      body:getComputedStyle(document.body).backgroundImage})""")
+    check("hero 背景透明度收紧 → 浅米色更突出（.97 / .94 / .85），整体 body 罩保持 .88 不动",
+          "0.97" in mask["mask"] and "0.85" in mask["mask"] and "0.88" in mask["body"],
+          mask["mask"][:90])
+    p.goto(BASE + "/farm-compare.html", wait_until="networkidle"); p.wait_for_timeout(700)
+    cp = p.evaluate("""() => ({boxes:document.querySelectorAll('input[data-act="compare-pick"]').length,
+      empty:document.querySelector('.sf-empty h3')?document.querySelector('.sf-empty h3').innerText:'',
+      table:document.querySelectorAll('[data-compare-table]').length})""")
+    check("打开田块对比 → 先看到真正的多选候选，未选时给空态引导而不是假表格",
+          cp["boxes"] >= 20 and "还没有勾选田块" in cp["empty"] and cp["table"] == 0,
+          "%d 个候选 / %s" % (cp["boxes"], cp["empty"]))
+    for v in ("F001", "F002"):
+        p.locator('input[data-act="compare-pick"][data-v="%s"]' % v).check()
+    p.locator('[data-act="compare-build"]').click(); p.wait_for_timeout(800)
+    cmp = p.evaluate("""() => {
+      const t=document.querySelector('[data-compare-table]'); if(!t) return {ok:false};
+      const rows=t.querySelectorAll('tbody tr');
+      let same=0,diff=0,colspan=0;
+      rows.forEach(r=>{ if(r.getAttribute('data-same')==='1'){same++; if(r.querySelector('td[colspan]')) colspan++;}
+        else diff++; });
+      return {ok:true, cols:t.querySelectorAll('thead th').length, rows:rows.length,
+        same:same, diff:diff, colspan:colspan,
+        diffCells:t.querySelectorAll('td.is-diff').length,
+        stat:(document.querySelector('[data-compare-stat]')||{}).innerText||''};
+    }""")
+    check("勾选 2 块并生成清单 → URL 带 ids、表格按字段并排、相同项缩减、不同项高亮",
+          "ids=" in p.url and cmp["ok"] and cmp["cols"] == 3 and cmp["colspan"] >= 1
+          and cmp["diffCells"] >= 1 and "相同" in cmp["stat"],
+          "%s" % cmp)
+    p.locator('input[data-act="compare-pick"][data-v="F003"]').check(); p.wait_for_timeout(150)
+    p.locator('[data-act="compare-toggle"]').click(); p.wait_for_timeout(300)
+    tg = p.evaluate("""() => ({hidden:document.querySelector('[data-compare-table]').classList.contains('is-hide-same'),
+      label:document.querySelector('[data-act="compare-toggle"]').innerText,
+      pressed:document.querySelector('[data-act="compare-toggle"]').getAttribute('aria-pressed')})""")
+    check("点「只看不同项」→ 相同行真的隐藏、按钮状态与文案同步变化",
+          tg["hidden"] and "显示全部" in tg["label"] and tg["pressed"] == "true", "%s" % tg)
+    p.goto(BASE + "/farm-compare.html?ids=F001,F002,F003,F004,F005", wait_until="networkidle"); p.wait_for_timeout(700)
+    over = p.evaluate("""() => ({boxes:document.querySelectorAll('input[data-act="compare-pick"]:checked').length,
+      cols:document.querySelector('[data-compare-table]')?document.querySelector('[data-compare-table]').querySelectorAll('thead th').length:0,
+      hint:(document.querySelector('.sf-role-hint')||{}).innerText||''})""")
+    check("URL 给 5 个 ids → 自动收敛到最多 4 块，重复/超限不撑破对比表",
+          over["boxes"] == 4 and over["cols"] == 5, "%s" % over)
+    p.goto(BASE + "/farm-compare.html?lang=en&ids=F001,F002", wait_until="networkidle"); p.wait_for_timeout(700)
+    check("英文对比页 → 真英文文案，不是中文翻译占位",
+          "Step 1" in p.locator('#sf-dynamic').inner_text()
+          and "Build comparison" in p.locator('#sf-dynamic').inner_text(), "")
+    p.goto(BASE + "/farm-compare.html?ids=F001,F002", wait_until="networkidle"); p.wait_for_timeout(700)
+    p.locator('[data-act="compare-clear"]').click(); p.wait_for_timeout(700)
+    check("点「清空重选」→ 回到未选状态与空态引导",
+          "ids=" not in p.url and p.locator('.sf-empty h3').count() > 0, p.url.split("/")[-1][:60])
+
+    p.goto(BASE + "/workorders.html", wait_until="networkidle"); p.wait_for_timeout(800)
+    wl = p.evaluate("""() => ({rows:document.querySelectorAll('#sf-dynamic .sf-textrow').length,
+      badges:document.querySelectorAll('#sf-dynamic .sf-job-badge').length,
+      cards:document.querySelectorAll('#sf-dynamic .sf-grid .sf-card').length,
+      txt:(document.querySelector('#sf-dynamic')||{}).innerText||''})""")
+    check("工单总览 → 严谨文字清单，每行显示具体状态徽章与流程进度，不再随意铺卡片",
+          wl["rows"] >= 4 and wl["badges"] >= 4 and wl["cards"] == 0
+          and "固定流程" in wl["txt"], "%s" % wl)
+    p.goto(BASE + "/workorder-detail.html?id=W001", wait_until="networkidle"); p.wait_for_timeout(800)
+    wd = p.evaluate("""() => ({badge:document.querySelectorAll('.sf-job-badge').length,
+      steps:document.querySelectorAll('.sf-job-step').length,
+      reqs:document.querySelectorAll('.sf-table tbody tr').length,
+      txt:(document.querySelector('#sf-dynamic')||{}).innerText||''})""")
+    check("工单详情 → 状态徽章 + 六步固定流程 + 逐条明细需求，页面严谨可核对",
+          wd["badge"] >= 1 and wd["steps"] >= 6 and wd["reqs"] >= 10
+          and "工单明细需求" in wd["txt"] and "固定工单流程" in wd["txt"], "%s" % wd)
+    p.goto(BASE + "/workorder-detail.html?id=W005", wait_until="networkidle"); p.wait_for_timeout(800)
+    check("验收退回的工单 → 时间线显示异常分支与退回原因，不混进主流程",
+          p.locator('.sf-job-badge.is-returned').count() > 0
+          and "异常分支" in p.locator('#sf-dynamic').inner_text(), "")
+    p.goto(BASE + "/workorder-new.html?farmId=F001", wait_until="networkidle"); p.wait_for_timeout(800)
+    wn = p.evaluate("""() => ({scope:document.querySelectorAll('form[data-form="newjob-farm"] textarea[name="scope"]').length,
+      acceptance:document.querySelectorAll('form[data-form="newjob-farm"] textarea[name="acceptance"]').length,
+      safety:document.querySelectorAll('form[data-form="newjob-farm"] textarea[name="safety"]').length,
+      priority:document.querySelectorAll('form[data-form="newjob-farm"] select[name="priority"]').length,
+      settle:document.querySelectorAll('form[data-form="newjob-farm"] select[name="settle"]').length,
+      flow:document.querySelectorAll('.sf-job-flow .sf-job-step').length,
+      txt:(document.querySelector('#sf-dynamic')||{}).innerText||''})""")
+    check("创建工单 → 明细需求条目齐全，并预先写明固定流程与提交后的状态",
+          wn["scope"] == 1 and wn["acceptance"] == 1 and wn["safety"] == 1
+          and wn["priority"] == 1 and wn["settle"] == 1 and wn["flow"] >= 6
+          and "明细需求条目" in wn["txt"], "%s" % wn)
+    p.goto(BASE + "/dispatch.html", wait_until="networkidle"); p.wait_for_timeout(800)
+    check("接单大厅 → 每条工单也标明具体状态，方便农户判断能不能接",
+          p.locator('.sf-job-badge').count() >= 4, "")
 
     # 移动端「更多」浮层
     mctx = browser.new_context(viewport={"width": 390, "height": 844})
@@ -746,7 +837,21 @@ def main():
             "接单页删跨频道按钮并补身份说明，专家页补产学研闭环，歧义文案改自解释。"
             "运行时新增 18 项断言（逐按钮问答 / 角色显隐 / 返回去向 / 画像任务链 / 中英真文案），"
             "交互总数由 66 增至 84；静态新增按钮自解释、角色取值、返回目标、画像导引与报告完整性五组断言。"
-            "详见 `BUTTON_AUDIT.md` 第 10 节。", ""]
+            "详见 `BUTTON_AUDIT.md` 第 10 节。",
+            "- 对比页新断言用 `.sf-compare-count` 取统计文字，但页面上有「已选 N / 4」和「共 X 项 · 相同 Y 项」两个同类元素，"
+            "旧选择器取到前者导致 1 条未通过：已给结果统计条加 `data-compare-stat` 专属标识并按此取样，属断言取样口径误报。",
+            "- 对比清单首版 15 个字段各不相同，断言要求「至少 1 行相同项缩减」而报 1 条未通过："
+            "核对后是数据特性而非功能缺陷（任意两块田确实没有共同字段），已补两项平台级共同字段（田间数据口径 / 平台基础服务），"
+            "让「相同项缩减」在真实数据上可见；同时给工单总览补固定流程说明文案，消除另一条文案取样误报。",
+            "- 创建工单断言仍按旧字段 `textarea[name=note]` 填写，而本轮明细需求拆成 `scope` / `acceptance` 等条目："
+            "已改为填写两个新必填项，属断言未跟上表单结构变化，非功能缺陷。",
+            "- 本轮第 1 批所在命令三次返回网关 502：前两次未落盘，第三次核查 `RUNTIME_batch1.json`"
+            "确认 36 次取样与 96 项交互已完整落盘且通过，属命令通道超时；第 2~7 批逐批单命令复跑，7 批 236 次取样无遗漏。",
+            "- 本轮视图与流程整改：`sf-hero-mask` 收紧到 .97/.94/.85（body 罩 .88 不动）；田块对比改为真多选 → 并排清单"
+            "（相同项缩减、不同项高亮、只看不同项、最多 4 块、中英真文案）；工单扩为 6 步固定流程 + 退回分支、"
+            "10 条明细需求、状态徽章与流程时间线、总览严谨文字行；发布形态按用户要求回退为单点部署："
+            "一个包、一个站点根，后台仍在 `admin/` 子目录，靠独立登录 / 前台 0 入口 / noindex / robots / Nginx 白名单隔离。"
+            "运行时新增 12 项断言，交互总数由 84 增至 96；静态新增第 23 组断言。详见 `BUTTON_AUDIT.md` 第 11 节。", ""]
     with open(os.path.join(ROOT, "RUNTIME.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
     print("== 完成：写入 RUNTIME.md（批次 %s）==" % done)

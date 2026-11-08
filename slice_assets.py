@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""闪马田园 SUMFARM · 素材切图脚本 v1.5.0
+"""闪马田园 SUMFARM · 素材切图脚本 v1.6.0
 ------------------------------------------------------------------
 执行顺序（基线约定）：先 build_pages.py 搭主页面 → 再 build_subpages.py 铺子页
 → 再运行本脚本生成切片与 manifest → 最后 verify.py / runtime_check.py 验收。
@@ -20,7 +20,7 @@
   tall   9:16 360×640   移动主视觉 / 侧栏（模糊延展背景，主体完整不裁切）
   mini  16:9  320×180   时间线 / 表格 / 聊天回执小图
 
-复跑：cd /data/workspace/sumfarm-v1.5.0 && python3 slice_assets.py
+复跑：cd /data/workspace/sumfarm-v1.6.0 && python3 slice_assets.py
 依赖：Pillow（沙盒已预装）；纯格式转换不涉及内容编辑，不改变图片语义。
 """
 import os, json, sys
@@ -94,7 +94,7 @@ def main():
                          "slot": slot, "ratio": ratio, "w": w, "h": h})
     if missing:
         print("缺源图：%s" % ", ".join(missing)); return 2
-    manifest = {"version": "1.5.0", "topics": TOPICS,
+    manifest = {"version": "1.6.0", "topics": TOPICS,
                 "slots": {k: {"w": v[0], "h": v[1], "ratio": v[2]} for k, v in SLOTS.items()},
                 "files": made}
     with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:

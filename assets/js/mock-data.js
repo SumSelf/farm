@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 模拟数据 v1.5.0
+/* 闪马田园 SUMFARM · 模拟数据 v1.6.0
    前后端彻底分离：本文件是唯一模拟数据源；真实接入见 api.js。
    图片：13 张成品主视觉 + 10 题材 × 5 规格 = 50 张切图，全部为真实田园成图；
         按 pagename_id 由 art() 统一解析，映射关系只写这一份，见 ART_MATRIX.md。
@@ -203,19 +203,107 @@
   /* 十类农事：前九类是田间作业，第十类「专家指导」由产学研团队接单，
      附现场记录与技术结论；类型清单只写这一份，供列表、筛选与创建工单共用。 */
   var JOB_TYPES = ['翻地', '种植', '施肥', '浇水', '除草', '采摘', '回收', '配送', '拍照', '专家指导'];
-  var JOB_STATUS = ['待接单', '已接单', '作业中', '待验收', '已完成'];
+  /* 固定工单流程：状态字典、顺序、说明只写这一份。
+     main=true 为正向主流程，returned 是验收不通过时退回「作业中」的异常分支。
+     所有页面的状态徽章、时间线、剩余步骤都由这一份推导，禁止各处另写一套。 */
+  var JOB_FLOW = [
+    { id: 'open', zh: '待接单', en: 'Open', main: true,
+      descZh: '工单已发布并挂到具体田块，等待有资质的农户或团队接单。',
+      descEn: 'Published and attached to its plot, waiting for a qualified grower or team.' },
+    { id: 'taken', zh: '已接单', en: 'Taken', main: true,
+      descZh: '承接人已确认，作业时间窗与明细需求锁定，不可单方面改动。',
+      descEn: 'An assignee is confirmed; the time window and requirement lines are locked.' },
+    { id: 'working', zh: '作业中', en: 'In progress', main: true,
+      descZh: '按明细条目作业，关键节点上传现场照片，变更须在工单对话里留痕。',
+      descEn: 'Work follows the requirement lines; field photos are uploaded at key points and changes are logged in chat.' },
+    { id: 'review', zh: '待验收', en: 'Awaiting acceptance', main: true,
+      descZh: '回执照片与用量说明已提交，等待发布方逐项核对验收标准。',
+      descEn: 'Photo receipts and input notes are in; the publisher checks each acceptance criterion.' },
+    { id: 'done', zh: '已完成', en: 'Completed', main: true,
+      descZh: '验收通过，工单关闭并进入结算队列，作业记录归入田园档案。',
+      descEn: 'Accepted and closed; the job enters settlement and its record joins the plot archive.' },
+    { id: 'settled', zh: '已结算', en: 'Settled', main: true,
+      descZh: '款项按约定结算方式支付完成，工单全流程归档，可导出对账。',
+      descEn: 'Payment is made by the agreed method; the full trail is archived and exportable.' },
+    { id: 'returned', zh: '已退回', en: 'Returned', main: false,
+      descZh: '验收不通过，退回「作业中」补做并重新上传回执，退回原因记入时间线。',
+      descEn: 'Acceptance failed: back to in-progress for rework and new receipts, with the reason logged in the timeline.' }
+  ];
+  var JOB_STATUS = JOB_FLOW.filter(function (x) { return x.main; }).map(function (x) { return x.zh; });
+  var PRIORITIES = ['常规', '优先', '紧急'];
+  var SETTLE_MODES = ['验收通过后平台结算', '按阶段结算', '月度汇总结算'];
+  var REQ_KEYS = [
+    ['scope', '作业范围', 'Work scope'], ['window', '作业时间窗', 'Time window'],
+    ['acceptance', '验收标准', 'Acceptance criteria'], ['materials', '物料与用量', 'Materials and dosage'],
+    ['photos', '拍照回执要求', 'Photo receipts'], ['safety', '安全与注意事项', 'Safety notes'],
+    ['budget', '预算与结算', 'Budget and settlement'], ['qualification', '承接资质', 'Assignee qualification'],
+    ['priority', '优先级', 'Priority'], ['remark', '备注与变更', 'Notes and changes']
+  ];
+  function requirementList(w, f, i) {
+    var type = w.type, expert = type === '专家指导';
+    var vals = [
+      [expert ? f.plotNo + ' 全畦及对照区，取样点按试验方案布设' : f.plotNo + ' 全畦，四至以田埂界桩为准',
+       expert ? 'Whole plot ' + f.plotNo + ' plus the control strip, sampling points per trial plan' : 'Whole plot ' + f.plotNo + ', bounded by the ridge markers'],
+      [w.createdAt + ' 至 ' + w.dueAt + '，避开正午高温与降雨时段',
+       w.createdAt + ' to ' + w.dueAt + ', avoiding midday heat and rain'],
+      [expert ? '提交现场记录、检测读数与技术结论，逐条对应试验目标' : '作业深度 / 用量达标、畦面无遗漏，回执含全景与近景各一张',
+       expert ? 'Field notes, readings and a written conclusion mapped to each trial objective' : 'Depth and dosage met, no skipped strips, one wide and one close photo in the receipt'],
+      [expert ? '取样耗材由承接方自备，用量与批号写入现场记录' : '按面积核定用量，作业后填实际用量，剩余物料回收',
+       expert ? 'Sampling consumables supplied by the assignee, with dosage and batch in field notes' : 'Dosage based on area, actual use recorded, leftovers returned'],
+      ['开工前 / 作业中 / 完成后各 1 张，照片内可见田块编号牌',
+       'One photo before, during and after work; the plot number plate must be visible'],
+      ['农具使用前检查，未成年人不得进入作业区，雷雨天气顺延并留痕',
+       'Check tools before use, keep minors out of the work area, postpone in thunderstorms and log it'],
+      ['¥' + w.price + ' · ' + w.settleMode + '，验收通过后进入结算',
+       'CNY ' + w.price + ' · ' + w.settleMode + ', settlement starts after acceptance'],
+      [expert ? '产学研团队或具备农技资质人员，需有同类试验记录' : '有同类田间作业记录的接单农户',
+       expert ? 'Research team or certified agronomist with comparable trial records' : 'Grower with records of the same field operation'],
+      [w.priority + (w.priority === '紧急' ? ' · 需 24 小时内响应' : ' · 按约定时间窗响应'),
+       w.priority + (w.priority === '紧急' ? ' · respond within 24 hours' : ' · respond within the agreed window')],
+      ['细节在工单对话里确认；任何范围、时间或用量变更必须留痕后再执行',
+       'Details confirmed in the job chat; any change to scope, timing or dosage is logged before execution']
+    ];
+    return REQ_KEYS.map(function (k, j) {
+      return { key: k[0], labelZh: k[1], labelEn: k[2],
+        valueZh: vals[j][0], valueEn: vals[j][1], required: j < 6 };
+    });
+  }
   var workorders = Array.from({ length: 28 }, function (_, i) {
     var f = farms[i % 24];
-    return { id: 'W' + String(i + 1).padStart(3, '0'), farmId: f.id,
+    var idx = i % JOB_STATUS.length;
+    var returned = i % 9 === 4;           // 部分工单演示「已退回」异常分支
+    var statusKey = returned ? 'returned' : JOB_FLOW[idx].id;
+    var w = { id: 'W' + String(i + 1).padStart(3, '0'), farmId: f.id,
       userId: 'U' + String((i % 12) + 13).padStart(3, '0'), type: JOB_TYPES[i % JOB_TYPES.length],
-      status: JOB_STATUS[i % 5], assigneeId: i % 3 === 0 ? null : 'U' + String((i % 8) + 25).padStart(3, '0'),
+      status: returned ? '已退回' : JOB_STATUS[idx], statusKey: statusKey,
+      assigneeId: (i % 3 === 0 && idx === 0) ? null : 'U' + String((i % 8) + 25).padStart(3, '0'),
       createdAt: d((i % 11) + 1, (i * 3 % 26) + 1), dueAt: d((i % 11) + 1, (i * 3 % 26) + 4),
+      updatedAt: d((i % 11) + 1, (i * 3 % 26) + 3),
       price: 45 + i * 12, chatId: 'C' + String(i + 1).padStart(3, '0'),
+      priority: PRIORITIES[i % 3], settleMode: SETTLE_MODES[i % 3],
       photos: [cover('job', i), cover('farm', i + 2)],
       descZh: f.plotNo + ' 需要' + JOB_TYPES[i % JOB_TYPES.length] +
         (JOB_TYPES[i % JOB_TYPES.length] === '专家指导' ? '，请产学研团队到场并附现场记录与技术结论。' : '，作业后请拍照回执并说明用量。'),
       descEn: JOB_TYPES[i % JOB_TYPES.length] + ' requested on plot ' + f.plotNo +
         (JOB_TYPES[i % JOB_TYPES.length] === '专家指导' ? ', with field notes and a written conclusion.' : ', photo receipt required.') };
+    /* 固定流程的时间线：只生成当前状态及其之前已发生的步骤，时间与操作人真实分散 */
+    var flow = [];
+    for (var k = 0; k <= idx; k++) {
+      var step = JOB_FLOW[k];
+      flow.push({ statusId: step.id, statusZh: step.zh, statusEn: step.en,
+        at: d((i % 11) + 1, (i * 3 % 26) + 1 + k),
+        by: k === 0 ? w.userId : (w.assigneeId || w.userId),
+        noteZh: step.descZh, noteEn: step.descEn });
+    }
+    if (returned) {
+      flow.push({ statusId: 'returned', statusZh: '已退回', statusEn: 'Returned',
+        at: w.updatedAt, by: w.userId,
+        noteZh: '验收发现回执照片缺近景、用量未填写，退回补做后重新提交。',
+        noteEn: 'Acceptance returned it: close-up photo missing and dosage not filled; rework and resubmit.' });
+    }
+    w.flow = flow;
+    w.requirements = requirementList(w, f, i);
+    return w;
   });
   var dispatches = workorders.slice(0, 20).map(function (w, i) {
     return { id: 'D' + String(i + 1).padStart(3, '0'), workorderId: w.id,
@@ -310,5 +398,6 @@
   function all(name) { return (DATA[name] || []).slice(); }
   global.SF_MOCK = { data: DATA, IMG: IMG, art: art, ART_TOPICS: ART_TOPICS,
     CAT_TOPIC: CAT_TOPIC, ART_SLOTS: ART_SLOTS, JOB_TYPES: JOB_TYPES,
+    JOB_FLOW: JOB_FLOW, JOB_STATUS: JOB_STATUS, REQ_KEYS: REQ_KEYS, PRIORITIES: PRIORITIES, SETTLE_MODES: SETTLE_MODES,
     svgThumb: svgThumb, count: count, byId: byId, all: all };
 })(window);

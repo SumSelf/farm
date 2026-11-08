@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 子页双语真文案 v1.5.0
+/* 闪马田园 SUMFARM · 子页双语真文案 v1.6.0
    zh / en 每页独立撰写，中文不是英文的翻译占位，反之亦然。 */
 (function (g) {
   'use strict';

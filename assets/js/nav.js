@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 统一导航（单点抽离） v1.5.0
+/* 闪马田园 SUMFARM · 统一导航（单点抽离） v1.6.0
    - PC 顶部折叠浮窗 / 移动底部栏，映射表全站只写这一份
    - 后台入口不在前台出现：主导航、移动浮层、页脚均不暴露，仅独立 URL 可达
    - 登录态由 SF_AUTH 显式参数驱动，链接统一经 decorate 透传
@@ -6,7 +6,7 @@
 */
 (function (global) {
   'use strict';
-  var V = '1.5.0';
+  var V = '1.6.0';
   var NAV = [
     { key: 'nav.home', file: 'index.html', subs: [
       { key: 'sub.videos', file: 'videos.html' },

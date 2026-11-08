@@ -5,5 +5,6 @@ Disallow: /verify.py
 Disallow: /runtime_check.py
 Disallow: /RUNTIME_batch
 Disallow: /CHECK.md
+Disallow: /slice_assets.py
 
 Sitemap: https://sumfarm.sumstc.com/sitemap.html

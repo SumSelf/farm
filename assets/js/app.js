@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 前端应用 v1.5.0
+/* 闪马田园 SUMFARM · 前端应用 v1.6.0
    一份页面分派、一份事件委托、一份返回链、一份类型判定；动态重建元素靠委托天然重绑。
    所有数量文案由接口返回的 total / pages 动态计算，禁止写死。 */
 (function (global) {
@@ -486,7 +486,7 @@
         href: detailLink('workorder-detail.html', d.workorderId, 'dispatch.html'),
         meta: d.distanceKm + ' km · ' + d.publishedAt + ' · ' + (zh(f, 'nameZh', 'nameEn') || w.farmId || ''),
         tag: d.status,
-        btn: '<a class="sf-btn is-sm" href="' + esc(detailLink('workorder-detail.html', d.workorderId, 'dispatch.html')) + '">' +
+        btn: jobBadge(w) + '<a class="sf-btn is-sm" href="' + esc(detailLink('workorder-detail.html', d.workorderId, 'dispatch.html')) + '">' +
           esc(lang === 'en' ? 'Take job' : '查看并接单') + '</a>' });
     }
     var quick = '<div class="sf-filters" id="dispatch-tabs">' +
@@ -513,7 +513,7 @@
           return zoneLine({ title: w.type + ' · ' + w.id + ' · ' + w.farmId,
             href: detailLink('workorder-detail.html', w.id, 'dispatch.html'),
             meta: w.createdAt + ' → ' + w.dueAt + ' · ¥' + w.price, tag: w.status,
-            btn: '<a class="sf-btn is-sm" href="' + esc(detailLink('workorder-detail.html', w.id, 'dispatch.html')) + '">' +
+            btn: jobBadge(w) + '<a class="sf-btn is-sm" href="' + esc(detailLink('workorder-detail.html', w.id, 'dispatch.html')) + '">' +
               esc(lang === 'en' ? 'Receipt' : '写回执') + '</a>' });
         }),
         empty: lang === 'en' ? 'No accepted jobs yet.' : '还没有接到的工单。',
@@ -647,81 +647,295 @@
           meta: o.createdAt + ' · ' + o.status + ' · ' + esc(zh(f, 'nameZh', 'nameEn')), tags: [o.status, o.kind], price: o.amount,
           href: link('account.html', { from: 'orders.html' }) }); } });
   }
+  /* ---------- 田块对比：多选 → 并排清单，相同项缩减、不同项高亮 ----------
+     字段清单只写这一份；统计数字全部由选中田块与字段实时计算，不写死。 */
+  var COMPARE_FIELDS = [
+    { k: 'name', key: 'compare.f.name', get: function (f) { return zh(f, 'nameZh', 'nameEn'); } },
+    { k: 'plot', key: 'compare.f.plot', get: function (f) { return f.plotNo; } },
+    { k: 'region', key: 'compare.f.region', get: function (f) { return f.region; } },
+    { k: 'area', key: 'compare.f.area', get: function (f) { return String(f.areaMu); } },
+    { k: 'soil', key: 'compare.f.soil', get: function (f) { return f.soil; } },
+    { k: 'temp', key: 'compare.f.temp', get: function (f) { return (f.temp4 || []).join(' / '); } },
+    { k: 'humid', key: 'compare.f.humid', get: function (f) { return (f.humid4 || []).join(' / '); } },
+    { k: 'past', key: 'compare.f.past', get: function (f) { return (f.pastCrops || []).join('、'); } },
+    { k: 'current', key: 'compare.f.current', get: function (f) { return (f.currentCrops || []).join('、'); } },
+    { k: 'harvest', key: 'compare.f.harvest', get: function (f) { return (f.harvest || []).join('；'); } },
+    { k: 'lease', key: 'compare.f.lease', get: function (f) { return f.leaseType; } },
+    { k: 'leaseTime', key: 'compare.f.leaseTime', get: function (f) { return f.leaseStart + ' → ' + f.leaseEnd; } },
+    { k: 'price', key: 'compare.f.price', get: function (f) { return String(f.price); } },
+    { k: 'facilities', key: 'compare.f.facilities', get: function (f) { return (f.facilities || []).join('、'); } },
+    { k: 'rating', key: 'compare.f.rating', get: function (f) { return String(f.rating); } },
+    /* 平台级共同项：任意两块田都一致，用来真实演示「相同项缩减成一行」 */
+    { k: 'source', key: 'compare.f.source', get: function () { return t('compare.v.source'); } },
+    { k: 'service', key: 'compare.f.service', get: function () { return t('compare.v.service'); } }
+  ];
+  function compareRows(picked) {
+    var rows = '', sameCount = 0;
+    COMPARE_FIELDS.forEach(function (fd) {
+      var vals = picked.map(function (f) { return fd.get(f) || '—'; });
+      var same = vals.every(function (v) { return v === vals[0]; });
+      var label = esc(t(fd.key));
+      if (same) {
+        sameCount++;
+        rows += '<tr class="is-same" data-same="1"><th>' + label + '</th>' +
+          '<td colspan="' + picked.length + '"><span class="sf-compare-same-badge">' +
+          esc(picked.length + ' ' + t('compare.same')) + '</span>' + esc(vals[0]) + '</td></tr>';
+      } else {
+        rows += '<tr data-same="0"><th>' + label + '</th>' + vals.map(function (v) {
+          return '<td class="' + (v !== vals[0] ? 'is-diff' : '') + '">' + esc(v) + '</td>';
+        }).join('') + '</tr>';
+      }
+    });
+    return { html: rows, same: sameCount, diff: COMPARE_FIELDS.length - sameCount };
+  }
+  function pageFarmCompare() {
+    var all = M.all('farms'), byId = {};
+    all.forEach(function (f) { byId[f.id] = f; });
+    var raw = param('ids', ''), rawIds = raw ? raw.split(',') : [];
+    var clean = [], invalid = false;
+    rawIds.forEach(function (x) {
+      var id = x.trim();
+      if (!id) return;
+      if (!byId[id]) { invalid = true; return; }
+      if (clean.indexOf(id) < 0 && clean.length < 4) clean.push(id);
+    });
+    var picked = clean.map(function (id) { return byId[id]; });
+    var pickedIds = picked.map(function (f) { return f.id; });
+    /* 候选区：真正的多选，已选回填；超过 4 块由 change 事件拦下并给可见反馈 */
+    var picks = '<div class="sf-compare-picks">' + all.map(function (f) {
+      var on = pickedIds.indexOf(f.id) >= 0;
+      return '<label class="sf-compare-pick' + (on ? ' is-on' : '') + '">' +
+        '<input type="checkbox" data-act="compare-pick" data-v="' + esc(f.id) + '"' + (on ? ' checked' : '') + '>' +
+        '<span><b>' + esc(zh(f, 'nameZh', 'nameEn')) + '</b>' +
+        '<small>' + esc(f.plotNo + ' · ' + f.region + ' · ' + f.soil.split(' / ')[0]) + '</small></span></label>';
+    }).join('') + '</div>';
+    var bar = '<div class="sf-compare-bar">' +
+      '<span class="sf-compare-count" data-compare-count>' + t('compare.selected') + ' <b>' + picked.length + '</b> / 4</span>' +
+      '<button class="sf-btn is-primary" data-act="compare-build" type="button">' + t('compare.start') + '</button>' +
+      '<button class="sf-btn" data-act="compare-clear" type="button">' + t('compare.clear') + '</button>' +
+      '<span class="sf-compare-limit">' + t('compare.pick.max') + '</span></div>';
+    var pickPanel = '<div class="sf-section">' + sectionHead(t('compare.pick'), t('compare.pick.desc'), '', all.length) +
+      '<div class="sf-panel">' + picks + bar + '</div></div>';
+    var result;
+    if (picked.length < 2) {
+      result = '<div class="sf-section">' + sectionHead(t('compare.result'), '') +
+        '<div class="sf-panel sf-empty">' + pic(M.IMG.empty, 'compare') +
+        '<h3>' + esc(t('compare.empty.title')) + '</h3><p>' + esc(t('compare.empty.desc')) + '</p>' +
+        '<a class="sf-btn is-primary" href="' + esc(link('farms.html', { from: 'farm-compare.html' })) + '">' +
+        esc(t('compare.empty.cta')) + '</a></div>' +
+        (invalid ? '<p class="sf-role-hint">' + esc(t('compare.invalid')) + '</p>' : '') + '</div>';
+    } else {
+      var r = compareRows(picked);
+      var heads = '<tr><th>' + esc(t('compare.f.name')) + '</th>' + picked.map(function (f) {
+        return '<th><a href="' + esc(link('farm-detail.html', { id: f.id, from: 'farm-compare.html' })) + '">' +
+          esc(zh(f, 'nameZh', 'nameEn')) + '</a><small>' + esc(f.plotNo) + '</small></th>';
+      }).join('') + '</tr>';
+      var stat = t('compare.stat').replace('%s', String(COMPARE_FIELDS.length))
+        .replace('%s', String(r.same)).replace('%s', String(r.diff));
+      result = '<div class="sf-section">' + sectionHead(t('compare.result'), t('compare.diffTip'), '', picked.length) +
+        '<div class="sf-compare-bar">' +
+        '<span class="sf-compare-count" data-compare-stat><b>' + esc(stat) + '</b></span>' +
+        '<button class="sf-btn" data-act="compare-toggle" type="button" aria-pressed="false">' + t('compare.hideSame') + '</button>' +
+        '</div>' +
+        '<div class="sf-table-wrap"><table class="sf-table sf-compare-table" data-compare-table><thead>' + heads +
+        '</thead><tbody>' + r.html + '</tbody></table></div>' +
+        (invalid ? '<p class="sf-role-hint">' + esc(t('compare.invalid')) + '</p>' : '') + '</div>';
+    }
+    put('<div class="sf-section">' + sectionHead(t('compare.title'), t('compare.desc')) + '</div>' +
+      pickPanel + result + contentBoost('farms', 'table', all, t('compare.desc')));
+  }
+
+  /* ---------- 工单：固定流程与明细需求（状态字典只认 mock-data.js 的 JOB_FLOW） ---------- */
+  function jobFlowMain() { return (M.JOB_FLOW || []).filter(function (x) { return x.main; }); }
+  function jobFlowState(w) {
+    var main = jobFlowMain(), idx = 0;
+    main.forEach(function (x, i) { if (x.id === w.statusKey) idx = i; });
+    if (w.statusKey === 'returned') idx = 2;   // 退回后回到「作业中」补做
+    return { main: main, idx: idx };
+  }
+  function jobBadge(w) {
+    var f = (M.JOB_FLOW || []).filter(function (x) { return x.id === w.statusKey; })[0];
+    if (!f) return '<span class="sf-job-badge">' + esc(w.status || '') + '</span>';
+    return '<span class="sf-job-badge is-' + esc(f.id) + '">' + esc(lang === 'en' ? f.en : f.zh) + '</span>';
+  }
+  function jobFlowPanel(w) {
+    var st = jobFlowState(w), cur = st.idx, records = w.flow || [];
+    var lines = st.main.map(function (x, i) {
+      var rec = records.filter(function (r) { return r.statusId === x.id; })[0];
+      var cls = i < cur ? 'is-done' : (i === cur ? 'is-current' : 'is-pending');
+      var mark = i < cur ? '✓ ' : (i === cur ? '▶ ' : (i + 1) + '. ');
+      return '<li class="sf-job-step ' + cls + '">' +
+        '<b>' + mark + esc(lang === 'en' ? x.en : x.zh) + '</b>' +
+        '<span class="sf-job-step-tag">' + esc(i < cur ? t('job.flow.done') : (i === cur ? t('job.flow.current') : t('job.flow.pending'))) + '</span>' +
+        '<p>' + esc(lang === 'en' ? x.descEn : x.descZh) + '</p>' +
+        (rec ? '<small>' + esc(t('job.flow.at')) + ' ' + esc(rec.at) + ' · ' + esc(t('job.flow.by')) + ' ' + esc(rec.by) + '</small>' : '') +
+        '</li>';
+    }).join('');
+    if (w.statusKey === 'returned') {
+      var rr = records.filter(function (r) { return r.statusId === 'returned'; })[0];
+      lines += '<li class="sf-job-step is-returned"><b>↩ ' + esc(t('job.flow.branch')) + ' · ' +
+        esc(lang === 'en' ? 'Returned' : '已退回') + '</b><span class="sf-job-step-tag">' +
+        esc(t('job.flow.branch')) + '</span><p>' + esc(rr ? (lang === 'en' ? rr.noteEn : rr.noteZh) : '') + '</p>' +
+        (rr ? '<small>' + esc(rr.at) + ' · ' + esc(rr.by) + '</small>' : '') + '</li>';
+    }
+    var stat = t('job.flow.step').replace('%s', String(cur + 1)).replace('%s', String(st.main.length)) +
+      ' · ' + t('job.flow.remaining').replace('%s', String(st.main.length - cur - 1));
+    return '<div class="sf-panel">' + sectionHead(t('job.flow.title'), t('job.flow.desc')) +
+      '<div class="sf-job-flow-stat">' + esc(w.status || '') + ' · ' + esc(stat) + '</div>' +
+      '<ol class="sf-job-flow">' + lines + '</ol></div>';
+  }
+  function jobReqPanel(w) {
+    var reqs = w.requirements || [];
+    var rows = reqs.map(function (r) {
+      return '<tr><th>' + esc(lang === 'en' ? r.labelEn : r.labelZh) + '</th>' +
+        '<td>' + esc(lang === 'en' ? r.valueEn : r.valueZh) + '</td>' +
+        '<td><span class="sf-tag' + (r.required ? ' is-req' : '') + '">' +
+        esc(r.required ? t('job.req.required') : t('job.req.optional')) + '</span></td></tr>';
+    }).join('');
+    return '<div class="sf-panel">' + sectionHead(t('job.req.title'), t('job.req.desc'), '', reqs.length) +
+      '<div class="sf-table-wrap"><table class="sf-table"><thead><tr><th>' + esc(t('common.item')) +
+      '</th><th>' + esc(t('common.value')) + '</th><th>' + esc(t('job.req.required')) +
+      '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<p class="sf-card-meta">' + esc(t('job.req.count').replace('%s', String(reqs.length))) + '</p></div>';
+  }
+
   /* 按田园创建工单：农事挂靠在具体田块上，从个人中心的「我的田园」逐块进入。
-     工单类型包含「专家指导」，由产学研团队接单并附技术结论。 */
+     明细需求条目逐条填写，提交后进入固定流程第 1 步「待接单」。 */
   function pageWorkorderNew() {
     var farms = M.all('farms');
     var fid = param('farmId', farms.length ? farms[0].id : 'F001');
-    var f = M.byId('farms', fid) || farms[0] || {};
+    var f = M.byId('farms', fid) || farms[0] || {}, byId = {};
+    farms.forEach(function (x) { byId[x.id] = x; });
+    if (!byId[fid]) { fid = farms[0].id; f = farms[0]; }
     var from = param('from', 'account.html');
-    var types = (M.JOB_TYPES || ['翻地', '种植', '施肥', '浇水', '除草', '采摘', '回收', '配送', '拍照', '专家指导']);
+    var types = (M.JOB_TYPES || []), priorities = (M.PRIORITIES || ['常规']), settles = (M.SETTLE_MODES || []);
     var plotLabel = zh(f, 'nameZh', 'nameEn') + ' · ' + (f.plotNo || fid);
     var plotInfo = '<div class="sf-panel" style="margin-bottom:16px">' +
       '<h3 style="margin:0 0 8px;font-size:16px">' + esc(plotLabel) + '</h3>' +
       '<div class="sf-card-meta" style="line-height:1.9">' +
-      esc(f.region || '') + ' · ' + esc(f.soil || '') + '<br>' +
-      '当前作物：' + esc((f.currentCrops || []).join(' / ')) + ' · 承包：' + esc(f.leaseType || '') + '<br>' +
-      '四季均温：' + esc((f.temp4 || []).join(' / ')) + ' ℃ · 四季均湿：' + esc((f.humid4 || []).join(' / ')) + ' %</div></div>';
+      esc(f.region || '') + ' · ' + esc(f.soil || '') + ' · ' + esc(f.areaMu + '') + ' 亩<br>' +
+      (lang === 'en' ? 'Current crops: ' : '当前作物：') + esc((f.currentCrops || []).join(' / ')) +
+      ' · ' + (lang === 'en' ? 'Lease: ' : '承包：') + esc(f.leaseType || '') + '<br>' +
+      (lang === 'en' ? 'Seasonal temp: ' : '四季均温：') + esc((f.temp4 || []).join(' / ')) +
+      ' ℃ · ' + (lang === 'en' ? 'humidity: ' : '四季均湿：') + esc((f.humid4 || []).join(' / ')) + ' %</div></div>';
     var switcher = '<div class="sf-field"><label>' + t('job.new.farm') + '</label>' +
       '<select class="sf-select" data-act="farm-switch">' + farms.slice(0, 24).map(function (x) {
         return '<option value="' + esc(x.id) + '"' + (x.id === fid ? ' selected' : '') + '>' +
           esc(zh(x, 'nameZh', 'nameEn') + ' · ' + (x.plotNo || x.id)) + '</option>';
       }).join('') + '</select></div>';
-    var form = '<form data-form="newjob-farm" class="sf-panel"><div class="sf-field-err" data-err></div>' +
-      '<input type="hidden" name="farmId" value="' + esc(fid) + '">' +
-      switcher +
+    var basics = '<div class="sf-panel">' + sectionHead(t('job.base.title'), '') +
+      '<div class="sf-field-err" data-err></div>' +
+      '<input type="hidden" name="farmId" value="' + esc(fid) + '">' + switcher +
+      '<div class="sf-row">' +
       '<div class="sf-field"><label>' + t('job.new.type') + ' *</label><select class="sf-select" name="type">' +
       types.map(function (x) { return '<option' + (x === param('type', '') ? ' selected' : '') + '>' + esc(x) + '</option>'; }).join('') +
       '</select></div>' +
+      '<div class="sf-field"><label>' + t('job.new.priority') + '</label><select class="sf-select" name="priority">' +
+      priorities.map(function (x) { return '<option>' + esc(x) + '</option>'; }).join('') + '</select></div></div>' +
       '<div class="sf-row">' +
       '<div class="sf-field"><label>' + t('job.new.due') + '</label><input class="sf-input" type="date" name="due" value="2026-11-20"></div>' +
       '<div class="sf-field"><label>' + t('job.new.budget') + '</label><input class="sf-input" type="number" name="budget" min="0" value="120"></div></div>' +
-      '<div class="sf-field"><label>' + t('job.new.note') + ' *</label>' +
-      '<textarea class="sf-textarea" name="note" required placeholder="' +
-      esc(lang === 'en' ? 'State the work, date window and how acceptance is checked.' : '写清作业范围、时间窗与验收方式，接单农户会照着做。') + '"></textarea></div>' +
-      '<label class="sf-check"><input type="checkbox" name="photo" checked><span>' + t('job.new.photo') + '</span></label>' +
-      '<div class="sf-note-strip"><span class="sf-tag is-cute">' + t('act.jobExpert') + '</span>' +
-      '<span>' + t('job.new.expertHint') + '</span></div>' +
-      '<div class="sf-row" style="margin-top:14px">' +
-      '<button class="sf-btn is-primary" type="submit">' + t('common.submit') + '</button>' +
-      '<a class="sf-btn" href="' + esc(link(from, {})) + '">' + t('act.back') + '</a></div></form>';
-    var head = sectionHead(t('job.new.title'), pageCopy('lead') || t('workorders.desc'));
-    put('<div class="sf-section">' + head +
-      '<div class="sf-row"><div>' + plotInfo + form + '</div>' +
-      '<div class="sf-panel">' + genGallery('workorders') + '</div></div></div>' +
+      '<div class="sf-field"><label>' + t('job.new.settle') + '</label><select class="sf-select" name="settle">' +
+      settles.map(function (x) { return '<option>' + esc(x) + '</option>'; }).join('') + '</select></div>' + submitRow(from) + '</div>';
+    var reqLines = '<div class="sf-panel">' + sectionHead(t('job.new.section'), t('job.new.section.desc')) +
+      '<div class="sf-field"><label>' + t('job.new.scope') + ' *</label>' +
+      '<textarea class="sf-textarea" name="scope" required placeholder="' +
+      esc(lang === 'en' ? 'Which strips, boundaries and any control area are included?' : '写清作业哪几畦、四至边界，是否含对照区。') + '"></textarea></div>' +
+      '<div class="sf-field"><label>' + t('job.new.window') + '</label>' +
+      '<input class="sf-input" name="window" value="' + esc(lang === 'en' ? 'Morning hours, avoid rain' : '上午时段，遇雨顺延') + '"></div>' +
+      '<div class="sf-field"><label>' + t('job.new.acceptance') + ' *</label>' +
+      '<textarea class="sf-textarea" name="acceptance" required placeholder="' +
+      esc(lang === 'en' ? 'Measurable criteria the publisher will check line by line.' : '写清可逐项核对的验收标准，例如深度、用量、回执张数。') + '"></textarea></div>' +
+      '<div class="sf-row">' +
+      '<div class="sf-field"><label>' + t('job.new.materials') + '</label>' +
+      '<input class="sf-input" name="materials" value="' + esc(lang === 'en' ? 'Dosage by area, record actual use' : '按面积核定，作业后填实际用量') + '"></div>' +
+      '<div class="sf-field"><label>' + t('job.new.qualification') + '</label><select class="sf-select" name="qualification">' +
+      '<option>' + esc(lang === 'en' ? 'Grower with same-operation records' : '有同类田间作业记录的接单农户') + '</option>' +
+      '<option>' + esc(lang === 'en' ? 'Research team or certified agronomist' : '产学研团队或具备农技资质人员') + '</option></select></div></div>' +
+      '<div class="sf-field"><label>' + t('job.new.safety') + '</label>' +
+      '<textarea class="sf-textarea" name="safety" placeholder="' +
+      esc(lang === 'en' ? 'Tool checks, restricted access, weather postponement.' : '农具检查、作业区限制、雷雨顺延等。') + '"></textarea></div>' +
+      '<div class="sf-field"><label>' + t('job.new.remark') + '</label>' +
+      '<textarea class="sf-textarea" name="remark" placeholder="' +
+      esc(lang === 'en' ? 'Changes must be logged in the job chat before execution.' : '变更范围 / 时间 / 用量须先在工单对话留痕再执行。') + '"></textarea></div>' +
+      '<label class="sf-check"><input type="checkbox" name="photo" checked><span>' + t('job.new.photosRule') + '</span></label>' +
+      '<p class="sf-role-hint">' + esc(t('job.new.flowNote')) + '</p></div>';
+    put('<div class="sf-section">' + sectionHead(t('job.new.title'), pageCopy('lead') || t('workorders.desc')) +
+      '<form data-form="newjob-farm"><div class="sf-row"><div>' + plotInfo + basics + reqLines + '</div>' +
+      '<div class="sf-panel">' + jobFlowIntro() + genGallery('workorders') + '</div></div></form></div>' +
       contentBoost('workorders', 'form', M.all('workorders'), pageCopy('lead') || ''));
+  }
+  function submitRow(from) {
+    return '<div class="sf-row" style="margin-top:14px">' +
+      '<button class="sf-btn is-primary" type="submit">' + t('common.submit') + '</button>' +
+      '<a class="sf-btn" href="' + esc(link(from, {})) + '">' + t('act.back') + '</a></div>';
+  }
+  function jobFlowIntro() {
+    var main = jobFlowMain();
+    return '<div class="sf-panel">' + sectionHead(t('job.flow.title'), t('job.flow.desc')) +
+      '<ol class="sf-job-flow">' + main.map(function (x, i) {
+        return '<li class="sf-job-step is-pending"><b>' + (i + 1) + '. ' + esc(lang === 'en' ? x.en : x.zh) + '</b>' +
+          '<p>' + esc(lang === 'en' ? x.descEn : x.descZh) + '</p></li>';
+      }).join('') + '</ol>' +
+      '<p class="sf-role-hint">' + esc(t('job.flow.branch')) + '：' +
+      esc(lang === 'en' ? 'Returned → back to In progress for rework.' : '已退回 → 回到「作业中」补做并重新上传回执。') + '</p></div>';
   }
 
   function pageWorkorders() {
     /* 新建工单统一落到「按田园创建工单」页，首屏按钮与这里不再各放一个重复入口 */
-    put('<div class="sf-section">' + sectionHead(t('workorders.title'), t('workorders.desc'), '', count('workorders')) +
+    put('<div class="sf-section">' + sectionHead(t('workorders.title'), t('workorders.desc') + ' ' + t('job.list.desc'), '', count('workorders')) +
       '<div id="mount-workorders"></div></div>');
-    listBlock({ id: 'workorders', api: 'listWorkorders', loadMore: true, emptyCta: 'workorders.html',
+    /* 工单总览按严谨的文字清单呈现：状态徽章、当前流程步、明细摘要与截止都在一行里 */
+    listBlock({ id: 'workorders', api: 'listWorkorders', loadMore: true, layout: 'text', emptyCta: 'workorders.html',
       params: function () { return { page: state.page, pageSize: 8, q: state.q }; },
-      toCard: function (w) { return card({ id: w.id, title: w.type + ' · ' + w.farmId, cover: artFor('job', w.id, 'card'),
-        meta: w.createdAt + ' → ' + w.dueAt + ' · ' + w.status, tags: [w.type, w.status, '¥' + w.price], price: '',
-        href: detailLink('workorder-detail.html', w.id) }); } });
+      toCard: function (w) {
+        var st = jobFlowState(w), f = M.byId('farms', w.farmId) || {};
+        var step = t('job.flow.step').replace('%s', String(st.idx + 1)).replace('%s', String(st.main.length));
+        var req = (w.requirements || []).filter(function (r) { return r.key === 'acceptance'; })[0];
+        var href = detailLink('workorder-detail.html', w.id, 'workorders.html');
+        return textRow({ board: w.type, title: w.id + ' · ' + (f.plotNo || w.farmId) + ' · ' + w.status,
+          href: href,
+          summary: (req ? (lang === 'en' ? req.labelEn + '：' + req.valueEn : req.labelZh + '：' + req.valueZh) : w.descZh),
+          meta: w.createdAt + ' → ' + w.dueAt + ' · ¥' + w.price + ' · ' + step,
+          action: '<span class="sf-textrow-act">' + jobBadge(w) +
+            '<a class="sf-btn is-sm" href="' + esc(href) + '">' + t('common.viewDetail') + '</a></span>' });
+      } });
   }
   function pageWorkorderDetail() {
     var id = param('id', 'W001');
     API.getWorkorder(id).then(function (w) {
       if (!w) { put(emptyBlock('workorders.html')); return; }
-      var chat = (w.chat || []);
-      put('<div class="sf-section">' + sectionHead(w.type + ' · ' + w.id, w.descZh) +
-        '<div class="sf-row"><div class="sf-panel">' + table(['', ''], [
-          [t('workorder.type'), w.type], [t('workorder.status'), w.status],
-          [t('common.publishedAt'), w.createdAt], ['截止', w.dueAt],
-          [t('common.price'), '¥' + w.price], ['田园', w.farmId]]) +
-        '<div style="margin-top:12px"><button class="sf-btn" data-act="back" data-fallback="workorders.html" type="button">' + t('act.back') + '</button></div></div>' +
-        '<div class="sf-panel"><h3>' + t('workorder.photos') + '</h3><div class="sf-gallery">' +
-        w.photos.map(function (p) { return pic(p, 'receipt'); }).join('') + '</div></div></div>' +
-        '<div class="sf-section">' + sectionHead(t('account.chat'), '', '', chat.length) +
-        '<div class="sf-panel"><div class="sf-chat" id="sf-chat">' + chat.map(function (c) {
-          return bubble(c);
-        }).join('') + '</div>' +
+      var chat = (w.chat || []), f = M.byId('farms', w.farmId) || {};
+      var st = jobFlowState(w);
+      var stat = t('job.flow.step').replace('%s', String(st.idx + 1)).replace('%s', String(st.main.length)) +
+        ' · ' + t('job.flow.remaining').replace('%s', String(st.main.length - st.idx - 1));
+      var head = '<div class="sf-job-detail-head">' + jobBadge(w) +
+        '<span>' + esc(w.status || '') + '</span><span class="sf-job-flow-stat">' + esc(stat) + '</span></div>';
+      var basics = '<div class="sf-panel">' + sectionHead(t('job.base.title'), '') +
+        table(['', ''], [
+          [t('workorder.type'), w.type], [t('job.list.status'), w.status + '（' + (lang === 'en' ? 'fixed flow' : '固定流程') + '）'],
+          [t('common.publishedAt'), w.createdAt], [t('job.base.due'), w.dueAt],
+          [t('job.base.updated'), w.updatedAt || w.createdAt],
+          [t('job.base.publisher'), w.userId],
+          [t('job.base.assignee'), w.assigneeId || t('job.base.unassigned')],
+          [t('common.price'), '¥' + w.price], [t('job.base.priority'), w.priority || '—'],
+          [t('job.base.settle'), w.settleMode || '—'],
+          [lang === 'en' ? 'Linked plot' : '关联田园', zh(f, 'nameZh', 'nameEn') + ' · ' + (f.plotNo || w.farmId)]]) +
+        '<div class="sf-row" style="margin-top:12px">' +
+        '<a class="sf-btn" href="' + esc(link('workorders.html', { from: 'workorder-detail.html' })) + '">' +
+        esc(lang === 'en' ? 'Back to work orders' : '返回工单总览') + '</a></div></div>';
+      var photos = '<div class="sf-panel"><h3>' + t('workorder.photos') + '</h3><div class="sf-gallery">' +
+        (w.photos || []).map(function (x) { return pic(x, 'receipt'); }).join('') + '</div></div>';
+      var chatBox = '<div class="sf-section">' + sectionHead(t('account.chat'), '', '', chat.length) +
+        '<div class="sf-panel"><div class="sf-chat" id="sf-chat">' + chat.map(function (c) { return bubble(c); }).join('') + '</div>' +
         '<form data-form="chat" class="sf-row" style="margin-top:12px;flex-wrap:nowrap">' +
         '<input class="sf-input" name="msg" required placeholder="' + esc(t('workorder.ph')) + '" style="flex:1 1 auto">' +
-        '<button class="sf-btn is-primary" type="submit">' + t('workorder.send') + '</button></form></div></div></div>');
+        '<button class="sf-btn is-primary" type="submit">' + t('workorder.send') + '</button></form></div></div>';
+      put('<div class="sf-section">' + sectionHead(w.type + ' · ' + w.id, w.descZh) + head +
+        '<div class="sf-row">' + basics + photos + '</div>' +
+        '<div class="sf-section">' + jobReqPanel(w) + '</div>' +
+        '<div class="sf-section">' + jobFlowPanel(w) + '</div>' +
+        chatBox + '</div>');
     });
   }
   function bubble(c) {
@@ -1293,6 +1507,7 @@
   /* ---------- 分派（唯一一份） ---------- */
   var ROUTES = {
     'index': pageIndex, 'farms': pageFarms, 'farm-detail': pageFarmDetail, 'farm-edit': pageFarmEdit,
+    'farm-compare': pageFarmCompare,
     'activity': function () { simpleList({ id: 'activity', title: t('activity.title'), desc: t('activity.desc'), ds: 'activities', api: 'listActivities',
       filterItems: [{ k: t('common.all'), v: '' }].concat(['聚会', '露营', '采摘', '婚纱场地'].map(function (x) { return { k: x, v: x }; })), filterKey: 'kind',
       toCard: function (x) { return card({ id: x.id, title: zh(x, 'titleZh', 'titleEn'), cover: x.cover,
@@ -1439,6 +1654,30 @@
         document.querySelectorAll('[data-act="filter"][data-block="' + block + '"]').forEach(function (c) { c.classList.remove('is-on'); });
         el.classList.add('is-on'); if (BLOCKS[block]) rerender(block); return;
       }
+      case 'compare-build': {
+        /* 多选 → 按显式 ids 参数生成对比清单；页面完全由 URL 参数渲染 */
+        var boxes = Array.prototype.slice.call(document.querySelectorAll('input[data-act="compare-pick"]:checked'));
+        var ids = boxes.map(function (b) { return b.getAttribute('data-v'); });
+        if (ids.length < 2) { toast(t('compare.underLimit')); return; }
+        if (ids.length > 4) { toast(t('compare.overLimit')); return; }
+        location.href = link('farm-compare.html', { ids: ids.join(',') });
+        return;
+      }
+      case 'compare-clear': {
+        toast(t('compare.clear'));
+        location.href = link('farm-compare.html');
+        return;
+      }
+      case 'compare-toggle': {
+        var tbl = document.querySelector('[data-compare-table]');
+        if (!tbl) return;
+        var on = !tbl.classList.contains('is-hide-same');
+        tbl.classList.toggle('is-hide-same', on);
+        el.setAttribute('aria-pressed', on ? 'true' : 'false');
+        el.textContent = on ? t('compare.showAll') : t('compare.hideSame');
+        toast(on ? t('compare.hideSame') : t('compare.showAll'));
+        return;
+      }
       case 'tab': {
         /* 接单已改为常驻功能分区：快速定位按钮滚动到对应分区，不再切换卡片列表 */
         var v = el.getAttribute('data-v'); state.scope = v;
@@ -1550,15 +1789,31 @@
     }
     if (kind === 'newjob') { closeModal(); toast(t('common.toast.submitted')); return; }
     if (kind === 'newjob-farm') {
-      /* 提交后工单挂到这块田：生成工单号，替换表单为可照着走的成功态 */
-      if (!d.note || !d.type) { showErr(f, t('auth.err.missing')); return; }
+      /* 提交后工单挂到这块田：明细条目逐条落盘，状态固定为「待接单」 */
+      if (!d.scope || !d.acceptance || !d.type) { showErr(f, t('auth.err.missing')); return; }
       f._sending = true;
       var jobId = 'W' + String(900 + Math.floor(Math.random() * 90));
       var farm2 = M.byId('farms', d.farmId) || {};
+      var lines = [
+        [t('job.new.scope'), d.scope], [t('job.new.window'), d.window],
+        [t('job.new.acceptance'), d.acceptance], [t('job.new.materials'), d.materials],
+        [t('job.new.qualification'), d.qualification], [t('job.new.safety'), d.safety],
+        [t('job.new.remark'), d.remark], [t('job.new.priority'), d.priority],
+        [t('job.new.settle'), d.settle],
+        [t('job.new.photosRule'), d.photo ? (lang === 'en' ? 'Required' : '需要') : (lang === 'en' ? 'Not required' : '不需要')]
+      ].filter(function (x) { return x[1]; });
+      var reqTable = '<div class="sf-table-wrap"><table class="sf-table"><thead><tr><th>' +
+        esc(t('common.item')) + '</th><th>' + esc(t('common.value')) + '</th></tr></thead><tbody>' +
+        lines.map(function (x) { return '<tr><th>' + esc(x[0]) + '</th><td>' + esc(x[1]) + '</td></tr>'; }).join('') +
+        '</tbody></table></div>';
       var okBox = '<div class="sf-panel sf-empty" data-job-ok>' +
         '<h3>' + t('job.new.ok') + '</h3>' +
         '<p>' + esc(jobId) + ' · ' + esc(zh(farm2, 'nameZh', 'nameEn') + ' · ' + (farm2.plotNo || d.farmId)) + '<br>' +
         esc(d.type) + ' · ' + esc(d.due || '') + ' · ¥' + esc(d.budget || '') + '</p>' +
+        '<div class="sf-job-detail-head">' + jobBadge({ statusKey: 'open', status: '待接单' }) +
+        '<span class="sf-job-flow-stat">' + esc(t('job.new.okStatus')) + '</span></div>' +
+        '<div class="sf-section" style="text-align:left">' + sectionHead(t('job.new.okReq'), t('job.new.section.desc'), '', lines.length) +
+        reqTable + '</div>' +
         '<div class="sf-confirm-actions">' +
         '<a class="sf-btn is-primary" href="' + esc(link(param('from', 'account.html'), {})) + '">' + t('job.new.back') + '</a>' +
         '<a class="sf-btn" href="' + esc(link('workorders.html', { farmId: d.farmId, from: param('from', 'account.html') })) + '">' + t('job.new.all') + '</a>' +
@@ -1584,6 +1839,21 @@
           farmId: el.value, from: param('from', 'account.html')
         });
         return;
+      case 'compare-pick': {
+        var boxes = Array.prototype.slice.call(document.querySelectorAll('input[data-act="compare-pick"]:checked'));
+        if (boxes.length > 4) {
+          el.checked = false;
+          toast(t('compare.overLimit'));
+          return;
+        }
+        document.querySelectorAll('.sf-compare-pick').forEach(function (lb) {
+          var b = lb.querySelector('input');
+          if (b) lb.classList.toggle('is-on', b.checked);
+        });
+        var cnt = document.querySelector('[data-compare-count] b');
+        if (cnt) cnt.textContent = String(boxes.length);
+        return;
+      }
     }
   }
   function onKey(e) {

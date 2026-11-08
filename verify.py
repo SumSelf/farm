@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""闪马田园 SUMFARM · 全量静态回归 v1.5.0
-用法：cd /data/workspace/sumfarm-v1.5.0 && python3 verify.py
+"""闪马田园 SUMFARM · 全量静态回归 v1.6.0
+用法：cd /data/workspace/sumfarm-v1.6.0 && python3 verify.py
 先跑 5 个已知正确样本校准脚本自身，再跑全量；输出 CHECK.md。
 运行时浏览器验收（真实服务环境 + 逐页点击）不在本脚本范围，见 DEPLOY.md。"""
 import os, re, sys, json, subprocess
 from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-EXPECTED_V = '1.5.0'   # 内容整改后刷新的静态资源版本号
+EXPECTED_V = '1.6.0'   # 内容整改后刷新的静态资源版本号
 VOID = {'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
 errors, warns, stats = [], [], {}
 
@@ -538,9 +538,77 @@ def run():
         for k in ('普通用户逐按钮问答', '五类用户画像', '商家 / 村集体', '接单农户', '产学研团队', '平台管理员'):
             if k not in w: err('交付文档', '走查报告缺章节/画像：' + k)
 
+    # 23 本轮：hero 背景收紧、真实田块对比、工单固定流程与明细需求
+    css_src = read(os.path.join(ROOT, 'assets/css/site.css'))
+    hm = re.search(r'\.sf-hero-mask\{([\s\S]*?)\}', css_src)
+    if not hm or 'rgba(255,253,247,.97' not in hm.group(1) \
+       or 'rgba(255,253,247,.94' not in hm.group(1) or 'rgba(255,253,247,.85' not in hm.group(1):
+        err('hero 背景', 'sf-hero-mask 未收紧到 .97 / .94 / .85')
+    if '--sf-veil:rgba(250,248,242,.88)' not in css_src:
+        err('hero 背景', '整体 body 背景透明度被误改，应保持不变')
+    if 'function pageFarmCompare' not in app_src or "'farm-compare': pageFarmCompare" not in app_src:
+        err('田块对比', '缺专用对比页渲染器或路由，仍是通用假表格')
+    if 'var COMPARE_FIELDS' not in app_src or re.search(r"k: 'rating'", app_src) is None:
+        err('田块对比', '对比字段清单不完整')
+    for k in ('colspan="\' + picked.length', 'is-diff', 'data-same="1"', 'is-hide-same',
+              "case 'compare-build'", "case 'compare-pick'", "case 'compare-toggle'", "param('ids'"):
+        if k not in app_src: err('田块对比', '缺 ' + k + '（多选 / 缩减相同 / 高亮不同 / URL 渲染）')
+    if 'compare.overLimit' not in read(os.path.join(ROOT, 'assets/js/i18n.js')):
+        err('田块对比', '缺多选上限与空态的中英真文案')
+    # 工单：流程字典只写一份，明细条目与状态展示落到页面
+    if 'JOB_FLOW: JOB_FLOW' not in mock or 'JOB_STATUS: JOB_STATUS' not in mock:
+        err('工单流程', '固定流程状态字典未统一导出')
+    if mock.count("main: true") != 6 or "main: false" not in mock:
+        err('工单流程', '应为 6 步主流程 + 1 条退回分支')
+    if 'REQ_KEYS' not in mock or mock.count("['") < 9:
+        err('工单明细', '明细需求条目清单缺失或不足')
+    for k in ('function jobFlowPanel', 'function jobReqPanel', 'function jobBadge',
+              "layout: 'text'", 'job.new.okStatus', "name=\"scope\"", "name=\"acceptance\"",
+              "name=\"priority\"", "name=\"settle\"", 'jobFlowIntro'):
+        if k not in app_src: err('工单页面', '缺 ' + k)
+    if 'if (!d.scope || !d.acceptance || !d.type)' not in app_src:
+        err('工单页面', '创建工单未校验明细必填项')
+    if 'function pageGeneric' not in app_src:
+        err('工单页面', '缺通用渲染器（不应删除）')
+
+    # 24 发布形态回退为单点部署：一个目录树、118 页、后台 noindex、robots、无双包产物
+    all_html = walk(('.html',))
+    admin_html = [p for p in all_html if rel(p).startswith('admin/')]
+    front_html = [p for p in all_html if not rel(p).startswith('admin/')]
+    if len(all_html) != 118 or len(admin_html) != 16 or len(front_html) != 102:
+        err('单点部署', '页面构成应为 118 = 102 前台 + 16 后台，实际 %d/%d/%d' %
+            (len(all_html), len(front_html), len(admin_html)))
+    if not all('noindex,nofollow' in read(p) for p in admin_html):
+        err('单点部署', '后台 16 页未全部带 noindex,nofollow')
+    rb = read(os.path.join(ROOT, 'robots.txt'))
+    if 'Disallow: /admin/' not in rb:
+        err('单点部署', 'robots.txt 未屏蔽 /admin/')
+    dis = [l for l in rb.splitlines() if l.startswith('Disallow:')]
+    if len(dis) != len(set(dis)):
+        err('单点部署', 'robots.txt 出现重复 Disallow 行')
+    for f in ('build_release.py', 'verify_release.py', 'build_bundle.py',
+              'RELEASE_CHECK.md', 'RELEASE_NOTES.md'):
+        if os.path.exists(os.path.join(ROOT, f)):
+            err('单点部署', '仍残留双包 / 合并分发包产物：' + f)
+    dep = read(os.path.join(ROOT, 'DEPLOY.md'))
+    if '## 6. 双包发布' in dep or '合并分发包' in dep:
+        err('单点部署', 'DEPLOY.md 仍残留双包 / 合并包章节')
+    for k in ('## 6. 单点部署', 'allow 10.0.0.0/8', 'auth_basic', '逻辑隔离', '物理分离'):
+        if k not in dep:
+            err('单点部署', 'DEPLOY.md 单点说明缺：' + k)
+    # 单点闭环：后台链接保持同目录相对写法，不写死独立后台域名
+    for f in ('app.js', 'auth.js', 'api.js'):
+        if 'admin.sumfarm.sumstc.com' in read(os.path.join(ROOT, 'assets', 'js', f)):
+            err('单点部署', f + ' 仍写死独立后台域名，单点下应走相对 admin/ 链接')
+    if not re.search(r"link\('admin/", app_src):
+        err('单点部署', '后台内部链接未保持相对 admin/ 写法，目录归一化会失效')
+    # 前台仍是 0 个后台入口（单点下更关键）
+    if any('admin/login.html' in read(p) for p in front_html):
+        err('单点部署', '前台 HTML 出现后台登录入口')
+
 def report():
     lines = ['# 闪马田园 SUMFARM · 全量回归自查记录', '',
-             '资源版本 `v%s` · 复跑：`cd /data/workspace/sumfarm-v1.5.0 && python3 verify.py`' % EXPECTED_V, '',
+             '资源版本 `v%s` · 复跑：`cd /data/workspace/sumfarm-v1.6.0 && python3 verify.py`' % EXPECTED_V, '',
              '## 交付包构成', '']
     for k in ['files', 'html', 'css', 'js', 'png', 'md', 'i18n_keys', 'button_acts',
               'art_slices', 'art_pages', 'hero_action_pages', 'hero_action_buttons',
@@ -576,6 +644,14 @@ def report():
               '已按 `data-parent` 区分子页、对 `act.back` 放行，并改为按 `data-i18n` + href 配对判定，属扫描范围误报。',
               '- 账号合并后同一页有两个 `.sf-field-err`，运行时旧断言取第一个错误框文本时触发 Chromium strict mode：'
               '已改为只取 `.sf-field-err.is-on` 首个元素，属断言未跟上页面结构变化，非功能缺陷；修后 66 项交互全部跑完。',
+              '- 新增 hero 遮罩断言用 `linear-gradient\(90deg,([^)]*)\)` 取第一个右括号前的内容，'
+              '只截到第一段 rgba 值，导致 .85 判定落空报 1 条：已改为按 `.sf-hero-mask{...}` 整体块匹配三段数值，'
+              '属正则范围误报，CSS 数值本身正确。',
+              '- 对比页 `colspan` 断言按错误转义的字面量查找而报 1 条：已按源码真实拼接写法校正匹配串，'
+              '属断言写法误报，页面缩减相同项功能正常。',
+              '- 双语键一致性按行首提取，中文侧把两个键写在同一行导致 `compare.v.service` 未被提取、'
+              '英文侧独占一行被提取，报差集 1 条：已把中文侧拆成每行一键；字典里该键一直存在，'
+              '属扫描范围误报，非翻译缺失。',
               '- 包内抽查用「按钮自解释」去 grep `CHECK.md`，而报告实际写的是「每个首屏按钮必须有自解释 title」，'
               '措辞顺序不符导致 1 条断言落空：属抽查断言误报，检查项本身已落盘并全过；'
               '已按实际文案重跑，未改动任何检查逻辑。', '']
@@ -604,7 +680,13 @@ def report():
               '本轮再新增：每个首屏按钮必须有自解释 title、`data-role` 取值合法且三类角色动作确有身份限制、'
               '子页「返回」写明回到哪一级、首页「按身份进入」四类画像八个入口均存在、'
               '接单页无跨频道按钮、歧义文案（管理档案 / 竹筐购物车 / 现场签到）全清零、'
-              '身份导引中英双真文案、`USER_WALKTHROUGH.md` 逐按钮问答与五类画像报告齐备。', '',
+              '身份导引中英双真文案、`USER_WALKTHROUGH.md` 逐按钮问答与五类画像报告齐备；'
+              '本轮再新增第 23 组：`sf-hero-mask` 收紧到 .97/.94/.85 且 `--sf-veil` 保持 .88、'
+              '田块对比专用渲染器与 17 项字段清单、多选 / `?ids=` / 跨列缩减 / 高亮差异 / 只看不同项、'
+              '工单固定流程字典 6 步主流程 + 1 条退回分支统一导出、10 条明细需求清单、'
+              '工单列表文字行与详情/创建页逐条明细展示、创建页明细必填校验；'
+              '本轮再新增第 24 组：发布形态回退单点（118 页构成、后台 16 页 noindex、robots 去重与 /admin/ 屏蔽、'
+              '双包 / 合并包产物清零、DEPLOY.md 单点章节与 Nginx 白名单、后台相对链接闭环、前台 0 后台入口）。', '',
               '## 真缺陷修复登记（发现即修，复跑确认）', '',
               '- 模拟与真实接口返回层不一致：模拟分支返回整包响应而非业务 data，动态区渲染失败；已统一为返回业务 data。',
               '- 模拟数据分类图映射缺 job / planting 等键，工单回执出现 `src="undefined"` 破图；已补全映射并加兜底。',
@@ -638,8 +720,25 @@ def report():
               '个人常驻「田园 / 工单 / 活动 / 消费 / 设置」五区；快速定位 chip 改为滚动到分区并给 toast 反馈。',
               '- 运行时新增 12 项视图断言，交互总数 43 → 55；7 批 234 次取样全部重跑，最终交付包与包内抽查已补齐。', '',
               '- 上一轮收尾：7 批 236 次双视口取样全量重跑、交互 55 → 66 项全通过、静态回归错误 0。', '',
-              '- 本轮收尾：7 批 236 次双视口取样全量重跑、交互 66 → 84 项全通过、静态回归错误 0，'
-              '交付包 `sumfarm-v1.5.0.zip` 已打包且包内抽查通过。', '',
+              '- 上一轮收尾：7 批 236 次双视口取样全量重跑、交互 66 → 84 项全通过、静态回归错误 0。', '',
+              '## 本轮改进登记（hero 收紧 / 真实田块对比 / 工单严谨化 / 发布形态回退单点）', '',
+              '- `sf-hero` 遮罩由 .95/.87/.56 收紧到 **.97/.94/.85**，首屏浅米色更突出、右侧不再透出大片图；'
+              '`body` 的整体 `--sf-veil:rgba(250,248,242,.88)` 保持不变，18 组 WCAG 对比度全过。',
+              '- 田块对比新增专用渲染器 `pageFarmCompare`：24 块田真多选（最多 4 块）→ 按显式 `?ids=` 生成并排清单；'
+              '相同项跨列缩减成一行并标「N 块田一致」，不同项高亮单元格；新增平台级共同字段让缩减真实可见；'
+              '「只看不同项 / 清空重选 / 超限拦截 / 无效编号忽略 / 空态插画 / 中英双真文案」全部落地。',
+              '- 工单由随意列表改为严谨工单：`mock-data.js` 只写一份 **6 步主流程 + 1 条退回分支**状态字典，'
+              '每条工单扩到 **10 条明细需求**（范围 / 时间窗 / 验收标准 / 物料用量 / 回执 / 安全 / 预算结算 / 资质 / 优先级 / 变更）；'
+              '总览改文字行并显示状态徽章与「第 N / 6 步」，详情含基础信息表 + 明细表 + 流程时间线 + 对话，'
+              '创建页逐条填写、必填校验、成功态写明「待接单（固定流程第 1 步）」并列回本次条目；接单页每行也带状态徽章。',
+              '- 发布形态按用户要求**回退为单点部署**：双包 / 合并分发包与三个构建脚本全部清理，交付只剩一个 '
+              '`sumfarm-v1.6.0.zip`，顶层 `sumfarm-v1.6.0/` 含 118 页（102 前台 + `admin/` 16 后台）与共享 `assets/`，'
+              '解压内容挂站点根即可。后台 16 页补 `noindex,nofollow`，`robots.txt` 保持 `Disallow: /admin/` 并去重，'
+              '`DEPLOY.md` 第 6 节给出 Nginx `/admin/` 白名单 / Basic 配置作为「不得对外」的实际生效层；'
+              '单点属逻辑隔离而非物理分离，已如实写明。',
+              '- 静态新增第 23 组断言、运行时新增 12 项交互，交互总数 84 → 96；7 批 236 次取样全部重跑。', '',
+              '- 本轮收尾：7 批 236 次双视口取样全量重跑、交互 **96 项全通过**、静态回归错误 0，'
+              '单点部署包 `sumfarm-v1.6.0.zip` 已打包并完成包内抽查。', '',
               '## 本轮改进登记（账号合并 / 首屏按钮 / 田园挂靠工单）', '',
               '- 登录与注册合并为 `login.html` 单页双 Tab：点 Tab 只换表单、不跳页、不新增历史，'
               'URL 用 `?mode=` 同步；五类身份由五张卡片收成一个下拉；导航与移动浮层都只留一个账号入口；'

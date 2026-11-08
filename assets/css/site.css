@@ -1,4 +1,4 @@
-/* 闪马田园 SUMFARM · 前台统一样式 v1.5.0
+/* 闪马田园 SUMFARM · 前台统一样式 v1.6.0
    真实田园 60% / 科技 30% / 可爱 10%  |  后台样式见 admin.css，互不加载 */
 :root{
   --sf-field:#4A7C59; --sf-field-d:#33583F; --sf-soil:#8B6F47;
@@ -11,7 +11,7 @@
   --sf-veil:rgba(250,248,242,.88); --sf-hero-ink:#223229; --sf-hero-sub:#4C5C51;
   --sf-zone:#F2F5EE; --sf-zone-line:#D8E0D2;
   --sf-radius:14px; --sf-shadow:0 6px 22px rgba(38,51,43,.09);
-  --sf-v:"1.5.0";
+  --sf-v:"1.6.0";
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -69,9 +69,11 @@ button{cursor:pointer}
   filter:saturate(.48) brightness(1.09) contrast(.9)}
 .sf-hero-tall{display:none}
 @media (max-width:767px){.sf-hero-wide{display:none}.sf-hero-tall{display:block}}
-/* 浅色罩：图片退成极淡水彩底，文字改深色墨绿；既淡又不花，白底深字对比更稳 */
+/* 浅色罩：图片退成极淡水彩底，文字改深色墨绿；既淡又不花，白底深字对比更稳。
+   视图走查后收紧 hero 透明度（.95/.87/.56 → .97/.94/.85）：右侧不再透出大片图片，
+   浅米色背景更突出、整块首屏更统一；body 的整体背景透明度保持原样不动。 */
 .sf-hero-mask{position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(255,253,247,.95) 0%,rgba(255,253,247,.87) 52%,rgba(255,253,247,.56) 100%)}
+  background:linear-gradient(90deg,rgba(255,253,247,.97) 0%,rgba(255,253,247,.94) 52%,rgba(255,253,247,.85) 100%)}
 .sf-hero-copy{position:relative;z-index:2;padding:34px 40px;max-width:680px;color:var(--sf-hero-ink)}
 .sf-hero h1{font-size:34px;line-height:1.25;margin:0 0 12px;letter-spacing:.01em;color:var(--sf-hero-ink)}
 .sf-hero p{margin:0 0 16px;font-size:15px;line-height:1.8;color:var(--sf-hero-sub);opacity:1}
@@ -404,3 +406,61 @@ button{cursor:pointer}
   padding:12px 14px;font-size:13px;line-height:1.8;margin-top:14px;display:flex;
   flex-direction:row;flex-wrap:nowrap;gap:10px;align-items:center}
 .sf-welcome img{width:42px;height:42px;border-radius:50%;flex:none}
+
+/* ---------- 田块对比：多选、相同项缩减、不同项高亮 ---------- */
+.sf-compare-picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;
+  max-height:246px;overflow-y:auto;padding:2px}
+.sf-compare-pick{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:flex-start;gap:8px;
+  border:1px solid var(--sf-line);border-radius:10px;padding:9px 10px;background:var(--sf-paper);
+  cursor:pointer;font-size:13px;line-height:1.5;min-width:0}
+.sf-compare-pick:hover{border-color:var(--sf-field);background:var(--sf-zone)}
+.sf-compare-pick.is-on{border-color:var(--sf-field);background:var(--sf-zone)}
+.sf-compare-pick input{flex:none;margin-top:3px;accent-color:var(--sf-field)}
+.sf-compare-pick span{min-width:0;display:flex;flex-direction:column;gap:2px}
+.sf-compare-pick b{font-size:13px;color:var(--sf-ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sf-compare-pick small{font-size:11px;color:var(--sf-mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sf-compare-bar{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:9px;margin-top:12px}
+.sf-compare-count{font-size:13px;color:var(--sf-mute)}
+.sf-compare-count b{color:var(--sf-ink);font-size:14px}
+.sf-compare-limit{font-size:11px;color:var(--sf-mute);margin-left:auto}
+.sf-compare-table th small{display:block;font-weight:400;font-size:11px;color:var(--sf-mute);margin-top:2px}
+.sf-compare-table th:first-child{width:150px;white-space:nowrap;background:var(--sf-zone)}
+.sf-compare-table td.is-diff{background:#FFF3DF;border-left:3px solid #C98A3C;
+  color:#5C421E;font-weight:600}
+.sf-compare-table tr.is-same td{background:var(--sf-cream);color:var(--sf-ink)}
+.sf-compare-same-badge{display:inline-block;margin-right:8px;padding:2px 7px;border-radius:6px;
+  background:var(--sf-zone);border:1px solid var(--sf-line);font-size:11px;color:var(--sf-mute);font-weight:700}
+.sf-compare-table.is-hide-same tr.is-same{display:none}
+@media (max-width:900px){.sf-compare-picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767px){.sf-compare-picks{grid-template-columns:minmax(0,1fr);max-height:220px}
+  .sf-compare-limit{margin-left:0;width:100%}
+  .sf-compare-table th:first-child{width:110px}}
+
+/* ---------- 工单：状态徽章、固定流程时间线、明细需求 ---------- */
+.sf-job-badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700;
+  border:1px solid var(--sf-line);background:var(--sf-zone);color:var(--sf-ink);white-space:nowrap}
+.sf-job-badge.is-open{background:#EAF1F5;border-color:#B9CFDA;color:#2E6E7E}
+.sf-job-badge.is-taken{background:#EAF3EA;border-color:#BFD8C2;color:#33583F}
+.sf-job-badge.is-working{background:#F1EFE2;border-color:#DCD3AE;color:#7A6326}
+.sf-job-badge.is-review{background:#FBEEDC;border-color:#E4C89B;color:#8A5416}
+.sf-job-badge.is-done,.sf-job-badge.is-settled{background:#E8F1E9;border-color:#B6D2BA;color:#2D5B39}
+.sf-job-badge.is-returned{background:#F8E8E4;border-color:#E2BDB3;color:#B4553F}
+.sf-job-detail-head{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px;
+  padding:10px 12px;border:1px solid var(--sf-line);border-radius:10px;background:var(--sf-cream);margin:0 0 14px}
+.sf-job-detail-head>span{font-size:13px;color:var(--sf-ink);font-weight:700}
+.sf-job-flow-stat{font-size:12px;color:var(--sf-mute);font-weight:400}
+.sf-job-flow{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.sf-job-step{position:relative;padding:10px 12px 10px 34px;border-left:2px solid var(--sf-line);margin-left:8px}
+.sf-job-step::before{content:'';position:absolute;left:-7px;top:16px;width:12px;height:12px;
+  border-radius:50%;background:var(--sf-paper);border:2px solid var(--sf-line)}
+.sf-job-step.is-done{border-left-color:var(--sf-field)}
+.sf-job-step.is-done::before{background:var(--sf-field);border-color:var(--sf-field)}
+.sf-job-step.is-current{border-left-color:var(--sf-tech);background:var(--sf-tech-l)}
+.sf-job-step.is-current::before{background:var(--sf-tech);border-color:var(--sf-tech)}
+.sf-job-step.is-returned{border-left-color:#B4553F;background:#FBF0ED}
+.sf-job-step.is-returned::before{background:#B4553F;border-color:#B4553F}
+.sf-job-step b{font-size:13px;color:var(--sf-ink)}
+.sf-job-step-tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--sf-mute)}
+.sf-job-step p{margin:4px 0 2px;font-size:12px;line-height:1.75;color:var(--sf-mute)}
+.sf-job-step small{font-size:11px;color:var(--sf-mute)}
+.sf-tag.is-req{background:#FBEEDC;border-color:#E4C89B;color:#8A5416}

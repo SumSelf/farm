@@ -105,9 +105,18 @@ def main():
                          "slot": slot, "ratio": ratio, "w": w, "h": h})
     if missing:
         print("缺源图：%s" % ", ".join(missing)); return 2
+    # 频道级 hero 主视觉由 make_hero_bg.py 生成，清单只写一份，复跑不丢
+    hero_images = [
+        {"channel": c, "wide": "assets/img/%s_hero.webp" % c,
+         "wide_ratio": "16:9", "wide_size": [1280, 720],
+         "tall": "assets/img/%s_hero_m.webp" % c,
+         "tall_ratio": "9:16", "tall_size": [720, 1280],
+         "pages": 11 if c == "forum" else 9,
+         "source": "assets/img/src/src_%s.webp" % c}
+        for c in ("forum", "expert")]
     manifest = {"version": "1.7.0", "topics": TOPICS,
                 "slots": {k: {"w": v[0], "h": v[1], "ratio": v[2]} for k, v in SLOTS.items()},
-                "files": made}
+                "files": made, "hero_images": hero_images}
     with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=1)
     print("切图完成：%d 张，manifest 已写入" % len(made))

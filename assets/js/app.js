@@ -13,6 +13,160 @@
   function zh(x, a, b) { return lang === 'en' ? (x[b] || x[a]) : (x[a] || x[b]); }
   function pic(src, alt) { return '<img loading="lazy" src="' + esc(src) + '" alt="' + esc(alt || '') + '">'; }
   function host() { return document.getElementById('sf-dynamic'); }
+
+  /* ---------- 全站业务流程图（公共关系只写这一份） ----------
+     每个频道按真实办理顺序列出全部子页：当前页高亮、其余可点直达、末尾回频道首页。
+     作用是把流程子页接进业务流，避免「只能靠顶栏或地址进入」的孤立页面。
+     条目格式：[文件, 中文名, 英文名]；文件名全部取自实际存在的页面，新增引用即校验。 */
+  var FLOW_GROUPS = [
+    { home: 'farms.html', zh: '田园档案与承包流程', en: 'Plot archive & lease workflow', steps: [
+      ['farms.html', '田园档案', 'Plot archive'], ['farms-region.html', '按地区找田', 'By region'],
+      ['farms-soil.html', '按土壤筛选', 'By soil'], ['farms-map.html', '田块分布图', 'Plot map'],
+      ['farms-lease.html', '承包租赁', 'Lease'], ['farms-favorites.html', '我的收藏', 'Favorites'],
+      ['farm-compare.html', '田块对比', 'Compare'], ['farm-detail.html', '田块详情', 'Plot detail'],
+      ['farm-gallery.html', '田园图册', 'Gallery'], ['farm-comments.html', '田园评论', 'Reviews'],
+      ['farm-follow.html', '关注动态', 'Following'], ['farm-contract.html', '承包合同', 'Contract'],
+      ['farm-payment.html', '费用支付', 'Payment'], ['farm-edit.html', '上传档案', 'Submit plot'],
+      ['farm-manage.html', '田园管理', 'Manage plot'], ['farm-success.html', '发布成功', 'Published']] },
+    { home: 'forum.html', zh: '论坛版块与发帖流程', en: 'Forum boards & posting workflow', steps: [
+      ['forum.html', '论坛首页', 'Forum home'], ['forum-hot.html', '热门田园', 'Popular plots'],
+      ['forum-exp.html', '种植经验', 'Growing notes'], ['forum-act.html', '活动复盘', 'Event recap'],
+      ['forum-tech.html', '技术咨询', 'Tech Q&A'], ['forum-best.html', '精华采纳', 'Best posts'],
+      ['forum-rules.html', '版规说明', 'Board rules'], ['forum-edit.html', '发起新帖', 'New post'],
+      ['forum-posted.html', '我已发布', 'My posts'], ['forum-mine.html', '我的收藏', 'Saved threads'],
+      ['forum-topic.html', '帖子详情', 'Thread detail']] },
+    { home: 'experts.html', zh: '专家认证与技术产出流程', en: 'Expert accreditation & output workflow', steps: [
+      ['experts.html', '专家广场', 'Experts'], ['experts-rank.html', '积分排行', 'Ranking'],
+      ['expert-detail.html', '专家主页', 'Profile'], ['expert-points.html', '积分口径', 'Points rules'],
+      ['expert-column.html', '技术专栏', 'Columns'], ['expert-qa.html', '技术问答', 'Q&A'],
+      ['expert-apply.html', '认证申请', 'Apply'], ['expert-history.html', '管理历史', 'History'],
+      ['expert-trials.html', '种植实践', 'Field trials']] },
+    { home: 'dispatch.html', zh: '接单与农事工单流程', en: 'Dispatch & work-order workflow', steps: [
+      ['dispatch.html', '接单大厅', 'Dispatch home'], ['dispatch-nearby.html', '定位附近单', 'Nearby jobs'],
+      ['dispatch-linked.html', '关联田园单', 'Linked plots'], ['dispatch-taken.html', '已接工单', 'Accepted'],
+      ['dispatch-accept.html', '承接确认', 'Accept'], ['dispatch-receipt.html', '作业回执', 'Receipts'],
+      ['dispatch-verify.html', '验收核对', 'Verify'], ['dispatch-settle.html', '结算对账', 'Settlement'],
+      ['dispatch-history.html', '历史工单', 'History'], ['workorders.html', '工单总览', 'All orders'],
+      ['workorder-new.html', '按田建单', 'New order'], ['workorder-detail.html', '工单详情', 'Order detail']] },
+    { home: 'workorders.html', zh: '农事工单类型', en: 'Work-order types', steps: [
+      ['job-tilling.html', '翻地', 'Tilling'], ['job-sowing.html', '种植', 'Sowing'],
+      ['job-water.html', '浇水', 'Watering'], ['job-harvest.html', '采摘', 'Harvest'],
+      ['job-expert.html', '专家指导', 'Expert guidance']] },
+    { home: 'produce.html', zh: '农产品溯源与结算流程', en: 'Produce trace & checkout workflow', steps: [
+      ['produce.html', '农产品', 'Produce'], ['produce-season.html', '时令清单', 'Seasonal'],
+      ['produce-trace.html', '溯源档案', 'Traceability'], ['produce-detail.html', '产品详情', 'Detail'],
+      ['produce-cart.html', '购物车', 'Cart'], ['produce-stock.html', '库存台账', 'Stock'],
+      ['produce-checkout.html', '结算下单', 'Checkout'], ['produce-delivery.html', '配送跟踪', 'Delivery'],
+      ['produce-receipt.html', '签收回执', 'Receipt'], ['produce-review.html', '产品评价', 'Review']] },
+    { home: 'activity.html', zh: '活动与场地预约流程', en: 'Events & venue booking workflow', steps: [
+      ['activity.html', '田园活动', 'Activities'], ['activity-calendar.html', '活动日历', 'Calendar'],
+      ['activity-signup.html', '活动报名', 'Sign-up'], ['activity-checkin.html', '现场签到', 'Check-in'],
+      ['activity-detail.html', '活动详情', 'Event detail'], ['activity-members.html', '参与成员', 'Members'],
+      ['activity-review.html', '活动回顾', 'Recap'], ['venue-booking.html', '场地预约', 'Book a venue'],
+      ['venue-menu.html', '农家菜单', 'Farm menu'], ['venue-sports.html', '运动场地', 'Sports field'],
+      ['venue-wedding.html', '婚纱场地', 'Wedding lawn'], ['venue-camping.html', '露营营位', 'Camping pitch']] },
+    { home: 'account.html', zh: '个人中心与账户管理', en: 'Account & personal centre', steps: [
+      ['account.html', '个人中心', 'My centre'], ['orders.html', '我的订单', 'Orders'],
+      ['account-profile.html', '资料设置', 'Profile'], ['account-security.html', '账号安全', 'Security'],
+      ['account-bind.html', '绑定管理', 'Linked accounts'], ['account-address.html', '收货地址', 'Addresses'],
+      ['account-notice.html', '消息通知', 'Notifications'], ['account-favorites.html', '我的收藏', 'Favorites'],
+      ['account-following.html', '我的关注', 'Following'], ['account-invoice.html', '发票管理', 'Invoices'],
+      ['account-help.html', '帮助工单', 'Help tickets'], ['account-close.html', '注销申请', 'Close account']] },
+    { home: 'sitemap.html', zh: '站点服务与公共页面', en: 'Site services & public pages', steps: [
+      ['sitemap.html', '站点地图', 'Sitemap'], ['help.html', '帮助中心', 'Help centre'],
+      ['search.html', '全站搜索', 'Search'], ['videos.html', '热点视频', 'Videos'],
+      ['promo.html', '田园宣发', 'Campaigns'], ['about.html', '关于我们', 'About'],
+      ['contact.html', '联系我们', 'Contact'], ['terms.html', '服务协议', 'Terms'],
+      ['privacy.html', '隐私政策', 'Privacy'], ['disclaimer.html', '免责声明', 'Disclaimer'],
+      ['maintenance.html', '维护公告', 'Maintenance']] }
+  ];
+  var FLOW_SKIP = { 'index.html': 1, 'login.html': 1, 'forgot.html': 1, '404.html': 1 };
+  function flowGroup(file) {
+    for (var i = 0; i < FLOW_GROUPS.length; i++) {
+      var g = FLOW_GROUPS[i];
+      for (var j = 0; j < g.steps.length; j++) if (g.steps[j][0] === file) return g;
+    }
+    return null;
+  }
+  function flowNav() {
+    var here = hereFile();
+    if (FLOW_SKIP[here]) return '';
+    var g = flowGroup(here);
+    if (!g) return '';
+    var idx = 0;
+    g.steps.forEach(function (x, i) { if (x[0] === here) idx = i; });
+    var n = g.steps.length;
+    var title = lang === 'en' ? g.en : g.zh;
+    var hint = lang === 'en'
+      ? 'Step ' + (idx + 1) + ' of ' + n + '. Every step below is a live link; tap to jump.'
+      : '当前第 ' + (idx + 1) + ' / ' + n + ' 步。下面每一步都是可点的业务入口，点哪步直接去哪步。';
+    var back = lang === 'en' ? 'Back to channel home' : '返回频道首页';
+    /* 默认只显示当前步前后各 2 个（共 5 个可点入口），保持页面在 3 屏内；
+       「全部 N 步」一键展开全量流程，属于超长列表的左右 / 展开式翻页设计。 */
+    var steps = g.steps.map(function (x, i) {
+      var lb = lang === 'en' ? x[2] : x[1];
+      var far = (i < idx - 2 || i > idx + 2);
+      return '<a class="sf-flow-step' + (i === idx ? ' is-on' : '') + (far ? ' is-far' : '') + '" href="' +
+        esc(link(x[0], { from: here })) + '"' + (i === idx ? ' aria-current="step"' : '') +
+        ' title="' + esc(lb) + '"><span class="sf-flow-n">' + (i + 1) + '</span>' + esc(lb) + '</a>';
+    }).join('');
+    var expand = lang === 'en' ? 'All ' + n + ' steps' : '全部 ' + n + ' 步';
+    var collapse = lang === 'en' ? 'Show fewer' : '收起';
+    return '<section class="sf-section sf-flow" aria-label="' + esc(title) + '">' +
+      '<div class="sf-section-head"><h2>' + esc(title) + '</h2><span class="sf-sub">' + esc(hint) + '</span></div>' +
+      '<div class="sf-flow-steps is-collapsed" id="sf-flow-steps">' + steps + '</div>' +
+      '<div class="sf-flow-foot">' +
+      '<button class="sf-btn is-quiet" data-act="flow-expand" type="button"' +
+      ' data-more="' + esc(expand) + '" data-less="' + esc(collapse) + '">' + esc(expand) + '</button>' +
+      '<a class="sf-btn is-quiet" href="' + esc(link(g.home, { from: here })) + '">' +
+      esc(back) + '</a></div></section>';
+  }
+
+  /* ---------- 后台统一侧栏（16 页共用一份，独立管理页全部纳入） ---------- */
+  var ADM_SIDE = [
+    { zh: '总览与管控视图', en: 'Console views', items: [
+      ['admin/index.html', { m: 'dashboard' }, '总览', 'Dashboard'],
+      ['admin/index.html', { m: 'farms' }, '田园信息', 'Plots'],
+      ['admin/index.html', { m: 'users' }, '用户信息', 'Users'],
+      ['admin/index.html', { m: 'workorders' }, '工单信息', 'Work orders'],
+      ['admin/index.html', { m: 'chats' }, '聊天信息', 'Chats'],
+      ['admin/index.html', { m: 'planting' }, '种植信息', 'Planting'],
+      ['admin/index.html', { m: 'comments' }, '评论管理', 'Comments'],
+      ['admin/index.html', { m: 'system' }, '系统控制', 'System']] },
+    { zh: '独立管理页', en: 'Record consoles', items: [
+      ['admin/farms.html', null, '田园台账', 'Plot records'],
+      ['admin/users.html', null, '用户台账', 'User records'],
+      ['admin/workorders.html', null, '工单台账', 'Order records'],
+      ['admin/chats.html', null, '聊天记录', 'Chat logs'],
+      ['admin/planting.html', null, '种植记录', 'Planting logs'],
+      ['admin/comments.html', null, '评论台账', 'Comment records'],
+      ['admin/notices.html', null, '公告管理', 'Notices'],
+      ['admin/roles.html', null, '权限角色', 'Roles'],
+      ['admin/dict.html', null, '数据字典', 'Dictionary'],
+      ['admin/export.html', null, '导出任务', 'Exports'],
+      ['admin/logs.html', null, '审计日志', 'Audit log']] },
+    { zh: '多级审核', en: 'Approval chain', items: [
+      ['admin/audit.html', null, '审核工作台', 'Approval desk'],
+      ['admin/audit-review.html', null, '复审', 'Second review'],
+      ['admin/audit-final.html', null, '终审', 'Final review']] }
+  ];
+  function admSide() {
+    var here = hereFile();
+    var m = param('m', 'dashboard');
+    var groups = ADM_SIDE.map(function (grp) {
+      var items = grp.items.map(function (x) {
+        var lb = lang === 'en' ? x[3] : x[2];
+        var bn = x[0].split('/').pop();
+        var on = bn === here && (!x[1] || (x[1].m === m));
+        return '<a class="' + (on ? 'is-on' : '') + '" href="' +
+          esc(link(x[0], x[1] || { from: here })) + '">' + esc(lb) + '</a>';
+      }).join('');
+      return '<div class="adm-side-grp"><span>' + esc(lang === 'en' ? grp.en : grp.zh) + '</span>' + items + '</div>';
+    }).join('');
+    return '<div class="adm-side"><h2>SUMFARM ADMIN</h2>' + groups +
+      '<div class="adm-side-grp"><a href="' + esc(link('admin/login.html', { from: here })) + '">' +
+      esc(lang === 'en' ? 'Independent sign-in' : '独立登录 / 退出') + '</a></div></div>';
+  }
   /* 每页兜底内容块：逐页不同的真文案 + 3 个正文图片位；后台保持纯素只给文字 */
   function universalTail() {
     var isAdm = document.body.classList.contains('adm-body');
@@ -46,7 +200,21 @@
      题材与规格由 mock-data.js 的 art() 统一解析，公共关系不在此重复实现。 */
   function pgKey() { return document.body.getAttribute('data-page') || 'index'; }
   function artFor(cat, seed, slot) { return M.art(pgKey(), cat, seed, slot); }
-  function put(html) { var h = host(); if (h) h.innerHTML = html + universalTail(); }
+  /* 每页统一注入：前台前置流程导航条、后台包一层统一侧栏，
+     保证任意页面都有可点的业务联系跳转，不出现只能靠地址进入的孤立页。 */
+  function put(html) {
+    var h = host(); if (!h) return;
+    var isAdm = document.body.classList.contains('adm-body');
+    var isLogin = isAdm && hereFile() === 'login.html';
+    if (isAdm && !isLogin) {
+      h.innerHTML = '<div class="adm-shell">' + admSide() +
+        '<div class="adm-content">' + html + universalTail() + '</div></div>';
+    } else if (isAdm) {
+      h.innerHTML = html + universalTail();
+    } else {
+      h.innerHTML = flowNav() + html + universalTail();
+    }
+  }
   function param(k, d) { return U.searchParams.get(k) || d || ''; }
   function count(n) { return M.count(n); }
   function toast(msg) {
@@ -1047,12 +1215,7 @@
   }
   function pageAdminIndex() {
     var m = param('m', 'dashboard');
-    var side = ADM_MODULES.map(function (x) {
-      var f = x[0] === 'audit'
-        ? link('admin/audit.html', { from: 'index.html' })
-        : link('admin/index.html', { m: x[0] });
-      return '<a class="' + (m === x[0] ? 'is-on' : '') + '" href="' + esc(f) + '">' + t(x[1]) + '</a>';
-    }).join('');
+    /* 侧栏由 put() 统一注入 admSide()，这里只输出内容区，避免嵌套两层 .adm-shell */
     var kpi = [['farms', t('admin.m.farms')], ['users', t('admin.m.users')],
       ['workorders', t('admin.m.workorders')], ['comments', t('admin.m.comments')]].map(function (x) {
       return '<div class="adm-kpi"><b>' + count(x[0]) + '</b><span>' + x[1] + '</span></div>';
@@ -1061,12 +1224,11 @@
       '<button class="adm-btn is-plain" data-act="lang" type="button">' + t('act.lang') + '</button>' +
       '<button class="adm-btn is-plain" data-act="logout" type="button">' + t('admin.logout') + '</button></div>' +
       '<div class="adm-kpis">' + kpi + '</div>' +
-      '<div class="adm-shell"><div class="adm-side"><h2>SUMFARM ADMIN</h2>' + side + '</div>' +
-      '<div class="adm-content"><div class="adm-panel"><h3>' + t(ADM_MODULES.filter(function (x) { return x[0] === m; })[0][1]) + '</h3>' +
+      '<div class="adm-panel"><h3>' + t(ADM_MODULES.filter(function (x) { return x[0] === m; })[0][1]) + '</h3>' +
       '<div class="adm-actions"><button class="adm-btn is-plain" data-act="selectAll" type="button">' + t('common.selectAll') + '</button>' +
       '<button class="adm-btn is-plain" data-act="delete" type="button">' + t('common.delete') + '</button>' +
       '<a class="adm-btn is-plain" href="' + esc(link('admin/audit.html', { from: 'index.html' })) + '">' + t('admin.m.audit') + '</a></div>' +
-      '<div id="mount-adm"></div></div></div></div>');
+      '<div id="mount-adm"></div></div>');
     API.adminModule(m, { page: state.page, q: state.q }).then(function (r) {
       var cols = r.columns.slice(0, 6);
       var rows = r.rows.map(function (x) {
@@ -1505,8 +1667,38 @@
   }
 
   /* ---------- 分派（唯一一份） ---------- */
+  /* 站点地图：按频道列出全站前台页面，每一个都是可点的业务入口；
+     后台页面不进公开索引（独立登录、noindex、robots 屏蔽），符合「后台不得对外」。 */
+  function pageSitemap() {
+    var all = FLOW_GROUPS.map(function (g) {
+      var links = g.steps.map(function (x) {
+        var lb = lang === 'en' ? x[2] : x[1];
+        return '<a class="sf-flow-step" href="' + esc(link(x[0], { from: 'sitemap.html' })) +
+          '" title="' + esc(lb) + '">' + esc(lb) + '</a>';
+      }).join('');
+      return '<div class="sf-sitemap-grp"><h3>' + esc(lang === 'en' ? g.en : g.zh) + '</h3>' +
+        '<div class="sf-flow-steps">' + links + '</div></div>';
+    }).join('');
+    var extra = [['index.html', '首页', 'Home'], ['login.html', '登录 / 注册', 'Sign in'],
+      ['forgot.html', '找回口令', 'Recover password'], ['404.html', '页面不存在', 'Not found']];
+    var extraHtml = '<div class="sf-sitemap-grp"><h3>' +
+      esc(lang === 'en' ? 'Account & fallback' : '账号入口与兜底') + '</h3><div class="sf-flow-steps">' +
+      extra.map(function (x) {
+        var lb = lang === 'en' ? x[2] : x[1];
+        return '<a class="sf-flow-step" href="' + esc(link(x[0], { from: 'sitemap.html' })) + '">' +
+          esc(lb) + '</a>';
+      }).join('') + '</div></div>';
+    var head = lang === 'en'
+      ? 'Every public page is listed below, grouped by channel. Each label is a direct link.'
+      : '下面按频道列出全部公开页面，每个名称都是直达入口；管理后台不列入公开索引。';
+    put('<div class="sf-section">' + sectionHead(
+      lang === 'en' ? 'Full site index' : '站点地图 · 全站页面索引', head, '',
+      FLOW_GROUPS.reduce(function (n, g) { return n + g.steps.length; }, 0) + extra.length) +
+      all + extraHtml + '</div>');
+  }
+
   var ROUTES = {
-    'index': pageIndex, 'farms': pageFarms, 'farm-detail': pageFarmDetail, 'farm-edit': pageFarmEdit,
+    'index': pageIndex, 'sitemap': pageSitemap, 'farms': pageFarms, 'farm-detail': pageFarmDetail, 'farm-edit': pageFarmEdit,
     'farm-compare': pageFarmCompare,
     'activity': function () { simpleList({ id: 'activity', title: t('activity.title'), desc: t('activity.desc'), ds: 'activities', api: 'listActivities',
       filterItems: [{ k: t('common.all'), v: '' }].concat(['聚会', '露营', '采摘', '婚纱场地'].map(function (x) { return { k: x, v: x }; })), filterKey: 'kind',
@@ -1575,6 +1767,17 @@
     switch (act) {
       case 'lang': T.set(lang === 'zh' ? 'en' : 'zh'); return;
       case 'back': e.preventDefault(); NAV.goBack(el.getAttribute('data-fallback')); return;
+      case 'flow-expand': {
+        e.preventDefault();
+        var box = document.getElementById('sf-flow-steps');
+        if (!box) return;
+        var on = box.classList.toggle('is-collapsed');
+        el.textContent = on ? el.getAttribute('data-more') : el.getAttribute('data-less');
+        el.setAttribute('aria-expanded', on ? 'false' : 'true');
+        toast(on ? (lang === 'en' ? 'Showing nearby steps' : '已收起，仅显示当前步附近入口')
+                 : (lang === 'en' ? 'All steps shown' : '已展开全部业务步骤'));
+        return;
+      }
       case 'like': {
         var on = el.classList.toggle('is-on');
         el.innerHTML = svgIcon('heart') + ' ' + (on ? t('common.liked') : t('common.like'));

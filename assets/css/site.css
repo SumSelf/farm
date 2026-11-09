@@ -13,7 +13,7 @@
   --sf-veil:rgba(250,248,242,.88); --sf-hero-ink:#223229; --sf-hero-sub:#4C5C51;
   --sf-zone:#F2F5EE; --sf-zone-line:#D8E0D2;
   --sf-radius:14px; --sf-shadow:0 6px 22px rgba(38,51,43,.09);
-  --sf-v:"1.7.1";
+  --sf-v:"1.7.2";
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -472,3 +472,37 @@ button{cursor:pointer}
 .sf-job-step p{margin:4px 0 2px;font-size:12px;line-height:1.75;color:var(--sf-mute)}
 .sf-job-step small{font-size:11px;color:var(--sf-mute)}
 .sf-tag.is-req{background:#FBEEDC;border-color:#E4C89B;color:#8A5416}
+
+/* ---------- 频道业务流程导航条（全站闭环：当前步高亮，其余可点直达） ----------
+   主 flex 显式 wrap + row；全宽元素不塞进横排容器；步骤 chip 限高不撑破页面。 */
+.sf-flow{margin-top:22px}
+.sf-flow .sf-section-head{margin-bottom:10px}
+.sf-flow-steps{display:flex;flex-direction:row;flex-wrap:wrap;gap:7px;align-items:stretch;
+  width:100%;max-width:100%}
+.sf-flow-step{display:inline-flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:6px;
+  padding:6px 11px;border:1px solid var(--sf-zone-line);border-radius:999px;
+  background:var(--sf-paper);color:var(--sf-ink);font-size:12px;font-weight:600;
+  line-height:1.4;white-space:nowrap;max-width:100%;transition:background .18s,border-color .18s}
+.sf-flow-step:hover{background:var(--sf-tech-l);border-color:#B7D2D8;color:var(--sf-tech)}
+.sf-flow-step.is-on{background:var(--sf-field);border-color:var(--sf-field);color:#fff}
+.sf-flow-step.is-on:hover{background:var(--sf-field-d);color:#fff}
+.sf-flow-n{display:inline-flex;align-items:center;justify-content:center;flex:none;
+  min-width:17px;height:17px;padding:0 3px;border-radius:50%;font-size:10px;
+  background:var(--sf-zone);color:var(--sf-mute);line-height:1}
+.sf-flow-step.is-on .sf-flow-n{background:rgba(255,255,255,.24);color:#fff}
+.sf-flow-foot{margin-top:10px}
+.sf-flow-foot .sf-btn{display:inline-block}
+@media (max-width:767px){
+  .sf-flow-steps{gap:5px}
+  .sf-flow-step{padding:5px 9px;font-size:11px}
+  .sf-flow .sf-section-head .sf-sub{font-size:11px}
+}
+
+/* 流程导航窗口模式：默认只显示当前步附近入口，展开后显示全部；不把页面撑过 3 屏 */
+.sf-flow-steps.is-collapsed .sf-flow-step.is-far{display:none}
+.sf-flow-foot{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;align-items:center}
+.sf-sitemap-grp{margin:0 0 12px;padding:10px 12px;background:var(--sf-paper);
+  border:1px solid var(--sf-line);border-radius:var(--sf-radius)}
+.sf-sitemap-grp h3{font-size:14px;margin:0 0 8px;color:var(--sf-ink)}
+.sf-sitemap-grp .sf-flow-step{font-weight:500}
+@media (max-width:767px){.sf-sitemap-grp{padding:9px 10px}.sf-sitemap-grp h3{font-size:13px}}

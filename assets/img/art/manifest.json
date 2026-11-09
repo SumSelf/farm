@@ -441,5 +441,41 @@
    "h": 180
   }
  ],
- "format": "webp"
+ "format": "webp",
+ "hero_images": [
+  {
+   "channel": "forum",
+   "wide": "assets/img/forum_hero.webp",
+   "wide_ratio": "16:9",
+   "wide_size": [
+    1280,
+    720
+   ],
+   "tall": "assets/img/forum_hero_m.webp",
+   "tall_ratio": "9:16",
+   "tall_size": [
+    720,
+    1280
+   ],
+   "pages": 11,
+   "source": "assets/img/src/src_forum.webp"
+  },
+  {
+   "channel": "expert",
+   "wide": "assets/img/expert_hero.webp",
+   "wide_ratio": "16:9",
+   "wide_size": [
+    1280,
+    720
+   ],
+   "tall": "assets/img/expert_hero_m.webp",
+   "tall_ratio": "9:16",
+   "tall_size": [
+    720,
+    1280
+   ],
+   "pages": 9,
+   "source": "assets/img/src/src_expert.webp"
+  }
+ ]
 }

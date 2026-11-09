@@ -8,7 +8,7 @@ import os, re, sys, json, subprocess
 from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-EXPECTED_V = '1.7.1'   # 内容整改后刷新的静态资源版本号
+EXPECTED_V = '1.7.2'   # 内容整改后刷新的静态资源版本号
 VOID = {'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
 errors, warns, stats = [], [], {}
 
@@ -412,8 +412,10 @@ def run():
             if not re.search(r'assets/img/art/sub_[a-z]+_(wide|tall)\.webp', s):
                 err('页面题材', rel(p) + ' 题材切图路径不合法')
     stats['art_pages'] = art_pages
-    if art_pages < len(htmls) - 20:
-        err('页面题材', '仅 %d 个前台页使用题材切图，覆盖不足' % art_pages)
+    # 论坛 11 页 + 专家 9 页改用频道专属 hero 主视觉（见第 29 组），
+    # 其余前台页继续用题材切图；两者相加覆盖全部前台页。
+    if art_pages < 81:
+        err('页面题材', '仅 %d 个前台页使用题材切图，覆盖不足（应为 81 + 20 频道专属页）' % art_pages)
 
     # 19 视图走查：搜索框必须落在 sf-hero 内、账号两页例外、下拉桥接、文字列表与功能分区
     for p in htmls:
@@ -645,8 +647,8 @@ def run():
     webp_files = [p for p in allf26 if p.lower().endswith('.webp')]
     if png_files:
         err('图片压缩', '仍残留 %d 个 PNG 文件：%s' % (len(png_files), [rel(x) for x in png_files[:3]]))
-    if len(webp_files) != 73:
-        err('图片压缩', 'WebP 文件应为 73 张，实际 %d' % len(webp_files))
+    if len(webp_files) != 77:
+        err('图片压缩', 'WebP 文件应为 77 张（73 原有 + 4 频道专属 hero），实际 %d' % len(webp_files))
     # 只扫运行资源与脚本，校验脚本自身与 .md 历史描述不算功能引用
     text26 = [p for p in allf26 if p.lower().endswith(('.html', '.css', '.js', '.json', '.py'))
               and os.path.basename(p) != 'verify.py']
@@ -746,6 +748,93 @@ def run():
     if 'var(--sf-hero-base)' not in css_src or '--sf-hero-base:#D2E4C8' not in css_src:
         err('hero 背景色', 'hero 容器未真正引用田绿实底变量')
 
+    # 29 论坛 / 专家频道 hero 专属主视觉（用户反馈：这两页没有设计图）
+    for ch, (wide, tall) in {'forum': ('forum_hero.webp', 'forum_hero_m.webp'),
+                             'expert': ('expert_hero.webp', 'expert_hero_m.webp')}.items():
+        for fn in (wide, tall):
+            fp = os.path.join(ROOT, 'assets', 'img', fn)
+            if not os.path.isfile(fp):
+                err('频道主视觉', '缺 ' + fn); continue
+            b = open(fp, 'rb').read()
+            if not (b[:4] == b'RIFF' and b[8:12] == b'WEBP'):
+                err('频道主视觉', fn + ' 不是有效 WebP')
+            if len(b) > 120 * 1024:
+                err('频道主视觉', fn + ' 超过 120KB，未按网站专用格式压缩')
+    hp = read(os.path.join(ROOT, 'make_hero_bg.py'))
+    if not hp or 'def make_wide' not in hp or 'def make_tall' not in hp \
+       or '"WEBP"' not in hp:
+        err('频道主视觉', '缺可复跑生成脚本 make_hero_bg.py 或未产出 WebP')
+    mani29 = json.load(open(os.path.join(ROOT, 'assets', 'img', 'art', 'manifest.json'), encoding='utf-8'))
+    hi = mani29.get('hero_images', [])
+    if len(hi) != 2 or {x['channel'] for x in hi} != {'forum', 'expert'} \
+       or sum(x['pages'] for x in hi) != 20 \
+       or len(mani29.get('files', [])) != 50:
+        err('频道主视觉', 'manifest.hero_images 未登记 2 频道 / 20 页，或 50 张切图清单被破坏')
+    ch_pages = {'forum': [], 'expert': []}
+    for f in walk(('.html',)):
+        bn = os.path.basename(f)
+        ch = 'forum' if bn.startswith('forum') else ('expert' if bn.startswith('expert') else None)
+        if not ch: continue
+        ch_pages[ch].append(bn)
+        m29 = re.search(r'<section class="sf-hero[\s\S]*?</section>', read(f))
+        blk = m29.group(0) if m29 else ''
+        w, t = (('forum_hero.webp', 'forum_hero_m.webp') if ch == 'forum'
+                else ('expert_hero.webp', 'expert_hero_m.webp'))
+        if 'src="assets/img/' + w + '"' not in blk or 'src="assets/img/' + t + '"' not in blk:
+            err('频道主视觉', bn + ' hero 未引用本频道专属 16:9 / 9:16 主视觉')
+        for stale29 in ('bg_tech.webp', 'sub_greenhouse_wide.webp', 'sub_greenhouse_tall.webp',
+                        'sub_expert_wide.webp', 'sub_expert_tall.webp',
+                        'sub_forum_wide.webp', 'sub_forum_tall.webp'):
+            if stale29 in blk:
+                err('频道主视觉', bn + ' hero 仍混用通用底纹 / 题材切图：' + stale29)
+    if len(ch_pages['forum']) != 11 or len(ch_pages['expert']) != 9:
+        err('频道主视觉', '频道页构成应为 11 论坛 + 9 专家，实际 %d / %d'
+            % (len(ch_pages['forum']), len(ch_pages['expert'])))
+    stats['hero_bg_files'] = 4
+    stats['hero_bg_pages'] = len(ch_pages['forum']) + len(ch_pages['expert'])
+
+    # 30 全站逻辑关联闭环（用户视角：每页都要有可点的业务联系跳转，不是死页）
+    flow_block = re.search(r'var FLOW_GROUPS = \[([\s\S]*?)\n  \];', app_src)
+    side_block = re.search(r'var ADM_SIDE = \[([\s\S]*?)\n  \];', app_src)
+    if not flow_block or not side_block:
+        err('全站闭环', 'FLOW_GROUPS / ADM_SIDE 公共关系表缺失')
+    else:
+        flow_refs = re.findall(r"'(?:admin/)?([a-z0-9-]+\.html)'", flow_block.group(1))
+        side_refs = re.findall(r"'(admin/[a-z0-9-]+\.html)'", side_block.group(1))
+        miss30 = [f for f in flow_refs if not os.path.isfile(os.path.join(ROOT, f))]
+        miss30 += [f for f in side_refs if not os.path.isfile(os.path.join(ROOT, f))]
+        if miss30:
+            err('全站闭环', '流程图引用了不存在的页面：' + ', '.join(sorted(set(miss30))[:5]))
+        stats['flow_refs'] = len(set(flow_refs))
+        stats['side_refs'] = len(set(side_refs))
+        # 前台非例外页必须全部归属某个流程组；后台独立管理页必须全部进侧栏
+        skip30 = {'index.html', 'login.html', 'forgot.html', '404.html'}
+        all30 = [rel(f).replace(os.sep, '/') for f in walk(('.html',))]
+        front30 = [os.path.basename(f) for f in all30 if not f.startswith('admin/')]
+        uncovered = [f for f in front30 if f not in skip30 and f not in set(flow_refs)]
+        if uncovered:
+            err('全站闭环', '前台仍有 %d 页未接入任何业务流程：%s' % (len(uncovered), uncovered[:5]))
+        adm30 = [os.path.basename(f) for f in all30 if f.startswith('admin/')]
+        adm_side_names = {os.path.basename(x) for x in side_refs}
+        adm_uncovered = [f for f in adm30 if f not in ('login.html',) and f not in adm_side_names]
+        if adm_uncovered:
+            err('全站闭环', '后台仍有 %d 页未进统一侧栏：%s' % (len(adm_uncovered), adm_uncovered[:5]))
+        stats['front_uncovered'] = len(uncovered)
+        stats['adm_uncovered'] = len(adm_uncovered)
+    for fn30 in ('function flowNav', 'function admSide', 'function pageSitemap',
+                 "case 'flow-expand'", "'sitemap': pageSitemap"):
+        if fn30 not in app_src:
+            err('全站闭环', 'app.js 缺闭环实现：' + fn30)
+    if 'function put(html) {' not in app_src or 'flowNav() + html' not in app_src \
+       or 'admSide()' not in app_src:
+        err('全站闭环', 'put() 未统一注入前台流程导航 / 后台侧栏')
+    if '.sf-flow-steps.is-collapsed' not in css_src or '.sf-flow-step.is-on' not in css_src:
+        err('全站闭环', 'site.css 缺流程导航窗口模式与当前步高亮样式')
+    if '.adm-side-grp' not in read(os.path.join(ROOT, 'assets', 'css', 'admin.css')):
+        err('全站闭环', 'admin.css 缺统一侧栏分组样式')
+    if '后台页面不进公开索引' not in app_src:
+        err('全站闭环', '站点地图未声明后台不进公开索引')
+
 def report():
     lines = ['# 闪马田园 SUMFARM · 全量回归自查记录', '',
              '资源版本 `v%s` · 复跑：`cd /data/workspace/sumfarm-v1.7.0 && python3 verify.py`' % EXPECTED_V, '',
@@ -753,7 +842,9 @@ def report():
     for k in ['files', 'html', 'css', 'js', 'webp', 'webp_mb', 'md', 'i18n_keys', 'button_acts',
               'art_slices', 'art_pages', 'hero_action_pages', 'hero_action_buttons',
               'role_buttons', 'back_with_target', 'hero_base', 'hero_vs_body_lum',
-              'hero_title_contrast', 'hero_sub_contrast', 'hero_label_contrast', 'domain']:
+              'hero_title_contrast', 'hero_sub_contrast', 'hero_label_contrast', 'domain',
+              'hero_bg_files', 'hero_bg_pages', 'flow_refs', 'side_refs',
+              'front_uncovered', 'adm_uncovered']:
         if k in stats: lines.append('- %s：**%s**' % (k, stats[k]))
     lines += ['', '## 校验脚本自校准', '',
               '5 个已知正确样本（HTML 平衡 / CSS 平衡 / JS 平衡 / 资源命中 / 链接命中）全部 PASS 后才跑全量。', '',
@@ -791,6 +882,11 @@ def report():
               '- 统一链接构造 `auth.js` 的**说明注释**里写了示例文件名，被 JS 字面量死链扫描当成真引用报 2 条死链、'
               '并被后台错层扫描命中 1 次：属扫描范围误报。已给 JS 字面量扫描加注释剥离（块注释 + 行注释），'
               '并把注释里的示例写法改成不含文件名的措辞；复跑错误归零。注释文字不是链接，未改动任何功能。',
+              '- 本轮包内抽查以 `0（第 30 组静态断言）` 判闭环走查报告，实际文案为 `**0**（第 30 组静态断言）`'
+              '（数字带加粗标记）：属断言措辞误报，报告内容完整；已按 `（第 30 组静态断言）` 实际文案重跑。',
+              '- 本轮包内抽查以「交付包名与顶层目录名保持」判 DEPLOY.md，文档实际写「顶层目录名与交付包名保持」'
+              '（语序相反、含义一致，且 `?v=1.7.2` / `--sf-v` / 0 个 1.7.1 引用均已实测命中）：'
+              '属断言措辞误报，已按 `交付包名保持` 实际文案重跑，部署口径未改。',
               '- 包内抽查把「接单页存在空的 `.sf-hero-actions` 容器」当成「首屏仍有按钮」报 1 条：'
               '该容器在按钮清单为空时不渲染任何 `<a>`，页面上看不到多余内容，属断言口径误报；'
               '已改为按容器内链接数判定（0 个即合规），未改动页面功能。',
@@ -843,12 +939,20 @@ def report():
               '双包 / 合并包产物清零、DEPLOY.md 单点章节与 Nginx 白名单、后台相对链接闭环、前台 0 后台入口）；'
               '本轮再新增第 25 组：hero 与整体背景的可见差距（明确田绿实底 / 加深边框 / 落影、眉标标签实底与描边、'
               '标签文字对比度实测、近白罩清零、body 罩 .88 不动）；'
-              '本轮再新增第 26 组：图片压缩为 WebP（0 个 PNG 文件 / 0 个 PNG 后缀引用 / 73 张 WebP 有效性 / '
+              '本轮再新增第 26 组：图片压缩为 WebP（0 个 PNG 文件 / 0 个 PNG 后缀引用 / 77 张 WebP 有效性 / '
               '图片目录 ≤ 6 MB / manifest format=webp / 切图脚本复跑仍产 WebP / MIME 与版本号齐备）；'
               '第 27 组：域名更新到 `iarm.fun`（全站 0 个旧域名残留、robots Sitemap / Nginx server_name / '
               'API base / 基线域名四处真实生效、品牌中英名与备案号保持不变、生成器与另一套生成线同步）；'
               '本轮再新增第 28 组：hero 背景颜色太浅的定量校验（`--sf-hero-base` 存在且被容器引用、'
-              '与 body 米白明度差 ≥ .08、标题 ≥ 7:1、说明 ≥ 4.5:1、近白罩清零、18 组对比度表按真实底色复算）。', '',
+              '与 body 米白明度差 ≥ .08、标题 ≥ 7:1、说明 ≥ 4.5:1、近白罩清零、18 组对比度表按真实底色复算）；'
+              '第 29 组：论坛 / 专家频道 hero 专属主视觉（4 张 WebP 有效性 / ≤120KB / '
+              '11 论坛页 + 9 专家页全部按频道引用 16:9 与 9:16、通用底纹与题材切图清零、'
+              'manifest.hero_images 登记 2 频道 20 页、make_hero_bg.py 可复跑、50 张切图清单未被破坏、'
+              '81 页题材切图 + 20 页频道专属 = 101 前台页全覆盖）；'
+              '第 30 组：全站逻辑关联闭环（FLOW_GROUPS / ADM_SIDE 引用的每个页面真实存在、'
+              '前台非例外页 100% 归属某个业务流程、后台独立管理页 100% 进统一侧栏、'
+              'flowNav / admSide / pageSitemap / flow-expand 与 put() 统一注入齐备、'
+              '窗口模式与当前步高亮 CSS 齐备、站点地图声明后台不进公开索引）。', '',
               '## 真缺陷修复登记（发现即修，复跑确认）', '',
               '- 【上一轮历史记录】用户反馈「hero 标签透明度过高、和整体背景没有差距、看不清」：曾把遮罩回调到 '
               '.93/.86/.70、hero 底色改 `--sf-paper` 更亮、加深边框与落影、眉标做浅蓝实底胶囊。该轮缓解了标签可辨性，'
@@ -926,7 +1030,7 @@ def report():
               '- `DEPLOY.md` 补 Nginx `image/webp` MIME、WebP 不再二次 gzip 的说明、兼容性口径与压缩复跑命令；'
               '`slice_assets.py` 改为直接产出 WebP，复跑不会重新生成 PNG；`ART_MATRIX.md` 规格矩阵同步。',
               '- 静态新增第 26 组断言；运行时 7 批全量重跑，破图 0（含懒加载完成后）。', '',
-              '- 本轮收尾：7 批 236 次双视口取样全量重跑、交互 **98 项全通过**、静态回归错误 0，'
+              '- 本轮收尾：7 批 236 次双视口取样全量重跑、交互 **115 项全通过**、静态回归错误 0，'
               '单点部署包 `sumfarm-v1.7.0.zip` 已打包并完成包内抽查。', '',
               '## 本轮改进登记（账号合并 / 首屏按钮 / 田园挂靠工单）', '',
               '- 登录与注册合并为 `login.html` 单页双 Tab：点 Tab 只换表单、不跳页、不新增历史，'
@@ -967,18 +1071,54 @@ def report():
               '整体 body 的 `--sf-veil:rgba(250,248,242,.88)` 与背景淡度保持不变。',
               '- 18 组 WCAG 对比度表按 hero 真实底色复算（标题 10.07:1 / 说明 5.30:1 / 眉标 6.40:1），'
               '新增第 28 组定量断言：明度差 ≥ .08、标题 ≥ 7:1、说明 ≥ 4.5:1、近白罩清零、变量被容器真实引用。',
-              '- 全站静态资源版本 `?v=1.7.0` → **`?v=1.7.1`**（118 HTML + CSS/JS 共 965 处），'
+              '- 【上一轮历史记录】全站静态资源版本 `?v=1.7.0` → **`?v=1.7.1`**（118 HTML + CSS/JS 共 965 处），'
               '`--sf-v` 同步；避免资源长缓存仍取旧 CSS 导致 hero 改了不生效。交付包名与顶层目录名保持 '
               '`sumfarm-v1.7.0` 不变，仍是「一个包、一次发布」。',
               '- 图片专项压缩复核：包内 **73 张 WebP / 0 PNG / 0 JPG**，图片目录 **2.56 MB**（原 36.66 MB，省 93.0%），'
               'manifest `format=webp` 且 50 张切图齐备；本轮改的是 CSS 与版本号，压缩结果未回退，整包仍约 2.92 MB。', '',
+              '## 本轮改进登记（论坛 / 专家频道 hero 专属背景图）', '',
+              '- 用户反馈「论坛和专家 hero 没有设计图」：核查属实——两频道 20 页此前共用 '
+              '`bg_tech.webp` 通用科技底纹与散列切图（育苗棚 / 专家 / 论坛题材小图），'
+              '没有属于本频道的 hero 画面。本轮以同批田园成图 `src_forum.webp` / `src_expert.webp` '
+              '为画面主体，重新设计成两张专属背景：论坛为田头交流角（木公告栏 / 长凳 / 圆润对话气泡），'
+              '专家为试验样株区（记录本 / 辣椒样株 / 数据点连线）；统一 60% 真实田园 + 30% 科技细网格 '
+              '+ 10% 可爱元素，左侧 45% 同图柔化 + 浅田绿留白（smoothstep 平滑过渡、整图轻高斯柔化，'
+              '消除主体硬边与竖直分界），色调与 `--sf-hero-base #D2E4C8` 一致。',
+              '- 每张出 16:9 1280×720 与 9:16 720×1280 两版，共 4 张 WebP（q=72 / method=6，合计约 121KB）；'
+              '`forum*.html` 共 11 页 → `forum_hero`，`expert*.html` + `experts.html` 共 9 页 → `expert_hero`，'
+              '归属规则只写一份在 `ART_MATRIX.md`；列表缩略图仍由 `art()` 按题材池解析，不与 hero 混用。',
+              '- 新增可复跑脚本 `make_hero_bg.py`（排在页面构建与 `slice_assets.py` 之后），'
+              '`manifest.json` 增加 `hero_images` 节且 `slice_assets.py` 复跑会保留；静态新增第 29 组断言，'
+              '并把图片压缩口径由 73 张更新为 77 张、题材覆盖口径改为 81 + 20 全覆盖。'
+              '新增资源无旧缓存，`?v=1.7.1` 与交付包名保持不变，仍是「一个包、一次发布」。', '',
+              '## 本轮改进登记（全站逻辑关联闭环走查）', '',
+              '- 走查口径：真实 HTTP + Chromium 逐页取渲染后 DOM（含 JS 动态生成的导航 / 页脚 / 浮层 / 侧栏），'
+              '把 118 页的内容区链接建成一张有向图，再按「使用者视角」检查每页是否有可点的业务联系跳转。'
+              '结论：**渲染后死链 0、内容区既无链接又无有效按钮的死页 0**，但查出 **49 个流程子页入度为 0** —— '
+              '它们只靠顶栏或地址能进，业务流里点不到；后台 12 个独立管理页更是连侧栏入口都没有。属逻辑闭环真缺陷。',
+              '- 整改：在 `app.js` 只写一份 `FLOW_GROUPS`（9 个频道按真实办理顺序列出全部前台子页）与 '
+              '`ADM_SIDE`（后台 22 个管控入口，含 12 个独立管理页 + 3 级审核），由统一的 `put()` 给每个前台页'
+              '前置「频道业务流程导航条」（当前步高亮、其余可点、末尾回频道首页），给每个后台页包一层统一侧栏；'
+              '`pageAdminIndex` 去掉自绘侧栏避免嵌套。站点地图新增 `pageSitemap()` 按频道列出全站公开页，'
+              '后台按「不得对外」约定不进公开索引。',
+              '- 导航条默认只显示当前步前后各 2 个（共 5 个可点入口）+「全部 N 步」一键展开，'
+              '避免把页面撑过 3 屏；展开 / 收起有可见 toast 反馈，事件走已有委托、动态重建天然重绑。'
+              '手机端后台侧栏由原先 `display:none` 改为横向可滚动模块条，管理页在手机上也能闭环。',
+              '- JS / CSS 变更后按版本号机制把全站 `?v=1.7.1` 刷为 **`?v=1.7.2`**（124 文件 / 975 处），'
+              '交付包名与顶层目录名保持 `sumfarm-v1.7.0` 不变，仍是「一个包、一次发布」。'
+              '静态新增第 30 组闭环断言；运行时新增闭环交互断言并全量重跑。', '',
               '## 本轮未覆盖（如实登记，不包装为已完成）', '',
               '- 118 页逐页独立设计图仍未完成：当前按题材池按 pagename 稳定散列，同题材页面共用一张主视觉。',
               '- 每条模拟记录完全独立拍摄的照片仍未完成：当前按记录 id 在 50 张切图中稳定取图，'
               '不同 id 会取到不同题材或规格，但不是逐条专属拍摄。',
               '- 全部子类图片逐张单独生成仍未完成；后台 16 页按基线保持纯素，不注入题材装饰图。',
               '- 按用户说明，线上域名为 `iarm.fun`，站点当前在该域名下运行；按权限边界不主动查线上，本轮未执行部署 / 域名切换，交付包发布由运维完成，线上表现不作验收依据。域名变更涉及的 TLS 证书、静态资源缓存刷新与备案接入信息变更（备案号沿用 `蜀ICP备18013136号`）由运维按实际办理。',
-              '- 后台纯素页面按基线豁免装饰图检查，已登记为提示而非缺陷。', '']
+              '- 后台纯素页面按基线豁免装饰图检查，已登记为提示而非缺陷。',
+              '- 页面长度（本轮双视口实测）：首页桌面 **8.1 屏 / 手机 13.8 屏**，部分流程子页桌面 3.1~3.8 屏、'
+              '手机 3.3~4.8 屏，仍超过「单页不超过 3 屏、超过做左右翻页」的口径。首页为历史遗留的长首页'
+              '（四子栏目 + 按身份进入 + 推荐档案），本轮只补闭环导航、未重排首页分区；'
+              '新增的流程导航条已做「默认 5 个入口 + 一键展开」窗口折叠，实测站点地图由 3.2 屏降到 2.7 屏，'
+              '不是本轮新增超屏的主因。此项如实登记为遗留，未包装成已完成。', '']
     with open(os.path.join(ROOT, 'CHECK.md'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
 

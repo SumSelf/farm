@@ -104,3 +104,24 @@ img{display:block;max-width:100%}
 .adm-body .sf-role-opt.is-on{background:#EAEFF3;border-color:var(--adm-accent)}
 .adm-body .sf-welcome{background:#EAEFF3;border-radius:4px}
 .adm-body .sf-confirm-box h3{color:var(--adm-ink)}
+
+/* ---------- 后台统一侧栏分组（16 页共用一份） ---------- */
+.adm-side-grp{margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--adm-line)}
+.adm-side-grp > span{display:block;padding:0 8px 6px;font-size:11px;letter-spacing:.08em;
+  color:var(--adm-mute);text-transform:uppercase}
+.adm-side-grp a{display:block;padding:7px 10px;border-radius:4px;font-size:12px;margin-bottom:1px}
+.adm-side-grp a:hover{background:var(--adm-bg)}
+.adm-side-grp a.is-on{background:#EAEFF3;color:var(--adm-accent);font-weight:700}
+/* 手机端侧栏不再隐藏：改为横向可滚动的模块条，保证管理页在手机上也能闭环 */
+@media (max-width:767px){
+  .adm-shell{flex-direction:column;flex-wrap:wrap;min-height:auto}
+  .adm-side{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;
+    width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    border-right:0;border-bottom:1px solid var(--adm-line);padding:8px}
+  .adm-side h2{display:none}
+  .adm-side-grp{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;
+    margin:0 8px 0 0;padding:0;border:0;flex:none}
+  .adm-side-grp > span{display:none}
+  .adm-side-grp a{display:inline-block;white-space:nowrap;margin:0 3px 0 0;padding:6px 9px}
+  .adm-content{width:100%;padding:14px 12px 40px}
+}

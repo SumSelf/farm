@@ -102,3 +102,26 @@ runtime_check.py 1..7 → 真实 HTTP + Chromium 双视口逐页验收
 ## 图片格式与体积（本轮压缩）
 
 全站素材统一为 **WebP**（网站专用格式），不保留 PNG。`slice_assets.py` 直接输出 WebP：源图 q=82、≥1000px q=72、500–999px q=76、<500px q=80，method=4（大图 6）。73 张图共 **2.56 MB**，较压缩前的 36.66 MB 省 **93.0%**；尺寸与规格矩阵不变，manifest 增加 `format: "webp"` 字段。部署侧 MIME 与缓存口径见 `DEPLOY.md` 第 7 节。
+
+
+## 频道级 hero 专属主视觉（本轮新增，2 题材 × 2 规格）
+
+用户反馈「论坛和专家 hero 没有设计图」：两频道此前共用 `bg_tech.webp` 通用科技底纹与
+散列切图 `sub_greenhouse_tall.webp`，没有属于自己频道的画面。本轮以同批田园成图为画面主体，
+按 60% 真实田园 + 30% 科技细网格 / 数据点 + 10% 圆润气泡 / 笑脸重新设计成两张专属背景，
+左侧 45% 用同图柔化 + 浅田绿留白（smoothstep 平滑过渡，整图轻微高斯柔化消除硬边），
+右侧保持清晰主体；色调与 `--sf-hero-base #D2E4C8` 统一。
+
+| 用途 | 文件（全 ASCII） | 比例 | 声明尺寸 | 归属页面 | 容器比例 |
+|---|---|---|---|---|---|
+| 论坛 PC hero | `assets/img/forum_hero.webp` | 16:9 | 1280×720 | `forum*.html` 共 11 页 | PC hero 1392×340，object-fit:cover |
+| 论坛移动 hero | `assets/img/forum_hero_m.webp` | 9:16 | 720×1280 | 同上 | 移动 hero 362×311，主体完整不裁 |
+| 专家 PC hero | `assets/img/expert_hero.webp` | 16:9 | 1280×720 | `expert*.html` + `experts.html` 共 9 页 | 同上 |
+| 专家移动 hero | `assets/img/expert_hero_m.webp` | 9:16 | 720×1280 | 同上 | 同上 |
+
+- 归属规则只写一份：`forum` 前缀 → `forum_hero`，`expert` 前缀 → `expert_hero`；
+  列表 / 卡片缩略图仍由 `mock-data.js` 的 `art()` 按题材池解析，不与 hero 混用。
+- 生成脚本 `make_hero_bg.py` 排在页面构建与 `slice_assets.py` 之后，可幂等复跑；
+  `manifest.json` 的 `hero_images` 节由两处脚本共同维护，复跑不丢。
+- 4 张均为 WebP（q=72 / method=6），合计约 121 KB；新增资源无旧缓存，故全站 `?v=1.7.2`
+  保持不变，交付包名 `sumfarm-v1.7.0` 不变，仍是「一个包、一次发布」。

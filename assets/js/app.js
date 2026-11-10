@@ -27,7 +27,8 @@
       ['farm-gallery.html', '田园图册', 'Gallery'], ['farm-comments.html', '田园评论', 'Reviews'],
       ['farm-follow.html', '关注动态', 'Following'], ['farm-contract.html', '承包合同', 'Contract'],
       ['farm-payment.html', '费用支付', 'Payment'], ['farm-edit.html', '上传档案', 'Submit plot'],
-      ['farm-manage.html', '田园管理', 'Manage plot'], ['farm-success.html', '发布成功', 'Published']] },
+      ['farm-manage.html', '田园管理', 'Manage plot'], ['farm-success.html', '发布成功', 'Published'],
+      ['submission-status.html', '审核进度', 'Approval progress']] },
     { home: 'forum.html', zh: '论坛版块与发帖流程', en: 'Forum boards & posting workflow', steps: [
       ['forum.html', '论坛首页', 'Forum home'], ['forum-hot.html', '热门田园', 'Popular plots'],
       ['forum-exp.html', '种植经验', 'Growing notes'], ['forum-act.html', '活动复盘', 'Event recap'],
@@ -40,7 +41,8 @@
       ['expert-detail.html', '专家主页', 'Profile'], ['expert-points.html', '积分口径', 'Points rules'],
       ['expert-column.html', '技术专栏', 'Columns'], ['expert-qa.html', '技术问答', 'Q&A'],
       ['expert-apply.html', '认证申请', 'Apply'], ['expert-history.html', '管理历史', 'History'],
-      ['expert-trials.html', '种植实践', 'Field trials']] },
+      ['expert-trials.html', '种植实践', 'Field trials'],
+      ['expert-conclusion.html', '技术结论', 'Technical conclusion']] },
     { home: 'dispatch.html', zh: '接单与农事工单流程', en: 'Dispatch & work-order workflow', steps: [
       ['dispatch.html', '接单大厅', 'Dispatch home'], ['dispatch-nearby.html', '定位附近单', 'Nearby jobs'],
       ['dispatch-linked.html', '关联田园单', 'Linked plots'], ['dispatch-taken.html', '已接工单', 'Accepted'],
@@ -71,14 +73,61 @@
       ['account-bind.html', '绑定管理', 'Linked accounts'], ['account-address.html', '收货地址', 'Addresses'],
       ['account-notice.html', '消息通知', 'Notifications'], ['account-favorites.html', '我的收藏', 'Favorites'],
       ['account-following.html', '我的关注', 'Following'], ['account-invoice.html', '发票管理', 'Invoices'],
-      ['account-help.html', '帮助工单', 'Help tickets'], ['account-close.html', '注销申请', 'Close account']] },
+      ['account-help.html', '帮助工单', 'Help tickets'], ['account-close.html', '注销申请', 'Close account'],
+      ['order-detail.html', '订单详情', 'Order detail'], ['merchant-orders.html', '收到的订单', 'Incoming orders']] },
+    { home: 'price.html', zh: '租金与价格公示流程', en: 'Rent & published price workflow', steps: [
+      ['price.html', '价格公示总览', 'Price book'], ['price-lease.html', '田块租金标准', 'Plot rent standard'],
+      ['price-venue.html', '场地与活动价目', 'Venue & event rates'], ['price-job.html', '工单与专家服务价', 'Field-work & expert rates'],
+      ['price-produce.html', '农产品与配送价目', 'Produce & delivery rates'], ['price-calc.html', '租金试算', 'Rent calculator'],
+      ['price-rules.html', '公示规则与口径', 'Rules & basis'], ['price-changes.html', '调价公示历史', 'Rate change log']] },
+    { home: 'api-catalog.html', zh: '接口目录与数据仿真', en: 'API catalogue & data simulation', steps: [
+      ['api-catalog.html', '统一接口目录', 'API catalogue'],
+      ['api-lab.html', '数据仿真', 'Data simulation'],
+      ['help.html', '对接帮助', 'Integration help']] },
     { home: 'sitemap.html', zh: '站点服务与公共页面', en: 'Site services & public pages', steps: [
       ['sitemap.html', '站点地图', 'Sitemap'], ['help.html', '帮助中心', 'Help centre'],
       ['search.html', '全站搜索', 'Search'], ['videos.html', '热点视频', 'Videos'],
       ['promo.html', '田园宣发', 'Campaigns'], ['about.html', '关于我们', 'About'],
       ['contact.html', '联系我们', 'Contact'], ['terms.html', '服务协议', 'Terms'],
       ['privacy.html', '隐私政策', 'Privacy'], ['disclaimer.html', '免责声明', 'Disclaimer'],
-      ['maintenance.html', '维护公告', 'Maintenance']] }
+      ['maintenance.html', '维护公告', 'Maintenance']] },
+    { home: 'workorders.html', zh: "工单售后与变更流程", en: "Job aftercare & changes", steps: [
+      ['workorders.html', "工单总览", "All jobs"],
+      ['workorder-cancel.html', "取消工单", "Cancel a job"],
+      ['workorder-refund.html', "申请退款", "Request a refund"],
+      ['workorder-refund-status.html', "退款进度", "Refund progress"],
+      ['workorder-edit.html', "修改工单", "Amend a job"],
+      ['workorder-reopen.html', "重新发起工单", "Reissue a job"],
+      ['workorder-changes.html', "工单变更记录", "Job change log"]] },
+    { home: 'farm-manage.html', zh: "租赁、合同、对账与活动运营", en: "Lease, contracts, reconciliation & events", steps: [
+      ['farm-manage.html', "田园管理", "Plot management"],
+      ['lease-edit.html', "修改租赁信息", "Edit lease terms"],
+      ['contract-manage.html', "合同管理", "Contract management"],
+      ['contract-edit.html', "编辑合同内容", "Edit contract clauses"],
+      ['contract-versions.html', "合同版本对比", "Contract version diff"],
+      ['merchant-reconcile.html', "对账中心", "Reconciliation centre"],
+      ['merchant-bills.html', "账单明细", "Bill lines"],
+      ['merchant-reconcile-detail.html', "对账单详情", "Statement detail"],
+      ['activity-manage.html', "活动管理", "Event management"],
+      ['activity-publish.html', "发布活动", "Publish an event"],
+      ['activity-edit.html', "更新活动", "Update an event"],
+      ['activity-versions.html', "活动内容版本", "Event content versions"],
+      ['activity-registrations.html', "报名名单", "Event sign-ups"]] },
+    { home: 'dispatch.html', zh: "农户资金与提现流程", en: "Grower funds & withdrawals", steps: [
+      ['dispatch.html', "接单大厅", "Dispatch hall"],
+      ['farmer-wallet.html', "资金总览", "My wallet"],
+      ['farmer-funds.html', "资金流水", "Fund ledger"],
+      ['farmer-settlement.html', "结算单", "Settlement statements"],
+      ['farmer-withdraw.html', "申请提现", "Withdraw funds"],
+      ['farmer-withdraw-status.html', "提现进度", "Withdrawal progress"]] },
+    { home: 'experts.html', zh: "专家统计、调控与种植记录", en: "Expert analytics, control & field records", steps: [
+      ['experts.html', "专家频道", "Expert channel"],
+      ['expert-stats.html', "多维统计", "Multi-dimensional analytics"],
+      ['expert-compare.html', "数据对比", "Compare data"],
+      ['expert-regulation.html', "调控建议", "Control advice"],
+      ['expert-regulation-log.html', "调控记录", "Control log"],
+      ['expert-planting-query.html', "种植记录查询", "Field record query"],
+      ['expert-planting-detail.html', "种植记录详情", "Field record detail"]] }
   ];
   var FLOW_SKIP = { 'index.html': 1, 'login.html': 1, 'forgot.html': 1, '404.html': 1 };
   function flowGroup(file) {
@@ -122,6 +171,83 @@
       esc(back) + '</a></div></section>';
   }
 
+  /* ---------- 五角色常规业务入口（公共关系只写这一份） ----------
+     取消/退款/改单、合同/对账/活动、资金/提现、统计/调控/种植记录这些
+     用户天天要用的动作，必须从他本来就在的那一页直接点得到，不能靠背 URL。
+     按当前页给出该角色该做的下一步；显式透传当前记录 id / job / order，
+     不依赖 referrer 或会话存储。容器类名 .sf-shortcut-* 与流程条隔离。 */
+  var ROLE_SHORTCUTS = {
+    'workorder-detail.html': { zh: '这张工单还能办什么', en: 'What else you can do with this job', items: [
+      ['workorder-cancel.html', '取消工单', 'Cancel job'], ['workorder-refund.html', '申请退款', 'Request refund'],
+      ['workorder-edit.html', '修改工单', 'Amend job'], ['workorder-reopen.html', '重新发起', 'Reissue job'],
+      ['workorder-changes.html', '变更记录', 'Change log']] },
+    'workorders.html': { zh: '工单售后与变更', en: 'Job aftercare & changes', items: [
+      ['workorder-cancel.html', '取消工单', 'Cancel job'], ['workorder-refund.html', '申请退款', 'Request refund'],
+      ['workorder-edit.html', '修改工单', 'Amend job'], ['workorder-reopen.html', '重新发起', 'Reissue job'],
+      ['workorder-changes.html', '变更记录', 'Change log']] },
+    'account.html': { zh: '我发出去的单：售后与变更', en: 'My jobs: aftercare & changes', items: [
+      ['workorder-cancel.html', '取消工单', 'Cancel job'], ['workorder-refund.html', '申请退款', 'Request refund'],
+      ['workorder-refund-status.html', '退款进度', 'Refund progress'], ['workorder-edit.html', '修改工单', 'Amend job'],
+      ['workorder-reopen.html', '重新发起', 'Reissue job'], ['workorder-changes.html', '变更记录', 'Change log']] },
+    'orders.html': { zh: '订单相关的退款', en: 'Refunds for these orders', items: [
+      ['workorder-refund.html', '申请退款', 'Request refund'], ['workorder-refund-status.html', '退款进度', 'Refund progress'],
+      ['workorder-changes.html', '变更记录', 'Change log']] },
+    'order-detail.html': { zh: '这张订单的退款', en: 'Refund for this order', items: [
+      ['workorder-refund.html', '申请退款', 'Request refund'], ['workorder-refund-status.html', '退款进度', 'Refund progress'],
+      ['workorder-changes.html', '变更记录', 'Change log']] },
+    'farm-edit.html': { zh: '田园商家的租赁与合同', en: 'Merchant lease & contracts', items: [
+      ['lease-edit.html', '修改租赁信息', 'Edit lease terms'], ['contract-manage.html', '合同管理', 'Contracts'],
+      ['activity-publish.html', '发布活动', 'Publish an event']] },
+    'farm-manage.html': { zh: '田园商家工作台 · 租赁 / 合同 / 对账', en: 'Merchant desk · lease, contracts & bills', items: [
+      ['lease-edit.html', '修改租赁信息', 'Edit lease terms'], ['contract-manage.html', '合同管理', 'Contract management'],
+      ['contract-edit.html', '编辑合同内容', 'Edit clauses'], ['contract-versions.html', '合同版本对比', 'Version diff'],
+      ['merchant-reconcile.html', '对账中心', 'Reconciliation'], ['merchant-bills.html', '账单明细', 'Bill lines'],
+      ['activity-manage.html', '活动管理', 'Event management']] },
+    'merchant-orders.html': { zh: '订单 / 对账 / 活动运营', en: 'Orders, bills & event operations', items: [
+      ['merchant-reconcile.html', '对账中心', 'Reconciliation'], ['merchant-bills.html', '账单明细', 'Bill lines'],
+      ['merchant-reconcile-detail.html', '对账单详情', 'Statement detail'], ['activity-publish.html', '发布活动', 'Publish an event'],
+      ['activity-edit.html', '更新活动', 'Update an event'], ['activity-versions.html', '活动内容版本', 'Content versions']] },
+    'activity.html': { zh: '商家活动运营', en: 'Merchant event operations', items: [
+      ['activity-publish.html', '发布活动', 'Publish an event'], ['activity-manage.html', '活动管理', 'Event management'],
+      ['activity-edit.html', '更新活动', 'Update an event'], ['activity-versions.html', '活动内容版本', 'Content versions'],
+      ['activity-registrations.html', '报名名单', 'Sign-up list']] },
+    'activity-detail.html': { zh: '这场活动的运营动作', en: 'Operations for this event', items: [
+      ['activity-edit.html', '更新活动', 'Update an event'], ['activity-versions.html', '活动内容版本', 'Content versions'],
+      ['activity-registrations.html', '报名名单', 'Sign-up list']] },
+    'dispatch.html': { zh: '农户的钱：余额 / 流水 / 提现', en: 'Grower money: balance, ledger & withdrawals', items: [
+      ['farmer-wallet.html', '资金总览', 'My wallet'], ['farmer-funds.html', '资金流水', 'Fund ledger'],
+      ['farmer-settlement.html', '结算单', 'Settlements'], ['farmer-withdraw.html', '申请提现', 'Withdraw funds'],
+      ['farmer-withdraw-status.html', '提现进度', 'Withdrawal progress']] },
+    'dispatch-taken.html': { zh: '做完活去结算、看钱', en: 'After work: settlement & payout', items: [
+      ['farmer-wallet.html', '资金总览', 'My wallet'], ['farmer-settlement.html', '结算单', 'Settlements'],
+      ['farmer-withdraw.html', '申请提现', 'Withdraw funds']] },
+    'experts.html': { zh: '专家的数据工作台', en: 'Expert analytics workbench', items: [
+      ['expert-stats.html', '多维统计', 'Multi-dimensional analytics'], ['expert-compare.html', '数据对比', 'Compare data'],
+      ['expert-regulation.html', '调控建议', 'Control advice'], ['expert-regulation-log.html', '调控记录', 'Control log'],
+      ['expert-planting-query.html', '种植记录查询', 'Field record query'], ['expert-planting-detail.html', '记录详情', 'Record detail']] },
+    'expert-detail.html': { zh: '这位专家的统计与记录', en: 'This expert’s analytics & records', items: [
+      ['expert-stats.html', '多维统计', 'Analytics'], ['expert-compare.html', '数据对比', 'Compare data'],
+      ['expert-regulation.html', '调控建议', 'Control advice'], ['expert-planting-query.html', '种植记录查询', 'Field records']] },
+    'expert-trials.html': { zh: '把试验读数用起来', en: 'Put trial readings to work', items: [
+      ['expert-stats.html', '多维统计', 'Analytics'], ['expert-compare.html', '数据对比', 'Compare data'],
+      ['expert-planting-query.html', '种植记录查询', 'Field records']] }
+  };
+  function roleShortcuts() {
+    var f = hereFile(), c = ROLE_SHORTCUTS[f];
+    if (!c || document.body.classList.contains('adm-body')) return '';
+    var ex = bizParams(); ex.from = f;
+    var links = c.items.map(function (x) {
+      var lb = lang === 'en' ? x[2] : x[1];
+      return '<a class="sf-shortcut" href="' + esc(link(x[0], ex)) + '" title="' + esc(lb) + '">' + esc(lb) + '</a>';
+    }).join('');
+    return '<section class="sf-section sf-shortcuts" aria-label="' + esc(lang === 'en' ? c.en : c.zh) + '">' +
+      '<div class="sf-section-head"><h2>' + esc(lang === 'en' ? c.en : c.zh) + '</h2>' +
+      '<span class="sf-sub">' + esc(lang === 'en'
+        ? 'One tap goes to the exact page, carrying this record. Back returns to where you came from.'
+        : '点一下就到对应办理页，并带上当前记录；返回按来源页逐层回退。') + '</span></div>' +
+      '<div class="sf-shortcut-row">' + links + '</div></section>';
+  }
+
   /* ---------- 后台统一侧栏（16 页共用一份，独立管理页全部纳入） ---------- */
   var ADM_SIDE = [
     { zh: '总览与管控视图', en: 'Console views', items: [
@@ -144,7 +270,12 @@
       ['admin/roles.html', null, '权限角色', 'Roles'],
       ['admin/dict.html', null, '数据字典', 'Dictionary'],
       ['admin/export.html', null, '导出任务', 'Exports'],
-      ['admin/logs.html', null, '审计日志', 'Audit log']] },
+      ['admin/logs.html', null, '审计日志', 'Audit log'],
+      ['admin/prices.html', null, '价格公示管理', 'Published prices'],
+      ['admin/refunds.html', null, "退款审核", "Refund review"],
+      ['admin/withdrawals.html', null, "提现复核", "Withdrawal review"],
+      ['admin/contracts.html', null, "合同版本台账", "Contract version ledger"],
+      ['admin/regulations.html', null, "调控记录台账", "Control advice ledger"]] },
     { zh: '多级审核', en: 'Approval chain', items: [
       ['admin/audit.html', null, '审核工作台', 'Approval desk'],
       ['admin/audit-review.html', null, '复审', 'Second review'],
@@ -208,11 +339,11 @@
     var isLogin = isAdm && hereFile() === 'login.html';
     if (isAdm && !isLogin) {
       h.innerHTML = '<div class="adm-shell">' + admSide() +
-        '<div class="adm-content">' + html + universalTail() + '</div></div>';
+        '<div class="adm-content">' + html + priceStrip() + universalTail() + '</div></div>';
     } else if (isAdm) {
-      h.innerHTML = html + universalTail();
+      h.innerHTML = html + priceStrip() + universalTail();
     } else {
-      h.innerHTML = flowNav() + html + universalTail();
+      h.innerHTML = flowNav() + html + roleShortcuts() + priceStrip() + universalTail();
     }
   }
   function param(k, d) { return U.searchParams.get(k) || d || ''; }
@@ -231,6 +362,104 @@
     return file + s;
   }
   function detailLink(file, id, from) { return link(file, { id: id, from: from || hereFile() }); }
+
+  /* ================= 全站价格公示挂接（唯一一份实现） =================
+     平台所有业务节点都要能看到与它相关的租金 / 价格：由统一 put() 注入，
+     前台业务页按频道取关联价目，详情页按 ?id= 动态算「本单价格构成」，
+     公共页给全站公示摘要，后台给素价目管控表。数量文案一律由 PRICE_BOOK 动态算。
+     默认折叠成一行摘要，避免把页面撑过 3 屏；展开后是完整价目表。 */
+  function priceStrip() {
+    var PB = M.PRICE_BOOK;
+    var here = hereFile();
+    var isAdm = document.body.classList.contains('adm-body');
+    var st = PB.stats();
+    var catKeys = isAdm ? PB.cats.map(function (c) { return c.key; }) : PB.catsFor(here);
+    var items = PB.itemsFor(catKeys);
+    var ds = document.body.getAttribute('data-ds') || '';
+    var rid = param('id');
+    var bd = rid ? PB.breakdown(ds, rid) : [];
+    var E = lang === 'en';
+    var title = isAdm
+      ? (E ? 'Published price control · all categories' : '价格公示管控 · 全类目')
+      : (E ? 'Published prices & plot rent for this node' : '本节点租金与价格公示');
+    var sub = isAdm
+      ? (E ? 'Admin view: every rate that front-end nodes display, itemised below.'
+           : '管理视图：前台各节点展示的每一条租金与价格，逐项列在下方。')
+      : (E ? 'Every fee at this node comes from the same public price book; nothing is charged off-book.'
+           : '本节点涉及的每一笔租金与费用都取自同一份价格公示总账，页面展示金额即应付金额，不另收未列明费用。');
+    var catNames = PB.cats.filter(function (c) { return catKeys.indexOf(c.key) >= 0; })
+      .map(function (c) { return E ? c.en : c.zh; });
+    var chips =
+      '<span class="sf-pub-chip"><b>' + st.version + '</b> ' + (E ? ' edition' : '版公示') + '</span>' +
+      '<span class="sf-pub-chip">' + (E ? 'Linked categories ' : '关联类目 ') + '<b>' + catKeys.length + '</b> / ' + st.cats + '</span>' +
+      '<span class="sf-pub-chip">' + (E ? 'Published lines ' : '公示条目 ') + '<b>' + items.length + '</b> / ' + st.items + '</span>' +
+      '<span class="sf-pub-chip">' + (E ? 'Plot rent ' : '田块租金区间 ') + '<b>¥' + st.rentMin + '–' + st.rentMax + '</b> / ' + (E ? 'season' : '季') + '</span>' +
+      '<span class="sf-pub-chip">' + (E ? 'Valid ' : '有效期 ') + st.from + ' ~ ' + st.to + '</span>';
+    var rows = items.map(function (x) {
+      var cat = PB.cats.filter(function (c) { return c.key === x.cat; })[0];
+      return '<tr><td>' + esc(E ? cat.en : cat.zh) + '</td>' +
+        '<td><b>' + esc(E ? x.en : x.zh) + '</b><small>' + esc(x.id) + '</small></td>' +
+        '<td class="sf-pub-num">¥' + esc(x.price) + '</td>' +
+        '<td>' + esc(x.unit) + '</td>' +
+        '<td>' + esc(E ? cat.basisEn : cat.basisZh) + '</td>' +
+        '<td>' + esc(E ? x.scopeEn : x.scopeZh) + '</td></tr>';
+    }).join('');
+    var table = '<div class="sf-pub-scroll"><table class="sf-pub-table"><thead><tr>' +
+      '<th>' + (E ? 'Category' : '类目') + '</th><th>' + (E ? 'Published item' : '公示项目') + '</th>' +
+      '<th>' + (E ? 'Rate' : '公示单价') + '</th><th>' + (E ? 'Unit' : '计价单位') + '</th>' +
+      '<th>' + (E ? 'Basis' : '计价口径') + '</th><th>' + (E ? 'Scope' : '适用范围') + '</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+    var bdHtml = '';
+    if (bd.length) {
+      var bdRows = bd.map(function (r) {
+        return '<tr><td>' + esc(E ? r.en : r.zh) + '</td>' +
+          '<td class="sf-pub-num">' + esc(E ? r.amountEn : r.amountZh) + '</td>' +
+          '<td>' + esc(E ? r.noteEn : r.noteZh) + '</td></tr>';
+      }).join('');
+      bdHtml = '<div class="sf-pub-bd"><h4>' +
+        (E ? 'This order · price breakdown (record ' + esc(rid) + ')' : '本单价格构成 · 记录 ' + esc(rid)) +
+        '</h4><div class="sf-pub-scroll"><table class="sf-pub-table"><thead><tr><th>' +
+        (E ? 'Line' : '条目') + '</th><th>' + (E ? 'Amount' : '金额') + '</th><th>' +
+        (E ? 'Basis' : '计算依据') + '</th></tr></thead><tbody>' + bdRows + '</tbody></table></div></div>';
+    }
+    var rulesHtml = '<div class="sf-pub-rules"><h4>' + (E ? 'Pricing rules' : '公示与计费规则') + '</h4><ol>' +
+      PB.rules.map(function (r) { return '<li>' + esc(E ? r.en : r.zh) + '</li>'; }).join('') + '</ol></div>';
+    var navs =
+      '<a class="sf-pub-link" href="' + esc(link('price.html', { from: here })) + '">' +
+        (E ? 'Full price book' : '价格公示总览') + '</a>' +
+      '<a class="sf-pub-link" href="' + esc(link('price-lease.html', { from: here })) + '">' +
+        (E ? 'Plot rent standard' : '田块租金标准') + '</a>' +
+      '<a class="sf-pub-link" href="' + esc(link('price-calc.html', { from: here })) + '">' +
+        (E ? 'Rent calculator' : '租金试算') + '</a>' +
+      '<a class="sf-pub-link" href="' + esc(link('price-changes.html', { from: here })) + '">' +
+        (E ? 'Rate change log' : '调价公示历史') + '</a>' +
+      (isAdm
+        ? '<a class="sf-pub-link" href="' + esc(link('admin/prices.html', { from: here })) + '">' +
+            (E ? 'Price management console' : '价格公示管理') + '</a>'
+        : '<a class="sf-pub-link" href="' + esc(link('price-rules.html', { from: here })) + '">' +
+            (E ? 'Rules & basis' : '公示规则与口径') + '</a>');
+    var more = E ? 'Show all ' + items.length + ' published lines' : '展开本节点 ' + items.length + ' 条公示价目';
+    var less = E ? 'Collapse price table' : '收起价目表';
+    return '<section class="sf-section sf-pub" aria-label="' + esc(title) + '">' +
+      '<div class="sf-pub-head"><div><p class="sf-eyebrow">SUMFARM · ' +
+        (E ? 'PUBLIC PRICE BOOK' : '租金与价格公示') + '</p><h2>' + esc(title) + '</h2>' +
+        '<div class="sf-sub">' + esc(sub) + '</div></div></div>' +
+      '<div class="sf-pub-chips">' + chips +
+        '<span class="sf-pub-chip is-cats">' + esc(catNames.join(' · ')) + '</span></div>' +
+      '<div class="sf-pub-foot">' +
+        '<button class="sf-btn is-quiet" type="button" data-act="price-expand" ' +
+          'data-more="' + esc(more) + '" data-less="' + esc(less) + '">' + esc(more) + '</button>' +
+        navs + '</div>' +
+      '<div class="sf-pub-body is-collapsed" id="sf-pub-body">' +
+        bdHtml + table + rulesHtml +
+        '<p class="sf-pub-note">' + (E
+          ? 'All ' + st.items + ' lines across ' + st.cats + ' categories, ' + st.plots +
+            ' measured plots and ' + st.changes + ' published rate changes are derived from the same price book.'
+          : '全站 ' + st.cats + ' 类目共 ' + st.items + ' 条价目、' + st.plots +
+            ' 块实测田块租金与 ' + st.changes + ' 条调价公示，均由同一份价格公示总账推导。') + '</p>' +
+      '</div></section>';
+  }
+
   function hereFile() { return location.pathname.split('/').pop() || 'index.html'; }
   function svgIcon(name) {
     var p = {
@@ -419,28 +648,36 @@
           : '发布田块编号、土壤、四季温湿度与配套服务，审核通过后对外展示。',
         href: 'farms.html',
         links: [[lang === 'en' ? 'Publish a plot' : '发布田园信息', 'farm-edit.html'],
-                [lang === 'en' ? 'Manage listings' : '田园信息管理', 'farm-manage.html']] },
+                [lang === 'en' ? 'Manage listings' : '田园信息管理', 'farm-manage.html'],
+                [lang === 'en' ? 'Lease & contracts' : '租赁与合同', 'contract-manage.html'],
+                [lang === 'en' ? 'Publish an event' : '发布活动', 'activity-publish.html']] },
       { board: lang === 'en' ? 'Member' : '租赁用户',
         title: lang === 'en' ? 'Find a plot and follow it remotely' : '找一畦田，远程看着它长大',
         sum: lang === 'en' ? 'Browse registered farms, lease a plot, then create field jobs for that plot from your account.'
           : '浏览田园档案、承包田块，之后在个人中心给自己的田派工单、看回执。',
         href: 'farms.html',
         links: [[lang === 'en' ? 'Find plots by region' : '按地区找田', 'farms-region.html'],
-                [lang === 'en' ? 'My plots' : '我的田园', 'account.html']] },
+                [lang === 'en' ? 'My plots' : '我的田园', 'account.html'],
+                [lang === 'en' ? 'Job aftercare' : '工单售后', 'workorder-changes.html'],
+                [lang === 'en' ? 'Request a refund' : '申请退款', 'workorder-refund.html']] },
       { board: lang === 'en' ? 'Grower' : '接单农户',
         title: lang === 'en' ? 'Take field jobs nearby' : '接附近的田间活',
         sum: lang === 'en' ? 'Nearby requests, jobs linked to your plots, photo receipts and settlement, all in the job hall.'
           : '附近工单、关联田园的活、作业回执与结算，都在接单大厅按区分好。',
         href: 'dispatch.html',
         links: [[lang === 'en' ? 'Nearby jobs' : '附近工单', 'dispatch-nearby.html'],
-                [lang === 'en' ? 'Jobs I took' : '已接工单', 'dispatch-taken.html']] },
+                [lang === 'en' ? 'Jobs I took' : '已接工单', 'dispatch-taken.html'],
+                [lang === 'en' ? 'My wallet' : '我的资金', 'farmer-wallet.html'],
+                [lang === 'en' ? 'Withdraw' : '申请提现', 'farmer-withdraw.html']] },
       { board: lang === 'en' ? 'Research' : '产学研团队',
         title: lang === 'en' ? 'Share agronomy and run trials' : '做技术指导与种植实践',
         sum: lang === 'en' ? 'Answer technical questions, take expert guidance jobs and keep field trial records.'
           : '回答技术咨询、认领专家指导工单、记录种植实践与试验结论。',
         href: 'experts.html',
         links: [[lang === 'en' ? 'Expert guidance jobs' : '专家指导工单', 'job-expert.html'],
-                [lang === 'en' ? 'Field trial records' : '种植实践记录', 'expert-trials.html']] }
+                [lang === 'en' ? 'Field trial records' : '种植实践记录', 'expert-trials.html'],
+                [lang === 'en' ? 'Analytics' : '多维统计', 'expert-stats.html'],
+                [lang === 'en' ? 'Field records' : '种植记录查询', 'expert-planting-query.html']] }
     ];
     var guide = '<div class="sf-section">' + sectionHead(t('role.guide.title'), t('role.guide.desc')) +
       textList(guideRows.map(function (r) {
@@ -502,7 +739,7 @@
         '<div class="sf-row"><div class="sf-panel">' + pic(f.cover, zh(f, 'nameZh', 'nameEn')) +
         '<div class="sf-card-meta" style="margin-top:10px">' + t('farm.manager') + '：' + esc((M.byId('users', f.ownerId) || {}).nameZh || '—') + ' · ★ ' + f.rating + '</div></div>' +
         '<div class="sf-panel">' + table([t('common.item'), t('common.value')], rows) +
-        '<div class="sf-row" style="margin-top:14px"><a class="sf-btn is-primary" href="' + esc(link('orders.html', { from: 'farm-detail.html', farm: f.id })) + '">' + t('common.book') + '</a>' +
+        '<div class="sf-row" style="margin-top:14px"><a class="sf-btn is-primary" href="' + esc(link('farms-lease.html', { from: 'farm-detail.html', farm: f.id })) + '">' + t('common.book') + '</a>' +
         '<button class="sf-btn" data-act="follow" data-id="' + f.id + '" type="button">' + t('common.follow') + '</button>' +
         '<button class="sf-btn" data-act="share" type="button">' + t('common.share') + '</button>' +
         '<button class="sf-btn" data-act="back" data-fallback="farms.html" type="button">' + t('act.back') + '</button></div></div></div>' +
@@ -537,7 +774,7 @@
       put('<div class="sf-section">' + sectionHead(zh(x, cfg.titleA, cfg.titleB), zh(x, 'descZh', 'descEn') || zh(f, 'descZh', 'descEn')) +
         '<div class="sf-row"><div class="sf-panel">' + pic(x.cover, zh(x, cfg.titleA, cfg.titleB)) + '</div>' +
         '<div class="sf-panel">' + table([t('common.item'), t('common.value')], cfg.rows(x, f)) +
-        '<div class="sf-row" style="margin-top:14px"><a class="sf-btn is-primary" href="' + esc(link('orders.html', { from: hereFile(), ref: x.id })) + '">' + t('common.order') + '</a>' +
+        '<div class="sf-row" style="margin-top:14px"><a class="sf-btn is-primary" href="' + esc(link(cfg.orderTo || 'orders.html', (function () { var o = { from: hereFile() }; o[cfg.orderKey || 'ref'] = x.id; return o; })())) + '">' + t('common.order') + '</a>' +
         '<button class="sf-btn" data-act="share" type="button">' + t('common.share') + '</button>' +
         '<button class="sf-btn" data-act="back" data-fallback="' + cfg.back + '" type="button">' + t('act.back') + '</button></div></div></div>' +
         '<div class="sf-section">' + sectionHead(t('farm.comments'), '', '', cs.length) +
@@ -813,7 +1050,7 @@
         var f = M.byId('farms', o.farmId) || {};
         return card({ id: o.id, title: o.kind + ' · ' + (o.items || []).join(''), cover: artFor('produce', o.id, 'card'),
           meta: o.createdAt + ' · ' + o.status + ' · ' + esc(zh(f, 'nameZh', 'nameEn')), tags: [o.status, o.kind], price: o.amount,
-          href: link('account.html', { from: 'orders.html' }) }); } });
+          href: detailLink('order-detail.html', o.id, 'orders.html') }); } });
   }
   /* ---------- 田块对比：多选 → 并排清单，相同项缩减、不同项高亮 ----------
      字段清单只写这一份；统计数字全部由选中田块与字段实时计算，不写死。 */
@@ -1099,8 +1336,23 @@
         '<form data-form="chat" class="sf-row" style="margin-top:12px;flex-wrap:nowrap">' +
         '<input class="sf-input" name="msg" required placeholder="' + esc(t('workorder.ph')) + '" style="flex:1 1 auto">' +
         '<button class="sf-btn is-primary" type="submit">' + t('workorder.send') + '</button></form></div></div>';
+      /* 业务推进：按当前工单状态给出可点的下一步，状态推进也有可见反馈 */
+      var jp = { from: 'workorder-detail.html', job: w.id, id: w.id };
+      var adv = '<div class="sf-panel"><h3>' + (lang === 'en' ? 'Move this job forward' : '推进这条工单') + '</h3>' +
+        '<div class="sf-biz-actions">' +
+        '<a class="sf-biz-btn" href="' + esc(link('dispatch-accept.html', jp)) + '">' + (lang === 'en' ? 'Accept job' : '承接确认') + '</a>' +
+        '<a class="sf-biz-btn" href="' + esc(link('dispatch-receipt.html', jp)) + '">' + (lang === 'en' ? 'Upload receipt' : '写作业回执') + '</a>' +
+        '<a class="sf-biz-btn" href="' + esc(link('dispatch-verify.html', jp)) + '">' + (lang === 'en' ? 'Acceptance check' : '验收核对') + '</a>' +
+        '<a class="sf-biz-btn" href="' + esc(link('dispatch-settle.html', jp)) + '">' + (lang === 'en' ? 'Settlement' : '结算对账') + '</a>' +
+        (w.type === '专家指导' ? '<a class="sf-biz-btn" href="' + esc(link('expert-conclusion.html', jp)) + '">' +
+          (lang === 'en' ? 'Technical conclusion' : '提交技术结论') + '</a>' : '') +
+        '</div><div class="sf-biz-live" id="sf-biz-live"></div>' +
+        '<button class="sf-btn is-quiet" type="button" data-act="biz-advance" data-step="' +
+        esc(w.type + ' · ' + (lang === 'en' ? 'status advanced' : '状态已推进到下一步')) + '">' +
+        (lang === 'en' ? 'Record status change' : '记录状态推进') + '</button></div>';
       put('<div class="sf-section">' + sectionHead(w.type + ' · ' + w.id, w.descZh) + head +
         '<div class="sf-row">' + basics + photos + '</div>' +
+        '<div class="sf-section"><div class="sf-panel">' + adv + '</div></div>' +
         '<div class="sf-section">' + jobReqPanel(w) + '</div>' +
         '<div class="sf-section">' + jobFlowPanel(w) + '</div>' +
         chatBox + '</div>');
@@ -1484,6 +1736,310 @@
       var v = items[0][k]; return typeof v !== 'object' || Array.isArray(v);
     }).slice(0, n || 6);
   }
+  /* ---------- 业务节点映射与专属渲染（角色链路闭环） ---------- */
+var BIZ = {"farms.html":{"r":"tenant","ds":"farms","k":"list","zh":"田园档案","en":"Plot archive","a":[["farms-region.html","下一步 · 按地区找田","Next · By region"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":1,"len":21},"farms-region.html":{"r":"tenant","ds":"farms","k":"table","zh":"按地区找田","en":"By region","a":[["farms.html","上一步 · 田园档案","Back · Plot archive"],["farms-soil.html","下一步 · 按土壤筛选","Next · By soil"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":2,"len":21},"farms-soil.html":{"r":"tenant","ds":"farms","k":"table","zh":"按土壤筛选","en":"By soil","a":[["farms-region.html","上一步 · 按地区找田","Back · By region"],["farms-map.html","下一步 · 田块分布图","Next · Plot map"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":3,"len":21},"farms-map.html":{"r":"tenant","ds":"farms","k":"map","zh":"田块分布图","en":"Plot map","a":[["farms-soil.html","上一步 · 按土壤筛选","Back · By soil"],["farms-favorites.html","下一步 · 我的收藏","Next · Saved plots"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":4,"len":21},"farms-favorites.html":{"r":"tenant","ds":"farms","k":"list","zh":"我的收藏","en":"Saved plots","a":[["farms-map.html","上一步 · 田块分布图","Back · Plot map"],["farm-detail.html","下一步 · 田块详情","Next · Plot detail"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":5,"len":21},"farms-lease.html":{"r":"tenant","ds":"farms","k":"form","zh":"承包租赁","en":"Lease a plot","a":[["farm-compare.html","上一步 · 田块对比","Back · Compare plots"],["farm-contract.html","下一步 · 承包合同","Next · Lease contract"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":8,"len":21},"farm-detail.html":{"r":"tenant","ds":"farms","k":"list","zh":"田块详情","en":"Plot detail","a":[["farms-favorites.html","上一步 · 我的收藏","Back · Saved plots"],["farm-compare.html","下一步 · 田块对比","Next · Compare plots"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":6,"len":21},"farm-compare.html":{"r":"tenant","ds":"farms","k":"list","zh":"田块对比","en":"Compare plots","a":[["farm-detail.html","上一步 · 田块详情","Back · Plot detail"],["farms-lease.html","下一步 · 承包租赁","Next · Lease a plot"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":7,"len":21},"farm-contract.html":{"r":"tenant","ds":"orders","k":"info","zh":"承包合同","en":"Lease contract","a":[["farms-lease.html","上一步 · 承包租赁","Back · Lease a plot"],["farm-payment.html","下一步 · 费用支付","Next · Payment"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":9,"len":21},"farm-payment.html":{"r":"tenant","ds":"orders","k":"form","zh":"费用支付","en":"Payment","a":[["farm-contract.html","上一步 · 承包合同","Back · Lease contract"],["farm-success.html","下一步 · 承包成功","Next · Lease confirmed"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":10,"len":21},"farm-success.html":{"r":"tenant","ds":"orders","k":"success","zh":"承包成功","en":"Lease confirmed","a":[["farm-payment.html","上一步 · 费用支付","Back · Payment"],["order-detail.html","下一步 · 订单详情","Next · Order detail"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":11,"len":21},"order-detail.html":{"r":"tenant","ds":"orders","k":"detail","zh":"订单详情","en":"Order detail","a":[["farm-success.html","上一步 · 承包成功","Back · Lease confirmed"],["orders.html","下一步 · 我的订单","Next · My orders"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":12,"len":21},"orders.html":{"r":"tenant","ds":"orders","k":"list","zh":"我的订单","en":"My orders","a":[["order-detail.html","上一步 · 订单详情","Back · Order detail"],["account.html","下一步 · 个人中心","Next · My account"],["price.html","核对公示租金","Check published rent"],["workorders.html","工单总览","All jobs"],["orders.html","我的订单","My orders"]],"idx":13,"len":21},"account.html":{"r":"tenant","ds":"orders","k":"list","zh":"个人中心","en":"My account","a":[["orders.html","上一步 · 我的订单","Back · My orders"],["workorder-new.html","下一步 · 按田建单","Next · New job for plot"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"],["submission-status.html","查审核进度","Approval progress"]],"idx":14,"len":21},"workorder-new.html":{"r":"tenant","ds":"workorders","k":"form","zh":"按田建单","en":"New job for plot","a":[["account.html","上一步 · 个人中心","Back · My account"],["workorder-detail.html","下一步 · 工单详情","Next · Job detail"],["price.html","核对公示租金","Check published rent"],["workorders.html","工单总览","All jobs"],["workorder-new.html","按田建单","New job"]],"idx":15,"len":21},"workorder-detail.html":{"r":"tenant","ds":"workorders","k":"list","zh":"工单详情","en":"Job detail","a":[["workorder-new.html","上一步 · 按田建单","Back · New job for plot"],["dispatch-verify.html","下一步 · 验收核对","Next · Acceptance"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"],["dispatch.html","接单大厅","Dispatch home"]],"idx":16,"len":21},"dispatch-verify.html":{"r":"tenant","ds":"workorders","k":"form","zh":"验收核对","en":"Acceptance","a":[["workorder-detail.html","上一步 · 工单详情","Back · Job detail"],["dispatch-settle.html","下一步 · 结算对账","Next · Settlement"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":17,"len":21},"dispatch-settle.html":{"r":"tenant","ds":"workorders","k":"table","zh":"结算对账","en":"Settlement","a":[["dispatch-verify.html","上一步 · 验收核对","Back · Acceptance"],["produce-delivery.html","下一步 · 配送跟踪","Next · Delivery tracking"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":18,"len":21},"produce-delivery.html":{"r":"tenant","ds":"orders","k":"flow","zh":"配送跟踪","en":"Delivery tracking","a":[["dispatch-settle.html","上一步 · 结算对账","Back · Settlement"],["produce-review.html","下一步 · 产品评价","Next · Review produce"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"]],"idx":19,"len":21},"produce-review.html":{"r":"tenant","ds":"comments","k":"chat","zh":"产品评价","en":"Review produce","a":[["produce-delivery.html","上一步 · 配送跟踪","Back · Delivery tracking"],["account-invoice.html","下一步 · 发票管理","Next · Invoices"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":20,"len":21},"account-invoice.html":{"r":"tenant","ds":"orders","k":"table","zh":"发票管理","en":"Invoices","a":[["produce-review.html","上一步 · 产品评价","Back · Review produce"],["price.html","核对公示租金","Check published rent"],["account.html","回个人中心","My account"],["workorders.html","工单总览","All jobs"],["orders.html","我的订单","My orders"]],"idx":21,"len":21},"activity.html":{"r":"activity","ds":"activities","k":"list","zh":"田园活动","en":"Activities","a":[["activity-calendar.html","下一步 · 活动日历","Next · Calendar"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":1,"len":12},"activity-calendar.html":{"r":"activity","ds":"activities","k":"table","zh":"活动日历","en":"Calendar","a":[["activity.html","上一步 · 田园活动","Back · Activities"],["activity-detail.html","下一步 · 活动详情","Next · Event detail"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":2,"len":12},"activity-detail.html":{"r":"activity","ds":"activities","k":"list","zh":"活动详情","en":"Event detail","a":[["activity-calendar.html","上一步 · 活动日历","Back · Calendar"],["activity-signup.html","下一步 · 活动报名","Next · Sign up"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":3,"len":12},"activity-signup.html":{"r":"activity","ds":"activities","k":"form","zh":"活动报名","en":"Sign up","a":[["activity-detail.html","上一步 · 活动详情","Back · Event detail"],["activity-checkin.html","下一步 · 现场签到","Next · Check in"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":4,"len":12},"activity-checkin.html":{"r":"activity","ds":"activities","k":"success","zh":"现场签到","en":"Check in","a":[["activity-signup.html","上一步 · 活动报名","Back · Sign up"],["activity-members.html","下一步 · 参与成员","Next · Participants"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":5,"len":12},"activity-members.html":{"r":"activity","ds":"users","k":"table","zh":"参与成员","en":"Participants","a":[["activity-checkin.html","上一步 · 现场签到","Back · Check in"],["activity-review.html","下一步 · 活动回顾","Next · Event recap"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":6,"len":12},"activity-review.html":{"r":"activity","ds":"comments","k":"chat","zh":"活动回顾","en":"Event recap","a":[["activity-members.html","上一步 · 参与成员","Back · Participants"],["venue-booking.html","下一步 · 场地预约","Next · Book a venue"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":7,"len":12},"venue-booking.html":{"r":"activity","ds":"activities","k":"form","zh":"场地预约","en":"Book a venue","a":[["activity-review.html","上一步 · 活动回顾","Back · Event recap"],["venue-menu.html","下一步 · 农家菜单","Next · Farm menu"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"],["submission-status.html","查审核进度","Approval progress"]],"idx":8,"len":12},"venue-menu.html":{"r":"activity","ds":"produces","k":"list","zh":"农家菜单","en":"Farm menu","a":[["venue-booking.html","上一步 · 场地预约","Back · Book a venue"],["venue-sports.html","下一步 · 运动场地","Next · Sports field"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":9,"len":12},"venue-sports.html":{"r":"activity","ds":"activities","k":"info","zh":"运动场地","en":"Sports field","a":[["venue-menu.html","上一步 · 农家菜单","Back · Farm menu"],["venue-wedding.html","下一步 · 婚纱场地","Next · Wedding lawn"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":10,"len":12},"venue-wedding.html":{"r":"activity","ds":"activities","k":"gallery","zh":"婚纱场地","en":"Wedding lawn","a":[["venue-sports.html","上一步 · 运动场地","Back · Sports field"],["venue-camping.html","下一步 · 露营营位","Next · Camping pitch"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":11,"len":12},"venue-camping.html":{"r":"activity","ds":"activities","k":"list","zh":"露营营位","en":"Camping pitch","a":[["venue-wedding.html","上一步 · 婚纱场地","Back · Wedding lawn"],["price-venue.html","场地公示价","Venue rates"],["account.html","回个人中心","My account"]],"idx":12,"len":12},"produce.html":{"r":"produce","ds":"produces","k":"list","zh":"农产品","en":"Produce","a":[["produce-season.html","下一步 · 时令清单","Next · Seasonal list"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":1,"len":9},"produce-season.html":{"r":"produce","ds":"produces","k":"list","zh":"时令清单","en":"Seasonal list","a":[["produce.html","上一步 · 农产品","Back · Produce"],["produce-trace.html","下一步 · 溯源档案","Next · Traceability"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":2,"len":9},"produce-trace.html":{"r":"produce","ds":"produces","k":"detail","zh":"溯源档案","en":"Traceability","a":[["produce-season.html","上一步 · 时令清单","Back · Seasonal list"],["produce-detail.html","下一步 · 产品详情","Next · Produce detail"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":3,"len":9},"produce-detail.html":{"r":"produce","ds":"produces","k":"list","zh":"产品详情","en":"Produce detail","a":[["produce-trace.html","上一步 · 溯源档案","Back · Traceability"],["produce-cart.html","下一步 · 购物车","Next · Cart"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":4,"len":9},"produce-cart.html":{"r":"produce","ds":"produces","k":"table","zh":"购物车","en":"Cart","a":[["produce-detail.html","上一步 · 产品详情","Back · Produce detail"],["produce-checkout.html","下一步 · 结算下单","Next · Checkout"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":5,"len":9},"produce-checkout.html":{"r":"produce","ds":"orders","k":"form","zh":"结算下单","en":"Checkout","a":[["produce-cart.html","上一步 · 购物车","Back · Cart"],["produce-receipt.html","下一步 · 签收回执","Next · Delivery receipt"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":6,"len":9},"produce-receipt.html":{"r":"produce","ds":"orders","k":"success","zh":"签收回执","en":"Delivery receipt","a":[["produce-checkout.html","上一步 · 结算下单","Back · Checkout"],["produce-review.html","下一步 · 产品评价","Next · Review"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"]],"idx":7,"len":9},"produce-stock.html":{"r":"produce","ds":"produces","k":"table","zh":"库存台账","en":"Stock ledger","a":[["produce-review.html","上一步 · 产品评价","Back · Review"],["price-produce.html","农产品公示价","Produce rates"],["orders.html","我的订单","My orders"],["venue-booking.html","下一步 · 场地档期","Next · Venue calendar"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"]],"idx":9,"len":9},"farm-edit.html":{"r":"merchant","ds":"farms","k":"list","zh":"上传田园档案","en":"Submit a plot","a":[["farm-manage.html","上一步 · 田园管理","Back · Plot management"],["farm-success.html","下一步 · 提交成功","Next · Submitted"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"]],"idx":2,"len":12},"submission-status.html":{"r":"merchant","ds":"audits","k":"flow","zh":"审核进度","en":"Approval progress","a":[["farm-success.html","上一步 · 提交成功","Back · Submitted"],["farm-manage.html","下一步 · 田园管理","Next · Manage plot"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"]],"idx":4,"len":12},"farm-manage.html":{"r":"merchant","ds":"farms","k":"table","zh":"田园管理","en":"Manage plot","a":[["submission-status.html","上一步 · 审核进度","Back · Approval progress"],["farm-gallery.html","下一步 · 田园图册","Next · Gallery"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"]],"idx":5,"len":12},"farm-gallery.html":{"r":"merchant","ds":"farms","k":"gallery","zh":"田园图册","en":"Gallery","a":[["farm-manage.html","上一步 · 田园管理","Back · Manage plot"],["farm-comments.html","下一步 · 评论管理","Next · Review moderation"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"]],"idx":6,"len":12},"farm-comments.html":{"r":"merchant","ds":"comments","k":"chat","zh":"评论管理","en":"Review moderation","a":[["farm-gallery.html","上一步 · 田园图册","Back · Gallery"],["farm-follow.html","下一步 · 关注动态","Next · Followers"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"]],"idx":7,"len":12},"farm-follow.html":{"r":"merchant","ds":"users","k":"stats","zh":"关注动态","en":"Followers","a":[["farm-comments.html","上一步 · 评论管理","Back · Review moderation"],["merchant-orders.html","下一步 · 收到的订单","Next · Incoming orders"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"]],"idx":8,"len":12},"merchant-orders.html":{"r":"merchant","ds":"orders","k":"table","zh":"收到的订单","en":"Incoming orders","a":[["farm-follow.html","上一步 · 关注动态","Back · Followers"],["produce-stock.html","下一步 · 农产品上架","Next · List produce"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"]],"idx":9,"len":12},"price.html":{"r":"merchant","ds":"farms","k":"list","zh":"价格公示","en":"Published prices","a":[["venue-booking.html","上一步 · 场地档期","Back · Venue calendar"],["submission-status.html","查审核进度","Approval progress"],["price.html","价格公示","Published prices"],["farm-manage.html","田园管理","Plot management"],["price-lease.html","下一步 · 田块租金标准","Next · Plot rent standard"],["price-calc.html","租金试算","Rent calculator"]],"idx":12,"len":12},"dispatch.html":{"r":"grower","ds":"dispatches","k":"list","zh":"接单大厅","en":"Dispatch home","a":[["dispatch-nearby.html","下一步 · 定位附近单","Next · Nearby jobs"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":1,"len":12},"dispatch-nearby.html":{"r":"grower","ds":"dispatches","k":"list","zh":"定位附近单","en":"Nearby jobs","a":[["dispatch.html","上一步 · 接单大厅","Back · Dispatch home"],["dispatch-linked.html","下一步 · 关联田园单","Next · Linked-plot jobs"],["price-job.html","工单公示价","Published job rates"]],"idx":2,"len":12},"dispatch-linked.html":{"r":"grower","ds":"dispatches","k":"list","zh":"关联田园单","en":"Linked-plot jobs","a":[["dispatch-nearby.html","上一步 · 定位附近单","Back · Nearby jobs"],["dispatch-accept.html","下一步 · 承接确认","Next · Accept job"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":3,"len":12},"dispatch-accept.html":{"r":"grower","ds":"dispatches","k":"form","zh":"承接确认","en":"Accept job","a":[["dispatch-linked.html","上一步 · 关联田园单","Back · Linked-plot jobs"],["dispatch-taken.html","下一步 · 已接工单","Next · Accepted jobs"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":4,"len":12},"dispatch-taken.html":{"r":"grower","ds":"workorders","k":"list","zh":"已接工单","en":"Accepted jobs","a":[["dispatch-accept.html","上一步 · 承接确认","Back · Accept job"],["dispatch-receipt.html","下一步 · 作业回执","Next · Field receipt"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":5,"len":12},"dispatch-receipt.html":{"r":"grower","ds":"workorders","k":"form","zh":"作业回执","en":"Field receipt","a":[["dispatch-taken.html","上一步 · 已接工单","Back · Accepted jobs"],["dispatch-verify.html","下一步 · 验收核对","Next · Acceptance"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":6,"len":12},"dispatch-history.html":{"r":"grower","ds":"workorders","k":"flow","zh":"历史工单","en":"Job history","a":[["dispatch-settle.html","上一步 · 结算对账","Back · Settlement"],["workorders.html","下一步 · 工单总览","Next · All jobs"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":9,"len":12},"workorders.html":{"r":"grower","ds":"workorders","k":"list","zh":"工单总览","en":"All jobs","a":[["dispatch-history.html","上一步 · 历史工单","Back · Job history"],["workorder-detail.html","下一步 · 工单详情","Next · Job detail"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"]],"idx":10,"len":12},"price-job.html":{"r":"grower","ds":"workorders","k":"list","zh":"工单公示价","en":"Published job rates","a":[["workorder-detail.html","上一步 · 工单详情","Back · Job detail"],["price-job.html","工单公示价","Published job rates"],["dispatch.html","接单大厅","Dispatch home"],["price-produce.html","下一步 · 农产品与配送价目","Next · Produce & delivery rates"],["price.html","公示总览","Price book"],["price-calc.html","租金试算","Rent calculator"]],"idx":12,"len":12},"experts.html":{"r":"expert","ds":"experts","k":"list","zh":"专家广场","en":"Experts","a":[["experts-rank.html","下一步 · 积分排行","Next · Ranking"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":1,"len":12},"experts-rank.html":{"r":"expert","ds":"experts","k":"table","zh":"积分排行","en":"Ranking","a":[["experts.html","上一步 · 专家广场","Back · Experts"],["expert-apply.html","下一步 · 认证申请","Next · Apply"],["price-job.html","专家服务公示价","Expert rates"]],"idx":2,"len":12},"expert-apply.html":{"r":"expert","ds":"experts","k":"form","zh":"认证申请","en":"Apply","a":[["experts-rank.html","上一步 · 积分排行","Back · Ranking"],["expert-detail.html","下一步 · 专家主页","Next · Expert profile"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":3,"len":12},"expert-detail.html":{"r":"expert","ds":"experts","k":"list","zh":"专家主页","en":"Expert profile","a":[["expert-apply.html","上一步 · 认证申请","Back · Apply"],["expert-points.html","下一步 · 积分口径","Next · Points rules"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":4,"len":12},"expert-points.html":{"r":"expert","ds":"experts","k":"info","zh":"积分口径","en":"Points rules","a":[["expert-detail.html","上一步 · 专家主页","Back · Expert profile"],["expert-column.html","下一步 · 技术专栏","Next · Columns"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":5,"len":12},"expert-column.html":{"r":"expert","ds":"topics","k":"list","zh":"技术专栏","en":"Columns","a":[["expert-points.html","上一步 · 积分口径","Back · Points rules"],["expert-qa.html","下一步 · 技术问答","Next · Q&A"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":6,"len":12},"expert-qa.html":{"r":"expert","ds":"topics","k":"chat","zh":"技术问答","en":"Q&A","a":[["expert-column.html","上一步 · 技术专栏","Back · Columns"],["expert-history.html","下一步 · 管理历史","Next · Management history"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":7,"len":12},"expert-history.html":{"r":"expert","ds":"plantings","k":"flow","zh":"管理历史","en":"Management history","a":[["expert-qa.html","上一步 · 技术问答","Back · Q&A"],["expert-trials.html","下一步 · 种植实践","Next · Field trials"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":8,"len":12},"expert-trials.html":{"r":"expert","ds":"plantings","k":"table","zh":"种植实践","en":"Field trials","a":[["expert-history.html","上一步 · 管理历史","Back · Management history"],["expert-conclusion.html","下一步 · 技术结论","Next · Technical conclusion"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":9,"len":12},"expert-conclusion.html":{"r":"expert","ds":"workorders","k":"form","zh":"技术结论","en":"Technical conclusion","a":[["expert-trials.html","上一步 · 种植实践","Back · Field trials"],["job-expert.html","下一步 · 专家指导工单","Next · Guidance jobs"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"]],"idx":10,"len":12},"job-expert.html":{"r":"expert","ds":"workorders","k":"list","zh":"专家指导工单","en":"Guidance jobs","a":[["expert-conclusion.html","上一步 · 技术结论","Back · Technical conclusion"],["forum-tech.html","下一步 · 技术论坛","Next · Tech forum"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"],["workorders.html","工单总览","All jobs"]],"idx":11,"len":12},"forum-tech.html":{"r":"expert","ds":"topics","k":"list","zh":"技术论坛","en":"Tech forum","a":[["job-expert.html","上一步 · 专家指导工单","Back · Guidance jobs"],["price-job.html","专家服务公示价","Expert rates"],["experts.html","专家广场","Experts"],["forum-best.html","下一步 · 精华采纳","Next · Best posts"],["forum.html","论坛首页","Forum home"]],"idx":12,"len":12},"job-tilling.html":{"r":"job","ds":"workorders","k":"list","zh":"翻地","en":"Tilling","a":[["job-sowing.html","下一步 · 种植","Next · Sowing"],["workorder-new.html","按田建单","New job"],["workorders.html","工单总览","All jobs"]],"idx":1,"len":6},"job-sowing.html":{"r":"job","ds":"workorders","k":"list","zh":"种植","en":"Sowing","a":[["job-tilling.html","上一步 · 翻地","Back · Tilling"],["job-water.html","下一步 · 浇水","Next · Watering"],["workorder-new.html","按田建单","New job"],["workorders.html","工单总览","All jobs"]],"idx":2,"len":6},"job-water.html":{"r":"job","ds":"workorders","k":"list","zh":"浇水","en":"Watering","a":[["job-sowing.html","上一步 · 种植","Back · Sowing"],["job-harvest.html","下一步 · 采摘","Next · Harvest"],["workorder-new.html","按田建单","New job"],["workorders.html","工单总览","All jobs"]],"idx":3,"len":6},"job-harvest.html":{"r":"job","ds":"workorders","k":"list","zh":"采摘","en":"Harvest","a":[["job-water.html","上一步 · 浇水","Back · Watering"],["job-expert.html","下一步 · 专家指导","Next · Expert guidance"],["workorder-new.html","按田建单","New job"],["workorders.html","工单总览","All jobs"]],"idx":4,"len":6},"forum.html":{"r":"forum","ds":"topics","k":"list","zh":"论坛首页","en":"Forum home","a":[["forum-hot.html","下一步 · 热门田园","Next · Popular plots"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":1,"len":11},"forum-hot.html":{"r":"forum","ds":"topics","k":"list","zh":"热门田园","en":"Popular plots","a":[["forum.html","上一步 · 论坛首页","Back · Forum home"],["forum-exp.html","下一步 · 种植经验","Next · Growing notes"],["experts.html","专家广场","Experts"]],"idx":2,"len":11},"forum-exp.html":{"r":"forum","ds":"topics","k":"list","zh":"种植经验","en":"Growing notes","a":[["forum-hot.html","上一步 · 热门田园","Back · Popular plots"],["forum-act.html","下一步 · 活动复盘","Next · Event recap"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":3,"len":11},"forum-act.html":{"r":"forum","ds":"topics","k":"list","zh":"活动复盘","en":"Event recap","a":[["forum-exp.html","上一步 · 种植经验","Back · Growing notes"],["forum-tech.html","下一步 · 技术咨询","Next · Tech Q&A"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":4,"len":11},"forum-best.html":{"r":"forum","ds":"topics","k":"list","zh":"精华采纳","en":"Best posts","a":[["forum-tech.html","上一步 · 技术咨询","Back · Tech Q&A"],["forum-rules.html","下一步 · 版规说明","Next · Board rules"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":6,"len":11},"forum-rules.html":{"r":"forum","ds":"topics","k":"info","zh":"版规说明","en":"Board rules","a":[["forum-best.html","上一步 · 精华采纳","Back · Best posts"],["forum-edit.html","下一步 · 发起新帖","Next · New post"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":7,"len":11},"forum-edit.html":{"r":"forum","ds":"topics","k":"form","zh":"发起新帖","en":"New post","a":[["forum-rules.html","上一步 · 版规说明","Back · Board rules"],["forum-posted.html","下一步 · 我已发布","Next · My posts"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":8,"len":11},"forum-posted.html":{"r":"forum","ds":"topics","k":"list","zh":"我已发布","en":"My posts","a":[["forum-edit.html","上一步 · 发起新帖","Back · New post"],["forum-mine.html","下一步 · 我的收藏","Next · Saved threads"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":9,"len":11},"forum-mine.html":{"r":"forum","ds":"topics","k":"list","zh":"我的收藏","en":"Saved threads","a":[["forum-posted.html","上一步 · 我已发布","Back · My posts"],["forum-topic.html","下一步 · 帖子详情","Next · Thread detail"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":10,"len":11},"forum-topic.html":{"r":"forum","ds":"topics","k":"chat","zh":"帖子详情","en":"Thread detail","a":[["forum-mine.html","上一步 · 我的收藏","Back · Saved threads"],["forum.html","论坛首页","Forum home"],["experts.html","专家广场","Experts"]],"idx":11,"len":11},"account-profile.html":{"r":"account","ds":"users","k":"form","zh":"资料设置","en":"Profile","a":[["orders.html","上一步 · 我的订单","Back · My orders"],["account-security.html","下一步 · 账号安全","Next · Security"],["account.html","个人中心","My account"]],"idx":3,"len":12},"account-security.html":{"r":"account","ds":"users","k":"form","zh":"账号安全","en":"Security","a":[["account-profile.html","上一步 · 资料设置","Back · Profile"],["account-bind.html","下一步 · 绑定管理","Next · Linked accounts"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":4,"len":12},"account-bind.html":{"r":"account","ds":"users","k":"form","zh":"绑定管理","en":"Linked accounts","a":[["account-security.html","上一步 · 账号安全","Back · Security"],["account-address.html","下一步 · 收货地址","Next · Addresses"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":5,"len":12},"account-address.html":{"r":"account","ds":"users","k":"table","zh":"收货地址","en":"Addresses","a":[["account-bind.html","上一步 · 绑定管理","Back · Linked accounts"],["account-notice.html","下一步 · 消息通知","Next · Notifications"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":6,"len":12},"account-notice.html":{"r":"account","ds":"notices","k":"list","zh":"消息通知","en":"Notifications","a":[["account-address.html","上一步 · 收货地址","Back · Addresses"],["account-favorites.html","下一步 · 我的收藏","Next · Favorites"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":7,"len":12},"account-favorites.html":{"r":"account","ds":"farms","k":"list","zh":"我的收藏","en":"Favorites","a":[["account-notice.html","上一步 · 消息通知","Back · Notifications"],["account-following.html","下一步 · 我的关注","Next · Following"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":8,"len":12},"account-following.html":{"r":"account","ds":"users","k":"list","zh":"我的关注","en":"Following","a":[["account-favorites.html","上一步 · 我的收藏","Back · Favorites"],["account-invoice.html","下一步 · 发票管理","Next · Invoices"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":9,"len":12},"account-help.html":{"r":"account","ds":"notices","k":"chat","zh":"帮助工单","en":"Help tickets","a":[["account-invoice.html","上一步 · 发票管理","Back · Invoices"],["account-close.html","下一步 · 注销申请","Next · Close account"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":11,"len":12},"account-close.html":{"r":"account","ds":"users","k":"flow","zh":"注销申请","en":"Close account","a":[["account-help.html","上一步 · 帮助工单","Back · Help tickets"],["orders.html","我的订单","My orders"],["account.html","个人中心","My account"]],"idx":12,"len":12},"admin/index.html":{"r":"admin","ds":"farms","k":"list","zh":"总览","en":"Dashboard","a":[["admin/farms.html","下一步 · 田园台账","Next · Plot records"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":1,"len":16},"admin/farms.html":{"r":"admin","ds":"farms","k":"table","zh":"田园台账","en":"Plot records","a":[["admin/index.html","上一步 · 总览","Back · Dashboard"],["admin/users.html","下一步 · 用户台账","Next · User records"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":2,"len":16},"admin/users.html":{"r":"admin","ds":"users","k":"table","zh":"用户台账","en":"User records","a":[["admin/farms.html","上一步 · 田园台账","Back · Plot records"],["admin/workorders.html","下一步 · 工单台账","Next · Order records"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":3,"len":16},"admin/workorders.html":{"r":"admin","ds":"workorders","k":"table","zh":"工单台账","en":"Order records","a":[["admin/users.html","上一步 · 用户台账","Back · User records"],["admin/chats.html","下一步 · 聊天记录","Next · Chat logs"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":4,"len":16},"admin/chats.html":{"r":"admin","ds":"chats","k":"chat","zh":"聊天记录","en":"Chat logs","a":[["admin/workorders.html","上一步 · 工单台账","Back · Order records"],["admin/planting.html","下一步 · 种植记录","Next · Planting logs"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":5,"len":16},"admin/planting.html":{"r":"admin","ds":"plantings","k":"table","zh":"种植记录","en":"Planting logs","a":[["admin/chats.html","上一步 · 聊天记录","Back · Chat logs"],["admin/comments.html","下一步 · 评论台账","Next · Comment records"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":6,"len":16},"admin/comments.html":{"r":"admin","ds":"comments","k":"table","zh":"评论台账","en":"Comment records","a":[["admin/planting.html","上一步 · 种植记录","Back · Planting logs"],["admin/notices.html","下一步 · 公告管理","Next · Notices"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":7,"len":16},"admin/notices.html":{"r":"admin","ds":"notices","k":"table","zh":"公告管理","en":"Notices","a":[["admin/comments.html","上一步 · 评论台账","Back · Comment records"],["admin/prices.html","下一步 · 价格公示管理","Next · Published prices"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":8,"len":16},"admin/prices.html":{"r":"admin","ds":"farms","k":"list","zh":"价格公示管理","en":"Published prices","a":[["admin/notices.html","上一步 · 公告管理","Back · Notices"],["admin/audit.html","下一步 · 审核工作台","Next · Approval desk"],["admin/index.html","回总览","Dashboard"],["admin/logs.html","审计日志","Audit log"]],"idx":9,"len":16},"admin/audit.html":{"r":"admin","ds":"audits","k":"list","zh":"审核工作台","en":"Approval desk","a":[["admin/prices.html","上一步 · 价格公示管理","Back · Published prices"],["admin/audit-review.html","下一步 · 复审工作台","Next · Second review"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":10,"len":16},"admin/audit-review.html":{"r":"admin","ds":"audits","k":"flow","zh":"复审工作台","en":"Second review","a":[["admin/audit.html","上一步 · 审核工作台","Back · Approval desk"],["admin/audit-final.html","下一步 · 终审发布","Next · Final approval"],["admin/index.html","回总览","Dashboard"],["admin/logs.html","审计日志","Audit log"]],"idx":11,"len":16},"admin/audit-final.html":{"r":"admin","ds":"audits","k":"flow","zh":"终审发布","en":"Final approval","a":[["admin/audit-review.html","上一步 · 复审工作台","Back · Second review"],["admin/roles.html","下一步 · 权限角色","Next · Roles"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":12,"len":16},"admin/roles.html":{"r":"admin","ds":"users","k":"table","zh":"权限角色","en":"Roles","a":[["admin/audit-final.html","上一步 · 终审发布","Back · Final approval"],["admin/dict.html","下一步 · 数据字典","Next · Dictionary"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":13,"len":16},"admin/dict.html":{"r":"admin","ds":"notices","k":"table","zh":"数据字典","en":"Dictionary","a":[["admin/roles.html","上一步 · 权限角色","Back · Roles"],["admin/export.html","下一步 · 导出任务","Next · Exports"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":14,"len":16},"admin/export.html":{"r":"admin","ds":"orders","k":"table","zh":"导出任务","en":"Exports","a":[["admin/dict.html","上一步 · 数据字典","Back · Dictionary"],["admin/logs.html","下一步 · 审计日志","Next · Audit log"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"]],"idx":15,"len":16},"admin/logs.html":{"r":"admin","ds":"audits","k":"flow","zh":"审计日志","en":"Audit log","a":[["admin/export.html","上一步 · 导出任务","Back · Exports"],["admin/index.html","回总览","Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"]],"idx":16,"len":16},"index.html":{"r":"public","ds":"farms","k":"list","zh":"首页","en":"Home","a":[["sitemap.html","下一步 · 站点地图","Next · Sitemap"],["index.html","首页","Home"],["price.html","价格公示","Price book"]],"idx":1,"len":15},"sitemap.html":{"r":"public","ds":"farms","k":"list","zh":"站点地图","en":"Sitemap","a":[["index.html","上一步 · 首页","Back · Home"],["help.html","下一步 · 帮助中心","Next · Help"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":2,"len":15},"help.html":{"r":"public","ds":"notices","k":"info","zh":"帮助中心","en":"Help","a":[["sitemap.html","上一步 · 站点地图","Back · Sitemap"],["about.html","下一步 · 关于我们","Next · About"],["index.html","首页","Home"],["price.html","价格公示","Price book"]],"idx":3,"len":15},"about.html":{"r":"public","ds":"notices","k":"info","zh":"关于我们","en":"About","a":[["help.html","上一步 · 帮助中心","Back · Help"],["contact.html","下一步 · 联系我们","Next · Contact"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":4,"len":15},"contact.html":{"r":"public","ds":"users","k":"form","zh":"联系我们","en":"Contact","a":[["about.html","上一步 · 关于我们","Back · About"],["terms.html","下一步 · 服务协议","Next · Terms"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":5,"len":15},"terms.html":{"r":"public","ds":"notices","k":"info","zh":"服务协议","en":"Terms","a":[["contact.html","上一步 · 联系我们","Back · Contact"],["privacy.html","下一步 · 隐私政策","Next · Privacy"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":6,"len":15},"privacy.html":{"r":"public","ds":"notices","k":"info","zh":"隐私政策","en":"Privacy","a":[["terms.html","上一步 · 服务协议","Back · Terms"],["disclaimer.html","下一步 · 免责声明","Next · Disclaimer"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":7,"len":15},"disclaimer.html":{"r":"public","ds":"notices","k":"info","zh":"免责声明","en":"Disclaimer","a":[["privacy.html","上一步 · 隐私政策","Back · Privacy"],["maintenance.html","下一步 · 维护公告","Next · Maintenance"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":8,"len":15},"maintenance.html":{"r":"public","ds":"notices","k":"info","zh":"维护公告","en":"Maintenance","a":[["disclaimer.html","上一步 · 免责声明","Back · Disclaimer"],["404.html","下一步 · 页面不存在","Next · Not found"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":9,"len":15},"404.html":{"r":"public","ds":"farms","k":"info","zh":"页面不存在","en":"Not found","a":[["maintenance.html","上一步 · 维护公告","Back · Maintenance"],["login.html","下一步 · 登录 / 注册","Next · Sign in"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":10,"len":15},"login.html":{"r":"public","ds":"users","k":"list","zh":"登录 / 注册","en":"Sign in","a":[["404.html","上一步 · 页面不存在","Back · Not found"],["forgot.html","下一步 · 找回口令","Next · Recover password"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":11,"len":15},"forgot.html":{"r":"public","ds":"users","k":"list","zh":"找回口令","en":"Recover password","a":[["login.html","上一步 · 登录 / 注册","Back · Sign in"],["search.html","下一步 · 全站搜索","Next · Search"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":12,"len":15},"search.html":{"r":"public","ds":"farms","k":"list","zh":"全站搜索","en":"Search","a":[["forgot.html","上一步 · 找回口令","Back · Recover password"],["videos.html","下一步 · 热点视频","Next · Videos"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":13,"len":15},"videos.html":{"r":"public","ds":"videos","k":"list","zh":"热点视频","en":"Videos","a":[["search.html","上一步 · 全站搜索","Back · Search"],["promo.html","下一步 · 田园宣发","Next · Campaigns"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":14,"len":15},"promo.html":{"r":"public","ds":"promos","k":"list","zh":"田园宣发","en":"Campaigns","a":[["videos.html","上一步 · 热点视频","Back · Videos"],["index.html","首页","Home"],["sitemap.html","站点地图","Sitemap"],["price.html","价格公示","Price book"]],"idx":15,"len":15},"price-lease.html":{"r":"price","ds":"farms","k":"list","zh":"田块租金标准","en":"Plot rent standard","a":[["price.html","上一步 · 价格公示总览","Back · Price book"],["price-venue.html","下一步 · 场地与活动价目","Next · Venue & event rates"],["price-calc.html","租金试算","Rent calculator"]],"idx":2,"len":8},"price-venue.html":{"r":"price","ds":"activities","k":"list","zh":"场地与活动价目","en":"Venue & event rates","a":[["price-lease.html","上一步 · 田块租金标准","Back · Plot rent standard"],["price-job.html","下一步 · 工单与专家服务价","Next · Field-work & expert rates"],["price.html","公示总览","Price book"],["price-calc.html","租金试算","Rent calculator"]],"idx":3,"len":8},"price-produce.html":{"r":"price","ds":"produces","k":"list","zh":"农产品与配送价目","en":"Produce & delivery rates","a":[["price-job.html","上一步 · 工单与专家服务价","Back · Field-work & expert rates"],["price-calc.html","下一步 · 租金试算","Next · Rent calculator"],["price.html","公示总览","Price book"]],"idx":5,"len":8},"price-calc.html":{"r":"price","ds":"farms","k":"list","zh":"租金试算","en":"Rent calculator","a":[["price-produce.html","上一步 · 农产品与配送价目","Back · Produce & delivery rates"],["price-rules.html","下一步 · 公示规则与口径","Next · Rules & basis"],["price.html","公示总览","Price book"],["price-calc.html","租金试算","Rent calculator"]],"idx":6,"len":8},"price-rules.html":{"r":"price","ds":"notices","k":"list","zh":"公示规则与口径","en":"Rules & basis","a":[["price-calc.html","上一步 · 租金试算","Back · Rent calculator"],["price-changes.html","下一步 · 调价公示历史","Next · Rate change log"],["price.html","公示总览","Price book"]],"idx":7,"len":8},"price-changes.html":{"r":"price","ds":"notices","k":"list","zh":"调价公示历史","en":"Rate change log","a":[["price-rules.html","上一步 · 公示规则与口径","Back · Rules & basis"],["price.html","公示总览","Price book"],["price-calc.html","租金试算","Rent calculator"]],"idx":8,"len":8},"workorder-cancel.html":{"r":"tenant","ds":"workorders","k":"form","zh":"取消工单","en":"Cancel a job","a":[["workorders.html","上一步 · 工单总览","Back · All jobs"],["workorder-detail.html","查看原工单","Open the job"],["workorder-refund.html","下一步 · 申请退款","Next · Request a refund"],["workorder-changes.html","变更记录","Change log"]],"idx":1,"len":6},"workorder-refund.html":{"r":"tenant","ds":"refunds","k":"form","zh":"申请退款","en":"Request a refund","a":[["workorder-cancel.html","上一步 · 取消工单","Back · Cancel job"],["workorder-refund-status.html","下一步 · 退款进度","Next · Refund progress"],["workorders.html","工单总览","All jobs"],["price.html","核对公示价","Check published rates"]],"idx":2,"len":6},"workorder-refund-status.html":{"r":"tenant","ds":"refunds","k":"flow","zh":"退款进度","en":"Refund progress","a":[["workorder-refund.html","上一步 · 申请退款","Back · Request a refund"],["farmer-funds.html","资金流水","Fund ledger"],["workorder-changes.html","变更记录","Change log"],["account.html","回个人中心","My account"]],"idx":3,"len":6},"workorder-edit.html":{"r":"tenant","ds":"workorders","k":"form","zh":"修改工单","en":"Amend a job","a":[["workorders.html","上一步 · 工单总览","Back · All jobs"],["workorder-changes.html","下一步 · 变更记录","Next · Change log"],["workorder-detail.html","查看原工单","Open the job"],["workorder-refund.html","申请退款","Request a refund"]],"idx":4,"len":6},"workorder-reopen.html":{"r":"tenant","ds":"workorders","k":"form","zh":"重新发起工单","en":"Reissue a job","a":[["workorder-cancel.html","上一步 · 取消工单","Back · Cancel job"],["workorder-detail.html","下一步 · 新工单详情","Next · New job detail"],["workorder-changes.html","变更记录","Change log"],["account.html","回个人中心","My account"]],"idx":5,"len":6},"workorder-changes.html":{"r":"tenant","ds":"jobChanges","k":"table","zh":"工单变更记录","en":"Job change log","a":[["workorder-cancel.html","上一步 · 取消工单","Back · Cancel job"],["workorder-edit.html","修改工单","Amend a job"],["workorder-reopen.html","重新发起","Reissue a job"],["workorders.html","工单总览","All jobs"]],"idx":6,"len":6},"lease-edit.html":{"r":"merchant","ds":"farms","k":"form","zh":"修改租赁信息","en":"Edit lease terms","a":[["farm-manage.html","上一步 · 田园管理","Back · Plot management"],["contract-manage.html","下一步 · 合同管理","Next · Contracts"],["price-lease.html","核对租金标准","Check rent rates"],["farms.html","田园档案","Plot archive"]],"idx":1,"len":12},"contract-manage.html":{"r":"merchant","ds":"contracts","k":"table","zh":"合同管理","en":"Contract management","a":[["lease-edit.html","上一步 · 修改租赁信息","Back · Edit lease"],["contract-edit.html","下一步 · 编辑合同内容","Next · Edit clauses"],["contract-versions.html","版本对比","Version diff"],["merchant-reconcile.html","对账中心","Reconciliation"]],"idx":2,"len":12},"contract-edit.html":{"r":"merchant","ds":"contracts","k":"form","zh":"编辑合同内容","en":"Edit contract clauses","a":[["contract-manage.html","上一步 · 合同管理","Back · Contracts"],["contract-versions.html","下一步 · 版本对比","Next · Version diff"],["merchant-reconcile.html","对账中心","Reconciliation"],["farms.html","田园档案","Plot archive"]],"idx":3,"len":12},"contract-versions.html":{"r":"merchant","ds":"contractVersions","k":"table","zh":"合同版本对比","en":"Contract version diff","a":[["contract-edit.html","上一步 · 编辑合同内容","Back · Edit clauses"],["merchant-reconcile.html","下一步 · 对账中心","Next · Reconciliation"],["contract-manage.html","合同管理","Contracts"],["price.html","核对公示价","Check published rates"]],"idx":4,"len":12},"merchant-reconcile.html":{"r":"merchant","ds":"reconciliations","k":"stats","zh":"对账中心","en":"Reconciliation centre","a":[["contract-versions.html","上一步 · 版本对比","Back · Version diff"],["merchant-bills.html","下一步 · 账单明细","Next · Bill lines"],["merchant-reconcile-detail.html","对账单详情","Statement detail"],["farm-manage.html","田园管理","Plot management"]],"idx":5,"len":12},"merchant-bills.html":{"r":"merchant","ds":"bills","k":"table","zh":"账单明细","en":"Bill lines","a":[["merchant-reconcile.html","上一步 · 对账中心","Back · Reconciliation"],["merchant-reconcile-detail.html","下一步 · 对账单详情","Next · Statement detail"],["activity-manage.html","活动管理","Event management"],["price.html","核对公示价","Check published rates"]],"idx":6,"len":12},"merchant-reconcile-detail.html":{"r":"merchant","ds":"bills","k":"detail","zh":"对账单详情","en":"Statement detail","a":[["merchant-bills.html","上一步 · 账单明细","Back · Bill lines"],["activity-manage.html","下一步 · 活动管理","Next · Event management"],["merchant-reconcile.html","对账中心","Reconciliation"],["account.html","回个人中心","My account"]],"idx":7,"len":12},"activity-manage.html":{"r":"merchant","ds":"activityVersions","k":"table","zh":"活动管理","en":"Event management","a":[["merchant-reconcile-detail.html","上一步 · 对账单详情","Back · Statement detail"],["activity-publish.html","下一步 · 发布活动","Next · Publish an event"],["activity-edit.html","更新活动","Update an event"],["activity.html","田园活动","Field events"]],"idx":8,"len":12},"activity-publish.html":{"r":"merchant","ds":"activities","k":"form","zh":"发布活动","en":"Publish an event","a":[["activity-manage.html","上一步 · 活动管理","Back · Event management"],["activity-edit.html","下一步 · 更新活动","Next · Update an event"],["activity-versions.html","内容版本","Content versions"],["price-venue.html","核对场租","Check venue rates"]],"idx":9,"len":12},"activity-edit.html":{"r":"merchant","ds":"activities","k":"form","zh":"更新活动","en":"Update an event","a":[["activity-publish.html","上一步 · 发布活动","Back · Publish an event"],["activity-versions.html","下一步 · 内容版本","Next · Content versions"],["activity-registrations.html","报名名单","Sign-ups"],["activity.html","田园活动","Field events"]],"idx":10,"len":12},"activity-versions.html":{"r":"merchant","ds":"activityVersions","k":"table","zh":"活动内容版本","en":"Event content versions","a":[["activity-edit.html","上一步 · 更新活动","Back · Update an event"],["activity-registrations.html","下一步 · 报名名单","Next · Sign-ups"],["activity-manage.html","活动管理","Event management"],["price.html","核对公示价","Check published rates"]],"idx":11,"len":12},"activity-registrations.html":{"r":"merchant","ds":"orders","k":"table","zh":"报名名单","en":"Event sign-ups","a":[["activity-versions.html","上一步 · 内容版本","Back · Content versions"],["activity-manage.html","下一步 · 活动管理","Next · Event management"],["activity-checkin.html","现场签到","On-site check-in"],["farm-manage.html","田园管理","Plot management"]],"idx":12,"len":12},"farmer-wallet.html":{"r":"grower","ds":"funds","k":"stats","zh":"资金总览","en":"My wallet","a":[["dispatch.html","上一步 · 接单大厅","Back · Dispatch hall"],["farmer-funds.html","下一步 · 资金流水","Next · Fund ledger"],["farmer-withdraw.html","申请提现","Withdraw funds"],["price-job.html","核对工单价","Check job rates"]],"idx":1,"len":5},"farmer-funds.html":{"r":"grower","ds":"funds","k":"table","zh":"资金流水","en":"Fund ledger","a":[["farmer-wallet.html","上一步 · 资金总览","Back · Wallet"],["farmer-settlement.html","下一步 · 结算单","Next · Settlements"],["farmer-withdraw.html","申请提现","Withdraw funds"],["dispatch-history.html","作业历史","Work history"]],"idx":2,"len":5},"farmer-settlement.html":{"r":"grower","ds":"workorders","k":"table","zh":"结算单","en":"Settlement statements","a":[["farmer-funds.html","上一步 · 资金流水","Back · Fund ledger"],["farmer-withdraw.html","下一步 · 申请提现","Next · Withdraw funds"],["farmer-wallet.html","资金总览","Wallet"],["dispatch-settle.html","工单结算","Job settlement"]],"idx":3,"len":5},"farmer-withdraw.html":{"r":"grower","ds":"withdrawals","k":"form","zh":"申请提现","en":"Withdraw funds","a":[["farmer-settlement.html","上一步 · 结算单","Back · Settlements"],["farmer-withdraw-status.html","下一步 · 提现进度","Next · Withdrawal progress"],["farmer-funds.html","资金流水","Fund ledger"],["account.html","回个人中心","My account"]],"idx":4,"len":5},"farmer-withdraw-status.html":{"r":"grower","ds":"withdrawals","k":"flow","zh":"提现进度","en":"Withdrawal progress","a":[["farmer-withdraw.html","上一步 · 申请提现","Back · Withdraw funds"],["farmer-wallet.html","下一步 · 资金总览","Next · Wallet"],["farmer-funds.html","资金流水","Fund ledger"],["dispatch.html","接单大厅","Dispatch hall"]],"idx":5,"len":5},"expert-stats.html":{"r":"expert","ds":"plantRecords","k":"stats","zh":"多维统计","en":"Multi-dimensional analytics","a":[["experts.html","上一步 · 专家频道","Back · Experts"],["expert-compare.html","下一步 · 数据对比","Next · Compare data"],["expert-planting-query.html","种植记录查询","Field record query"],["expert-points.html","积分口径","Points rules"]],"idx":1,"len":6},"expert-compare.html":{"r":"expert","ds":"farms","k":"detail","zh":"数据对比","en":"Compare data","a":[["expert-stats.html","上一步 · 多维统计","Back · Analytics"],["expert-regulation.html","下一步 · 调控建议","Next · Control advice"],["expert-planting-query.html","种植记录查询","Field record query"],["price.html","核对公示价","Check published rates"]],"idx":2,"len":6},"expert-regulation.html":{"r":"expert","ds":"regulations","k":"form","zh":"调控建议","en":"Control advice","a":[["expert-compare.html","上一步 · 数据对比","Back · Compare data"],["expert-regulation-log.html","下一步 · 调控记录","Next · Control log"],["expert-stats.html","多维统计","Analytics"],["expert-detail.html","专家主页","Expert profile"]],"idx":3,"len":6},"expert-regulation-log.html":{"r":"expert","ds":"regulations","k":"table","zh":"调控记录","en":"Control log","a":[["expert-regulation.html","上一步 · 调控建议","Back · Control advice"],["expert-planting-query.html","下一步 · 种植记录查询","Next · Field record query"],["expert-regulation-log.html","调控记录","Control log"],["experts.html","专家频道","Experts"]],"idx":4,"len":6},"expert-planting-query.html":{"r":"expert","ds":"plantRecords","k":"table","zh":"种植记录查询","en":"Field record query","a":[["expert-regulation-log.html","上一步 · 调控记录","Back · Control log"],["expert-planting-detail.html","下一步 · 记录详情","Next · Record detail"],["expert-stats.html","多维统计","Analytics"],["experts.html","专家频道","Experts"]],"idx":5,"len":6},"expert-planting-detail.html":{"r":"expert","ds":"plantRecords","k":"detail","zh":"种植记录详情","en":"Field record detail","a":[["expert-planting-query.html","上一步 · 种植记录查询","Back · Field record query"],["expert-stats.html","下一步 · 多维统计","Next · Analytics"],["expert-regulation.html","调控建议","Control advice"],["experts.html","专家频道","Experts"]],"idx":6,"len":6},"admin/refunds.html":{"r":"admin","ds":"refunds","k":"table","zh":"退款审核","en":"Refund review","a":[["admin/index.html","上一步 · 后台总览","Back · Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"],["admin/export.html","导出任务","Exports"]],"idx":1,"len":4},"admin/withdrawals.html":{"r":"admin","ds":"withdrawals","k":"table","zh":"提现复核","en":"Withdrawal review","a":[["admin/index.html","上一步 · 后台总览","Back · Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"],["admin/export.html","导出任务","Exports"]],"idx":1,"len":4},"admin/contracts.html":{"r":"admin","ds":"contractVersions","k":"table","zh":"合同版本台账","en":"Contract version ledger","a":[["admin/index.html","上一步 · 后台总览","Back · Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"],["admin/export.html","导出任务","Exports"]],"idx":1,"len":4},"admin/regulations.html":{"r":"admin","ds":"regulations","k":"table","zh":"调控记录台账","en":"Control advice ledger","a":[["admin/index.html","上一步 · 后台总览","Back · Dashboard"],["admin/audit.html","审核工作台","Approval desk"],["admin/logs.html","审计日志","Audit log"],["admin/export.html","导出任务","Exports"]],"idx":1,"len":4}};
+var ROLE_LABEL = {"tenant": "租户 / 普通租赁用户", "activity": "租户 / 活动与场地", "produce": "租户 / 农产品", "merchant": "田园商家 / 村集体", "grower": "接单农户", "expert": "技术专家 / 产学研", "job": "农事工单类型", "forum": "论坛用户", "account": "账号设置", "admin": "平台管理员", "public": "公共信息", "price": "价格公示"};
+var ROLE_LABEL_EN = {"tenant": "Tenant", "activity": "Tenant · events", "produce": "Tenant · produce", "merchant": "Merchant / collective", "grower": "Grower", "expert": "Expert / research", "job": "Job types", "forum": "Forum user", "account": "Account", "admin": "Platform admin", "public": "Public", "price": "Price book"};
+  var BIZ_FIELDS = {
+    farms: [['plotNo','田块编号','Plot no.'],['nameZh','田园名称','Plot name'],['region','所属地区','Region'],['soil','土壤类型','Soil'],
+      ['areaMu','实测面积（亩）','Area (mu)'],['leaseType','承包类型','Lease type'],['leaseStart','承包起','From'],['leaseEnd','承包止','To'],
+      ['price','公示单价（元/亩/季）','Published rate'],['currentCrops','当前作物','Current crops'],['pastCrops','曾种成功作物','Past crops'],
+      ['harvest','历史采摘成果','Harvest record'],['facilities','配套设施','Facilities'],['rating','评分','Rating']],
+    activities: [['titleZh','活动名称','Event'],['kind','类型','Type'],['date','日期','Date'],['capacity','名额','Capacity'],
+      ['booked','已报名','Booked'],['price','报名价（元/人）','Sign-up fee'],['farmId','关联田园','Linked plot']],
+    produces: [['nameZh','农产品','Produce'],['traceNo','溯源批次','Trace no.'],['category','品类','Category'],
+      ['season','季节','Season'],['price','公示单价','Unit price'],['unit','规格单位','Unit'],['stock','当前库存','Stock'],['farmId','溯源田园','Source plot']],
+    workorders: [['id','工单号','Job no.'],['type','作业类型','Type'],['status','当前状态','Status'],['farmId','关联田园','Linked plot'],
+      ['userId','发布人','Publisher'],['assigneeId','承接人','Assignee'],['createdAt','发布时间','Published'],['dueAt','期望完成','Due'],
+      ['price','公示价（元）','Published price'],['settleMode','结算方式','Settlement'],['priority','优先级','Priority']],
+    dispatches: [['id','需求编号','Request no.'],['kind','需求类型','Type'],['region','区域','Region'],['distanceKm','距离（km）','Distance'],
+      ['publishedAt','发布时间','Published'],['status','状态','Status'],['workorderId','关联工单','Job no.']],
+    orders: [['id','订单号','Order no.'],['kind','订单类型','Type'],['farmId','关联田园','Linked plot'],['amount','订单金额（元）','Amount'],
+      ['status','订单状态','Status'],['createdAt','下单时间','Placed at'],['items','订单条目','Items']],
+    experts: [['nameZh','专家','Expert'],['title','职称/方向','Title'],['points','积分','Points'],['level','认证等级','Level'],
+      ['farmCount','关联田园','Linked plots'],['trials','种植实践','Field trials'],['columns','技术专栏','Columns']],
+    topics: [['titleZh','帖子标题','Thread'],['board','所属版块','Board'],['author','作者','Author'],
+      ['publishedAt','发布时间','Published'],['replies','回复数','Replies'],['likes','收藏数','Saves']],
+    comments: [['id','评论号','Review no.'],['targetId','对象','Target'],['userId','评论人','Author'],['rating','评分','Rating'],
+      ['bodyZh','评论内容','Review'],['createdAt','时间','At'],['status','状态','Status']],
+    chats: [['id','消息号','Msg no.'],['fromId','发言人','From'],['bodyZh','内容','Message'],['at','时间','At'],['kind','类型','Kind']],
+    plantings: [['id','记录号','Log no.'],['farmId','田园','Plot'],['crop','作物','Crop'],['stage','生长阶段','Stage'],
+      ['at','记录时间','At'],['operator','记录人','By']],
+    audits: [['id','审核单号','Audit no.'],['targetType','审核对象','Target'],['targetId','对象编号','Target id'],
+      ['level','审核级别','Level'],['status','状态','Status'],['operator','操作人','Operator'],['at','时间','At'],['commentZh','审核意见','Note']],
+    notices: [['titleZh','公告标题','Notice'],['level','级别','Level'],['at','生效日期','Effective'],['bodyZh','正文','Body']],
+    users: [['nameZh','账号名称','Account'],['role','身份','Role'],['region','所属地区','Region'],['status','状态','Status']],
+    videos: [['titleZh','视频标题','Video'],['tag','标签','Tag'],['duration','时长','Duration'],['views','播放量','Views'],['publishedAt','发布时间','At']],
+    promos: [['titleZh','宣发标题','Story'],['channel','渠道','Channel'],['publishedAt','发布时间','At'],['farmId','关联田园','Plot']],
+    jobChanges: [['id','变更号','Change no.'],['workorderId','原工单','Job no.'],['kind','变更类型','Change type'],['fromStatus','变更前','From'],['toStatus','变更后','To'],['reasonZh','原因','Reason'],['operator','操作人','By'],['at','时间','At'],['amountImpact','金额影响','Amount impact']],
+    refunds: [['id','退款单号','Refund no.'],['orderId','关联订单','Order no.'],['workorderId','关联工单','Job no.'],['amountPaid','已付金额','Paid'],['usedAmount','已作业金额','Delivered'],['serviceFee','服务费','Service fee'],['refundAmount','应退金额','Refundable'],['status','状态','Status'],['method','退回方式','Method'],['appliedAt','申请时间','Applied at']],
+    contracts: [['id','合同号','Contract no.'],['farmId','关联田园','Plot'],['plotNo','田块编号','Plot no.'],['version','版本','Version'],['leaseType','承包类型','Lease type'],['rentPerSeason','一季租金','Season rent'],['deposit','押金','Deposit'],['status','状态','Status'],['signedAt','签署时间','Signed at']],
+    contractVersions: [['id','版本号','Version no.'],['contractId','合同号','Contract no.'],['clauseZh','条款','Clause'],['beforeZh','变更前','Before'],['afterZh','变更后','After'],['reasonZh','变更原因','Reason'],['changedBy','提交人','By'],['at','时间','At']],
+    bills: [['id','账单号','Bill no.'],['period','账期','Period'],['farmId','关联田园','Plot'],['kind','类型','Type'],['receivable','应收','Receivable'],['received','已收','Received'],['serviceFee','服务费','Fee'],['refunded','退款','Refunded'],['net','净额','Net'],['status','状态','Status']],
+    reconciliations: [['id','对账单号','Statement no.'],['period','账期','Period'],['subject','对账主体','Subject'],['orders','账单笔数','Bills'],['gross','应收合计','Gross'],['fee','服务费','Fee'],['refunded','退款','Refunded'],['net','净额','Net'],['status','状态','Status'],['checkedAt','核对日期','Checked at']],
+    funds: [['id','流水号','Entry no.'],['kind','类型','Type'],['amount','金额（元）','Amount'],['balanceAfter','变动后余额','Balance after'],['status','状态','Status'],['relatedId','关联单号','Related'],['at','时间','At']],
+    withdrawals: [['id','提现单号','Withdrawal no.'],['amount','申请金额','Amount'],['fee','手续费','Fee'],['arrive','到账金额','Net'],['bank','到账账户','Bank'],['status','状态','Status'],['appliedAt','申请时间','Applied at']],
+    activityVersions: [['id','版本号','Version no.'],['activityId','活动号','Event no.'],['titleZh','活动名称','Event'],['price','公示价','Published price'],['capacity','名额','Seats'],['status','状态','Status'],['changeZh','本次变更','Change'],['operator','操作人','By'],['at','时间','At']],
+    regulations: [['id','建议编号','Advice no.'],['farmId','关联田园','Plot'],['dimension','调控维度','Dimension'],['readingBefore','调整前读数','Before'],['target','目标区间','Target'],['actionZh','调控动作','Action'],['status','状态','Status'],['reviewZh','复核结论','Review'],['at','时间','At']],
+    plantRecords: [['id','记录号','Record no.'],['farmId','田园','Plot'],['plotNo','田块编号','Plot no.'],['crop','作物','Crop'],['stage','生长阶段','Stage'],['temp','温度（℃）','Temp'],['humid','湿度（%）','Humidity'],['soilMoisture','含水率（%）','Soil moisture'],['heightCm','株高（cm）','Height'],['yieldKg','预估产量（kg）','Est. yield'],['operator','记录人','By'],['at','时间','At']]
+  };
+  function bizFieldLabel(ds, k) {
+    var list = BIZ_FIELDS[ds] || [];
+    for (var i = 0; i < list.length; i++) if (list[i][0] === k) return lang === 'en' ? list[i][2] : list[i][1];
+    return k;
+  }
+  function bizScalar(v) {
+    if (v === undefined || v === null) return '—';
+    if (Array.isArray(v)) return v.join(' / ');
+    if (typeof v === 'object') return JSON.stringify(v);
+    return String(v);
+  }
+  /* ================= 业务节点专属渲染层（五角色链路） =================
+     除 ROUTES 里已专属实现的页面外，其余业务节点不再套通用占位模板：
+     按 BIZ[page] 的角色、数据集、视图类型与流程位置渲染真实记录、专属字段、
+     动作条、状态时间线与沟通交流框。数量文案全部由数据集动态算；
+     详情按 URL 参数渲染；每个按钮都指向链上真实存在的下一节点。 */
+  function bizKey() { return (location.pathname.indexOf('/admin/') >= 0 ? 'admin/' : '') + hereFile(); }
+  function bizRecord(ds) {
+    var q = param('id') || param('farm') || param('farmId') || param('job') || param('order') ||
+            param('activity') || param('produce') || param('venue') || param('trial') || param('target');
+    var list = M.all(ds);
+    for (var i = 0; i < list.length; i++) if (String(list[i].id) === String(q)) return list[i];
+    return list[0] || {};
+  }
+  function bizParams() {
+    var out = {}, keys = ['id','farm','farmId','job','order','activity','produce','venue','trial','target','role','mode'];
+    keys.forEach(function (k) { var v = param(k); if (v) out[k] = v; });
+    return out;
+  }
+  function bizAction(a) {
+    var target = a[0];
+    /* 后台目录内统一去前缀，避免叠成 /admin/admin/；前台保持原样 */
+    if (location.pathname.indexOf('/admin/') >= 0 && target.indexOf('admin/') === 0) target = target.slice(6);
+    var ex = bizParams(); ex.from = hereFile();
+    if (!ex.id && !ex.farm && !ex.job && !ex.order) {
+      var r = bizRecord((BIZ[bizKey()] || {}).ds || 'farms');
+      if (r && r.id) ex.id = r.id;
+    }
+    return '<a class="sf-biz-btn' + (a[1].indexOf('下一步') === 0 ? ' is-next' : '') + '" href="' +
+      esc(link(target, ex)) + '" title="' + esc(lang === 'en' ? a[2] : a[1]) + '">' +
+      esc(lang === 'en' ? a[2] : a[1]) + '</a>';
+  }
+  function bizActions(cfg) {
+    return '<div class="sf-biz-actions"><span class="sf-biz-role">' +
+      esc(lang === 'en' ? ROLE_LABEL_EN[cfg.r] : ROLE_LABEL[cfg.r]) +
+      ' · ' + (lang === 'en' ? 'step ' : '第 ') + cfg.idx + ' / ' + cfg.len +
+      (lang === 'en' ? '' : ' 步') + '</span>' +
+      cfg.a.map(bizAction).join('') + '</div>';
+  }
+  function bizRows(ds, rec, n) {
+    var list = BIZ_FIELDS[ds] || Object.keys(rec || {}).slice(0, n || 8).map(function (k) { return [k,k,k]; });
+    return list.slice(0, n || 8).map(function (f) {
+      return '<tr><th>' + esc(lang === 'en' ? f[2] : f[1]) + '</th><td>' +
+        esc(bizScalar(rec[f[0]])) + '</td></tr>';
+    }).join('');
+  }
+  function bizTable(ds, items, n) {
+    /* 台账类业务节点保留常规管控条：全选可逆、删除二次确认、分享当前记录。
+       类名沿用 .sf-check-del 以便与既有全局事件委托共用，不重复实现删除逻辑。 */
+    var E = lang === 'en';
+    var bar = '<div class="sf-biz-tools">' +
+      '<button class="sf-btn" data-act="selectAll" type="button">' + t('common.selectAll') + '</button>' +
+      '<button class="sf-btn is-danger" data-act="delete" type="button">' + t('common.delete') + '</button>' +
+      '<button class="sf-btn" data-act="share" type="button">' + t('common.share') + '</button>' +
+      '<span class="sf-biz-tools-note">' + esc(E ? 'Selection applies to this page only' : '勾选只作用于本页，删除前会二次确认') + '</span></div>';
+    var list = (BIZ_FIELDS[ds] || []).slice(0, 6);
+    var rows = items.slice(0, n || 8).map(function (x) {
+      return '<tr><td><input type="checkbox" class="sf-check-del" aria-label="' +
+        esc(E ? 'select this row' : '选择本行') + '"></td>' +
+        list.map(function (f) { return '<td>' + esc(bizScalar(x[f[0]])) + '</td>'; }).join('') +
+        '<td><a class="sf-biz-link" href="' + esc(link(hereFile(), { id: x.id, from: hereFile() })) + '">' +
+        esc(lang === 'en' ? 'Open' : '查看') + '</a></td></tr>';
+    }).join('');
+    return bar + '<div class="sf-biz-scroll"><table class="sf-biz-table"><thead><tr>' +
+      '<th></th>' + list.map(function (f) { return '<th>' + esc(lang === 'en' ? f[2] : f[1]) + '</th>'; }).join('') +
+      '<th>' + (lang === 'en' ? 'Action' : '操作') + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+  function bizList(ds, items, n) {
+    return '<div class="sf-biz-list">' + items.slice(0, n || 8).map(function (x) {
+      var title = x.titleZh || x.nameZh || x.id || x.type || x.kind || '记录';
+      var titleEn = x.titleEn || x.nameEn || title;
+      var meta = [x.plotNo, x.region, x.status, x.createdAt || x.publishedAt || x.at, x.kind, x.board]
+        .filter(Boolean).slice(0, 3).join(' · ');
+      return '<div class="sf-biz-line"><a href="' + esc(link(hereFile(), { id: x.id, from: hereFile() })) + '">' +
+        '<b>' + esc(lang === 'en' ? titleEn : title) + '</b></a>' +
+        '<span>' + esc(meta) + '</span>' +
+        '<small>' + esc(x.id || '') + '</small></div>';
+    }).join('') + '</div>';
+  }
+  function bizForm(cfg, rec) {
+    var E = lang === 'en';
+    var F = {
+      'farms-lease.html': [['seasons','承包季数','Seasons','number','1'],['leaseType','承包类型','Lease type','select','整季承包|半年托管|分时认领|试验小区'],['contact','联系人','Contact','text','']],
+      'farm-payment.html': [['method','支付方式','Payment method','select','平台担保支付|线下转账|村集体统一结算'],['amount','应付金额（元）','Amount due','number','' + Math.round((rec.price || 680) * (rec.areaMu || 1.2))],['payer','付款人','Payer','text','']],
+      'activity-signup.html': [['name','报名人','Name','text',''],['count','报名人数','Seats','number','1'],['phone','联系电话','Phone','text','']],
+      'venue-booking.html': [['date','使用日期','Date','date','2026-11-20'],['slot','时段','Slot','select','半天|全天|过夜'],['guests','人数','Guests','number','10']],
+      'produce-checkout.html': [['qty','数量','Quantity','number','2'],['address','收货地址','Delivery address','text','成都·崇州道明镇'],['note','备注','Note','text','']],
+      'dispatch-accept.html': [['estimate','预计到场','Arrival','date','2026-11-18'],['team','作业人数','Crew size','number','2'],['note','承接说明','Note','text','按明细条目作业并上传三段回执']],
+      'dispatch-receipt.html': [['scope','作业范围完成情况','Scope completed','text','全畦完成，四至与界桩一致'],['actual','实际用量','Actual dosage','text','按面积核定'],['photos','回执照片（开工/作业中/完工）','Receipt photos','text','3 张，含田块编号牌']],
+      'dispatch-verify.html': [['result','验收结论','Result','select','通过|退回补正'],['note','核对说明','Check note','text','逐条对照明细需求与回执照片']],
+      'expert-apply.html': [['org','所属机构','Institution','text',''],['field','技术方向','Field','select','土壤与施肥|育种与育苗|病虫害防治|采后与溯源'],['years','从业年限','Years','number','5']],
+      'expert-conclusion.html': [['readings','现场读数','Field readings','text','土壤含水率 62%，株高 34cm'],['conclusion','技术结论','Conclusion','text','建议追施有机肥并延后 3 天灌溉'],['advice','后续建议','Follow-up','text','下次巡田复核对照区读数']],
+      'account-profile.html': [['name','显示名称','Display name','text',''],['phone','联系电话','Phone','text',''],['region','常驻地区','Region','text','成都']],
+      'account-security.html': [['old','原口令','Current password','password',''],['new','新口令','New password','password',''],['repeat','重复新口令','Repeat password','password','']],
+      'account-bind.html': [['account','待绑定账号','Account to link','text',''],['kind','绑定类型','Link type','select','微信|手机号|村集体账号']],
+      'contact.html': [['name','称呼','Name','text',''],['email','邮箱','Email','text',''],['message','留言','Message','text','']],
+      'forum-edit.html': [['title','标题','Title','text',''],['board','版块','Board','select','热门田园|种植经验|活动|技术咨询'],['body','正文','Body','text','']]
+    }[bizKey()] || [['title','标题','Title','text',''],['content','内容','Content','text',''],['remark','备注','Note','text','']];
+    var inputs = F.map(function (f) {
+      var v = f[4] || '';
+      if (f[3] === 'select') {
+        return '<label class="sf-biz-field"><span>' + esc(E ? f[2] : f[1]) + '</span><select class="sf-input" name="' + f[0] + '">' +
+          v.split('|').map(function (o) { return '<option>' + esc(o) + '</option>'; }).join('') + '</select></label>';
+      }
+      if (f[3] === 'text' && f[0].indexOf('body') >= 0 || f[0] === 'message' || f[0] === 'conclusion' || f[0] === 'advice' || f[0] === 'note') {
+        return '<label class="sf-biz-field"><span>' + esc(E ? f[2] : f[1]) + '</span><textarea class="sf-textarea" name="' + f[0] + '">' + esc(v) + '</textarea></label>';
+      }
+      return '<label class="sf-biz-field"><span>' + esc(E ? f[2] : f[1]) + '</span><input class="sf-input" name="' + f[0] + '" type="' + f[3] + '" value="' + esc(v) + '"></label>';
+    }).join('');
+    var next = cfg.a.filter(function (a) { return a[1].indexOf('下一步') === 0; })[0] || cfg.a[0];
+    return '<form class="sf-biz-form" data-form="biz-form" data-next="' + esc(next ? next[0] : 'account.html') + '">' +
+      '<div class="sf-biz-err" data-err></div>' + inputs +
+      '<button class="sf-btn is-primary" type="submit">' + esc(E ? 'Submit and continue' : '提交并继续') + '</button></form>';
+  }
+  function bizFlow(cfg, items) {
+    var E = lang === 'en';
+    var FLOW = {
+      'submission-status.html': ['提交资料','资料初审','一致性复审','终审公开'],
+      'admin/audit-review.html': ['提交','初审通过','复审中','终审'],
+      'admin/audit-final.html': ['提交','初审','复审','终审发布'],
+      'produce-delivery.html': ['订单已付','分拣装筐','冷链出库','配送中','签收完成'],
+      'dispatch-history.html': ['发布','接单','作业','回执','验收','结算'],
+      'expert-history.html': ['建档','巡田','记录读数','技术结论','归档'],
+      'account-close.html': ['提交申请','身份核验','结算清算','账号注销'],
+      'admin/logs.html': ['操作发生','写入台账','复核留痕','归档']
+    };
+    var key = bizKey();
+    var steps = FLOW[key] || FLOW[cfg.k] || ['提交','初审','复审','终审'];
+    var cur = Math.min(cfg.idx, steps.length) - 1;
+    return '<ol class="sf-biz-flow">' + steps.map(function (s, i) {
+      return '<li class="' + (i < cur ? 'is-done' : i === cur ? 'is-on' : '') + '"><b>' + (i+1) + '. ' +
+        esc(s) + '</b><span>' + esc(E ? (i < cur ? 'Done' : i === cur ? 'Current' : 'Pending')
+          : (i < cur ? '已完成' : i === cur ? '当前步骤' : '未开始')) + '</span></li>';
+    }).join('') + '</ol>' +
+      '<div class="sf-biz-log"><b>' + esc(E ? 'Audit trail' : '操作留痕') + '</b>' +
+      items.slice(0, 4).map(function (x) {
+        return '<p>' + esc(x.id || '') + ' · ' + esc(bizScalar(x.at || x.createdAt || x.publishedAt || x.operator || '')) + ' · ' +
+          esc(bizScalar(x.commentZh || x.status || x.bodyZh || '')) .slice(0, 60) + '</p>';
+      }).join('') + '</div>';
+  }
+  function bizChat(ds, items) {
+    var E = lang === 'en';
+    return '<div class="sf-biz-chat" id="sf-chat">' + items.slice(0, 6).map(function (x, i) {
+      return '<div class="sf-bubble' + (i % 3 === 0 ? ' is-me' : '') + '">' +
+        esc(bizScalar(x.bodyZh || x.bodyEn || x.commentZh || x.titleZh || x.message || '')) +
+        '<span class="sb-time">' + esc(bizScalar(x.at || x.createdAt || x.publishedAt || '')) + '</span></div>';
+    }).join('') + '</div>' +
+      '<form data-form="chat" class="sf-biz-chat-form"><input class="sf-input" name="msg" required placeholder="' +
+      esc(E ? 'Write a message attached to this record' : '就这条记录写一句沟通内容') + '">' +
+      '<button class="sf-btn is-primary" type="submit">' + esc(E ? 'Send' : '发送') + '</button></form>';
+  }
+  function bizSuccess(cfg, rec) {
+    var E = lang === 'en';
+    /* 成功态不重复动作条里的「下一步」，只给一个不同目标的归档入口，
+       避免同页出现两个指向同一页的按钮；继续办理请走本页动作条。 */
+    return '<div class="sf-biz-ok"><h3>' + esc(E ? 'Done · the record is now in the flow' : '已办结 · 记录已进入业务流程') + '</h3>' +
+      '<p>' + esc(E ? 'Record ' : '记录 ') + esc(bizScalar(rec.id || cfg.zh)) +
+      esc(E ? ' has a status, an owner and a next step. Use the action bar below to continue.'
+           : ' 已有状态、责任人与下一步；继续办理请用本页下方的动作条，不会停在这一页没有下文。') + '</p>' +
+      '<div class="sf-biz-ok-acts">' +
+      bizAction(['orders.html', '查看我的订单', 'My orders']) + '</div></div>';
+  }
+  function bizInfo(cfg, rec) {
+    var E = lang === 'en';
+    var body = [
+      E ? 'This node serves ' + ROLE_LABEL_EN[cfg.r] + '. The fields below are read from the live record, not a demo placeholder.'
+        : '本节点服务「' + ROLE_LABEL[cfg.r] + '」，下面的字段来自当前业务记录，不是演示占位。',
+      E ? 'Amounts follow the published price book; the same rate is shown on checkout, settlement and the invoice.'
+        : '涉及金额一律以价格公示总账为准，下单、结算与发票三处口径一致；有异议可回到公示规则页核对。',
+      E ? 'The action bar below leads to the previous and next real step, so the workflow can always move on or go back.'
+        : '下方动作条给出本链的上一步与下一步真实页面，业务不会停在这页；返回按来源页逐层回退。'
+    ];
+    return '<div class="sf-biz-prose">' + body.map(function (x) { return '<p>' + esc(x) + '</p>'; }).join('') + '</div>' +
+      '<div class="sf-biz-scroll"><table class="sf-biz-table"><tbody>' + bizRows(cfg.ds, rec, 8) + '</tbody></table></div>';
+  }
+  function bizGeneric(page, cfg) {
+    var E = lang === 'en', rec = bizRecord(cfg.ds), items = M.all(cfg.ds);
+    var h1 = pageCopy('h1') || (E ? cfg.en : cfg.zh);
+    var lead = pageCopy('lead') || (E ? 'A working step for ' + ROLE_LABEL_EN[cfg.r] + '.' : '「' + ROLE_LABEL[cfg.r] + '」业务流程中的一个真实办理节点。');
+    var body = '';
+    /* 按地区找田 / 按土壤筛选：业务语义是「找田列表」，必须保留筛选、真实分页与
+       点第 N 页换一批；带 ?id= 时按 URL 参数渲染单块田详情，不同编号内容不同。 */
+    if (page === 'farms-region.html' || page === 'farms-soil.html') {
+      var back32 = backRow(document.body.getAttribute('data-parent') || 'farms.html');
+      if (param('id')) {
+        var pick32 = M.byId('farms', param('id')) || items[0];
+        put(sectionHead(h1, lead, '', count('farms')) +
+          '<div class="sf-section"><div class="sf-panel">' +
+          '<div class="sf-biz-rec"><b>' + esc(E ? 'Current plot' : '当前田块') + '</b> · ' +
+          esc(pick32.id) + ' · ' + esc(zh(pick32, 'nameZh', 'nameEn')) + '</div>' +
+          '<div class="sf-biz-scroll"><table class="sf-biz-table"><tbody>' +
+          bizRows('farms', pick32, 12) + '</tbody></table></div></div></div>' +
+          bizActions(cfg) + back32);
+        return;
+      }
+      var bid32 = page === 'farms-region.html' ? 'region' : 'soil';
+      var vals32 = page === 'farms-region.html'
+        ? M.all('farms').map(function (f) { return f.region.split('·')[1] || f.region; })
+        : M.all('farms').map(function (f) { return f.soil.split(' / ')[0]; });
+      var uniq32 = vals32.filter(function (v, i, arr) { return v && arr.indexOf(v) === i; }).slice(0, 5);
+      put(searchBar() + '<div class="sf-section">' + sectionHead(h1, lead, '', count('farms')) +
+        filters([{ k: t('common.all'), v: '' }].concat(uniq32.map(function (x) { return { k: x, v: x }; })), bid32) +
+        '<div id="mount-' + bid32 + '"></div></div>' + bizActions(cfg) + back32);
+      listBlock({ id: bid32, api: 'listFarms', loadMore: true, emptyCta: 'farms.html',
+        params: function () { return { page: state.page, pageSize: 8, q: state.q, region: state.filter, soil: state.filter }; },
+        toCard: function (f) { return card({ id: f.id, title: zh(f, 'nameZh', 'nameEn'), cover: f.cover,
+          meta: f.region + ' · ' + f.plotNo + ' · ' + f.areaMu + ' 亩',
+          tags: [f.soil.split(' / ')[0], f.leaseType, f.currentCrops[0]], price: f.price,
+          href: detailLink('farm-detail.html', f.id) }); } });
+      return;
+    }
+    switch (cfg.k) {
+      case 'table': body = bizTable(cfg.ds, items, 8); break;
+      case 'list':
+        /* 论坛版块子页沿用全站文字列表渲染器：版块、标题、摘要、时间、回复数成行，
+           绝不退回图片卡片；按文件名判定而非角色，避免同一页挂到专家链时漏判。 */
+        body = page.indexOf('forum') === 0
+          ? items.slice(0, 10).map(function (x) { return genTextRow(x, 'topics', page); }).join('')
+          : bizList(cfg.ds, items, 8);
+        break;
+      case 'detail': body = '<div class="sf-biz-scroll"><table class="sf-biz-table"><tbody>' + bizRows(cfg.ds, rec, 10) + '</tbody></table></div>'; break;
+      case 'form': body = bizForm(cfg, rec); break;
+      case 'flow': body = bizFlow(cfg, items); break;
+      case 'chat': body = bizChat(cfg.ds, items); break;
+      case 'success': body = bizSuccess(cfg, rec); break;
+      case 'gallery': body = '<div class="sf-gallery">' + items.slice(0, 6).map(function (x, i) {
+          return pic(artFor(dsCat(cfg.ds), String(x.id) + i, 'card'), bizScalar(x.titleZh || x.nameZh || x.id || ''));
+        }).join('') + '</div>'; break;
+      case 'map': body = '<div class="sf-biz-map">' + items.slice(0, 8).map(function (x) {
+          return '<a href="' + esc(link('farm-detail.html', { id: x.id, from: page })) + '">' +
+            esc(bizScalar(x.plotNo || x.id)) + '<small>' + esc(bizScalar(x.region || x.nameZh || '')) + '</small></a>';
+        }).join('') + '</div>'; break;
+      case 'stats': body = '<div class="sf-stats">' + [['田园记录', items.length, 'Plots'], ['在册工单', count('workorders'), 'Jobs'],
+          ['公示价目', M.PRICE_BOOK.stats().items, 'Published lines'], ['论坛帖子', count('topics'), 'Threads']]
+          .map(function (x) { return '<div class="sf-stat"><b>' + x[1] + '</b><span>' + esc(E ? x[2] : x[0]) + '</span></div>'; }).join('') + '</div>'; break;
+      default: body = bizInfo(cfg, rec);
+    }
+    var head = sectionHead(h1, lead, '', items.length);
+    var recHead = '<div class="sf-biz-rec"><b>' + esc(E ? 'Current record' : '当前业务记录') + '</b> · ' +
+      esc(bizScalar(rec.id || cfg.zh)) + ' · ' + esc(ROLE_LABEL[cfg.r] || '') + '</div>';
+    var extra = '<div class="sf-section"><div class="sf-panel">' +
+      sectionHead(E ? 'Related records' : '相关业务记录', E ? 'Each line links back to its own record.' : '每行都能点回自己的业务记录。', '', items.length) +
+      contentBoost(cfg.ds, cfg.k, items, lead) + '</div></div>';
+    put(head + recHead + '<div class="sf-section"><div class="sf-panel">' + body + '</div></div>' +
+      bizActions(cfg) + extra + backRow(document.body.getAttribute('data-parent') || 'index.html'));
+  }
+
   function pageGeneric() {
     var b = document.body;
     var tpl = b.getAttribute('data-tpl') || 'list';
@@ -1669,6 +2225,268 @@
   /* ---------- 分派（唯一一份） ---------- */
   /* 站点地图：按频道列出全站前台页面，每一个都是可点的业务入口；
      后台页面不进公开索引（独立登录、noindex、robots 屏蔽），符合「后台不得对外」。 */
+
+  /* ================= 租金与价格公示频道（9 个页面 + 1 个后台管控） =================
+     所有金额与数量均由 PRICE_BOOK / 数据集动态推导，禁止写死；详情页按 ?id= 渲染；
+     每个按钮都有可见反馈与明确目标，返回逐层回退到所属上级。 */
+  var PRICE_CAT_PAGE = { lease: 'price-lease.html', venue: 'price-venue.html', activity: 'price-venue.html',
+    job: 'price-job.html', expert: 'price-job.html', produce: 'price-produce.html',
+    delivery: 'price-produce.html', deposit: 'price-rules.html', service: 'price-rules.html' };
+  function priceTable(heads, rows) {
+    return '<div class="sf-pub-scroll"><table class="sf-pub-table"><thead><tr>' +
+      heads.map(function (h) { return '<th>' + esc(h) + '</th>'; }).join('') +
+      '</tr></thead><tbody>' + rows.map(function (r) {
+        return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
+      }).join('') + '</tbody></table></div>';
+  }
+  function priceItemRows(catKeys, E) {
+    var PB = M.PRICE_BOOK;
+    return PB.itemsFor(catKeys).map(function (x) {
+      var cat = PB.cats.filter(function (c) { return c.key === x.cat; })[0];
+      return [esc(E ? cat.en : cat.zh), '<b>' + esc(E ? x.en : x.zh) + '</b><small>' + esc(x.id) + '</small>',
+        '<span class="sf-pub-num">¥' + esc(x.price) + '</span>', esc(x.unit),
+        esc(E ? cat.basisEn : cat.basisZh), esc(E ? x.scopeEn : x.scopeZh)];
+    });
+  }
+  function priceHeads(E) {
+    return [t('price.table.cat'), t('price.table.item'), t('price.table.rate'),
+      t('price.table.unit'), t('price.table.basis'), t('price.table.scope')];
+  }
+  function priceBackRow(E) {
+    return '<div class="sf-pub-foot" style="margin-top:12px">' +
+      '<a class="sf-pub-link" href="' + esc(link('price.html', { from: hereFile() })) + '">' +
+      esc(t('back.price')) + '</a>' +
+      '<a class="sf-pub-link" href="' + esc(link('price-calc.html', { from: hereFile() })) + '">' +
+      esc(t('price.calc')) + '</a>' +
+      '<a class="sf-pub-link" href="' + esc(link('price-changes.html', { from: hereFile() })) + '">' +
+      esc(t('price.changesPage')) + '</a></div>';
+  }
+  function pagePriceIndex() {
+    var PB = M.PRICE_BOOK, st = PB.stats(), E = lang === 'en';
+    var stats = '<div class="sf-pub-chips sf-pub-stats">' +
+      '<span class="sf-pub-chip">' + t('price.cats') + ' <b>' + st.cats + '</b></span>' +
+      '<span class="sf-pub-chip">' + t('price.lines') + ' <b>' + st.items + '</b></span>' +
+      '<span class="sf-pub-chip">' + t('price.plots') + ' <b>' + st.plots + '</b></span>' +
+      '<span class="sf-pub-chip">' + t('price.changes') + ' <b>' + st.changes + '</b></span>' +
+      '<span class="sf-pub-chip">' + t('price.version') + ' <b>' + st.version + '</b></span>' +
+      '<span class="sf-pub-chip">' + t('price.valid') + ' <b>' + st.from + ' ~ ' + st.to + '</b></span>' +
+      '<span class="sf-pub-chip">' + t('price.rentRange') + ' <b>¥' + st.rentMin + '–' + st.rentMax + '</b> / ' + t('price.perSeason') + '</span></div>';
+    var cats = PB.cats.map(function (c) {
+      var list = PB.itemsFor([c.key]);
+      var mini = list.slice(0, 3).map(function (x) {
+        return '<span class="sf-pub-chip">' + esc(E ? x.en : x.zh) + ' <b>¥' + x.price + '</b> / ' + esc(x.unit) + '</span>';
+      }).join('');
+      return '<div class="sf-panel sf-pub-cat"><h3>' + esc(E ? c.en : c.zh) +
+        ' <small>' + list.length + ' ' + t('price.lines') + ' · ' + esc(c.unit) + '</small></h3>' +
+        '<p class="sf-sub">' + esc(E ? c.basisEn : c.basisZh) + '</p>' +
+        '<div class="sf-pub-chips">' + mini + '</div>' +
+        '<div class="sf-pub-foot"><a class="sf-pub-link" href="' +
+        esc(link(PRICE_CAT_PAGE[c.key], { from: 'price.html' })) + '">' +
+        (E ? 'View all ' + list.length + ' lines' : '查看本类目 ' + list.length + ' 条公示价目') + '</a></div></div>';
+    }).join('');
+    var recent = PB.changes.slice(0, 3).map(function (c) {
+      return '<li>' + esc(E ? c.itemEn : c.itemZh) + '：¥' + c.before + ' → <b>¥' + c.after +
+        '</b> / ' + esc(c.unit) + ' · ' + c.at + '</li>';
+    }).join('');
+    put('<div class="sf-section">' + sectionHead(t('price.title'), t('price.desc'), '', st.items) +
+      stats + '</div>' +
+      '<div class="sf-section">' + sectionHead(t('price.cats'), E ? 'Each category links to its own published rate sheet.' : '每个类目都能点进自己的公示价目页。', '', st.cats) +
+      '<div class="sf-pub-cats">' + cats + '</div></div>' +
+      '<div class="sf-section"><div class="sf-panel">' +
+      sectionHead(t('price.changesPage'), E ? 'The three most recent rate changes.' : '最近三条调价公示。', 'price-changes.html', st.changes) +
+      '<ul class="sf-pub-log">' + recent + '</ul>' + priceBackRow(E) + '</div></div>');
+  }
+  function pagePriceLease() {
+    var PB = M.PRICE_BOOK, st = PB.stats(), E = lang === 'en';
+    var plots = M.all('farms'), sum = 0;
+    var rows = plots.map(function (f) {
+      var season = Math.round(f.price * f.areaMu);
+      var dep = Math.round(season * 0.30), fee = Math.round(season * 0.02);
+      sum += season;
+      return [esc(E ? f.nameEn : f.nameZh) + '<small>' + esc(f.plotNo) + '</small>',
+        f.areaMu + ' ' + (E ? 'mu' : '亩'),
+        '<span class="sf-pub-num">¥' + f.price + '</span> / ' + (E ? 'mu / season' : '亩 / 季'),
+        '<span class="sf-pub-num">¥' + season + '</span>', esc(f.leaseType),
+        '¥' + dep, '<span class="sf-pub-num">¥' + (season + dep + fee) + '</span>',
+        '<a class="sf-pub-link" href="' + esc(detailLink('farm-detail.html', f.id, 'price-lease.html')) + '">' +
+          t('price.lease.view') + '</a>'];
+    });
+    var heads = [t('price.lease.plot'), t('price.lease.area'), t('price.lease.rate'),
+      t('price.lease.season'), t('price.lease.type'), t('price.lease.deposit'),
+      t('price.lease.total'), ''];
+    put('<div class="sf-section">' + sectionHead(t('price.lease'),
+      E ? 'Measured area times the published seasonal rate; deposit and fee are itemised separately.'
+         : '实测亩数 × 当季公示单价；押金与平台服务费单列，点「核对档案」回到田园档案确认面积。',
+      'price.html', plots.length) + priceTable(heads, rows) +
+      '<p class="sf-pub-note">' + (E
+        ? 'All ' + plots.length + ' plots together come to CNY ' + sum + ' for one season; each line is derived from the plot record, never hard-coded.'
+        : '在册 ' + plots.length + ' 块田一季租金合计 ¥' + sum + '，每一行都由田园档案的面积与公示单价推导，不是写死的金额。') + '</p>' +
+      priceBackRow(E) + '</div>');
+  }
+  function pagePriceVenue() {
+    var PB = M.PRICE_BOOK, E = lang === 'en';
+    var items = PB.itemsFor(['venue', 'activity']);
+    var evs = M.all('activities');
+    var evRows = evs.map(function (a) {
+      return [esc(E ? a.titleEn : a.titleZh) + '<small>' + esc(a.id) + '</small>', esc(a.kind),
+        '<span class="sf-pub-num">¥' + a.price + '</span> / ' + (E ? 'person' : '人'),
+        a.capacity + ' ' + (E ? 'seats' : '名额'), esc(a.date),
+        '<a class="sf-pub-link" href="' + esc(detailLink('activity-detail.html', a.id, 'price-venue.html')) + '">' + t('common.viewDetail') + '</a>'];
+    });
+    put('<div class="sf-section">' + sectionHead(t('price.venue'),
+      E ? 'Published venue and event rates, plus the sign-up price of every listed event.'
+         : '场地与活动的公示价目，并逐场列出报名价；场地保证金单独列项。', 'price.html', items.length) +
+      priceTable(priceHeads(E), priceItemRows(['venue', 'activity'], E)) + '</div>' +
+      '<div class="sf-section"><div class="sf-panel">' +
+      sectionHead(E ? 'Every listed event' : '逐场活动报名价', '', '', evs.length) +
+      priceTable([t('price.table.item'), t('price.table.cat'), t('price.table.rate'),
+        E ? 'Capacity' : '名额', E ? 'Date' : '日期', ''], evRows) +
+      priceBackRow(E) + '</div></div>');
+  }
+  function pagePriceJob() {
+    var PB = M.PRICE_BOOK, E = lang === 'en';
+    var items = PB.itemsFor(['job', 'expert']);
+    var types = M.JOB_TYPES;
+    var rows = types.map(function (tp, i) {
+      var line = PB.items.filter(function (x) { return x.zh === tp; })[0];
+      return ['<b>' + esc(tp) + '</b><small>' + (E ? 'Work order type ' : '工单类型 ') + (i + 1) + '</small>',
+        line ? '<span class="sf-pub-num">¥' + line.price + '</span> / ' + esc(line.unit) : '—',
+        line ? esc(E ? line.scopeEn : line.scopeZh) : (E ? 'Priced by area and acceptance' : '按面积核定，验收后结算'),
+        '<a class="sf-pub-link" href="' + esc(link('workorders.html', { from: 'price-job.html' })) + '">' +
+          (E ? 'View work orders' : '查看工单') + '</a>'];
+    });
+    put('<div class="sf-section">' + sectionHead(t('price.job'),
+      E ? 'Ten field-work types and expert guidance, all priced before an order is placed.'
+         : '十类农事作业与专家指导，全部在发单前公示；未验收不产生应付金额。', 'price.html', items.length) +
+      priceTable(priceHeads(E), priceItemRows(['job', 'expert'], E)) + '</div>' +
+      '<div class="sf-section"><div class="sf-panel">' +
+      sectionHead(E ? 'Work-order type index' : '工单类型价目索引', '', '', types.length) +
+      priceTable([t('price.table.item'), t('price.table.rate'), t('price.table.scope'), ''], rows) +
+      priceBackRow(E) + '</div></div>');
+  }
+  function pagePriceProduce() {
+    var PB = M.PRICE_BOOK, E = lang === 'en';
+    var items = PB.itemsFor(['produce', 'delivery']);
+    var ps = M.all('produces');
+    var rows = ps.map(function (p) {
+      return [esc(E ? p.nameEn : p.nameZh) + '<small>' + esc(p.traceNo) + '</small>', esc(p.category),
+        '<span class="sf-pub-num">¥' + p.price + '</span> / ' + esc(p.unit),
+        p.stock + esc(p.unit), '¥' + (p.price * p.stock),
+        '<a class="sf-pub-link" href="' + esc(detailLink('produce-detail.html', p.id, 'price-produce.html')) + '">' + t('common.viewDetail') + '</a>'];
+    });
+    put('<div class="sf-section">' + sectionHead(t('price.produce'),
+      E ? 'Batch prices by trace number; delivery is itemised by distance and weight tier.'
+         : '按批次溯源号公示单价，配送按距离与重量阶梯单列，价签与批次号一致。', 'price.html', items.length) +
+      priceTable(priceHeads(E), priceItemRows(['produce', 'delivery'], E)) + '</div>' +
+      '<div class="sf-section"><div class="sf-panel">' +
+      sectionHead(E ? 'Every traced batch' : '逐批次公示单价', '', '', ps.length) +
+      priceTable([t('price.table.item'), t('price.table.cat'), t('price.table.rate'),
+        E ? 'Stock' : '库存', E ? 'Batch value' : '整批货值', ''], rows) +
+      priceBackRow(E) + '</div></div>');
+  }
+  function pagePriceRules() {
+    var PB = M.PRICE_BOOK, E = lang === 'en';
+    var rules = PB.rules.map(function (r, i) {
+      return '<li><b>' + (i + 1) + '.</b> ' + esc(E ? r.en : r.zh) + '</li>';
+    }).join('');
+    var FAQ = [
+      { q: E ? 'How is plot rent worked out?' : '田块租金怎么算？',
+        a: E ? 'Measured area × published seasonal rate × number of seasons. The lease type multiplies the rate by its published factor; the measured area comes from the plot archive.'
+            : '实测亩数 × 当季公示单价 × 承包季数；承包类型按公示系数折算单价，面积以田园档案登记为准。' },
+      { q: E ? 'When is the deposit refunded?' : '押金什么时候退？',
+        a: E ? 'Within seven working days after the exit inspection, back to the original payment method. A venue bond is refunded in full if the site is left intact.'
+            : '退租验收后 7 个工作日内原路退还；场地保证金在场地无损时全额退还。' },
+      { q: E ? 'Does a rate change affect my order?' : '调价会影响已下的单吗？',
+        a: E ? 'No. An order already placed keeps the old rate until its term ends. Every change is published seven days in advance in the change log.'
+            : '不会。已下单的订单按原价执行到本周期结束；每次调价都会提前 7 天在调价公示历史里发布。' },
+      { q: E ? 'Do I pay before work is accepted?' : '工单没验收要付钱吗？',
+        a: E ? 'No payable amount arises before acceptance. The 1% settlement fee is charged with the work order only after the receipt is approved.'
+            : '不产生应付金额。1% 结算服务费只在回执验收通过后随工单结算，未验收不计费。' },
+      { q: E ? 'Why is delivery listed separately?' : '配送费为什么单列？',
+        a: E ? 'It follows a distance and weight tier (18 or 32 CNY per order) and is never folded into the goods total, so the produce price stays comparable across batches.'
+            : '配送按距离与重量阶梯（18 / 32 元每单）计，不并入货款，方便不同批次的农产品单价横向比较。' },
+      { q: E ? 'What is the platform fee?' : '平台服务费怎么收？',
+        a: E ? 'Two percent of lease, venue and produce orders, and one percent of work orders. It is shown as its own line on checkout and settlement pages.'
+            : '租赁、场地与农产品订单按 2%，工单按 1%，在下单页与结算页单独列项，不并入租金。' }
+    ];
+    var faq = FAQ.map(function (x) {
+      return '<details class="sf-pub-faq"><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p></details>';
+    }).join('');
+    var basis = PB.cats.map(function (c) {
+      return [esc(E ? c.en : c.zh), esc(c.unit), esc(E ? c.basisEn : c.basisZh)];
+    });
+    put('<div class="sf-section">' + sectionHead(t('price.rulesPage'),
+      E ? 'Six binding rules and a plain answer to each billing question.' : '六条可执行规则，以及每个计费问题的正面答案。', 'price.html', PB.rules.length) +
+      '<div class="sf-panel"><ol class="sf-pub-rules-list">' + rules + '</ol></div></div>' +
+      '<div class="sf-section"><div class="sf-panel">' + sectionHead(t('price.table.basis'), '', '', PB.cats.length) +
+      priceTable([t('price.table.cat'), t('price.table.unit'), t('price.table.basis')], basis) + '</div></div>' +
+      '<div class="sf-section"><div class="sf-panel">' + sectionHead(t('faq.head'), t('faq.lead'), '', FAQ.length) +
+      faq + priceBackRow(E) + '</div></div>');
+  }
+  function pagePriceChanges() {
+    var PB = M.PRICE_BOOK, E = lang === 'en';
+    var rows = PB.changes.map(function (c) {
+      return ['<b>' + esc(E ? c.itemEn : c.itemZh) + '</b><small>' + esc(c.id) + '</small>',
+        '¥' + c.before, '<span class="sf-pub-num">¥' + c.after + '</span>', esc(c.unit),
+        esc(c.at), c.days + ' ' + (E ? 'days' : '天'), esc(E ? c.reasonEn : c.reasonZh)];
+    });
+    put('<div class="sf-section">' + sectionHead(t('price.changesPage'),
+      E ? 'Old rate, new rate, effective date, notice days and reason for every change.' : '每条调价写明原价、新价、生效日、提前公示天数与原因。', 'price.html', PB.changes.length) +
+      priceTable([t('price.chg.item'), t('price.chg.before'), t('price.chg.after'),
+        t('price.table.unit'), t('price.chg.at'), t('price.chg.days'), t('price.chg.reason')], rows) +
+      '<p class="sf-pub-note">' + (E
+        ? 'Orders already placed keep the old rate until their term ends. All changes are published ' +
+          PB.changes.filter(function (c) { return c.days >= 7; }).length + ' of ' + PB.changes.length + ' times with at least seven days notice.'
+        : '已下单的订单按原价执行到本周期结束；' + PB.changes.length + ' 条调价中有 ' +
+          PB.changes.filter(function (c) { return c.days >= 7; }).length + ' 条满足提前 7 天公示。') + '</p>' +
+      priceBackRow(E) + '</div>');
+  }
+  function pagePriceCalc() {
+    var E = lang === 'en', plots = M.all('farms'), f0 = plots[0];
+    var opts = plots.map(function (f) {
+      return '<option value="' + esc(f.id) + '">' + esc(E ? f.nameEn : f.nameZh) + ' · ' + esc(f.plotNo) +
+        ' · ¥' + f.price + '/' + (E ? 'mu' : '亩') + '</option>';
+    }).join('');
+    var types = M.PRICE_BOOK.leaseFactors.map(function (x) {
+      return '<option value="' + x.factor + '">' + esc(E ? x.en : x.zh) + ' × ' + x.factor.toFixed(2) + '</option>';
+    }).join('');
+    var form = '<form class="sf-pub-calc-form" id="sf-pub-calc-form">' +
+      '<label>' + t('price.calc.plot') + '<select class="sf-input" name="plot">' + opts + '</select></label>' +
+      '<label>' + t('price.calc.area') + '<input class="sf-input" name="area" type="number" min="0.1" step="0.1" value="' + f0.areaMu + '" required></label>' +
+      '<label>' + t('price.calc.seasons') + '<input class="sf-input" name="seasons" type="number" min="1" max="8" step="1" value="1" required></label>' +
+      '<label>' + t('price.calc.type') + '<select class="sf-input" name="type">' + types + '</select></label>' +
+      '<button class="sf-btn is-primary" type="button" data-act="price-calc" title="' +
+        esc(t('price.calc.submit')) + '">' + t('price.calc.submit') + '</button></form>';
+    var out = '<div class="sf-pub-calc-out" id="sf-calc-out"><p class="sf-sub">' +
+      esc(t('price.calc.desc')) + '</p></div>';
+    put('<div class="sf-section">' + sectionHead(t('price.calc'), t('price.calc.desc'), 'price-lease.html', plots.length) +
+      '<div class="sf-panel">' + form + out + '</div>' + priceBackRow(E) + '</div>');
+  }
+  function pageAdminPrices() {
+    var PB = M.PRICE_BOOK, st = PB.stats(), E = lang === 'en';
+    var rows = PB.items.map(function (x) {
+      var cat = PB.cats.filter(function (c) { return c.key === x.cat; })[0];
+      return ['<b>' + esc(E ? x.en : x.zh) + '</b><small>' + esc(x.id) + '</small>',
+        esc(E ? cat.en : cat.zh), '<span class="sf-pub-num">¥' + x.price + '</span>', esc(x.unit),
+        '<span class="adm-tag is-on">' + (E ? 'Published' : '已公示') + '</span>', esc(st.version)];
+    });
+    var form = '<form class="sf-pub-calc-form" id="sf-pub-publish-form">' +
+      '<label>' + (E ? 'New edition' : '新版本号') + '<input class="sf-input" name="version" value="' +
+        esc(st.version) + '" required></label>' +
+      '<label>' + (E ? 'Effective date' : '生效日期') + '<input class="sf-input" name="effective" type="date" value="' + esc(st.from) + '" required></label>' +
+      '<label>' + (E ? 'Change note' : '变更说明') + '<input class="sf-input" name="note" placeholder="' +
+        esc(E ? 'Why this edition is published' : '说明本次公示调整了什么') + '" required></label>' +
+      '<button class="sf-btn is-primary" type="button" data-act="price-publish" title="' +
+        esc(t('price.admin.publish')) + '">' + t('price.admin.publish') + '</button></form>';
+    put('<div class="adm-panel"><h3>' + esc(t('price.admin.status')) + '</h3>' +
+      '<p class="adm-note">' + esc(t('price.admin.note')) + ' · ' + esc(st.items) + ' ' + t('price.lines') +
+      ' · ' + esc(st.version) + '</p>' + form +
+      '<div id="sf-pub-admin-msg" class="adm-note"></div></div>' +
+      '<div class="adm-panel"><h3>' + esc(t('price.all')) + '</h3>' +
+      priceTable([t('price.table.item'), t('price.table.cat'), t('price.table.rate'),
+        t('price.table.unit'), t('price.admin.status'), t('price.version')], rows) + '</div>');
+  }
+
   function pageSitemap() {
     var all = FLOW_GROUPS.map(function (g) {
       var links = g.steps.map(function (x) {
@@ -1697,8 +2515,588 @@
       all + extraHtml + '</div>');
   }
 
+  /* ================= 第 33 轮 · 用户级常规业务渲染层 =================
+     取消/退款/改单/重发、合同版本与对账、资金提现、活动运营、专家统计调控
+     都在这里按真实业务语义渲染：金额由记录算、状态写成时间线、
+     相同项合并 / 差异高亮、表单有边界校验、详情按 ?id= 差异化。
+     类名统一 .sf-v2-*，与 .sf-card / .sf-pub / .sf-biz 前缀隔离。 */
+  var V2 = (function () {
+    function E() { return lang === 'en'; }
+    function L(a, b) { return E() ? b : a; }
+    function pick(ds, id) { return M.byId(ds, id) || M.all(ds)[0] || {}; }
+    function all(ds) { return M.all(ds); }
+    function uniq(items, key) {
+      var out = [];
+      items.forEach(function (x) { var v = bizScalar(x[key]); if (v && v !== '—' && out.indexOf(v) < 0) out.push(v); });
+      return out.slice(0, 5);
+    }
+    function chips(items, key, titleZh, titleEn) {
+      var vals = uniq(items, key), cur = param('f', '');
+      var ex = { from: hereFile() }, base = link(hereFile(), ex);
+      var html = '<a class="sf-v2-chip' + (cur ? '' : ' is-on') + '" href="' + esc(base) + '">' +
+        esc(L('全部', 'All')) + '</a>';
+      vals.forEach(function (v) {
+        var e2 = { f: v, from: hereFile() };
+        html += '<a class="sf-v2-chip' + (cur === v ? ' is-on' : '') + '" href="' +
+          esc(link(hereFile(), e2)) + '" title="' + esc(L(titleZh, titleEn) + ' · ' + v) + '">' + esc(v) + '</a>';
+      });
+      return '<div class="sf-v2-chips"><span>' + esc(L(titleZh, titleEn)) + '</span>' + html + '</div>';
+    }
+    function stat(cards) {
+      return '<div class="sf-v2-stats">' + cards.map(function (c) {
+        return '<div class="sf-v2-stat"><b>' + esc(c[0]) + '</b><span>' + esc(c[1]) + '</span></div>';
+      }).join('') + '</div>';
+    }
+    function badge(s) {
+      var v = bizScalar(s), cls = 'is-normal';
+      if (/待|处理|审核|核对|执行中|公示中/.test(v)) cls = 'is-wait';
+      if (/已到账|已完成|已确认|已通过|已入账|生效中|已复核|已关闭/.test(v)) cls = 'is-done';
+      if (/驳回|取消|终止|下架|退回/.test(v)) cls = 'is-stop';
+      return '<span class="sf-v2-badge ' + cls + '">' + esc(v) + '</span>';
+    }
+    function table(cols, rows, opt) {
+      opt = opt || {};
+      var out = '<div class="sf-v2-scroll"><table class="sf-v2-table"><thead><tr>';
+      cols.forEach(function (c) { out += '<th>' + esc(L(c[1], c[2])) + '</th>'; });
+      out += '</tr></thead><tbody>';
+      rows.forEach(function (r, i) {
+        var diff = opt.diff && r[opt.diff[0]] !== r[opt.diff[1]];
+        out += '<tr class="' + (diff ? 'is-diff' : '') + '">';
+        cols.forEach(function (c, j) {
+          var v = r[c[0]];
+          if (v === undefined || v === null || v === '') v = '—';
+          var cell = esc(bizScalar(v));
+          if (j === 0 && opt.idKey !== false) {
+            cell = '<a href="' + esc(link(hereFile(), { id: r.id, from: hereFile() })) +
+              '" title="' + esc(L('查看这条记录', 'Open this record')) + '">' + cell + '</a>';
+          }
+          if (c[0] === 'status' || c[0] === 'statusEn') cell = badge(v);
+          if (opt.diff && (c[0] === opt.diff[0] || c[0] === opt.diff[1])) cell = '<span class="sf-v2-cell">' + cell + '</span>';
+          out += '<td>' + cell + '</td>';
+        });
+        out += '</tr>';
+      });
+      return out + '</tbody></table></div>';
+    }
+    function money(lines) {
+      return '<div class="sf-v2-money">' + lines.map(function (x, i) {
+        return '<div class="sf-v2-money-row' + (i === lines.length - 1 ? ' is-total' : '') + '">' +
+          '<span>' + esc(L(x[0], x[1])) + '</span><b>' + esc(bizScalar(x[2])) + '</b>' +
+          '<small>' + esc(L(x[3] || '', x[4] || '')) + '</small></div>';
+      }).join('') + '</div>';
+    }
+    function timeline(steps) {
+      return '<ol class="sf-v2-flow">' + (steps || []).map(function (s, i) {
+        return '<li' + (i === 0 ? ' class="is-now"' : '') + '><span class="sf-v2-flow-n">' + (i + 1) + '</span>' +
+          '<div><b>' + esc(L(s.zh, s.en)) + '</b><small>' + esc(s.at || '') + '</small></div></li>';
+      }).join('') + '</ol>';
+    }
+    function form(titleZh, titleEn, fields, next, kind, noteZh, noteEn) {
+      var html = '<form class="sf-v2-form" data-form="biz-form" data-next="' + esc(next) +
+        '" data-biz-kind="' + esc(kind || '') + '">';
+      fields.forEach(function (f) {
+        var name = f[0], zh = f[1], en = f[2], type = f[3] || 'text', val = f[4] || '', req = f[5];
+        html += '<label class="sf-biz-field"><span>' + esc(L(zh, en)) + (req ? ' *' : '') + '</span>';
+        if (type === 'select') {
+          var opts = String(val).split('|');
+          html += '<select class="sf-input" name="' + esc(name) + '"' + (req ? ' required' : '') + '>' +
+            opts.map(function (o) { return '<option>' + esc(o) + '</option>'; }).join('') + '</select>';
+        } else if (type === 'textarea') {
+          html += '<textarea class="sf-textarea" name="' + esc(name) + '"' + (req ? ' required' : '') + '>' + esc(val) + '</textarea>';
+        } else {
+          html += '<input class="sf-input" type="' + esc(type) + '" name="' + esc(name) +
+            '" value="' + esc(val) + '"' + (req ? ' required' : '') + '>';
+        }
+        html += '</label>';
+      });
+      html += '<div class="sf-v2-form-foot"><button class="sf-btn is-primary" type="submit">' +
+        esc(L('提交', 'Submit')) + '</button><span>' + esc(L(noteZh || '提交后状态与下一步会写进业务记录。',
+          noteEn || 'Submitting writes a status and a next step into the record.')) + '</span></div></form>';
+      return '<div class="sf-v2-box"><h3>' + esc(L(titleZh, titleEn)) + '</h3>' + html + '</div>';
+    }
+    function detail(rec, ds, n) {
+      var list = BIZ_FIELDS[ds] || Object.keys(rec).slice(0, n || 12).map(function (k) { return [k, k, k]; });
+      return '<div class="sf-v2-scroll"><table class="sf-v2-table"><tbody>' +
+        list.slice(0, n || 12).map(function (f) {
+          return '<tr><th>' + esc(L(f[1], f[2])) + '</th><td>' + esc(bizScalar(rec[f[0]])) + '</td></tr>';
+        }).join('') + '</tbody></table></div>';
+    }
+    function photos(rec, seed) {
+      var a = artFor('farm', String(seed || rec.id || 'x'), 'wide');
+      var b = artFor('job', String(seed || rec.id || 'x') + 'b', 'card');
+      return '<div class="sf-v2-photos">' + pic(a, L('现场回执照片', 'Field receipt')) +
+        pic(b, L('关联田园画面', 'Linked plot')) + '</div>';
+    }
+    function shell(cfg, blocks, n) {
+      var h1 = pageCopy('h1') || L(cfg.zh, cfg.en);
+      var lead = pageCopy('lead') || L('按业务记录逐项办理。', 'Work through the record step by step.');
+      put(sectionHead(h1, lead, '', n) +
+        '<div class="sf-v2-rec"><b>' + esc(L('当前业务记录', 'Current record')) + '</b> · ' +
+        esc(bizScalar((pick(cfg.ds, param('id') || param('job') || param('order') || param('activity') || param('contract')) || {}).id || cfg.zh)) +
+        ' · ' + esc(L(ROLE_LABEL[cfg.r] || '', ROLE_LABEL_EN[cfg.r] || '')) + '</div>' +
+        blocks.map(function (b) { return '<div class="sf-section"><div class="sf-panel">' + b + '</div></div>'; }).join('') +
+        bizActions(cfg) + backRow(document.body.getAttribute('data-parent') || 'index.html'));
+    }
+    function filtered(ds, fkey) {
+      var f = param('f', '');
+      return all(ds).filter(function (x) { return !f || !fkey || bizScalar(x[fkey]) === f; });
+    }
+    function ledger(cfg, C) {
+      var items = filtered(C.ds, C.fkey), rec = pick(C.ds, param('id'));
+      var n = items.length;
+      var cards = [[n, L('条记录', 'records')],
+        [uniq(items, 'status').length, L('种状态', 'statuses')],
+        [C.sumKey ? items.reduce(function (s, x) { return s + (Number(x[C.sumKey]) || 0); }, 0).toFixed(1) : (M.count(C.ds)),
+         L('金额合计 / 全站记录', 'Amount total / all records')]];
+      var b = stat(cards) + (C.fkey ? chips(all(C.ds), C.fkey, C.fzh, C.fen) : '') +
+        table(C.cols, items.slice(0, C.limit || 10), C.opt);
+      /* 空结果必须有插画、真文案与能照着走的引导，不能只剩一张空表 */
+      if (!items.length) {
+        b = stat(cards) + (C.fkey ? chips(all(C.ds), C.fkey, C.fzh, C.fen) : '') +
+          '<div class="sf-v2-empty">' + pic(M.IMG.empty, L('暂无匹配记录', 'No matching records')) +
+          '<h3>' + esc(L('这个筛选条件下还没有记录', 'Nothing under this filter yet')) + '</h3>' +
+          '<p>' + esc(L('可以换一个筛选条件，或回到全部记录重新找。',
+                        'Try another filter, or go back to the full list.')) + '</p>' +
+          '<a class="sf-biz-btn" href="' + esc(link(hereFile(), { from: hereFile() })) + '">' +
+          esc(L('查看全部记录', 'View all records')) + '</a></div>';
+      }
+      if (param('id')) {
+        b += '<div class="sf-v2-sub"><h3>' + esc(L('这条记录的逐项明细', 'This record, field by field')) + '</h3>' +
+          detail(rec, C.ds, 12) + photos(rec, rec.id) + '</div>';
+      }
+      if (C.after) b += C.after(items, rec);
+      if (document.body.classList.contains('adm-body')) {
+        b += form('管控动作', 'Control action', [
+          ['decision', '处理结论', 'Decision', 'select', L('核对通过|已驳回|转复审', 'Approved|Rejected|Second review'), true],
+          ['note', '处理说明', 'Note', 'textarea', L('按公示口径逐项核对后填写。', 'Fill in after checking each line against published rates.'), false]
+        ], C.next || 'admin/index.html', 'admin-review',
+          L('提交后状态写回台账并进入审计日志。', 'The decision is written back and logged.'),
+          'The decision is written back and logged.');
+      }
+      shell(cfg, [b], n);
+      return true;
+    }
+    function formPage(cfg, C) {
+      var rec = pick(C.ds, param('id') || param('job') || param('order') || param('activity') || param('contract'));
+      var b = '<div class="sf-v2-sub"><h3>' + esc(L(C.recTitleZh || '当前记录', C.recTitleEn || 'Current record')) + '</h3>' +
+        detail(rec, C.recDs || C.ds, 8) + '</div>';
+      if (C.money) b += money(C.money(rec));
+      if (C.flow) b += '<div class="sf-v2-sub"><h3>' + esc(L('固定流程', 'Fixed workflow')) + '</h3>' + timeline(C.flow(rec)) + '</div>';
+      b += form(C.titleZh, C.titleEn, C.fields(rec), C.next, C.kind, C.noteZh, C.noteEn);
+      if (C.extra) b += C.extra(rec);
+      shell(cfg, [b], all(C.ds).length);
+      return true;
+    }
+    function flowPage(cfg, C) {
+      var rec = pick(C.ds, param('id'));
+      var b = '<div class="sf-v2-status">' + badge(rec.status) + '<span>' +
+        esc(L('每一步都有时间与责任方', 'Every step has a date and an owner')) + '</span></div>' +
+        detail(rec, C.ds, 8) + money(C.money(rec)) +
+        '<div class="sf-v2-sub"><h3>' + esc(L('办理时间线', 'Progress timeline')) + '</h3>' + timeline(rec.flow) + '</div>' +
+        photos(rec, rec.id);
+      shell(cfg, [b], all(C.ds).length);
+      return true;
+    }
+    function detailPage(cfg, C) {
+      var rec = pick(C.ds, param('id'));
+      var b = '<div class="sf-v2-status">' + badge(rec.status || L('已归档', 'Archived')) + '</div>' +
+        detail(rec, C.ds, 12) + photos(rec, rec.id);
+      if (C.after) b += C.after(rec);
+      shell(cfg, [b], all(C.ds).length);
+      return true;
+    }
+    function statsPage(cfg, C) {
+      var dim = param('dim', C.dims[0][0]), items = all(C.ds), g = {};
+      items.forEach(function (r) {
+        var k = C.keyOf(r, dim);
+        if (!g[k]) g[k] = { key: k, n: 0, a: 0, b: 0, c: 0, d: 0 };
+        var x = g[k]; x.n++; x.a += Number(r[C.vals[0]]) || 0; x.b += Number(r[C.vals[1]]) || 0;
+        x.c += Number(r[C.vals[2]]) || 0; x.d += Number(r[C.vals[3]]) || 0;
+      });
+      var groups = Object.keys(g).map(function (k) {
+        var x = g[k]; return { key: k, n: x.n, a: +(x.a / x.n).toFixed(1), b: +(x.b / x.n).toFixed(1),
+          c: +(x.c / x.n).toFixed(1), d: +(x.d / x.n).toFixed(1) };
+      });
+      var dimChips = '<div class="sf-v2-chips"><span>' + esc(L('统计维度', 'Group by')) + '</span>' +
+        C.dims.map(function (d) {
+          return '<a class="sf-v2-chip' + (dim === d[0] ? ' is-on' : '') + '" href="' +
+            esc(link(hereFile(), { dim: d[0], from: hereFile() })) + '">' + esc(L(d[1], d[2])) + '</a>';
+        }).join('') + '</div>';
+      var b = stat([[items.length, L('条原始记录', 'source records')],
+        [groups.length, L('个分组', 'groups')], [dim, L('当前维度', 'current dimension')]]) + dimChips +
+        table([['key', L(C.keyZh, C.keyEn), L(C.keyEn, C.keyZh)], ['n', '记录数', 'Records'],
+          ['a', C.labels[0], C.labelsEn[0]], ['b', C.labels[1], C.labelsEn[1]],
+          ['c', C.labels[2], C.labelsEn[2]], ['d', C.labels[3], C.labelsEn[3]]], groups, { idKey: false });
+      if (C.after) b += C.after(dim, groups);
+      shell(cfg, [b], items.length);
+      return true;
+    }
+    function comparePage(cfg) {
+      var ids = String(param('ids', 'F001,F002')).split(',').slice(0, 3);
+      var fs = ids.map(function (id) { return M.byId('farms', id) || M.all('farms')[0]; });
+      var defs = [['soil', '土壤类型', 'Soil'], ['leaseType', '承包类型', 'Lease type'],
+        ['areaMu', '实测面积（亩）', 'Area (mu)'], ['price', '公示单价', 'Published rate'],
+        ['temp4', '四季均温', 'Season temperatures'], ['humid4', '四季均湿', 'Season humidity'],
+        ['plotNo', '田块编号', 'Plot no.'],
+        ['source', '田间数据口径', 'Field data standard'], ['service', '平台基础服务', 'Platform services']];
+      var same = [], diff = [];
+      defs.forEach(function (d) {
+        var vals = fs.map(function (f) {
+          if (d[0] === 'source') return L('统一档案口径（四季读数 / 公示价）', 'Unified archive standard (season readings / published rates)');
+          if (d[0] === 'service') return L('远程工单 / 对账 / 价格公示', 'Remote jobs / reconciliation / published rates');
+          return bizScalar(f[d[0]]);
+        });
+        var eq = vals.every(function (v) { return v === vals[0]; });
+        var row = { key: L(d[1], d[2]), v0: vals[0], v1: vals[1] || vals[0], v2: vals[2] || vals[0], _diff: !eq };
+        (eq ? same : diff).push(row);
+      });
+      var cols = [['key', '对比项', 'Field'], ['v0', fs[0].plotNo, fs[0].plotNo],
+        ['v1', fs[1] ? fs[1].plotNo : '—', fs[1] ? fs[1].plotNo : '—'],
+        ['v2', fs[2] ? fs[2].plotNo : '—', fs[2] ? fs[2].plotNo : '—']];
+      var picks = M.all('farms').slice(0, 8).map(function (f) {
+        return '<a class="sf-v2-chip' + (ids.indexOf(f.id) >= 0 ? ' is-on' : '') + '" href="' +
+          esc(link('expert-compare.html', { ids: (ids.indexOf(f.id) >= 0 ? ids.filter(function (x) { return x !== f.id; }) : ids.concat([f.id])).slice(0, 3).join(','), from: hereFile() })) +
+          '">' + esc(f.plotNo) + '</a>';
+      }).join('');
+      var b = '<div class="sf-v2-chips"><span>' + esc(L('选择田块（最多 3 块）', 'Pick plots (up to 3)')) + '</span>' + picks + '</div>' +
+        '<div class="sf-v2-sub"><h3>' + esc(L('相同项（' + same.length + ' 项合并）', 'Identical fields (' + same.length + ' collapsed)')) + '</h3>' +
+        (same.length ? table(cols, same, { idKey: false }) :
+          '<p class="sf-v2-note">' + esc(L('本组田块没有相同项，全部指标见下方不同项清单。',
+            'No identical fields for this pair; every metric is listed below.')) + '</p>') + '</div>' +
+        '<div class="sf-v2-sub"><h3>' + esc(L('不同项（' + diff.length + ' 项高亮）', 'Differences (' + diff.length + ' highlighted)')) + '</h3>' +
+        table(cols, diff, { idKey: false, diff: ['v0', 'v1'] }) + '</div>' +
+        '<p class="sf-v2-note">' + esc(L('对比结果可直接作为调控建议的依据；读数来自田园档案与种植记录，不另造数据。',
+          'Comparison results feed straight into control advice; readings come from plot archives and field records.')) + '</p>';
+      shell(cfg, [b], M.count('farms'));
+      return true;
+    }
+
+    /* ---------- 页面分派：每个键都对应一个真实的常规用户动作 ---------- */
+    var P = {};
+    var WO = [['id', '工单号', 'Job no.'], ['type', '作业类型', 'Type'], ['status', '当前状态', 'Status'],
+      ['farmId', '关联田园', 'Linked plot'], ['price', '公示价（元）', 'Published price'],
+      ['createdAt', '发布时间', 'Published']];
+    var RF = [['id', '退款单号', 'Refund no.'], ['orderId', '关联订单', 'Order'], ['status', '状态', 'Status'],
+      ['amountPaid', '已付', 'Paid'], ['usedAmount', '已作业', 'Delivered'],
+      ['refundAmount', '应退', 'Refundable'], ['appliedAt', '申请时间', 'Applied at']];
+    P['workorder-cancel.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'workorders', recDs: 'workorders', titleZh: '取消这张工单', titleEn: 'Cancel this job',
+        recTitleZh: '要取消的工单', recTitleEn: 'Job to cancel', kind: 'cancel', next: 'workorder-refund.html',
+        money: function (r) { return [['工单公示价', 'Published job price', '¥' + r.price, '按公示价目核定', 'From the published rate sheet'],
+          ['已作业金额（估）', 'Delivered work (est.)', '¥' + (r.price * 0.3).toFixed(1), '按当前流程步骤折算', 'Pro-rated by the current step'],
+          ['预计可退', 'Estimated refund', '¥' + (r.price * 0.7).toFixed(1), '提交退款申请时复核', 'Rechecked when the refund is filed']]; },
+        fields: function (r) { return [['jobId', '工单号', 'Job no.', 'text', r.id, true],
+          ['reason', '取消原因', 'Reason', 'select', '农时变更|承接人超时|计划调整|天气影响', true],
+          ['detail', '补充说明', 'Detail', 'textarea', '', false]]; },
+        noteZh: '只有待接单、已接单可取消；已作业部分不会整单退。',
+        noteEn: 'Only unassigned or assigned jobs can be cancelled; delivered work is pro-rated.' });
+    };
+    P['workorder-refund.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'refunds', recDs: 'orders', titleZh: '提交退款申请', titleEn: 'File a refund request',
+        recTitleZh: '关联订单与工单', recTitleEn: 'Linked order and job', kind: 'refund', next: 'workorder-refund-status.html',
+        money: function (r) { var paid = r.amount || 0, used = Math.round(paid * .3), fee = +(paid * .02).toFixed(1);
+          return [['订单已付金额', 'Order paid', '¥' + paid, '按订单记录', 'From the order record'],
+            ['已作业金额', 'Delivered work', '¥' + used, '按公示价折算', 'Valued at published rates'],
+            ['平台服务费', 'Platform fee', '¥' + fee, '2% 单列', '2%, itemised'],
+            ['预计应退', 'Estimated refund', '¥' + (paid - used - fee).toFixed(1), '核对后原路退回', 'Refunded after review']]; },
+        fields: function (r) { return [['orderId', '订单号', 'Order no.', 'text', r.id, true],
+          ['method', '退回方式', 'Refund method', 'select', '原支付渠道|平台余额|村集体统一结算', true],
+          ['reason', '退款说明', 'Reason', 'textarea', '', false]]; },
+        noteZh: '金额由订单与公示价实时算，提交后进入平台核对。',
+        noteEn: 'Amounts are computed from the order and published rates; the platform reviews next.' });
+    };
+    P['workorder-refund-status.html'] = function (cfg) {
+      return flowPage(cfg, { ds: 'refunds',
+        money: function (r) { return [['已付金额', 'Paid', '¥' + r.amountPaid, '订单实付', 'Order paid'],
+          ['已作业扣减', 'Delivered work', '¥' + r.usedAmount, '按公示价', 'At published rates'],
+          ['服务费', 'Service fee', '¥' + r.serviceFee, '2% 单列', '2%, itemised'],
+          ['应退金额', 'Refundable', '¥' + r.refundAmount, r.method, r.methodEn || r.method]]; } });
+    };
+    P['workorder-edit.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'workorders', titleZh: '修订工单明细', titleEn: 'Amend job details',
+        recTitleZh: '当前工单', recTitleEn: 'Current job', kind: 'amend', next: 'workorder-changes.html',
+        fields: function (r) { return [['jobId', '工单号', 'Job no.', 'text', r.id, true],
+          ['scope', '作业范围', 'Scope', 'text', (r.requirements && r.requirements[0] ? r.requirements[0].valueZh : ''), true],
+          ['window', '期望时间窗', 'Time window', 'text', r.dueAt || '', false],
+          ['acceptance', '验收标准', 'Acceptance criteria', 'textarea', '按畦逐项核对并上传三段回执照片', true],
+          ['budget', '预算（元）', 'Budget', 'number', r.price || 120, false],
+          ['reason', '修订说明', 'Reason', 'textarea', '', true]]; },
+        noteZh: '已被承接的工单不能在这里改；改动会写进变更记录并通知承接人。',
+        noteEn: 'Assigned jobs cannot be amended here. Edits are logged and the assignee is notified.' });
+    };
+    P['workorder-reopen.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'workorders', titleZh: '按原工单重新发起', titleEn: 'Reissue from this job',
+        recTitleZh: '原工单（作为模板）', recTitleEn: 'Original job (as template)', kind: 'reissue', next: 'workorder-detail.html',
+        fields: function (r) { return [['copyFrom', '原工单号', 'Original job', 'text', r.id, true],
+          ['farmId', '关联田园', 'Linked plot', 'text', r.farmId, true],
+          ['type', '作业类型', 'Operation', 'select', '翻地|种植|施肥|浇水|除草|采摘|回收|配送|拍照|专家指导', true],
+          ['scope', '作业范围', 'Scope', 'text', '', true],
+          ['acceptance', '验收标准', 'Acceptance criteria', 'textarea', '按畦逐项核对并上传三段回执照片', true]]; },
+        noteZh: '提交后生成新工单号，旧工单仍保留在变更记录里。',
+        noteEn: 'A new job number is created; the old one stays in the change log.' });
+    };
+    P['workorder-changes.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'jobChanges', fkey: 'kind', fzh: '按变更类型筛选', fen: 'Filter by change type',
+        cols: [['id', '变更号', 'Change no.'], ['workorderId', '原工单', 'Job'], ['kind', '类型', 'Type'],
+          ['toStatus', '变更后', 'To'], ['reasonZh', '原因', 'Reason'], ['operator', '操作人', 'By'], ['at', '时间', 'At']], limit: 10 });
+    };
+    P['lease-edit.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'farms', titleZh: '修改租赁信息', titleEn: 'Edit lease terms',
+        recTitleZh: '当前田园租赁信息', recTitleEn: 'Current lease terms', kind: 'lease', next: 'contract-manage.html',
+        money: function (r) { var s = Math.round((r.price || 680) * (r.areaMu || 1.2));
+          return [['公示单价', 'Published rate', '¥' + r.price + ' / 亩 / 季', '以公示版本为准', 'Per published edition'],
+            ['实测面积', 'Measured area', r.areaMu + ' 亩', '田园档案登记', 'From the plot archive'],
+            ['一季租金', 'One-season rent', '¥' + s, '单价 × 面积', 'Rate × area'],
+            ['押金（30%）', 'Deposit (30%)', '¥' + Math.round(s * .3), '退租验收后退还', 'Refunded after inspection']]; },
+        fields: function (r) { return [['farmId', '田块编号', 'Plot no.', 'text', r.id, true],
+          ['leaseType', '承包类型', 'Lease type', 'select', '整田年租|分畦季租|认养代耕|共享轮作|试验托管', true],
+          ['seasons', '承包季数', 'Seasons', 'number', '1', true],
+          ['price', '公示单价（元/亩/季）', 'Published rate', 'number', r.price || 680, true],
+          ['reason', '变更说明', 'Reason', 'textarea', '', true]]; },
+        noteZh: '提交后进入多级审核；已生效订单按原价执行到本周期结束。',
+        noteEn: 'Changes enter multi-level review; existing orders keep the old rate until their term ends.' });
+    };
+    P['contract-manage.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'contracts', fkey: 'status', fzh: '按合同状态筛选', fen: 'Filter by contract status',
+        cols: [['id', '合同号', 'Contract'], ['farmId', '田园', 'Plot'], ['version', '版本', 'Version'],
+          ['leaseType', '承包类型', 'Lease type'], ['rentPerSeason', '一季租金', 'Season rent'], ['status', '状态', 'Status'], ['signedAt', '签署日', 'Signed']], limit: 10 });
+    };
+    P['contract-edit.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'contracts', titleZh: '逐条编辑合同内容', titleEn: 'Edit contract clauses',
+        recTitleZh: '当前合同版本', recTitleEn: 'Current contract version', kind: 'contract', next: 'contract-versions.html',
+        fields: function (r) { var c = r.clausesZh || [];
+          return [['contractId', '合同号', 'Contract no.', 'text', r.id, true],
+            ['rent', '租金与计价条款', 'Rent & pricing', 'textarea', c[0] || '', true],
+            ['deposit', '押金与退还条款', 'Deposit & refund', 'textarea', c[1] || '', true],
+            ['water', '灌溉与通行条款', 'Irrigation & access', 'textarea', c[2] || '', false],
+            ['use', '用途与转租条款', 'Use & subletting', 'textarea', c[3] || '', false],
+            ['dispute', '争议处理条款', 'Disputes', 'textarea', c[4] || '', false],
+            ['reason', '变更原因', 'Reason', 'textarea', '', true]]; },
+        noteZh: '保存后生成新版本，双方确认前不影响已生效合同。',
+        noteEn: 'Saving creates a new version; the in-force contract stands until both sides confirm.' });
+    };
+    P['contract-versions.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'contractVersions', fkey: 'clauseZh', fzh: '按条款筛选', fen: 'Filter by clause',
+        cols: [['id', '版本号', 'Version'], ['contractId', '合同号', 'Contract'], ['clauseZh', '条款', 'Clause'],
+          ['beforeZh', '变更前', 'Before'], ['afterZh', '变更后', 'After'], ['reasonZh', '变更原因', 'Reason'], ['at', '时间', 'At']],
+        opt: { diff: ['beforeZh', 'afterZh'] }, limit: 10,
+        after: function () { return '<p class="sf-v2-note">' +
+          esc(L('相同条款保持原样，改动的条款整行高亮；每条版本都写明提交人与变更原因。',
+            'Unchanged clauses stay as they were; amended rows are highlighted with author and reason.')) + '</p>'; } });
+    };
+    P['merchant-reconcile.html'] = function (cfg) {
+      return statsPage(cfg, { ds: 'bills', keyZh: '账期', keyEn: 'Period', labels: ['应收合计', '已收合计', '服务费', '净额'],
+        labelsEn: ['Gross', 'Received', 'Fee', 'Net'], vals: ['receivable', 'received', 'serviceFee', 'net'],
+        dims: [['period', '按账期', 'By period'], ['kind', '按类型', 'By type'], ['status', '按状态', 'By status']],
+        keyOf: function (r, d) { return bizScalar(d === 'period' ? r.period : d === 'kind' ? r.kind : r.status); },
+        after: function () { return '<p class="sf-v2-note">' +
+          esc(L('应收、服务费、退款与净额都由逐笔账单实时聚合；点上方维度切换分组，数字会跟着变。',
+            'Gross, fees, refunds and net are aggregated live from bill lines. Switch the dimension above and the figures change.')) + '</p>'; } });
+    };
+    P['merchant-bills.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'bills', fkey: 'kind', fzh: '按账单类型筛选', fen: 'Filter by bill type', sumKey: 'net',
+        cols: [['id', '账单号', 'Bill'], ['period', '账期', 'Period'], ['farmId', '田园', 'Plot'],
+          ['kind', '类型', 'Type'], ['receivable', '应收', 'Receivable'], ['serviceFee', '服务费', 'Fee'],
+          ['refunded', '退款', 'Refunded'], ['net', '净额', 'Net'], ['status', '状态', 'Status']], limit: 10 });
+    };
+    P['merchant-reconcile-detail.html'] = function (cfg) {
+      return detailPage(cfg, { ds: 'reconciliations',
+        after: function (r) { var lines = all('bills').filter(function (b) { return b.period === r.period; });
+          return '<div class="sf-v2-sub"><h3>' + esc(L('本期逐笔账单（' + lines.length + ' 笔）', 'Itemised bills (' + lines.length + ')')) + '</h3>' +
+            table([['id', '账单号', 'Bill'], ['kind', '类型', 'Type'], ['receivable', '应收', 'Receivable'],
+              ['serviceFee', '服务费', 'Fee'], ['refunded', '退款', 'Refunded'], ['net', '净额', 'Net']], lines.slice(0, 8)) +
+            money([['应收合计', 'Gross', '¥' + r.gross, '本期全部账单', 'All bills this period'],
+              ['平台服务费', 'Platform fee', '¥' + r.fee, '2% 单列', '2%, itemised'],
+              ['退款', 'Refunds', '¥' + r.refunded, '按原渠道退回', 'Refunded to source'],
+              ['本期净额', 'Net for period', '¥' + r.net, r.status, r.statusEn || r.status]]) + '</div>'; } });
+    };
+    P['activity-manage.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'activityVersions', fkey: 'status', fzh: '按活动状态筛选', fen: 'Filter by event status',
+        cols: [['id', '版本', 'Version'], ['titleZh', '活动名称', 'Event'], ['price', '公示价', 'Price'],
+          ['capacity', '名额', 'Seats'], ['status', '状态', 'Status'], ['changeZh', '最近变更', 'Latest change'], ['at', '时间', 'At']], limit: 10 });
+    };
+    P['activity-publish.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'activities', titleZh: '发布一场田园活动', titleEn: 'Publish a field event',
+        recTitleZh: '可选参考活动（用于字段示例）', recTitleEn: 'Reference event for field values', kind: 'publish', next: 'activity-manage.html',
+        fields: function (r) { return [['title', '活动名称', 'Event title', 'text', '', true],
+          ['kind', '活动类型', 'Type', 'select', '聚会|开会|活动|运动场地|婚纱场地|露营|采摘|研学', true],
+          ['farmId', '关联田园', 'Linked plot', 'text', r.farmId || 'F001', true],
+          ['date', '活动日期', 'Date', 'date', '2026-11-20', true],
+          ['capacity', '名额', 'Seats', 'number', '20', true],
+          ['price', '公示价（元/人）', 'Published price', 'number', r.price || 68, true],
+          ['content', '活动内容', 'Description', 'textarea', '', true]]; },
+        noteZh: '提交后进入公示与报名，价格取自公示总账口径。',
+        noteEn: 'Publishing opens sign-up; the price follows the published rate book.' });
+    };
+    P['activity-edit.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'activities', titleZh: '更新活动内容', titleEn: 'Update an event',
+        recTitleZh: '当前活动内容（已回填）', recTitleEn: 'Live event content (pre-filled)', kind: 'update', next: 'activity-versions.html',
+        fields: function (r) { return [['activityId', '活动号', 'Event no.', 'text', r.id, true],
+          ['title', '活动名称', 'Event title', 'text', r.titleZh || '', true],
+          ['date', '活动日期', 'Date', 'date', r.date || '2026-11-20', true],
+          ['capacity', '名额', 'Seats', 'number', r.capacity || 20, true],
+          ['price', '公示价（元/人）', 'Published price', 'number', r.price || 68, true],
+          ['content', '活动内容', 'Description', 'textarea', r.descZh || '', true],
+          ['reason', '变更说明', 'Change note', 'textarea', '', true]]; },
+        noteZh: '改时间、名额、价格或文案都会留一个新版本；已报名用户会看到变更说明。',
+        noteEn: 'Time, seats, price or copy changes create a version; signed-up users see the note.' });
+    };
+    P['activity-versions.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'activityVersions', fkey: 'status', fzh: '按版本状态筛选', fen: 'Filter by version status',
+        cols: [['id', '版本号', 'Version'], ['activityId', '活动号', 'Event'], ['titleZh', '活动名称', 'Event'],
+          ['price', '公示价', 'Price'], ['capacity', '名额', 'Seats'], ['changeZh', '本次变更', 'Change'],
+          ['operator', '操作人', 'By'], ['at', '时间', 'At']], limit: 10 });
+    };
+    P['activity-registrations.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'orders', fkey: 'status', fzh: '按报名状态筛选', fen: 'Filter by sign-up status', sumKey: 'amount',
+        cols: [['id', '报名单号', 'Sign-up'], ['userId', '报名人', 'Member'], ['kind', '类型', 'Type'],
+          ['amount', '金额', 'Amount'], ['status', '状态', 'Status'], ['createdAt', '报名时间', 'At']], limit: 10,
+        after: function (items) { return '<div class="sf-v2-sub"><h3>' +
+          esc(L('现场签到', 'On-site check-in')) + '</h3><p class="sf-v2-note">' +
+          esc(L('共 ' + items.length + ' 条报名记录，签到状态与名单同步；逐条可核到订单。',
+            items.length + ' sign-ups; check-in status is synced with the list and each line traces to an order.')) + '</p>' +
+          '<a class="sf-biz-btn" href="' + esc(link('activity-checkin.html', { from: hereFile() })) + '">' +
+          esc(L('去现场签到', 'Go to check-in')) + '</a></div>'; } });
+    };
+    P['farmer-wallet.html'] = function (cfg) {
+      var fs = all('funds'), bal = fs.reduce(function (n, f) { return n + f.amount; }, 0);
+      var pending = fs.filter(function (f) { return f.status !== '已入账'; }).reduce(function (n, f) { return n + f.amount; }, 0);
+      var income = fs.filter(function (f) { return f.amount > 0; }).reduce(function (n, f) { return n + f.amount; }, 0);
+      var out = fs.filter(function (f) { return f.amount < 0; }).reduce(function (n, f) { return n - f.amount; }, 0);
+      return statsPage(cfg, { ds: 'funds', keyZh: '流水类型', keyEn: 'Entry type', labels: ['金额合计', '笔数', '变动后余额均值', '时间跨度'],
+        labelsEn: ['Amount total', 'Entries', 'Avg. balance', 'Span'], vals: ['amount', 'amount', 'balanceAfter', 'at'],
+        dims: [['kind', '按类型', 'By type'], ['status', '按状态', 'By status']],
+        keyOf: function (r, d) { return bizScalar(d === 'status' ? r.status : r.kind); },
+        after: function () { return stat([['¥' + bal.toFixed(1), L('可提现余额', 'Available balance')],
+          ['¥' + pending.toFixed(1), L('处理中金额', 'In flight')],
+          ['¥' + income.toFixed(1), L('累计收入', 'Lifetime income')],
+          ['¥' + out.toFixed(1), L('累计支出', 'Total out')]]) +
+          money([['期初余额', 'Opening balance', '¥0', '按流水滚动', 'Rolling ledger'],
+            ['累计收入', 'Income', '¥' + income.toFixed(1), '结算 / 分成 / 货款', 'Settlements and sales'],
+            ['累计支出', 'Outgoings', '¥' + out.toFixed(1), '服务费 / 退款 / 提现', 'Fees, refunds, withdrawals'],
+            ['当前可提现', 'Available now', '¥' + bal.toFixed(1), '提现页会再次校验', 'Rechecked on withdrawal']]) +
+          '<p class="sf-v2-note">' + esc(L('四个数字都由资金流水逐笔相加，不是写死的展示值。',
+            'All four figures are summed from the ledger; none is a printed constant.')) + '</p>'; } });
+    };
+    P['farmer-funds.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'funds', fkey: 'kind', fzh: '按流水类型筛选', fen: 'Filter by entry type', sumKey: 'amount',
+        cols: [['id', '流水号', 'Entry'], ['kind', '类型', 'Type'], ['amount', '金额（元）', 'Amount'],
+          ['balanceAfter', '变动后余额', 'Balance after'], ['status', '状态', 'Status'],
+          ['relatedId', '关联单号', 'Related'], ['at', '时间', 'At']], limit: 10 });
+    };
+    P['farmer-settlement.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'workorders', fkey: 'status', fzh: '按工单状态筛选', fen: 'Filter by job status', sumKey: 'price',
+        cols: [['id', '工单号', 'Job'], ['type', '作业类型', 'Type'], ['status', '状态', 'Status'],
+          ['price', '公示价', 'Published price'], ['settleMode', '结算方式', 'Settlement'], ['updatedAt', '更新时间', 'Updated']], limit: 10,
+        after: function (items) {
+          var tot = items.reduce(function (n, x) { return n + (Number(x.price) || 0); }, 0);
+          var fee = +(tot * .01).toFixed(1);
+          return money([['验收通过工单合计', 'Accepted jobs', '¥' + tot.toFixed(1), items.length + ' 条', items.length + ' jobs'],
+            ['平台结算服务费（1%）', 'Settlement fee (1%)', '¥' + fee, '按公示口径', 'Per published rules'],
+            ['实结合计', 'Net payout', '¥' + (tot - fee).toFixed(1), '进入可提现余额', 'Added to available balance']]); } });
+    };
+    P['farmer-withdraw.html'] = function (cfg) {
+      var fs = all('funds'), bal = fs.reduce(function (n, f) { return n + f.amount; }, 0);
+      return formPage(cfg, { ds: 'withdrawals', recDs: 'funds', titleZh: '申请提现', titleEn: 'Withdraw funds',
+        recTitleZh: '最近一条资金流水', recTitleEn: 'Latest ledger entry', kind: 'withdraw', next: 'farmer-withdraw-status.html',
+        money: function () { return [['可提现余额', 'Available balance', '¥' + bal.toFixed(1), '由流水实时算', 'Live from the ledger'],
+          ['最低提现额', 'Minimum', '¥100', '低于此额不可提交', 'Below this is blocked'],
+          ['手续费', 'Handling fee', '¥2 / 笔', '固定，提交前明示', 'Fixed, shown up front'],
+          ['预计到账', 'Estimated credit', '¥' + Math.max(0, bal - 2).toFixed(1), '按实际申请金额算', 'Based on the requested amount']]; },
+        fields: function () { return [['amount', '提现金额（元）', 'Amount', 'number', '', true],
+          ['bank', '到账账户', 'Bank account', 'select', '尾号 4472 · 农商行|尾号 8810 · 邮储|尾号 2093 · 建行', true],
+          ['note', '备注', 'Note', 'text', '', false]]; },
+        noteZh: '金额超过可提现余额或低于 100 元会被当场拦下，不会生成提现单。',
+        noteEn: 'Amounts above the available balance or below CNY 100 are blocked on the spot.' });
+    };
+    P['farmer-withdraw-status.html'] = function (cfg) {
+      return flowPage(cfg, { ds: 'withdrawals',
+        money: function (r) { return [['申请金额', 'Requested', '¥' + r.amount, r.appliedAt, r.appliedAt],
+          ['手续费', 'Handling fee', '¥' + r.fee, '固定每笔', 'Per withdrawal'],
+          ['到账金额', 'Net credit', '¥' + r.arrive, r.bank, r.bankEn || r.bank]]; } });
+    };
+    P['expert-stats.html'] = function (cfg) {
+      return statsPage(cfg, { ds: 'plantRecords', keyZh: '分组', keyEn: 'Group',
+        labels: ['均温（℃）', '均湿（%）', '含水率（%）', '预估产量（kg）'],
+        labelsEn: ['Avg temp', 'Avg humidity', 'Avg soil moisture', 'Est. yield'],
+        vals: ['temp', 'humid', 'soilMoisture', 'yieldKg'],
+        dims: [['crop', '按作物', 'By crop'], ['farm', '按田块', 'By plot'], ['stage', '按生长阶段', 'By stage'], ['season', '按月份', 'By month']],
+        keyOf: function (r, d) { return d === 'farm' ? bizScalar(r.farmId) : d === 'stage' ? bizScalar(r.stage) : d === 'season' ? String(r.at).slice(5, 7) + ' 月' : bizScalar(r.crop); },
+        after: function (dim, groups) { return '<p class="sf-v2-note">' +
+          esc(L('当前按「' + dim + '」分成 ' + groups.length + ' 组；切换维度后分组与四项均值都会重算，可直接作为调控依据。',
+            'Grouped by ' + dim + ' into ' + groups.length + ' groups. Switching the dimension recomputes every average.')) + '</p>'; } });
+    };
+    P['expert-compare.html'] = comparePage;
+    P['expert-regulation.html'] = function (cfg) {
+      return formPage(cfg, { ds: 'regulations', recDs: 'plantRecords', titleZh: '提交调控建议', titleEn: 'Submit control advice',
+        recTitleZh: '依据的种植记录', recTitleEn: 'Evidence: field record', kind: 'regulation', next: 'expert-regulation-log.html',
+        fields: function (r) { return [['farmId', '关联田园', 'Linked plot', 'text', r.farmId || 'F001', true],
+          ['dimension', '调控维度', 'Dimension', 'select', '土壤湿度|灌溉频次|施肥用量|播期安排|品种对照|病虫害防控', true],
+          ['before', '调整前读数', 'Reading before', 'text', r.soilMoisture + '% / ' + r.temp + '℃', true],
+          ['target', '目标区间', 'Target range', 'text', '58% / 20℃', true],
+          ['action', '具体动作', 'Action', 'textarea', '', true],
+          ['basis', '对比依据', 'Evidence', 'textarea', r.notesZh || '', false]]; },
+        noteZh: '提交后进入执行与复核，复核读数会写回调控记录。',
+        noteEn: 'Advice enters execution and review; re-measured readings are written back.' });
+    };
+    P['expert-regulation-log.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'regulations', fkey: 'dimension', fzh: '按调控维度筛选', fen: 'Filter by dimension',
+        cols: [['id', '建议编号', 'Advice'], ['farmId', '田园', 'Plot'], ['dimension', '维度', 'Dimension'],
+          ['readingBefore', '调整前读数', 'Before'], ['target', '目标区间', 'Target'], ['actionZh', '调控动作', 'Action'],
+          ['status', '状态', 'Status'], ['at', '时间', 'At']], limit: 10 });
+    };
+    P['expert-planting-query.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'plantRecords', fkey: 'crop', fzh: '按作物筛选', fen: 'Filter by crop', sumKey: 'yieldKg',
+        cols: [['id', '记录号', 'Record'], ['farmId', '田园', 'Plot'], ['plotNo', '田块', 'Plot no.'],
+          ['crop', '作物', 'Crop'], ['stage', '阶段', 'Stage'], ['temp', '温度', 'Temp'],
+          ['soilMoisture', '含水率', 'Soil moisture'], ['yieldKg', '预估产量', 'Est. yield'], ['at', '时间', 'At']], limit: 10,
+        after: function (items) { return '<div class="sf-v2-chips"><span>' + esc(L('按阶段筛', 'By stage')) + '</span>' +
+          uniq(all('plantRecords'), 'stage').map(function (v) {
+            return '<a class="sf-v2-chip" href="' + esc(link('expert-planting-query.html', { f: v, from: hereFile() })) + '">' + esc(v) + '</a>';
+          }).join('') + '</div><p class="sf-v2-note">' +
+          esc(L('筛到 ' + items.length + ' 条记录；点任一行的编号进入该记录的读数与照片回执。',
+            items.length + ' records found. Open any record number for readings and photo receipts.')) + '</p>'; } });
+    };
+    P['expert-planting-detail.html'] = function (cfg) {
+      return detailPage(cfg, { ds: 'plantRecords',
+        after: function (r) { return '<div class="sf-v2-sub"><h3>' + esc(L('本阶段读数', 'Stage readings')) + '</h3>' +
+          money([['温度', 'Temperature', r.temp + ' ℃', '现场记录', 'Field reading'],
+            ['空气湿度', 'Humidity', r.humid + ' %', '现场记录', 'Field reading'],
+            ['土壤含水率', 'Soil moisture', r.soilMoisture + ' %', '现场记录', 'Field reading'],
+            ['株高 / 预估产量', 'Height / est. yield', r.heightCm + ' cm / ' + r.yieldKg + ' kg', '关联工单 ' + r.workorderId, 'Linked job ' + r.workorderId]]) +
+          '<p class="sf-v2-note">' + esc(L(r.notesZh || '', r.notesEn || '')) + '</p></div>'; } });
+    };
+    /* 后台 4 个管控台账：复用 ledger，自动带审核表单且保持纯素 */
+    P['admin/refunds.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'refunds', fkey: 'status', fzh: '按退款状态筛选', fen: 'Filter by refund status', sumKey: 'refundAmount',
+        cols: RF, limit: 10, next: 'refunds.html' });
+    };
+    P['admin/withdrawals.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'withdrawals', fkey: 'status', fzh: '按提现状态筛选', fen: 'Filter by withdrawal status', sumKey: 'amount',
+        cols: [['id', '提现单号', 'Withdrawal'], ['userId', '农户', 'Grower'], ['amount', '金额', 'Amount'],
+          ['bank', '到账账户', 'Bank'], ['status', '状态', 'Status'], ['appliedAt', '申请时间', 'Applied at']], limit: 10, next: 'withdrawals.html' });
+    };
+    P['admin/contracts.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'contractVersions', fkey: 'clauseZh', fzh: '按条款筛选', fen: 'Filter by clause',
+        cols: [['id', '版本号', 'Version'], ['contractId', '合同号', 'Contract'], ['clauseZh', '条款', 'Clause'],
+          ['beforeZh', '变更前', 'Before'], ['afterZh', '变更后', 'After'], ['changedBy', '提交人', 'By'], ['at', '时间', 'At']],
+        opt: { diff: ['beforeZh', 'afterZh'] }, limit: 10, next: 'contracts.html' });
+    };
+    P['admin/regulations.html'] = function (cfg) {
+      return ledger(cfg, { ds: 'regulations', fkey: 'status', fzh: '按执行状态筛选', fen: 'Filter by status',
+        cols: [['id', '建议编号', 'Advice'], ['farmId', '田园', 'Plot'], ['dimension', '维度', 'Dimension'],
+          ['actionZh', '调控动作', 'Action'], ['status', '状态', 'Status'], ['reviewZh', '复核结论', 'Review'], ['at', '时间', 'At']],
+        limit: 10, next: 'regulations.html' });
+    };
+    return P;
+  })();
+
   var ROUTES = {
-    'index': pageIndex, 'sitemap': pageSitemap, 'farms': pageFarms, 'farm-detail': pageFarmDetail, 'farm-edit': pageFarmEdit,
+    'index': pageIndex, 'sitemap': pageSitemap,
+    'api-catalog': pageGeneric, 'api-lab': pageGeneric, 'farms': pageFarms, 'farm-detail': pageFarmDetail, 'farm-edit': pageFarmEdit,
+    'price': pagePriceIndex, 'price-lease': pagePriceLease, 'price-venue': pagePriceVenue,
+    'price-job': pagePriceJob, 'price-produce': pagePriceProduce, 'price-rules': pagePriceRules,
+    'price-changes': pagePriceChanges, 'price-calc': pagePriceCalc, 'adm-prices': pageAdminPrices,
     'farm-compare': pageFarmCompare,
     'activity': function () { simpleList({ id: 'activity', title: t('activity.title'), desc: t('activity.desc'), ds: 'activities', api: 'listActivities',
       filterItems: [{ k: t('common.all'), v: '' }].concat(['聚会', '露营', '采摘', '婚纱场地'].map(function (x) { return { k: x, v: x }; })), filterKey: 'kind',
@@ -1706,6 +3104,7 @@
         meta: x.date + ' · ' + x.kind + ' · ' + x.booked + '/' + x.capacity, tags: [x.kind, x.farmId], price: x.price,
         href: detailLink('activity-detail.html', x.id) }); } }); },
     'activity-detail': function () { detailPage({ api: 'getActivity', titleA: 'titleZh', titleB: 'titleEn', back: 'activity.html',
+      orderTo: 'activity-signup.html', orderKey: 'activity',
       rows: function (x, f) { return [['日期', x.date], ['类型', x.kind], ['名额', x.booked + '/' + x.capacity], [t('common.price'), '¥' + x.price], ['田园', zh(f, 'nameZh', 'nameEn')]]; } }); },
     'produce': function () { simpleList({ id: 'produce', title: t('produce.title'), desc: t('produce.desc'), ds: 'produces', api: 'listProduces',
       filterItems: [{ k: t('common.all'), v: '' }].concat(['蔬菜', '菌菇', '果品', '粮油'].map(function (x) { return { k: x, v: x }; })), filterKey: 'category',
@@ -1713,6 +3112,7 @@
         meta: x.season + ' · ' + x.category + ' · ' + x.traceNo, tags: [x.category, '库存 ' + x.stock + x.unit], price: x.price,
         href: detailLink('produce-detail.html', x.id) }); } }); },
     'produce-detail': function () { detailPage({ api: 'getProduce', titleA: 'nameZh', titleB: 'nameEn', back: 'produce.html',
+      orderTo: 'produce-cart.html', orderKey: 'produce',
       rows: function (x, f) { return [['批次', x.traceNo], ['季节', x.season], ['品类', x.category], ['规格', x.unit], ['库存', x.stock + x.unit], ['溯源田园', zh(f, 'nameZh', 'nameEn') + ' · ' + f.plotNo]]; } }); },
     'videos': function () { simpleList({ id: 'videos', title: t('videos.title'), desc: t('videos.desc'), ds: 'videos', api: 'listVideos',
       toCard: function (x) { return card({ id: x.id, title: zh(x, 'titleZh', 'titleEn'), cover: x.cover,
@@ -1722,7 +3122,7 @@
       toCard: function (x) { return card({ id: x.id, title: zh(x, 'titleZh', 'titleEn'), cover: x.cover,
         meta: x.channel + ' · ' + x.publishedAt, tags: [x.channel, x.farmId], price: '',
         href: link('promo.html', { id: x.id, from: 'promo.html' }) }); } }); },
-    'forum': pageForum, 'forum-topic': pageForumTopic, 'forum-edit': pageForumEdit,
+    'forum': pageForum, 'forum-topic': pageForumTopic, 'forum-edit.html': pageForumEdit,
     'experts': pageExperts, 'expert-detail': pageExpertDetail,
     'dispatch': pageDispatch, 'account': pageAccount, 'orders': pageOrders,
     'workorders': pageWorkorders, 'workorder-detail': pageWorkorderDetail,
@@ -1776,6 +3176,72 @@
         el.setAttribute('aria-expanded', on ? 'false' : 'true');
         toast(on ? (lang === 'en' ? 'Showing nearby steps' : '已收起，仅显示当前步附近入口')
                  : (lang === 'en' ? 'All steps shown' : '已展开全部业务步骤'));
+        return;
+      }
+      case 'price-expand': {
+        e.preventDefault();
+        var pb = document.getElementById('sf-pub-body');
+        if (!pb) return;
+        var on = pb.classList.toggle('is-collapsed');
+        el.textContent = on ? el.getAttribute('data-more') : el.getAttribute('data-less');
+        el.setAttribute('aria-expanded', on ? 'false' : 'true');
+        toast(on ? (lang === 'en' ? 'Price table collapsed' : '已收起价目表')
+                 : (lang === 'en' ? 'Published price table shown' : '已展开本节点公示价目'));
+        return;
+      }
+      case 'biz-advance': {
+        /* 业务链上的显式推进：点了就有可见反馈，状态 / 时间线同步更新，不新增历史 */
+        e.preventDefault();
+        var box = document.getElementById('sf-biz-live');
+        var step = el.getAttribute('data-step');
+        if (box) {
+          box.innerHTML = '<b>' + esc(step) + '</b> · ' +
+            (lang === 'en' ? 'Status updated, the flow timeline now shows this step.' : '状态已更新，流程时间线已写入这一步。');
+          box.classList.add('is-on');
+        }
+        toast(step + (lang === 'en' ? ' · recorded' : ' · 已记录'));
+        return;
+      }
+      case 'price-calc': {
+        e.preventDefault();
+        var form = document.getElementById('sf-pub-calc-form');
+        var out = document.getElementById('sf-calc-out');
+        if (!form || !out) return;
+        var f = M.byId('farms', form.querySelector('[name=plot]').value);
+        var area = parseFloat(form.querySelector('[name=area]').value);
+        var seasons = parseInt(form.querySelector('[name=seasons]').value, 10);
+        var factor = parseFloat(form.querySelector('[name=type]').value);
+        if (!f || !(area > 0) || !(seasons >= 1 && seasons <= 8) || !(factor > 0)) {
+          toast(t('price.calc.invalid')); return;
+        }
+        var rate = Math.round(f.price * factor);
+        var rent = Math.round(rate * area * seasons);
+        var dep = Math.round(rent * 0.30), fee = Math.round(rent * 0.02);
+        var E = lang === 'en';
+        out.innerHTML = '<h4>' + esc(t('price.calc.total')) + '</h4>' +
+          priceTable([t('price.table.item'), t('common.value')], [
+            [esc(t('price.calc.rate')), '<span class="sf-pub-num">¥' + rate + '</span> / ' + (E ? 'mu / season' : '亩 / 季')],
+            [esc(t('price.calc.rent')), '<span class="sf-pub-num">¥' + rent + '</span> <small>' + rate + ' × ' + area + ' × ' + seasons + '</small>'],
+            [esc(t('price.calc.deposit')), '¥' + dep],
+            [esc(t('price.calc.fee')), '¥' + fee],
+            ['<b>' + esc(t('price.calc.total')) + '</b>', '<b class="sf-pub-num">¥' + (rent + dep + fee) + '</b>']
+          ]) + '<p class="sf-pub-note">' + esc(t('price.calc.desc')) + '</p>';
+        toast(t('price.calc.ok'));
+        return;
+      }
+      case 'price-publish': {
+        e.preventDefault();
+        var pf = document.getElementById('sf-pub-publish-form');
+        var msg = document.getElementById('sf-pub-admin-msg');
+        if (!pf || !msg) return;
+        var v = (pf.querySelector('[name=version]').value || '').trim();
+        var note = (pf.querySelector('[name=note]').value || '').trim();
+        var eff = pf.querySelector('[name=effective]').value;
+        if (!v || !note || !eff) { toast(lang === 'en' ? 'Fill in edition, date and note' : '请填写版本号、生效日期与变更说明'); return; }
+        msg.textContent = (lang === 'en' ? 'Edition ' : '公示版本 ') + v +
+          (lang === 'en' ? ' queued for review; effective ' : ' 已进入审核队列，生效日 ') + eff +
+          (lang === 'en' ? '. Note: ' : '。变更说明：') + note;
+        toast(lang === 'en' ? 'New edition queued for multi-level review' : '新版本已进入多级审核队列');
         return;
       }
       case 'like': {
@@ -1935,7 +3401,12 @@
         return;
       }
       case 'signout': toast(t('auth.signout')); location.replace(global.SF_AUTH.signOut()); return;
-      case 'audit-step': toast(el.getAttribute('data-level') + ' · 审核意见已记录'); return;
+      case 'audit-step': {
+        var lv = el.getAttribute('data-level');
+        toast(lv + ' · ' + (lang === 'en' ? 'review note recorded' : '审核意见已记录'));
+        if (lv === '复审') { location.href = link('admin/audit-review.html', { id: param('id', 'AU001'), from: 'admin/audit.html' }); return; }
+        return;
+      }
       case 'logout': location.href = link('admin/login.html', { from: 'index.html' }); return;
     }
   }
@@ -1975,7 +3446,24 @@
         t('auth.backLogin') + '</a></div>';
       return;
     }
-    if (kind === 'farm') { API.saveFarm(d).then(function (r) { toast(t('common.toast.saved') + ' · ' + r.auditId); }); return; }
+    if (kind === 'farm') {
+      API.saveFarm(d).then(function (r) {
+        var E3 = lang === 'en';
+        var ok3 = '<div class="sf-biz-ok" data-farm-ok><h3>' +
+          esc(E3 ? 'Submitted for multi-level review' : '已提交 · 进入三级审核') + '</h3>' +
+          '<p>' + esc(E3 ? 'Review no. ' : '审核单号 ') + esc(r.auditId || 'AU-NEW') +
+          esc(E3 ? '. The plot goes live only after initial, second and final approval.' :
+            '。资料初审 → 一致性复审 → 终审公开，三步都通过后田园才会出现在前台档案。') + '</p>' +
+          '<div class="sf-biz-ok-acts">' +
+          '<a class="sf-biz-btn is-next" href="' + esc(link('submission-status.html', { id: 'AU001', from: 'farm-edit.html' })) + '">' +
+          esc(E3 ? 'Track approval progress' : '查看审核进度') + '</a>' +
+          '<a class="sf-biz-btn" href="' + esc(link('farm-manage.html', { from: 'farm-edit.html' })) + '">' +
+          esc(E3 ? 'Manage my plots' : '管理我的田园') + '</a></div></div>';
+        var w3 = document.createElement('div'); w3.innerHTML = ok3;
+        f.parentNode.replaceChild(w3.firstChild, f);
+        toast(t('common.toast.saved') + ' · ' + (r.auditId || 'AU-NEW'));
+      }); return;
+    }
     if (kind === 'topic') { API.saveTopic(d).then(function (r) { toast(t('common.toast.saved')); }); return; }
     if (kind === 'reply' || kind === 'chat' || kind === 'audit-note') {
       var box = document.getElementById('sf-chat');
@@ -1989,6 +3477,55 @@
     if (kind === 'generic') {
       f._sending = true; f.reset(); toast(t('common.toast.saved'));
       setTimeout(function () { f._sending = false; }, 400); return;
+    }
+    if (kind === 'biz-form') {
+      /* 业务表单：必填校验 → 成功态（写明记录与下一步）→ 动作条直达下一节点 */
+      var d2 = {}; new FormData(f).forEach(function (v, k) { d2[k] = v; });
+      var first = f.querySelector('input,select,textarea');
+      if (first && first.required && !String(d2[first.name] || '').trim()) {
+        showErr(f, t('auth.err.missing')); return;
+      }
+      var E2 = lang === 'en';
+      var kind2 = f.getAttribute('data-biz-kind') || '';
+      /* 提现边界：金额必须 > 100、不超过由资金流水实时算出的可提现余额。
+         不满足就当场拦下，不生成提现单，也不写成功态。 */
+      if (kind2 === 'withdraw') {
+        var bal2 = M.all('funds').reduce(function (n2, x2) { return n2 + (Number(x2.amount) || 0); }, 0);
+        var amt2 = Number(d2.amount);
+        if (!(amt2 >= 100) || amt2 > bal2) {
+          showErr(f, E2 ? 'Amount must be at least 100 and within the available balance'
+                       : '提现金额需不低于 100 元且不超过可提现余额'); return;
+        }
+      }
+      var rec2 = bizRecord((BIZ[bizKey()] || {}).ds || 'farms');
+      var nx = f.getAttribute('data-next') || 'account.html';
+      var ex2 = bizParams(); ex2.from = hereFile(); if (rec2 && rec2.id) ex2.id = rec2.id;
+      /* 成功态按业务动作写真实标题与真实第二去向，不给所有页面套同一句话 */
+      var OK2 = {
+        cancel: ['已取消 · 进入退款流程', 'Cancelled · refund follows', 'farmer-funds.html', '查看资金流水', 'View fund ledger'],
+        refund: ['退款申请已提交 · 待平台核对', 'Refund filed · awaiting review', 'workorder-changes.html', '查看变更记录', 'View change log'],
+        amend: ['工单已修订 · 变更留痕', 'Job amended · change logged', 'workorder-changes.html', '查看变更记录', 'View change log'],
+        reissue: ['新工单已生成 · 待接单', 'New job created · awaiting assignee', 'workorders.html', '工单总览', 'All jobs'],
+        lease: ['租赁变更已提交 · 进入审核', 'Lease change filed · in review', 'submission-status.html', '查看审核进度', 'Track approval'],
+        contract: ['合同新版本已生成', 'New contract version created', 'contract-manage.html', '合同管理', 'Contracts'],
+        publish: ['活动已提交公示', 'Event sent to publication', 'activity.html', '田园活动', 'Field events'],
+        update: ['活动已更新 · 版本已留痕', 'Event updated · version kept', 'activity-manage.html', '活动管理', 'Event management'],
+        withdraw: ['提现申请已提交 · 待复核', 'Withdrawal filed · awaiting review', 'farmer-funds.html', '查看资金流水', 'View fund ledger'],
+        regulation: ['调控建议已提交 · 待执行', 'Control advice filed · pending', 'expert-regulation-log.html', '调控记录', 'Control log'],
+        'admin-review': ['管控结论已写回台账', 'Decision written to the ledger', 'admin/logs.html', '审计日志', 'Audit log']
+      }[kind2] || ['已提交 · 记录已进入业务流程', 'Submitted · recorded in the workflow',
+                   'orders.html', '查看我的订单', 'My orders'];
+      var ok2 = '<div class="sf-biz-ok" data-biz-ok><h3>' + esc(E2 ? OK2[1] : OK2[0]) + '</h3>' +
+        '<p>' + esc(E2 ? 'Record ' : '记录 ') + esc(bizScalar(rec2.id || hereFile())) +
+        esc(E2 ? ' now has a status, an owner and a next step.' : ' 已有状态、责任人与下一步。') + '</p>' +
+        '<div class="sf-biz-ok-acts"><a class="sf-biz-btn is-next" href="' + esc(link(nx, ex2)) + '">' +
+        esc(E2 ? 'Continue to next step' : '进入下一步') + '</a>' +
+        '<a class="sf-biz-btn" href="' + esc(link(OK2[2], ex2)) + '">' +
+        esc(E2 ? OK2[4] : OK2[3]) + '</a></div></div>';
+      var wrap2 = document.createElement('div'); wrap2.innerHTML = ok2;
+      f.parentNode.replaceChild(wrap2.firstChild, f);
+      toast(t('common.toast.submitted'));
+      return;
     }
     if (kind === 'newjob') { closeModal(); toast(t('common.toast.submitted')); return; }
     if (kind === 'newjob-farm') {
@@ -2129,7 +3666,14 @@
     state.filter = param('filter', ''); state.tab = param('tab', ''); state.scope = param('scope', '');
     syncHeroSearch();
     var page = document.body.getAttribute('data-page') || 'index';
-    (ROUTES[page] || pageGeneric)();
+    var bk = bizKey();
+    /* V2 渲染完成后必须继续往下绑定事件，不能提前 return：
+       否则新业务页的表单会走浏览器原生 GET，点击没有任何业务反馈。 */
+    var v2done = !!(V2[bk] && V2[bk](BIZ[bk]));
+    if (!v2done) {
+      if (BIZ[bk] && !ROUTES[page]) bizGeneric(bk, BIZ[bk]);
+      else (ROUTES[page] || pageGeneric)();
+    }
     document.addEventListener('click', onClick);
     document.addEventListener('change', onChange, true);
     document.addEventListener('submit', onSubmit, true);
@@ -2137,7 +3681,7 @@
     document.addEventListener('touchstart', onTouchStart, { passive: true });
     document.addEventListener('touchend', onTouchEnd, { passive: true });
   }
-  global.SF_APP = { init: init, toast: toast, link: link };
+  global.SF_APP = { init: init, toast: toast, link: link, BIZ: BIZ, ROLE_LABEL: ROLE_LABEL };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })(window);

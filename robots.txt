@@ -1,10 +1,7 @@
+# 安全整改：robots.txt 是公开文件，点名 /admin/ 等于向爬虫公告后台路径。
+# 后台与内部目录一律由 Nginx 层 deny / IP 白名单拦截（见 _internal/nginx-secure.conf），
+# 不依赖 robots 做「隐藏」。此处只声明公开抓取范围与站点地图。
 User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /verify.py
-Disallow: /runtime_check.py
-Disallow: /RUNTIME_batch
-Disallow: /CHECK.md
-Disallow: /slice_assets.py
+Disallow:
 
 Sitemap: https://iarm.fun/sitemap.html

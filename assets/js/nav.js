@@ -18,7 +18,17 @@
     { key: 'nav.forum', file: 'forum.html' },
     { key: 'nav.experts', file: 'experts.html' },
     { key: 'nav.dispatch', file: 'dispatch.html' },
-    { key: 'nav.account', file: 'account.html' }
+    { key: 'nav.account', file: 'account.html' },
+    /* 价格公示：所有业务节点的租金与费用都挂到这一级，子栏目逐个列全 */
+    { key: 'nav.price', file: 'price.html', subs: [
+      { key: 'price.lease', file: 'price-lease.html' },
+      { key: 'price.venue', file: 'price-venue.html' },
+      { key: 'price.job', file: 'price-job.html' },
+      { key: 'price.produce', file: 'price-produce.html' },
+      { key: 'price.calc', file: 'price-calc.html' },
+      { key: 'price.rulesPage', file: 'price-rules.html' },
+      { key: 'price.changesPage', file: 'price-changes.html' }
+    ] }
   ];
   var MOBILE = ['nav.home', 'nav.farms', 'nav.forum', 'nav.experts', 'nav.more'];
   var ICON = {
@@ -54,6 +64,9 @@
     var on = A() && A().authed();
     var items = NAV[0].subs.map(function (s) { return { label: t(s.key), file: s.file }; });
     items.push({ label: t('nav.dispatch'), file: 'dispatch.html' });
+    items.push({ label: t('nav.price'), file: 'price.html' });
+    items.push({ label: t('price.lease'), file: 'price-lease.html' });
+    items.push({ label: t('price.calc'), file: 'price-calc.html' });
     items.push({ label: t('orders.title'), file: 'orders.html' });
     items.push({ label: t('common.search'), file: 'search.html' });
     items.push({ label: t('help.title'), file: 'help.html' });
@@ -146,7 +159,8 @@
     if (!f) return;
     var links = [
       ['help.title', 'help.html'], ['about.title', 'about.html'], ['contact.title', 'contact.html'],
-      ['terms.title', 'terms.html'], ['privacy.title', 'privacy.html'], ['sitemap.title', 'sitemap.html']
+      ['terms.title', 'terms.html'], ['privacy.title', 'privacy.html'], ['sitemap.title', 'sitemap.html'],
+      ['nav.price', 'price.html'], ['price.changesPage', 'price-changes.html']
     ];
     f.innerHTML = '<div class="sf-foot-in">' +
       '<span>sumfarm 闪马共享田园平台 · Made by 闪马科技个人工作室</span>' +

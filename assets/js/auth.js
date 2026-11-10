@@ -14,7 +14,14 @@
 (function (global) {
   'use strict';
   var PREF_KEY = 'sf_role_pref';
-  var DEMO_PASS = 'sumfarm2026';
+  /* ===== 安全整改标注 =====
+     【P0 上线阻断项】下面是静态演示用的统一口令与演示账号表，仅用于走通 166 页交互。
+     真实上线前必须：① 删除 DEMO / DEMO_ONLY_CREDENTIAL 整块；② 把 signIn/signUp/reset
+     换成服务端鉴权（httpOnly + Secure + SameSite 的会话 Cookie 或签名 token）；
+     ③ 权限判定只认服务端会话，绝不信任 URL 上的 ?auth=1&uid=&role=。
+     当前 read() 读 URL 参数只用于「展示态」，任何服务端/网关都不得据此授权。 */
+  var DEMO_ONLY_CREDENTIAL = 'sumfarm2026';  /* 演示凭据，生产必须删除 */
+  var MAX_FAIL = 5, LOCK_MS = 60000, FAIL_KEY = 'sf_auth_fail';
   var ROLES = [
     { id: 'consumer', zh: '普通用户 · 租赁与分享', en: 'Member · lease and share' },
     { id: 'merchant', zh: '商家 / 村集体 · 田园共享', en: 'Cooperative · list farmland' },
@@ -77,11 +84,31 @@
     return f + (qs ? '?' + qs : '') + hash;
   }
   function go(file, extra) { return decorate(file, extra); }
-  function signIn(d, from) {
+    /* 演示层防爆破：连续失败 5 次锁定 60 秒；真实环境必须由服务端按 IP+账号限流 */
+  function lockLeft() {
+    try {
+      var f = JSON.parse(global.localStorage.getItem(FAIL_KEY) || '{}');
+      if (!f.n || Date.now() - f.t > LOCK_MS) { global.localStorage.removeItem(FAIL_KEY); return 0; }
+      return f.n >= MAX_FAIL ? Math.ceil((LOCK_MS - (Date.now() - f.t)) / 1000) : 0;
+    } catch (e) { return 0; }
+  }
+  function noteFail() {
+    try {
+      var f = JSON.parse(global.localStorage.getItem(FAIL_KEY) || '{}');
+      f = (Date.now() - (f.t || 0) > LOCK_MS) ? { n: 0, t: Date.now() } : f;
+      f.n = (f.n || 0) + 1; f.t = Date.now();
+      global.localStorage.setItem(FAIL_KEY, JSON.stringify(f));
+    } catch (e) {}
+  }
+  function clearFail() { try { global.localStorage.removeItem(FAIL_KEY); } catch (e) {} }
+function signIn(d, from) {
+    var left = lockLeft();
+    if (left) return { ok: false, reason: 'credential', locked: left };
     var acc = String(d.account || '').trim().toLowerCase();
     var hit = DEMO.filter(function (x) { return x.account.toLowerCase() === acc || x.uid.toLowerCase() === acc; })[0];
-    var okPass = String(d.passphrase || '') === DEMO_PASS;
-    if (!okPass || !hit) return { ok: false, reason: 'credential' };
+    var okPass = String(d.passphrase || '') === DEMO_ONLY_CREDENTIAL;
+    if (!okPass || !hit) { noteFail(); return { ok: false, reason: 'credential' }; }
+    clearFail();
     if (hit.roleId === 'admin') {
       return { ok: true, admin: true, url: 'admin/login.html?lang=' + ((global.SF_I18N && global.SF_I18N.current()) || 'zh') };
     }
@@ -115,7 +142,8 @@
     return '';
   }
   global.SF_AUTH = {
-    ROLES: ROLES, DEMO: DEMO, DEMO_PASS: DEMO_PASS,
+    security: { lockLeft: lockLeft, demoOnly: true },
+    ROLES: ROLES, DEMO: DEMO, DEMO_ONLY_CREDENTIAL: DEMO_ONLY_CREDENTIAL,
     read: read, authed: authed, user: user, roleName: roleName,
     decorate: decorate, go: go, signIn: signIn, signUp: signUp,
     signOut: signOut, prefRole: prefRole, validate: validate

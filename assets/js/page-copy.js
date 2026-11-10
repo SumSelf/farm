@@ -3,6 +3,20 @@
 (function (g) {
   'use strict';
   g.SF_PAGE_COPY = {
+ "api-catalog": {
+  "h1": {"zh": "统一接口目录", "en": "Unified API catalogue"},
+  "lead": {"zh": "全站只有一份 API 定义：request.js。这里按业务域列出每条接口的用途、参数范围、返回范围、关联数据库表，以及它在业务流程里的前后步骤。",
+           "en": "One API definition serves the whole site: request.js. Every endpoint is grouped by domain with its purpose, request and return ranges, linked database tables, and the step before and after it."},
+  "eyebrow": {"zh": "SUMFARM · 开发者对接", "en": "SUMFARM · Developer integration"},
+  "group": {"zh": "接口目录与数据仿真", "en": "API catalogue & data simulation"}
+ },
+ "api-lab": {
+  "h1": {"zh": "接口数据仿真", "en": "API data simulation"},
+  "lead": {"zh": "点「运行全部接口」，74 条会按顺序逐条仿真并把反馈显示在这里；点「范围校验演示」可以看到越界参数被真实拦下。",
+           "en": "Run all endpoints to simulate 74 calls in order and read the feedback here; the range-check demo shows out-of-range parameters being rejected for real."},
+  "eyebrow": {"zh": "SUMFARM · 数据仿真", "en": "SUMFARM · Data simulation"},
+  "group": {"zh": "接口目录与数据仿真", "en": "API catalogue & data simulation"}
+ },
  "farms-region": {
   "h1": {
    "zh": "按地区找田",
@@ -1694,6 +1708,834 @@
    "zh": "账号",
    "en": "Account"
   }
+ },
+ "price": {
+ "h1": {
+  "zh": "租金与价格公示",
+  "en": "Published rents & prices"
+ },
+ "lead": {
+  "zh": "平台所有田块租金、场地、活动、农产品、农事工单与专家服务，都在这份公示总账里明码标价；下单前看到的金额就是应付金额。",
+  "en": "One public price book for every plot rent, venue, event, produce crate, field-work order and expert hour. What you see before checkout is what you pay."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
  }
+},
+ "price-lease": {
+ "h1": {
+  "zh": "田块租金标准",
+  "en": "Plot rent standard"
+ },
+ "lead": {
+  "zh": "在册田园按实测亩数与当季公示单价逐块列出，承包类型、押金与首期应付一并算清，点田块可回到档案核对面积。",
+  "en": "Registered plots itemised by measured area and seasonal rate, with lease type, deposit and first payment worked out; open a plot to verify its area."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
+ }
+},
+ "price-venue": {
+ "h1": {
+  "zh": "场地与活动价目",
+  "en": "Venue & event rates"
+ },
+ "lead": {
+  "zh": "聚会、会议、运动场地、婚纱草坪、露营营位与农家菜单，按场 / 夜 / 桌 / 人分别公示；场地保证金单独列项。",
+  "en": "Gatherings, meetings, sports fields, wedding lawns, camping pitches and the farm table, priced per event, night, table or person, with bonds itemised."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
+ }
+},
+ "price-job": {
+ "h1": {
+  "zh": "农事工单与专家服务价",
+  "en": "Field-work & expert rates"
+ },
+ "lead": {
+  "zh": "翻地、种植、施肥、浇水、除草、采摘、回收、拍照与专家指导，单价按亩 / 次 / 小时公示，验收通过后才进入结算。",
+  "en": "Tilling, sowing, fertilising, watering, weeding, harvest, clearance, photo receipts and expert guidance, priced per mu, job or hour; nothing is payable until acceptance."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
+ }
+},
+ "price-produce": {
+ "h1": {
+  "zh": "农产品与配送价目",
+  "en": "Produce & delivery rates"
+ },
+ "lead": {
+  "zh": "每个批次按溯源号公示单价与规格，配送按距离和重量阶梯单列，不并入货款；价签与批次号一致。",
+  "en": "Each batch is priced by trace number and unit; delivery is itemised by distance and weight tier, never folded into the goods total. Shelf label and batch match."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
+ }
+},
+ "price-rules": {
+ "h1": {
+  "zh": "公示规则与计费口径",
+  "en": "Rules & pricing basis"
+ },
+ "lead": {
+  "zh": "明码标价、调价提前 7 天公示、押金单列、退租按未使用周期折算——六条规则与常见计费问题都给了可执行的答案。",
+  "en": "Up-front pricing, seven-day notice for changes, separate deposits, pro-rated refunds: six rules and the usual billing questions, with workable answers."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
+ }
+},
+ "price-changes": {
+ "h1": {
+  "zh": "调价公示历史",
+  "en": "Rate change log"
+ },
+ "lead": {
+  "zh": "每条调价都写明原价、新价、生效日、提前公示天数与调整原因；已下单的订单按原价执行到本周期结束。",
+  "en": "Every change lists the old and new rate, effective date, notice days and reason; orders already placed keep the old rate until their term ends."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
+ }
+},
+ "price-calc": {
+ "h1": {
+  "zh": "租金试算",
+  "en": "Rent calculator"
+ },
+ "lead": {
+  "zh": "选田块、填亩数与承包季数，按公示单价实时算出租金、押金、服务费与首期应付；试算结果不是订单，不会创建工单。",
+  "en": "Pick a plot, enter area and seasons to see rent, deposit, service fee and first payment from the published rate. An estimate is not an order."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 价格公示子页",
+  "en": "SUMFARM · Published price book"
+ },
+ "group": {
+  "zh": "价格公示",
+  "en": "Price book"
+ }
+},
+ "adm-prices": {
+ "h1": {
+  "zh": "价格公示管理",
+  "en": "Published price management"
+ },
+ "lead": {
+  "zh": "维护全站价目、公示状态与调价审批；此处改动会以新版本推送到所有业务节点。",
+  "en": "Maintain every published line, its status and change approvals; edits roll out to all nodes as a new edition."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM ADMIN",
+  "en": "SUMFARM ADMIN"
+ },
+ "group": {
+  "zh": "管理后台",
+  "en": "Admin console"
+ }
+},
+ "order-detail": {
+ "h1": {
+  "zh": "订单详情",
+  "en": "Order detail"
+ },
+ "lead": {
+  "zh": "订单状态、关联田园、金额构成与后续办理",
+  "en": "Order status, linked plot, price breakdown and what to do next."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 业务办理节点",
+  "en": "SUMFARM · A working step in the flow"
+ },
+ "group": {
+  "zh": "业务办理",
+  "en": "Business flow"
+ }
+},
+ "submission-status": {
+ "h1": {
+  "zh": "发布审核进度",
+  "en": "Approval progress"
+ },
+ "lead": {
+  "zh": "田园资料从提交到公开的三级审核与沟通交流",
+  "en": "Three-stage approval from submission to publication, with a discussion thread."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 业务办理节点",
+  "en": "SUMFARM · A working step in the flow"
+ },
+ "group": {
+  "zh": "业务办理",
+  "en": "Business flow"
+ }
+},
+ "merchant-orders": {
+ "h1": {
+  "zh": "收到的订单",
+  "en": "Incoming orders"
+ },
+ "lead": {
+  "zh": "商家视角：租赁、活动、场地与农产品订单的履约处理",
+  "en": "Merchant view: lease, event, venue and produce orders to fulfil."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 业务办理节点",
+  "en": "SUMFARM · A working step in the flow"
+ },
+ "group": {
+  "zh": "业务办理",
+  "en": "Business flow"
+ }
+},
+ "expert-conclusion": {
+ "h1": {
+  "zh": "技术结论",
+  "en": "Technical conclusion"
+ },
+ "lead": {
+  "zh": "专家指导工单的现场读数、技术结论与验收归档",
+  "en": "Field readings, written conclusion and acceptance archive for a guidance job."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 业务办理节点",
+  "en": "SUMFARM · A working step in the flow"
+ },
+ "group": {
+  "zh": "业务办理",
+  "en": "Business flow"
+ }
+},
+ "workorder-cancel": {
+ "h1": {
+  "zh": "取消工单",
+  "en": "Cancel a job"
+ },
+ "lead": {
+  "zh": "选一条自己发布的工单，写明取消原因；已作业部分按公示价折算，不会整单退钱。",
+  "en": "Pick a job you published and give a reason. Work already delivered is valued at published rates, so the refund is pro-rated."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 工单售后",
+  "en": "SUMFARM · Job aftercare"
+ },
+ "group": {
+  "zh": "工单售后子页",
+  "en": "Job aftercare pages"
+ }
+},
+ "workorder-refund": {
+ "h1": {
+  "zh": "申请退款",
+  "en": "Request a refund"
+ },
+ "lead": {
+  "zh": "把已付金额、已作业金额、服务费与应退金额逐项摊开，提交后进入平台核对。",
+  "en": "See the paid amount, delivered work, service fee and refundable balance itemised before the platform review."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 工单售后",
+  "en": "SUMFARM · Job aftercare"
+ },
+ "group": {
+  "zh": "工单售后子页",
+  "en": "Job aftercare pages"
+ }
+},
+ "workorder-refund-status": {
+ "h1": {
+  "zh": "退款进度",
+  "en": "Refund progress"
+ },
+ "lead": {
+  "zh": "申请、核对、原路退回、到账四步都有时间与责任方，金额写进资金流水。",
+  "en": "Request, review, refund in transit and credit — each step has a date, an owner and a ledger entry."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 工单售后",
+  "en": "SUMFARM · Job aftercare"
+ },
+ "group": {
+  "zh": "工单售后子页",
+  "en": "Job aftercare pages"
+ }
+},
+ "workorder-edit": {
+ "h1": {
+  "zh": "修改工单",
+  "en": "Amend a job"
+ },
+ "lead": {
+  "zh": "只有还没被承接的工单能改范围、时间窗、验收标准与预算；改动全部留痕。",
+  "en": "Only unassigned jobs can change scope, time window, acceptance criteria or budget. Every edit is logged."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 工单售后",
+  "en": "SUMFARM · Job aftercare"
+ },
+ "group": {
+  "zh": "工单售后子页",
+  "en": "Job aftercare pages"
+ }
+},
+ "workorder-reopen": {
+ "h1": {
+  "zh": "重新发起工单",
+  "en": "Reissue a job"
+ },
+ "lead": {
+  "zh": "带着原工单的田块、类型与明细需求重新发一单，旧单保留在变更记录里。",
+  "en": "Start a fresh job with the original plot, type and requirements. The old one stays in the change log."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 工单售后",
+  "en": "SUMFARM · Job aftercare"
+ },
+ "group": {
+  "zh": "工单售后子页",
+  "en": "Job aftercare pages"
+ }
+},
+ "workorder-changes": {
+ "h1": {
+  "zh": "工单变更记录",
+  "en": "Job change log"
+ },
+ "lead": {
+  "zh": "谁在什么时候取消、改单或重发，金额影响多少，逐条可点回原工单。",
+  "en": "Who cancelled, amended or reissued a job, when, and what it did to the amount. Every line links back."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 工单售后",
+  "en": "SUMFARM · Job aftercare"
+ },
+ "group": {
+  "zh": "工单售后子页",
+  "en": "Job aftercare pages"
+ }
+},
+ "lease-edit": {
+ "h1": {
+  "zh": "修改租赁信息",
+  "en": "Edit lease terms"
+ },
+ "lead": {
+  "zh": "改承包类型、租期与公示租金必须重新走审核，已生效订单按原价执行到周期结束。",
+  "en": "Changing lease type, term or published rent requires approval. Existing orders keep the old rate until their term ends."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "contract-manage": {
+ "h1": {
+  "zh": "合同管理",
+  "en": "Contract management"
+ },
+ "lead": {
+  "zh": "名下的承包合同按田块、版本、生效日与状态列出，每份都能点开逐条看。",
+  "en": "Every contract by plot, version, effective date and status, with each clause one click away."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "contract-edit": {
+ "h1": {
+  "zh": "编辑合同内容",
+  "en": "Edit contract clauses"
+ },
+ "lead": {
+  "zh": "租金、押金、灌溉、用途与争议五类条款逐条编辑，提交后生成新版本。",
+  "en": "Edit rent, deposit, irrigation, permitted use and dispute clauses. Saving creates a new version."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "contract-versions": {
+ "h1": {
+  "zh": "合同版本对比",
+  "en": "Contract version diff"
+ },
+ "lead": {
+  "zh": "新旧条款并排，相同的收起、不同的高亮，谁改的、为什么改都写着。",
+  "en": "Old and new clauses side by side: identical ones collapse, changed ones are highlighted, with author and reason."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "merchant-reconcile": {
+ "h1": {
+  "zh": "对账中心",
+  "en": "Reconciliation centre"
+ },
+ "lead": {
+  "zh": "按月份汇总应收、已收、平台服务费、退款与净额，数字全部由账单实时算。",
+  "en": "Monthly gross, received, platform fees, refunds and net — all aggregated live from the bill lines."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "merchant-bills": {
+ "h1": {
+  "zh": "账单明细",
+  "en": "Bill lines"
+ },
+ "lead": {
+  "zh": "每一笔租金、场地、活动、农产品和工单都能核到订单，状态与金额分列。",
+  "en": "Every rent, venue, event, produce and job line traces back to its order, with status and amount shown separately."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "merchant-reconcile-detail": {
+ "h1": {
+  "zh": "对账单详情",
+  "en": "Statement detail"
+ },
+ "lead": {
+  "zh": "某一期的逐笔账单、合计与双方确认状态在一页里核完，可导出留档。",
+  "en": "One period: itemised bills, totals and sign-off status on a single page, ready to export."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "activity-manage": {
+ "h1": {
+  "zh": "活动管理",
+  "en": "Event management"
+ },
+ "lead": {
+  "zh": "商家名下活动按草稿、公示中、报名中、已结束与已下架分区，编辑与报名名单都在这一层。",
+  "en": "Your events grouped by draft, published, open, finished and taken down, with edit and sign-up links at hand."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "activity-publish": {
+ "h1": {
+  "zh": "发布活动",
+  "en": "Publish an event"
+ },
+ "lead": {
+  "zh": "填名称、类型、场地、日期、名额、公示价与活动内容，提交后进入公示与报名。",
+  "en": "Set the title, type, venue, date, seats, published price and description, then send it to publication."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "activity-edit": {
+ "h1": {
+  "zh": "更新活动",
+  "en": "Update an event"
+ },
+ "lead": {
+  "zh": "带原活动内容回填，改时间、名额、价格或文案都要写变更说明并留版本。",
+  "en": "Pre-filled from the live event. Changing time, seats, price or copy needs a reason and creates a version."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "activity-versions": {
+ "h1": {
+  "zh": "活动内容版本",
+  "en": "Event content versions"
+ },
+ "lead": {
+  "zh": "活动文案与价目每次调整都留一版，能对比改了什么、谁改的、什么时候生效。",
+  "en": "Every copy and price change keeps a version: what changed, who changed it and when it took effect."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "activity-registrations": {
+ "h1": {
+  "zh": "报名名单",
+  "en": "Event sign-ups"
+ },
+ "lead": {
+  "zh": "谁报了名、几个人、签到没有，按订单核到具体的人，不会只给一个总数。",
+  "en": "Names, party sizes and check-in status, each traced to an order rather than a single headcount."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 田园经营",
+  "en": "SUMFARM · Plot operations"
+ },
+ "group": {
+  "zh": "田园经营子页",
+  "en": "Plot operation pages"
+ }
+},
+ "farmer-wallet": {
+ "h1": {
+  "zh": "资金总览",
+  "en": "My wallet"
+ },
+ "lead": {
+  "zh": "可提现余额、待结算、累计收入与处理中金额都从资金流水实时算，不是印死的数。",
+  "en": "Available balance, pending settlement, lifetime income and in-flight amounts, all computed from the ledger."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 农户工作台",
+  "en": "SUMFARM · Grower workbench"
+ },
+ "group": {
+  "zh": "农户资金子页",
+  "en": "Grower fund pages"
+ }
+},
+ "farmer-funds": {
+ "h1": {
+  "zh": "资金流水",
+  "en": "Fund ledger"
+ },
+ "lead": {
+  "zh": "工单结算、活动分成、货款、服务费、退款扣回与提现按时间倒序列出，可按类型筛。",
+  "en": "Settlements, event shares, produce payments, fees, refund deductions and withdrawals, newest first and filterable."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 农户工作台",
+  "en": "SUMFARM · Grower workbench"
+ },
+ "group": {
+  "zh": "农户资金子页",
+  "en": "Grower fund pages"
+ }
+},
+ "farmer-settlement": {
+ "h1": {
+  "zh": "结算单",
+  "en": "Settlement statements"
+ },
+ "lead": {
+  "zh": "验收通过的工单逐条列出公示价、平台结算服务费与实结金额。",
+  "en": "Accepted jobs with their published price, settlement fee and net payout, line by line."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 农户工作台",
+  "en": "SUMFARM · Grower workbench"
+ },
+ "group": {
+  "zh": "农户资金子页",
+  "en": "Grower fund pages"
+ }
+},
+ "farmer-withdraw": {
+ "h1": {
+  "zh": "申请提现",
+  "en": "Withdraw funds"
+ },
+ "lead": {
+  "zh": "填金额与到账账户，超过可提现余额会被当场拦下，手续费与到账额先算给你看。",
+  "en": "Enter an amount and a bank account. Over-limit requests are blocked on the spot; fee and net are shown first."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 农户工作台",
+  "en": "SUMFARM · Grower workbench"
+ },
+ "group": {
+  "zh": "农户资金子页",
+  "en": "Grower fund pages"
+ }
+},
+ "farmer-withdraw-status": {
+ "h1": {
+  "zh": "提现进度",
+  "en": "Withdrawal progress"
+ },
+ "lead": {
+  "zh": "申请、平台复核、银行处理、到账四步都有时间，到账后写回资金流水。",
+  "en": "Request, review, bank processing and credit — dated, with the credit written back to the ledger."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 农户工作台",
+  "en": "SUMFARM · Grower workbench"
+ },
+ "group": {
+  "zh": "农户资金子页",
+  "en": "Grower fund pages"
+ }
+},
+ "expert-stats": {
+ "h1": {
+  "zh": "多维统计",
+  "en": "Multi-dimensional analytics"
+ },
+ "lead": {
+  "zh": "按作物、田块、月份或生长阶段切换分组，温度、湿度、含水率与产量都是从记录算出来的。",
+  "en": "Group by crop, plot, month or growth stage; temperature, humidity, soil moisture and yield are computed from records."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 专家工作台",
+  "en": "SUMFARM · Expert workbench"
+ },
+ "group": {
+  "zh": "专家数据子页",
+  "en": "Expert data pages"
+ }
+},
+ "expert-compare": {
+ "h1": {
+  "zh": "数据对比",
+  "en": "Compare data"
+ },
+ "lead": {
+  "zh": "选两到三块田并排比土壤、面积、四季读数与公示价；相同项合并，不同项高亮。",
+  "en": "Compare two or three plots on soil, area, seasonal readings and published rates: identical rows collapse, differences light up."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 专家工作台",
+  "en": "SUMFARM · Expert workbench"
+ },
+ "group": {
+  "zh": "专家数据子页",
+  "en": "Expert data pages"
+ }
+},
+ "expert-regulation": {
+ "h1": {
+  "zh": "调控建议",
+  "en": "Control advice"
+ },
+ "lead": {
+  "zh": "按维度写目标区间与具体动作，附上对比读数依据，提交后进入执行与复核。",
+  "en": "Set a target range and a concrete action per dimension, with comparison readings as evidence, then send it for execution."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 专家工作台",
+  "en": "SUMFARM · Expert workbench"
+ },
+ "group": {
+  "zh": "专家数据子页",
+  "en": "Expert data pages"
+ }
+},
+ "expert-regulation-log": {
+ "h1": {
+  "zh": "调控记录",
+  "en": "Control log"
+ },
+ "lead": {
+  "zh": "每条建议的田块、维度、动作、执行状态与复核结论都留着，可回到对比页核读数。",
+  "en": "Every advice keeps its plot, dimension, action, execution status and review note, with a link back to the readings."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 专家工作台",
+  "en": "SUMFARM · Expert workbench"
+ },
+ "group": {
+  "zh": "专家数据子页",
+  "en": "Expert data pages"
+ }
+},
+ "expert-planting-query": {
+ "h1": {
+  "zh": "种植记录查询",
+  "en": "Field record query"
+ },
+ "lead": {
+  "zh": "按田块、作物、阶段与日期筛种植记录，结果逐条点开，不是只给一张汇总表。",
+  "en": "Filter field records by plot, crop, stage and date. Each hit opens its own detail, not just a summary."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 专家工作台",
+  "en": "SUMFARM · Expert workbench"
+ },
+ "group": {
+  "zh": "专家数据子页",
+  "en": "Expert data pages"
+ }
+},
+ "expert-planting-detail": {
+ "h1": {
+  "zh": "种植记录详情",
+  "en": "Field record detail"
+ },
+ "lead": {
+  "zh": "单条记录的温度、湿度、含水率、株高、预估产量、照片回执与关联工单都在这一页。",
+  "en": "Temperature, humidity, soil moisture, plant height, estimated yield, photo receipts and the linked job on one page."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM · 专家工作台",
+  "en": "SUMFARM · Expert workbench"
+ },
+ "group": {
+  "zh": "专家数据子页",
+  "en": "Expert data pages"
+ }
+},
+ "adm-refunds": {
+ "h1": {
+  "zh": "退款审核",
+  "en": "Refund review"
+ },
+ "lead": {
+  "zh": "逐笔核对已作业金额、公示价与应退金额，通过后进入原路退回。",
+  "en": "Check delivered work, published rates and the refundable amount line by line before releasing a refund."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM ADMIN · 管控台账",
+  "en": "SUMFARM ADMIN · Control ledger"
+ },
+ "group": {
+  "zh": "后台独立管理页",
+  "en": "Admin record consoles"
+ }
+},
+ "adm-withdrawals": {
+ "h1": {
+  "zh": "提现复核",
+  "en": "Withdrawal review"
+ },
+ "lead": {
+  "zh": "核对农户可提现余额与工单状态，复核通过后交银行处理。",
+  "en": "Verify the available balance and job status, then pass the withdrawal to bank processing."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM ADMIN · 管控台账",
+  "en": "SUMFARM ADMIN · Control ledger"
+ },
+ "group": {
+  "zh": "后台独立管理页",
+  "en": "Admin record consoles"
+ }
+},
+ "adm-contracts": {
+ "h1": {
+  "zh": "合同版本台账",
+  "en": "Contract version ledger"
+ },
+ "lead": {
+  "zh": "全站合同变更逐条可查：改了哪条、改前改后、谁提交、什么时候生效。",
+  "en": "Every contract amendment: which clause, before and after, who filed it and when it took effect."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM ADMIN · 管控台账",
+  "en": "SUMFARM ADMIN · Control ledger"
+ },
+ "group": {
+  "zh": "后台独立管理页",
+  "en": "Admin record consoles"
+ }
+},
+ "adm-regulations": {
+ "h1": {
+  "zh": "调控记录台账",
+  "en": "Control advice ledger"
+ },
+ "lead": {
+  "zh": "专家调控建议、执行状态与复核读数统一留档，便于追溯与导出。",
+  "en": "Expert control advice, execution status and re-measured readings in one auditable ledger."
+ },
+ "eyebrow": {
+  "zh": "SUMFARM ADMIN · 管控台账",
+  "en": "SUMFARM ADMIN · Control ledger"
+ },
+ "group": {
+  "zh": "后台独立管理页",
+  "en": "Admin record consoles"
+ }
+}
 };
 })(window);

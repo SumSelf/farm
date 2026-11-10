@@ -1,0 +1,140 @@
+{
+  "检查项": 26,
+  "通过": 26,
+  "未通过": 0,
+  "明细": [
+    {
+      "name": "公开站点根无 .md/.py/.json/.sql 等非公开文件",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "_internal/ 物理隔离齐备",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "内部资料不在公开根",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Nginx 安全头 / TLS / 限流齐备",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "Nginx 拦截规则齐备（内部目录/开发者页/后台/扩展名）",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "166 页全部注入 CSP meta",
+      "ok": true,
+      "detail": "166"
+    },
+    {
+      "name": "script-src 严格：无 unsafe-inline / unsafe-eval",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "style-src 放宽已登记权衡（SECURITY.md 说明）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "0 内联 script/style/on*（严格 CSP 成立前提）",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "无 eval / new Function / javascript: / document.write",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "页面不 fetch 任何本地 .json 内部资料",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "无固定可预测 token",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "公开面无真实手机号 / 身份证",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "站内无已弃用旧域名",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "6 个越权字段标注 source=session",
+      "ok": true,
+      "detail": "{'acceptJob': ['assigneeId'], 'stepAudit': ['level', 'result'], 'withdrawFunds': ['userId'], 'reviewRefund': ['decision'], 'reviewWithdrawal': ['decision']}"
+    },
+    {
+      "name": "请求层真实模式拦截会话注入字段（403）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "生产模式错误信息泛化",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "SF_REQUEST.security 暴露给后端开发者",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "演示凭据已标注为 P0 上线阻断项",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "登录失败计数与锁定已接入",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "robots.txt 不点名 /admin/（后台靠 Nginx 拦截）",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "开发者页 noindex 且 Nginx 精确拒绝",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "后台 21 页全带 noindex,nofollow",
+      "ok": true,
+      "detail": "21"
+    },
+    {
+      "name": "SECURITY.md 含上线阻断清单与残留风险",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "接口目录 74 条且全部声明 columns",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "request.js 内嵌目录与 db 目录完全一致",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "公开根文件数": 146,
+  "页面数": 166,
+  "内部文件数": 58
+}

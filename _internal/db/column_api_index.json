@@ -1,0 +1,4743 @@
+{
+  "表数": 55,
+  "接口数": 74,
+  "列总数": 497,
+  "索引": {
+    "activity_event.activity_no": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.capacity": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": [
+        "publishActivity"
+      ]
+    },
+    "activity_event.content": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": [
+        "publishActivity",
+        "updateActivity"
+      ]
+    },
+    "activity_event.cover_path": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.created_at": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.id": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.kind": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": [
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity"
+      ]
+    },
+    "activity_event.owner_user_id": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.plot_no": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.price_item_no": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.start_at": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_event.status": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": [
+        "listActivities",
+        "listActivityVersions",
+        "listAny"
+      ]
+    },
+    "activity_event.title": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": [
+        "publishActivity",
+        "updateActivity"
+      ]
+    },
+    "activity_event.updated_at": {
+      "returned_by": [
+        "getActivity",
+        "listActivities",
+        "listActivityVersions",
+        "listAny",
+        "publishActivity",
+        "search",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_registration.activity_id": {
+      "returned_by": [
+        "listActivityRegistrations"
+      ],
+      "arg_of": []
+    },
+    "activity_registration.attendee_no": {
+      "returned_by": [
+        "listActivityRegistrations"
+      ],
+      "arg_of": []
+    },
+    "activity_registration.created_at": {
+      "returned_by": [
+        "listActivityRegistrations"
+      ],
+      "arg_of": []
+    },
+    "activity_registration.id": {
+      "returned_by": [
+        "listActivityRegistrations"
+      ],
+      "arg_of": []
+    },
+    "activity_registration.order_no": {
+      "returned_by": [
+        "listActivityRegistrations"
+      ],
+      "arg_of": []
+    },
+    "activity_registration.status": {
+      "returned_by": [
+        "listActivityRegistrations"
+      ],
+      "arg_of": [
+        "listActivityRegistrations"
+      ]
+    },
+    "activity_registration.updated_at": {
+      "returned_by": [
+        "listActivityRegistrations"
+      ],
+      "arg_of": []
+    },
+    "activity_version.activity_id": {
+      "returned_by": [
+        "getActivity",
+        "listActivityVersions",
+        "publishActivity",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_version.change_note": {
+      "returned_by": [
+        "getActivity",
+        "listActivityVersions",
+        "publishActivity",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_version.created_at": {
+      "returned_by": [
+        "getActivity",
+        "listActivityVersions",
+        "publishActivity",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_version.id": {
+      "returned_by": [
+        "getActivity",
+        "listActivityVersions",
+        "publishActivity",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_version.status": {
+      "returned_by": [
+        "getActivity",
+        "listActivityVersions",
+        "publishActivity",
+        "updateActivity"
+      ],
+      "arg_of": [
+        "listActivityVersions"
+      ]
+    },
+    "activity_version.updated_at": {
+      "returned_by": [
+        "getActivity",
+        "listActivityVersions",
+        "publishActivity",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "activity_version.version": {
+      "returned_by": [
+        "getActivity",
+        "listActivityVersions",
+        "publishActivity",
+        "updateActivity"
+      ],
+      "arg_of": []
+    },
+    "admin_account.account": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": [
+        "adminLogin"
+      ]
+    },
+    "admin_account.admin_no": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_account.created_at": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_account.id": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_account.last_login_at": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_account.pass_hash": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_account.role": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_account.status": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_account.updated_at": {
+      "returned_by": [
+        "adminLogin"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.action": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.admin_id": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.at": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.created_at": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.id": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.module": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.target_no": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "admin_operation_log.updated_at": {
+      "returned_by": [
+        "adminLogin",
+        "listAudits",
+        "reviewRefund",
+        "reviewWithdrawal",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "attachment.attach_no": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.created_at": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.file_path": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.id": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.mime": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.owner_no": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.owner_type": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.size_bytes": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "attachment.updated_at": {
+      "returned_by": [
+        "listChats",
+        "listPromos",
+        "listVideos",
+        "sendChat",
+        "upload"
+      ],
+      "arg_of": []
+    },
+    "audit_task.at": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "audit_task.audit_no": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "audit_task.comment": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": [
+        "stepAudit"
+      ]
+    },
+    "audit_task.created_at": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "audit_task.id": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "audit_task.level": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "stepAudit"
+      ]
+    },
+    "audit_task.operator_no": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "audit_task.result": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "stepAudit"
+      ]
+    },
+    "audit_task.target_no": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "audit_task.target_type": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "audit_task.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAudits",
+        "listPriceAudits",
+        "publishPrices",
+        "saveFarm",
+        "saveTopic",
+        "stepAudit"
+      ],
+      "arg_of": []
+    },
+    "bill_item.bill_no": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.created_at": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.id": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.kind": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": [
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ]
+    },
+    "bill_item.net_cents": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.order_id": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.period": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": [
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ]
+    },
+    "bill_item.receivable_cents": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.refunded_cents": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.service_fee_cents": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "bill_item.status": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": [
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ]
+    },
+    "bill_item.updated_at": {
+      "returned_by": [
+        "getReconciliation",
+        "listAny",
+        "listBills",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "content_comment.body": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_comment.comment_no": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_comment.created_at": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_comment.id": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_comment.status": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listComments"
+      ]
+    },
+    "content_comment.target_no": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_comment.target_type": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_comment.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_comment.user_id": {
+      "returned_by": [
+        "adminModule",
+        "getFarm",
+        "getTopic",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "content_like.created_at": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "content_like.id": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "content_like.target_no": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "content_like.target_type": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "content_like.updated_at": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "content_like.user_id": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "contract_clause.body_en": {
+      "returned_by": [
+        "getContract",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_clause.body_zh": {
+      "returned_by": [
+        "getContract",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_clause.contract_id": {
+      "returned_by": [
+        "getContract",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_clause.created_at": {
+      "returned_by": [
+        "getContract",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_clause.id": {
+      "returned_by": [
+        "getContract",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_clause.seq": {
+      "returned_by": [
+        "getContract",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_clause.updated_at": {
+      "returned_by": [
+        "getContract",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.contract_no": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.created_at": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.id": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.order_id": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.scan_path": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.signed_at": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.status": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts"
+      ]
+    },
+    "contract_doc.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_doc.version": {
+      "returned_by": [
+        "adminModule",
+        "getContract",
+        "listAdminContracts",
+        "listAny",
+        "listContractVersions",
+        "listContracts",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.change_note": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.contract_id": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.created_at": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.from_version": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.id": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.operator_no": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.to_version": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "contract_version.updated_at": {
+      "returned_by": [
+        "listAdminContracts",
+        "listContractVersions",
+        "saveContract"
+      ],
+      "arg_of": []
+    },
+    "dict_item.created_at": {
+      "returned_by": [
+        "adminModule",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "dict_item.dict_key": {
+      "returned_by": [
+        "adminModule",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "dict_item.dict_value_en": {
+      "returned_by": [
+        "adminModule",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "dict_item.dict_value_zh": {
+      "returned_by": [
+        "adminModule",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "dict_item.id": {
+      "returned_by": [
+        "adminModule",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "dict_item.sort_no": {
+      "returned_by": [
+        "adminModule",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "dict_item.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "listComments"
+      ],
+      "arg_of": []
+    },
+    "dispatch_task.created_at": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": []
+    },
+    "dispatch_task.dispatch_no": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": []
+    },
+    "dispatch_task.distance_km": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": []
+    },
+    "dispatch_task.id": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": []
+    },
+    "dispatch_task.region": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": [
+        "listAny",
+        "listDispatches"
+      ]
+    },
+    "dispatch_task.scope": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": [
+        "listAny",
+        "listDispatches"
+      ]
+    },
+    "dispatch_task.status": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": [
+        "listAny",
+        "listDispatches"
+      ]
+    },
+    "dispatch_task.updated_at": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": []
+    },
+    "dispatch_task.wo_no": {
+      "returned_by": [
+        "acceptJob",
+        "listAny",
+        "listDispatches"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.cert_path": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.created_at": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.domain": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.expert_no": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.id": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.org": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.points": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.title": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.updated_at": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "expert_profile.user_id": {
+      "returned_by": [
+        "getExpert",
+        "listAny",
+        "listExperts",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.area_mu": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.cover_path": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.created_at": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.id": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.lease_end": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.lease_start": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.lease_type": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.owner_user_id": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.plot_no": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.region": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": [
+        "adminModule",
+        "expertCompare",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm"
+      ]
+    },
+    "farm_plot.soil_type": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "farm_plot.status": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": [
+        "adminModule",
+        "expertCompare",
+        "listAny",
+        "listFarms",
+        "listPricePlots"
+      ]
+    },
+    "farm_plot.title": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": [
+        "saveFarm"
+      ]
+    },
+    "farm_plot.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "calcPrice",
+        "expertCompare",
+        "getFarm",
+        "listAny",
+        "listFarms",
+        "listPricePlots",
+        "saveFarm",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "follow_relation.created_at": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "follow_relation.id": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "follow_relation.kind": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": [
+        "listAny"
+      ]
+    },
+    "follow_relation.target_no": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "follow_relation.target_type": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "follow_relation.updated_at": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "follow_relation.user_id": {
+      "returned_by": [
+        "listAny"
+      ],
+      "arg_of": []
+    },
+    "forum_topic.board": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": [
+        "listAny",
+        "listTopics",
+        "saveTopic"
+      ]
+    },
+    "forum_topic.body": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "forum_topic.created_at": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "forum_topic.id": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "forum_topic.status": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": [
+        "listAny",
+        "listTopics"
+      ]
+    },
+    "forum_topic.tags": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "forum_topic.title": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": [
+        "saveTopic"
+      ]
+    },
+    "forum_topic.topic_no": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "forum_topic.updated_at": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "forum_topic.user_id": {
+      "returned_by": [
+        "getExpert",
+        "getTopic",
+        "listAny",
+        "listTopics",
+        "saveTopic",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "fund_account.account_no": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_account.balance_cents": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_account.created_at": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_account.frozen_cents": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_account.id": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_account.status": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": [
+        "listFunds"
+      ]
+    },
+    "fund_account.updated_at": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_account.user_id": {
+      "returned_by": [
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.account_id": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.amount_cents": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.at": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.created_at": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.entry_no": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.id": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.kind": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": [
+        "listAny",
+        "listFunds"
+      ]
+    },
+    "fund_entry.related_no": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "fund_entry.updated_at": {
+      "returned_by": [
+        "listAny",
+        "listFunds",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.created_at": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.id": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.note": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.receipt_path": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.result": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.updated_at": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.verified_at": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "job_acceptance.wo_id": {
+      "returned_by": [
+        "getWorkorder"
+      ],
+      "arg_of": []
+    },
+    "lease_order.amount_cents": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "lease_order.created_at": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "lease_order.id": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "lease_order.kind": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": [
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ]
+    },
+    "lease_order.order_no": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "lease_order.placed_at": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "lease_order.ref_no": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "lease_order.status": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": [
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ]
+    },
+    "lease_order.updated_at": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "lease_order.user_id": {
+      "returned_by": [
+        "getPriceBreakdown",
+        "listActivityRegistrations",
+        "listAny",
+        "listBills",
+        "listContracts",
+        "listOrders",
+        "listRefunds"
+      ],
+      "arg_of": []
+    },
+    "order_line.amount_cents": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.created_at": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.id": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.item_no": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.item_title": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.order_id": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.qty": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.unit_price_cents": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "order_line.updated_at": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.amount_cents": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.channel": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.created_at": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.id": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.order_id": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.paid_at": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.pay_no": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "payment_record.status": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": [
+        "listOrders"
+      ]
+    },
+    "payment_record.updated_at": {
+      "returned_by": [
+        "listOrders"
+      ],
+      "arg_of": []
+    },
+    "planting_record.at": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.created_at": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.crop": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations"
+      ]
+    },
+    "planting_record.expert_no": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.id": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.note": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.plot_no": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.reading_json": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.record_no": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "planting_record.stage": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations"
+      ]
+    },
+    "planting_record.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "expertCompare",
+        "expertStats",
+        "getExpert",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listAny",
+        "listPlantRecords",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "platform_config.config_key": {
+      "returned_by": [
+        "adminModule"
+      ],
+      "arg_of": []
+    },
+    "platform_config.config_value": {
+      "returned_by": [
+        "adminModule"
+      ],
+      "arg_of": []
+    },
+    "platform_config.created_at": {
+      "returned_by": [
+        "adminModule"
+      ],
+      "arg_of": []
+    },
+    "platform_config.id": {
+      "returned_by": [
+        "adminModule"
+      ],
+      "arg_of": []
+    },
+    "platform_config.updated_at": {
+      "returned_by": [
+        "adminModule"
+      ],
+      "arg_of": []
+    },
+    "platform_user.avatar_path": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "platform_user.created_at": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "platform_user.display_name": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "platform_user.email": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "platform_user.id": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "platform_user.phone_hash": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "platform_user.region": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ]
+    },
+    "platform_user.role": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ]
+    },
+    "platform_user.status": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ]
+    },
+    "platform_user.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "platform_user.user_no": {
+      "returned_by": [
+        "adminModule",
+        "listExperts",
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.created_at": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.crop_name": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.id": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.kind": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": [
+        "listPlantRecords"
+      ]
+    },
+    "plot_crop_record.plot_id": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.receipt_path": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.season_year": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.updated_at": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_crop_record.yield_kg": {
+      "returned_by": [
+        "getFarm",
+        "listPlantRecords"
+      ],
+      "arg_of": []
+    },
+    "plot_facility.bookable": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": []
+    },
+    "plot_facility.capacity": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": []
+    },
+    "plot_facility.created_at": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": []
+    },
+    "plot_facility.id": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": []
+    },
+    "plot_facility.kind": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": [
+        "listActivities"
+      ]
+    },
+    "plot_facility.name": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": [
+        "listActivities"
+      ]
+    },
+    "plot_facility.plot_id": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": []
+    },
+    "plot_facility.price_item_no": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": []
+    },
+    "plot_facility.updated_at": {
+      "returned_by": [
+        "getFarm",
+        "listActivities"
+      ],
+      "arg_of": []
+    },
+    "plot_image.caption": {
+      "returned_by": [
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_image.created_at": {
+      "returned_by": [
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_image.file_path": {
+      "returned_by": [
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_image.id": {
+      "returned_by": [
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_image.plot_id": {
+      "returned_by": [
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_image.sort_no": {
+      "returned_by": [
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_image.updated_at": {
+      "returned_by": [
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.book_version": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.created_at": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.deposit_cents": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.fee_cents": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.id": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.plot_no": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.rate_cents": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.season_cents": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.total_cents": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_rent_rate.updated_at": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBreakdown",
+        "listPricePlots"
+      ],
+      "arg_of": []
+    },
+    "plot_season_metric.avg_humidity_pct": {
+      "returned_by": [
+        "expertCompare",
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_season_metric.avg_temp_c": {
+      "returned_by": [
+        "expertCompare",
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_season_metric.created_at": {
+      "returned_by": [
+        "expertCompare",
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_season_metric.id": {
+      "returned_by": [
+        "expertCompare",
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_season_metric.plot_id": {
+      "returned_by": [
+        "expertCompare",
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_season_metric.season": {
+      "returned_by": [
+        "expertCompare",
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "plot_season_metric.updated_at": {
+      "returned_by": [
+        "expertCompare",
+        "getFarm",
+        "listFarms"
+      ],
+      "arg_of": []
+    },
+    "price_book.created_at": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_book.id": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_book.period_from": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_book.period_to": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_book.published_at": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_book.status": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots"
+      ]
+    },
+    "price_book.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_book.version": {
+      "returned_by": [
+        "adminModule",
+        "getPriceBook",
+        "listPriceChanges",
+        "listPriceItems",
+        "listPricePlots",
+        "publishPrices"
+      ],
+      "arg_of": [
+        "publishPrices"
+      ]
+    },
+    "price_change.after_cents": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.before_cents": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.book_id": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.created_at": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.effective_at": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.id": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.item_no": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.notice_days": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.reason": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_change.updated_at": {
+      "returned_by": [
+        "getPriceBook",
+        "listPriceChanges"
+      ],
+      "arg_of": []
+    },
+    "price_item.book_id": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.cat": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": [
+        "listPriceItems"
+      ]
+    },
+    "price_item.created_at": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.id": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.item_no": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.name_en": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.name_zh": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.price_cents": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.scope": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": [
+        "listPriceItems"
+      ]
+    },
+    "price_item.status": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": [
+        "listPriceItems"
+      ]
+    },
+    "price_item.unit": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_item.updated_at": {
+      "returned_by": [
+        "calcPrice",
+        "getPriceBook",
+        "getPriceBreakdown",
+        "listPriceItems",
+        "publishActivity"
+      ],
+      "arg_of": []
+    },
+    "price_publish_task.audit_level": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_publish_task.book_id": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_publish_task.created_at": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_publish_task.id": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_publish_task.note": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": [
+        "publishPrices"
+      ]
+    },
+    "price_publish_task.status": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": [
+        "listPriceAudits"
+      ]
+    },
+    "price_publish_task.submitted_by": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_publish_task.task_no": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "price_publish_task.updated_at": {
+      "returned_by": [
+        "listPriceAudits",
+        "publishPrices"
+      ],
+      "arg_of": []
+    },
+    "produce_item.category": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": [
+        "listAny",
+        "listProduces"
+      ]
+    },
+    "produce_item.cover_path": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_item.created_at": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_item.id": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_item.name": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": [
+        "listAny",
+        "listProduces"
+      ]
+    },
+    "produce_item.owner_user_id": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_item.price_item_no": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_item.status": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": [
+        "listAny",
+        "listProduces"
+      ]
+    },
+    "produce_item.trace_no": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_item.unit": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_item.updated_at": {
+      "returned_by": [
+        "getProduce",
+        "listAny",
+        "listProduces",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "produce_trace.created_at": {
+      "returned_by": [
+        "getProduce",
+        "listProduces"
+      ],
+      "arg_of": []
+    },
+    "produce_trace.id": {
+      "returned_by": [
+        "getProduce",
+        "listProduces"
+      ],
+      "arg_of": []
+    },
+    "produce_trace.note": {
+      "returned_by": [
+        "getProduce",
+        "listProduces"
+      ],
+      "arg_of": []
+    },
+    "produce_trace.produce_id": {
+      "returned_by": [
+        "getProduce",
+        "listProduces"
+      ],
+      "arg_of": []
+    },
+    "produce_trace.receipt_path": {
+      "returned_by": [
+        "getProduce",
+        "listProduces"
+      ],
+      "arg_of": []
+    },
+    "produce_trace.stage": {
+      "returned_by": [
+        "getProduce",
+        "listProduces"
+      ],
+      "arg_of": [
+        "listProduces"
+      ]
+    },
+    "produce_trace.updated_at": {
+      "returned_by": [
+        "getProduce",
+        "listProduces"
+      ],
+      "arg_of": []
+    },
+    "promo_material.body": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.channel": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.cover_path": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.created_at": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.id": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.promo_no": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.title": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.updated_at": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "promo_material.user_id": {
+      "returned_by": [
+        "listAny",
+        "listPromos"
+      ],
+      "arg_of": []
+    },
+    "reconciliation.checked_at": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "reconciliation.created_at": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "reconciliation.id": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "reconciliation.period": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": [
+        "listReconciliations"
+      ]
+    },
+    "reconciliation.recon_no": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "reconciliation.status": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": [
+        "listReconciliations"
+      ]
+    },
+    "reconciliation.subject_no": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "reconciliation.total_cents": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "reconciliation.updated_at": {
+      "returned_by": [
+        "getReconciliation",
+        "listReconciliations"
+      ],
+      "arg_of": []
+    },
+    "refund_flow.created_at": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_flow.id": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_flow.note": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": [
+        "reviewRefund"
+      ]
+    },
+    "refund_flow.operator_no": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_flow.refund_id": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_flow.status": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": [
+        "listRefunds"
+      ]
+    },
+    "refund_flow.step": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_flow.updated_at": {
+      "returned_by": [
+        "applyRefund",
+        "getRefund",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.amount_paid_cents": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.applied_at": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.created_at": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.id": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.method": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": [
+        "applyRefund"
+      ]
+    },
+    "refund_request.order_id": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.reason_code": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.refund_amount_cents": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.refund_no": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.status": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds"
+      ]
+    },
+    "refund_request.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "refund_request.used_amount_cents": {
+      "returned_by": [
+        "adminModule",
+        "applyRefund",
+        "cancelWorkorder",
+        "getRefund",
+        "listAdminRefunds",
+        "listAny",
+        "listRefunds",
+        "reviewRefund"
+      ],
+      "arg_of": []
+    },
+    "regulation_advice.action": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": [
+        "saveRegulation"
+      ]
+    },
+    "regulation_advice.before_value": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "regulation_advice.created_at": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "regulation_advice.dimension": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": [
+        "adminModule",
+        "expertStats",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ]
+    },
+    "regulation_advice.id": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "regulation_advice.record_id": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "regulation_advice.review_note": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "regulation_advice.status": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": [
+        "adminModule",
+        "expertStats",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations"
+      ]
+    },
+    "regulation_advice.target_value": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "regulation_advice.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "expertStats",
+        "getPlantRecord",
+        "listAdminRegulations",
+        "listPlantings",
+        "listRegulations",
+        "saveRegulation"
+      ],
+      "arg_of": []
+    },
+    "topic_reply.author_no": {
+      "returned_by": [
+        "getTopic"
+      ],
+      "arg_of": []
+    },
+    "topic_reply.body": {
+      "returned_by": [
+        "getTopic"
+      ],
+      "arg_of": []
+    },
+    "topic_reply.created_at": {
+      "returned_by": [
+        "getTopic"
+      ],
+      "arg_of": []
+    },
+    "topic_reply.id": {
+      "returned_by": [
+        "getTopic"
+      ],
+      "arg_of": []
+    },
+    "topic_reply.status": {
+      "returned_by": [
+        "getTopic"
+      ],
+      "arg_of": []
+    },
+    "topic_reply.topic_id": {
+      "returned_by": [
+        "getTopic"
+      ],
+      "arg_of": []
+    },
+    "topic_reply.updated_at": {
+      "returned_by": [
+        "getTopic"
+      ],
+      "arg_of": []
+    },
+    "user_notice.body": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_notice.created_at": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_notice.id": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_notice.kind": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listNotices"
+      ]
+    },
+    "user_notice.notice_no": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_notice.read_at": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_notice.title": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_notice.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_notice.user_id": {
+      "returned_by": [
+        "adminModule",
+        "listNotices"
+      ],
+      "arg_of": []
+    },
+    "user_profile.contact_path": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "user_profile.created_at": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "user_profile.id": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "user_profile.id_no_hash": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "user_profile.intro": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "user_profile.real_name": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "user_profile.updated_at": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "user_profile.user_id": {
+      "returned_by": [
+        "listUsers"
+      ],
+      "arg_of": []
+    },
+    "video_share.cover_path": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.created_at": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.id": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.status": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": [
+        "listAny",
+        "listVideos"
+      ]
+    },
+    "video_share.tag": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.title": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.updated_at": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.user_id": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.video_no": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "video_share.video_path": {
+      "returned_by": [
+        "listAny",
+        "listVideos"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_flow.at": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_flow.created_at": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_flow.id": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_flow.operator_no": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_flow.status": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": [
+        "listAdminWithdrawals",
+        "listWithdrawals"
+      ]
+    },
+    "withdrawal_flow.step": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_flow.updated_at": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_flow.wd_id": {
+      "returned_by": [
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.account_id": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.amount_cents": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.applied_at": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.bank_no": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.created_at": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.id": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.status": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals"
+      ]
+    },
+    "withdrawal_request.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "withdrawal_request.wd_no": {
+      "returned_by": [
+        "adminModule",
+        "getWithdrawal",
+        "listAdminWithdrawals",
+        "listAny",
+        "listWithdrawals",
+        "reviewWithdrawal",
+        "withdrawFunds"
+      ],
+      "arg_of": []
+    },
+    "work_order.assignee_no": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order.created_at": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order.creator_user_id": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order.id": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order.plot_no": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order.price_item_no": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order.status": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders"
+      ]
+    },
+    "work_order.type": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder"
+      ]
+    },
+    "work_order.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order.wo_no": {
+      "returned_by": [
+        "adminModule",
+        "getExpert",
+        "getWorkorder",
+        "listAny",
+        "listDispatches",
+        "listJobChanges",
+        "listWorkorders",
+        "reissueWorkorder",
+        "search"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.amount_impact_cents": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.at": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.created_at": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.from_status": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.id": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.kind": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": [
+        "listJobChanges"
+      ]
+    },
+    "work_order_change.reason": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": [
+        "cancelWorkorder"
+      ]
+    },
+    "work_order_change.to_status": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.updated_at": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_change.wo_id": {
+      "returned_by": [
+        "amendWorkorder",
+        "cancelWorkorder",
+        "listJobChanges",
+        "reissueWorkorder"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.at": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.attach_no": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.body": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.created_at": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.id": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.kind": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": [
+        "adminModule",
+        "listChats",
+        "sendChat"
+      ]
+    },
+    "work_order_chat.sender_no": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.updated_at": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_chat.wo_id": {
+      "returned_by": [
+        "adminModule",
+        "getWorkorder",
+        "listChats",
+        "sendChat"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.at": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.created_at": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.id": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.note": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.operator_no": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.status": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": [
+        "listWorkorders"
+      ]
+    },
+    "work_order_flow.step": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.updated_at": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_flow.wo_id": {
+      "returned_by": [
+        "acceptJob",
+        "cancelWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.content": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.created_at": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.id": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.item_key": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.required": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.seq": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.updated_at": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    },
+    "work_order_item.wo_id": {
+      "returned_by": [
+        "amendWorkorder",
+        "getWorkorder",
+        "listWorkorders"
+      ],
+      "arg_of": []
+    }
+  }
+}

@@ -125,3 +125,48 @@ img{display:block;max-width:100%}
   .adm-side-grp a{display:inline-block;white-space:nowrap;margin:0 3px 0 0;padding:6px 9px}
   .adm-content{width:100%;padding:14px 12px 40px}
 }
+
+/* 后台价格公示管控：纯素、严谨，与后台独立风格一致，不引入田园装饰 */
+.adm-content .sf-pub{background:#fff;border-color:var(--adm-line);border-radius:4px;
+  box-shadow:none;padding:12px 14px}
+.adm-content .sf-pub-head h2{font-size:15px;color:var(--adm-ink)}
+.adm-content .sf-pub-chip{background:#F4F6F8;border-color:var(--adm-line);
+  border-radius:3px;color:var(--adm-ink)}
+.adm-content .sf-pub-chip b{color:var(--adm-accent)}
+.adm-content .sf-pub-link{border-color:var(--adm-line);border-radius:3px;color:var(--adm-accent)}
+.adm-content .sf-pub-link:hover{background:#F4F6F8}
+.adm-content .sf-pub-table th{background:#EEF1F4;color:var(--adm-ink)}
+.adm-content .sf-pub-num{color:var(--adm-accent)}
+.adm-content .sf-pub-foot .sf-btn.is-quiet{border-color:var(--adm-line);color:var(--adm-ink)}
+.adm-tag{display:inline-block;padding:2px 7px;border:1px solid var(--adm-line);border-radius:3px;
+  font-size:11px;color:var(--adm-mute)}
+.adm-tag.is-on{color:var(--adm-accent);border:1px solid var(--adm-accent);background:#fff}
+.adm-content .sf-pub-calc-form label{font-size:12px;color:var(--adm-ink)}
+.adm-content .sf-pub-calc-form .sf-input{border-radius:3px}
+
+/* 后台业务节点：纯素、严谨，不引入田园装饰 */
+.adm-content .sf-biz-rec,.adm-content .sf-biz-actions,.adm-content .sf-biz-flow li,
+.adm-content .sf-biz-ok,.adm-content .sf-biz-map a{background:#F7F9FB;border-color:var(--adm-line);border-radius:3px}
+.adm-content .sf-biz-rec b,.adm-content .sf-biz-btn.is-next{color:var(--adm-accent)}
+.adm-content .sf-biz-btn{border-color:var(--adm-line);border-radius:3px;background:#fff;color:var(--adm-ink)}
+.adm-content .sf-biz-btn.is-next{background:var(--adm-accent);color:#fff}
+.adm-content .sf-biz-table th{background:#EEF1F4;color:var(--adm-ink)}
+.adm-content .sf-biz-ok h3{color:var(--adm-ink)}
+.adm-content .sf-biz-tools{background:#EEF1F4;border-color:var(--adm-line);border-radius:3px}
+.adm-content .sf-biz-tools .sf-btn{border-radius:3px}
+
+/* 后台纯素：业务组件统一收敛为灰蓝灰阶，不出现田园彩色卡片 */
+.adm-content .sf-v2-rec,.adm-content .sf-v2-stat,.adm-content .sf-v2-box{background:#F1F3F5;border-color:var(--adm-line);border-radius:3px}
+.adm-content .sf-v2-stat b,.adm-content .sf-v2-box h3,.adm-content .sf-v2-sub h3{color:var(--adm-ink)}
+.adm-content .sf-v2-chip.is-on{background:var(--adm-accent);border-color:var(--adm-accent)}
+.adm-content .sf-v2-chip{border-radius:3px}
+.adm-content .sf-v2-badge{border-radius:3px;background:#E7EBEE;color:var(--adm-ink)}
+.adm-content .sf-v2-badge.is-wait{background:#E7EBEE;color:var(--adm-ink);border-color:var(--adm-line)}
+.adm-content .sf-v2-badge.is-done{background:#DDE5E8;color:var(--adm-ink);border-color:var(--adm-line)}
+.adm-content .sf-v2-badge.is-stop{background:#E4E4E4;color:var(--adm-ink);border-color:var(--adm-line)}
+.adm-content .sf-v2-money-row>b{color:var(--adm-ink)}
+.adm-content .sf-v2-money-row.is-total,.adm-content .sf-v2-table thead th{background:#EDF0F2}
+.adm-content .sf-v2-table tr.is-diff{background:#EFF1F2}
+.adm-content .sf-v2-flow li.is-now{border-left-color:var(--adm-accent)}
+.adm-content .sf-v2-flow li.is-now .sf-v2-flow-n{background:var(--adm-accent)}
+.adm-content .sf-v2-photos{display:none}
